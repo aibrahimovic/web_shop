@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title> Web shop </title>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body>
+    <header class="navbar navbar-fixed-top navbar-inverse">
+
+		<div class="container">
+
+		<%= link_to "logo", home_path, id: "logo" %>
+
+        <nav>
+          <ul class="nav navbar-nav navbar-left">
+          <% $all_categories = Category.all %>
+          <% $all_categories.each do |x| %>
+            <li class="nav_link"><%= link_to x.name.upcase, category_path(x.id) %></li>
+          <% end %> 
+
+          </ul>
+
+
+	        <ul class="nav navbar-nav navbar-right">
+
+          <% if logged_in? %>
+            <li><%= link_to "LOGOUT", logout_path, method: "delete" %></li>
+          <% else %>
+           	<li><%= link_to "LOGIN", login_path %></li>
+            <li><%= link_to "|", '#' %></li>
+				    <li><%= link_to "REGISTER", new_user_path %></li>
+			     <% end %>
+            <li><%= link_to "CART", '#' %></li>
+          </ul>
+        
+        </nav>
+      </div>
+    </header>
+
+    <div class="container">
+      <%= yield %>
+    </div>
+  </body>
+</html> 

@@ -1,0 +1,52 @@
+// Place all the styles related to the Products controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+#helpTable1 {
+	text-align: left;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#helpTable2 {
+	text-align: left;
+	margin-left: 0px;
+	margin-right: auto;
+	margin-top: 70px;
+}
+
+#help1 {
+	padding:0px;
+	margin:2px;
+}
+
+#all_products2 {
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#wrapper .text_on_image {
+	position:relative;
+	bottom:100px;
+	left:0px;
+	visibility:hidden;
+	text-align: center;
+}
+
+#wrapper:hover .text_on_image {
+	visibility:visible;
+}
+
+.pic{ 
+	width:190px; 
+	height:190px; 
+	opacity: 1; 
+	filter: alpha(opacity=100); 
+	//background: url(http://www.corelangs.com/css/box/img/duck.png) no-repeat; 
+}
+.pic:hover { 
+	opacity: 0.3; 
+	filter: alpha(opacity=30); 
+	color: #FF00FF;
+} 

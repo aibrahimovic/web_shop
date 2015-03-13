@@ -1,0 +1,36 @@
+<br><br>
+
+<table>
+	<tr>
+		<td> <%= image_tag("4.jpg", :size => "400x400") %> </td>
+		<td> 
+			<% @product.name %>
+			<br>
+			<% @product.description %>
+			<br><br>
+			<table>
+				<tr> 
+					<td> Veličina </td>
+					<td> Količina </td>
+				</tr>
+				<tr> 
+					<td> 
+						<select>
+							<option>Jedan</option>
+						</select>
+					</td>
+					<td>
+						<select>
+							<option>Drugi</option>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<td> <input type="submit" value="DODAJ U KORPU "></td>
+					<td> <input type="submit" value="KUPI ODMAH"></td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+
+

@@ -1,0 +1,35 @@
+// Place all the styles related to the Categories controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+#all_products {
+	position: absolute;
+    left: 500px;
+    top: 120px;
+    z-index: -1;
+}
+
+#wrapper .text_on_image {
+	position:relative;
+	bottom:100px;
+	left:0px;
+	visibility:hidden;
+	text-align: center;
+}
+
+#wrapper:hover .text_on_image {
+	visibility:visible;
+}
+
+.pic{ 
+	width:190px; 
+	height:190px; 
+	opacity: 1; 
+	filter: alpha(opacity=100); 
+	//background: url(http://www.corelangs.com/css/box/img/duck.png) no-repeat; 
+}
+.pic:hover { 
+	opacity: 0.3; 
+	filter: alpha(opacity=30); 
+	color: #FF00FF;
+} 

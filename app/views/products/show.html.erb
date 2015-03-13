@@ -1,0 +1,116 @@
+<% sizes = [] %>
+
+<% list = HelpProduct.all %>
+
+<% list.each do |x| %>
+	<% if x.product_id == @product.id %>
+		<% sizes << x.size %>
+	<% end %>
+<% end %>
+
+<% get_quantity('45', @product.id) %> <br>
+
+<br><br>
+<% cat_name = get_category_name(@product.category_id) %>
+<%= link_to "HOME / ", home_path %><%= link_to cat_name, category_path(@product.category_id) %>
+<%= link_to @product.name.upcase, '#' %>
+
+<table id="helpTable1" cellpadding="10">
+	<tr style="padding:0px; margin:2px;">
+	
+
+		<td> <%= image_tag(@product.image, :size => "200x200") %> </td>
+		<td style="margin-top: 200cm;"> 
+			<b><%= @product.name %></b>
+			<br>
+			<br>
+			<%= @product.description %>
+			<br><br>
+			<%= form_for Item.new do |f| %>
+				<%= f.hidden_field :product_id, value: @product.id %>
+				<%= f.hidden_field :cart_id, value: 1 %>
+
+			<table id="helpTable2">
+				<tr> 
+					<td id="help1"> Veličina </td>
+					<td id="help1"> Količina </td>
+				</tr>
+				<tr> 
+					<td id="help1"> 
+						<select id="dropdown_sizes">
+						<% sizes.each do |x| %>
+							<option> <%= x %> </option>
+						<% end %>
+						</select>
+					</td>
+					
+
+
+					<td id="help1">
+						<input type="text" value ='1' id="field_quantity">
+					</td>
+
+					<script>
+						var e = document.getElementById("dropdown_sizes");
+						var si = e.options[e.selectedIndex].text;
+						document.getElementById("field_quantity").innerHTML = si; 
+					</script>
+
+				</tr>
+				<tr>
+  					<td><%= f.submit 'DODAJ U KORPU' %></td> <!-- poslati odabranu količinu i veličinu -->
+  					<td><%= f.submit 'KUPI ODMAH' %></td>
+  						
+					
+				</tr>
+			</table>
+			<% end %>
+		</td>
+		
+	</tr>
+</table>
+
+
+<br><br><br><br>
+<h2> Slični proizvodi </h2>
+<br>
+
+
+<% $all_products = Product.all %>
+<% counter = 0 %>
+<% list = [] %>
+
+<% $all_products.each do |x| %>
+	<% if x.category_id == @product.category_id %>
+		<% list << x %>
+	<% end %>
+<% end %>
+
+<table id="all_products2">
+	
+	<% list.each do |x| %>
+
+		<% if counter%4 == 0 || counter == 0 %>
+			<tr><td>
+		<% else %>
+			<td>
+		<% end %> 
+			<div id="wrapper">
+				<%= link_to(image_tag(x.image, size: "150x150"), product_path(x.id),  :class => "pic") %> <br>
+				<p class="text_on_image">
+	    			<%= x.name %> <br>
+	    			<b><%= x.price %></b>
+	    		</p>
+				<% counter += 1 %>
+			</div>
+			</td>	
+		<% if counter%4 == 0 || counter == list.length %>
+			</tr>
+		<% end %>
+	<% end %>
+
+	<% counter = 0 %>
+
+</table>
+
+

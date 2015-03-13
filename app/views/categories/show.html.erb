@@ -1,0 +1,37 @@
+
+<% $all_products = Product.all %>
+<% counter = 0 %>
+<% list = [] %>
+
+<% $all_products.each do |x| %>
+	<% if x.category_id == @category.id %>
+		<% list << x %>
+	<% end %>
+<% end %>
+
+<table id="all_products">
+
+	<tr><td style="padding:0px; margin:2px;"><%= @category.name.upcase %></td></tr>
+	
+	<% list.each do |x| %>
+
+		<% if counter%4 == 0 || counter == 0 %>
+			<tr><td style="padding:20px; margin:2px;">
+		<% else %>
+			<td style="padding:20px; margin:2px;">
+		<% end %> 
+		<div id="wrapper">
+				<%= link_to(image_tag(x.image, size: "150x150"), product_path(x.id), :class => "pic") %> <br>
+				<%= x.name %><br>
+				<%= x.price %><br>
+				<% counter += 1 %>
+			</td>	
+		</div>
+		<% if counter%4 == 0 || counter == list.length %>
+			</tr>
+		<% end %>
+	<% end %>
+
+	<% counter = 0 %>
+
+</table>
