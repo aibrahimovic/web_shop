@@ -12,6 +12,7 @@ Test3::Application.routes.draw do
   resources :users
 
   get 'home'       => 'static_pages#home'
+  get ' '       => 'static_pages#home'
   get 'categories' => 'categories#new'
 
   get    'login'   => 'sessions#new'

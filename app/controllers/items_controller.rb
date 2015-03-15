@@ -6,6 +6,20 @@ class ItemsController < ApplicationController
   def create
 
     @item = Item.new(item_params)
+    tag = false
+
+    @id_p = @item.help_product_id
+    hp = HelpProduct.where(product_id: @item.help_product_id).all
+    hp.each do |x| 
+      if x.size == @item.size
+        @item.help_product_id = x.id
+      end
+    end
+
+
+    #@item.help_product_id = HelpProduct.where(size: @item.size)
+    #@item.help_product_id = 4
+
     #@all_items = Item.all
     #tag = false
     
@@ -19,7 +33,8 @@ class ItemsController < ApplicationController
     #product is not in table items
     if tag == false
       if @item.save
-          redirect_to categories_path("1") #get_last_category)
+          redirect_to product_path(@id_p)
+          #dodati broj na korpu u desnom čošku
       else
         #flash.now[:same_user] = "Error"
         render 'new'
@@ -35,7 +50,9 @@ class ItemsController < ApplicationController
   private
 
     def item_params
-      params.require(:item).permit(:product_id, :cart_id)
+      params.require(:item).permit(:help_product_id, :cart_id, :size, :quantity)
+
+
     end
 
 end
