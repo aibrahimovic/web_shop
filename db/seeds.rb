@@ -66,5 +66,9 @@ hp14 = HelpProduct.create(size: "45", quantity: 100, product_id: 11)
 hp15 = HelpProduct.create(size: "42", quantity: 100, product_id: 12)
 hp16 = HelpProduct.create(size: "48", quantity: 100, product_id: 13)
 
+ca1 = Cart.new(user_id: 1)
+ca2 = Cart.new(user_id: 2)
 
+ca1.save()
+ca2.save()
 
