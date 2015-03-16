@@ -10,6 +10,8 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
+   
+
     @user[:role_id] = 2
     if @user.save
     	  log_in @user

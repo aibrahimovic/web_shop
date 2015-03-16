@@ -32,21 +32,25 @@
 			<br>
 
 				<%= f.hidden_field :help_product_id, value: @product.id %>
-				<%= f.hidden_field :cart_id, value: 1 %>
+				<%= f.hidden_field :cart_id, value: $cart_id %>
 
-				<%= f.label :veličina %><br>
-				<%= f.select("size", hp.collect {|p| [ p.size] }, { :include_blank => true, :selected => params[:size] }) %>
 
+				<table>
+					<tr>
+						<td class="table_quan_size"><%= f.label :veličina %>
+						<td class="table_quan_size"><%= f.label :količina %>
+					</tr>
+					<tr>
+						<td class="table_quan_size"><%= f.select("size", hp.collect {|p| [ p.size] }, { :include_blank => "Sve veličine", :selected => params[:size], :class => "form-control" }) %>
+						<td class="table_quan_size"><%= f.text_field :quantity, :class => "quantity_field"%>
+				</table>
+						
+
+      			<table> 
+      				<tr><td style="padding:2px; margin:1px;"><%= f.submit 'DODAJ U KORPU', :class => "btn btn-default"%></td>
+      				<td style="padding:2px; margin:1px;"><button name="button" type="submit", class="btn btn-primary">KUPI ODMAH</button></td></tr>
+      			</table>
       			
-
-				<%= f.label :količina %><br>
-      			<%= f.text_field :quantity%><br><br>
-
-
-      			<%= f.submit 'DODAJ U KORPU' %></td> <!-- poslati odabranu količinu i veličinu -->
-      		
-
-      			<%= f.submit 'KUPI ODMAH' %>
 
       			<%= params[:help_product_id] %><br>
       			<%= params[:cart_id] %><br>

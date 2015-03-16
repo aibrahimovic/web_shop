@@ -1,6 +1,16 @@
 module SessionsHelper
 
-	  def log_in(user)
+	  def log_in(user) 
+
+      cart = Cart.find_by(user_id: user.id)
+      if cart == nil
+        cart = Cart.new
+        cart.user_id = user.id
+        $cart_id = cart.id
+        cart.save
+      else
+        $cart_id = cart.id
+      end
     	session[:user_id] = user.id
   	end
 

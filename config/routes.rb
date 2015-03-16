@@ -1,4 +1,5 @@
 Test3::Application.routes.draw do
+  get "addresses/new"
   get "items/new"
   post "items/create"
   get "carts/new"
@@ -14,6 +15,7 @@ Test3::Application.routes.draw do
   get 'home'       => 'static_pages#home'
   get ' '       => 'static_pages#home'
   get 'categories' => 'categories#new'
+  get 'carts' => 'carts#show'
 
   get    'login'   => 'sessions#new'
   post   'login'   => 'sessions#create'
@@ -23,6 +25,7 @@ Test3::Application.routes.draw do
   resources :products
   resources :carts
   resources :items
+  resources :addresses
 
 
 

@@ -8,7 +8,8 @@ class ItemsController < ApplicationController
     @item = Item.new(item_params)
     tag = false
 
-    @id_p = @item.help_product_id
+    #way to send help_product_id from previous form
+    @id_product = @item.help_product_id
     hp = HelpProduct.where(product_id: @item.help_product_id).all
     hp.each do |x| 
       if x.size == @item.size
@@ -16,27 +17,15 @@ class ItemsController < ApplicationController
       end
     end
 
-
-    #@item.help_product_id = HelpProduct.where(size: @item.size)
-    #@item.help_product_id = 4
-
-    #@all_items = Item.all
-    #tag = false
-    
-    #@all_items.each do |x|
-      #if x.product_id == @item.product_id
-        #provjeri da li je ista veličina, ako jeste povečati količinu i tag na true, ako nije tag = false
-      #end
-    #end
-
+    @item.product_id = @id_product
 
     #product is not in table items
     if tag == false
       if @item.save
-          redirect_to product_path(@id_p)
+          redirect_to product_path(@id_product)
+          #redirect_to items_new_path
           #dodati broj na korpu u desnom čošku
       else
-        #flash.now[:same_user] = "Error"
         render 'new'
       end
     end
@@ -48,11 +37,8 @@ class ItemsController < ApplicationController
   end
 
   private
-
     def item_params
-      params.require(:item).permit(:help_product_id, :cart_id, :size, :quantity)
-
-
+      params.require(:item).permit(:help_product_id, :cart_id, :size, :quantity, :product_id)
     end
 
 end

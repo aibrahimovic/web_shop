@@ -1,0 +1,90 @@
+<br><br>
+<h2 style="text-align: left;">Adresa za dostavu</h2>
+
+<div class="row">
+  <%= form_for(@address) do |f| %>
+  <div class="col-md-6">
+    
+      <% unless flash[:address_error].blank? %>
+          <%= flash[:address_error] %>
+      <% end %><br>
+      
+      <%= f.label :Ime_i_Prezime %>
+      <%= f.text_field :name, class: "form-control" %>
+      <br>
+      <%= f.label :Adresa %>
+      <%= f.text_field :address_name, class: 'form-control' %>
+      <br>
+      <%= f.label :Grad %>
+      <%= f.text_field :city, class: 'form-control' %>
+      <br>
+
+      <%= f.label :Regija %>
+      <%= f.text_field :region, class: 'form-control' %>
+      <br>
+
+      <%= f.label :ZIP %>
+      <%= f.text_field :zip, class: 'form-control' %>
+      <br>
+
+      <%= f.label :Država %><br>
+      <%= f.select :state, class: 'form-control' %>
+      <br>
+
+      <%= f.label :Brojtelefona %>
+      <%= f.text_field :phone, class: 'form-control' %>
+      <br>
+
+      <br><br>
+
+      <h2 style="text-align: left;">Adresa za račun</h2>
+      <div class="checkbox">
+        <label>
+          <input type="checkbox" id="checkbox1" onchange="myFunction()">  Koristi adresu za dostavu
+        </label>
+      </div>
+
+      <br>
+
+      <% a = params[:name] %>
+
+      <script>
+      function myFunction() {
+          document.getElementById("addr").innerHTML = "Ime i Prezime";
+      }
+      </script>
+
+      <p id="addr"> </p>
+      <%10.times do %>
+        <br>
+      <% end %>
+
+  
+  </div> 
+
+  <div class="col-md-6">
+    <table border = "1" class="table_total">
+	<tr>
+		<td style="padding:20px; margin:10px;">
+			<p style="text-align: left;"> <b>Narudžba</b> <%= 0 %> proizvoda 
+			<% 17.times do %>
+				&nbsp;
+			<% end %>
+			<br></p>
+			<p style="text-align: right;"> Cijena <br> <b><%= 0 %>KM </b><br><br>
+			Dostava <br> <b><%= 0 %>KM </b><br>
+			<hr>
+			<p style="text-align: right;">
+			Ukupno <b><%= 0 %></b></p>
+		</td>
+	</tr>
+	</table>
+	<table class="table_total2"> 
+	    <tr><td style="padding:2px; margin:1px;"><%= button_to "ODUSTANI", home_path, :class => "btn btn-default", :method => :get  %></td>
+	    <td style="padding:2px; margin:1px;"><%= f.submit "NASTAVI", class: "btn btn-primary" %></td></tr>
+	</table>
+  </div>
+  <% end %>
+</div>
+
+

@@ -1,12 +1,24 @@
 
 <% delivery = 5 %>
 <% sum = 0 %>
-	<% @list.each do |x| %>
-		<% p = Product.find(x) %>
-		<% sum += p.price.to_i %>
-	<% end %>
+<% @list = [] %>
 
+<br><br>
 
+<% @all.each do |x| %>
+	<% hp = HelpProduct.find(x.help_product) %>
+	<% @list << hp.product_id %>
+<% end %> 
+
+<% @all.each do |x| %>
+	<% pr = x.product_id %>
+	<% p = Product.find_by(id: pr) %>
+	<% price = p.price.to_i %>
+	<% qu = x.quantity %>
+	<% sum += (5) %>
+<% end %>
+
+<!-- price*qu -->
 
 <table border = "1" class="table_total">
 	<tr>
@@ -24,6 +36,12 @@
 		</td>
 	</tr>
 </table>
+<table class="table_total2"> 
+    <tr><td style="padding:2px; margin:1px;"><%= button_to "ODUSTANI", home_path, :class => "btn btn-default", :method => :get  %></td>
+    <td style="padding:2px; margin:1px;"><%= button_to "NASTAVI", addresses_new_path, :class => "btn btn-primary", :method => :get  %></td></tr>
+</table>
+
+<!-- <button name="button" type="submit", class="btn btn-primary">NASTAVI</button> -->
 
 
 <table class="table_cart">
@@ -31,12 +49,13 @@
 		<td style="padding:30px; margin:2px;"> Vaša korpa </td>
 	</tr>
 
-	<% @list.each do |x| %>
-	<% p = Product.find(x) %>
+	<% @all.each do |y| %>
+	<% p = y.help_product.product %>
+
 	<tr style="padding:0px; margin:2px;"> 
 		<td  style="padding:0px; margin:2px;"> <%= image_tag(p.image, size: "150x150") %> </td>
 		<td  style="padding:30px; margin:2px;"> Model: <%= p.name %> <br>
-			 Veličina: <br>
+			 Veličina: <%= y.size %> <br>
 			 Boja: Crvena <br>
 			 ID: 215fd <br>
 			 <br><br>
@@ -45,13 +64,11 @@
 			 <b><%= p.price %>KM</b>
 			 <br>
 			 <br>
-			 Količina: <input type="text" value="1">
+			 Količina: <input type="text" value= "<%=y.quantity %>" class="quantity_field">
 			 <br><br><br>
 		</td>
 	</tr>
 	<% end %>
-
-
 	<br>
 </table>
 

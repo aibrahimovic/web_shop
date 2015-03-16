@@ -11,13 +11,20 @@
 
 		<div class="container">
 
-		<%= link_to "logo", home_path, id: "logo" %>
+
 
         <nav>
           <ul class="nav navbar-nav navbar-left">
+          <li><%= link_to(image_tag("logo3.png", size: "90x25"), home_path) %></li>
           <% $all_categories = Category.all %>
+          <% 13.times do %>
+              <li> &nbsp; </li>
+            <% end %>
           <% $all_categories.each do |x| %>
             <li class="nav_link"><%= link_to x.name.upcase, category_path(x.id) %></li>
+            <% 5.times do %>
+              <li> &nbsp; </li>
+            <% end %>
           <% end %> 
 
           </ul>
@@ -27,12 +34,18 @@
 
           <% if logged_in? %>
             <li><%= link_to "LOGOUT", logout_path, method: "delete" %></li>
+            <% 8.times do %>
+              <li> &nbsp; </li>
+            <% end %>
           <% else %>
            	<li><%= link_to "LOGIN", login_path %></li>
             <li><%= link_to "|", '#' %></li>
 				    <li><%= link_to "REGISTER", new_user_path %></li>
+            <% 8.times do %>
+              <li> &nbsp; </li>
+            <% end %>
 			     <% end %>
-            <li><%= link_to "CART", '#' %></li>
+            <li><%= link_to(image_tag("cart.png", size: "20x20"), carts_path) %></li>
           </ul>
         
         </nav>

@@ -6,8 +6,6 @@ class SessionsController < ApplicationController
 
   def create
   	user = User.find_by(email: params[:session][:email].downcase)
-    #status1 = checkUser(user) 
-    #status2 = checkAdmin(user)
 
     if user.role_id == 2 && user && user.authenticate(params[:session][:password])
     	log_in user

@@ -4,19 +4,24 @@ class CartsController < ApplicationController
   end
 
   def show
-  	@cart = Cart.find(params[:id])
-  	#@cart = Cart.find_by(params[:user_id])
-  	all_products
+  	@cart = Cart.find_by(id: $cart_id)
+    all_products
   end
 
   def all_products
-  	@all = Item.all
-  	@list = []
-  	@all.each do |x| 
-  		if x.cart_id = @cart.id
-  			@list << x.product_id
-  		end
-  	end
+    @all = Item.where(cart_id: @cart.id).all
+    
+    @all2 = []
+    @all.each do |x|
+      unless @all.include?(x)
+        @all2 << x
+      end
+    end
   end
+
+  def funkti
+    @indexes = []
+  end
+
 
 end

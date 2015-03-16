@@ -5,7 +5,9 @@
 /*application design auto*/
 
 body {
-  padding-top: 60px;
+  padding-top: 40px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 section {
@@ -144,4 +146,32 @@ input {
   color: yellow;
 }
 
+.btn-primary {
+  color: #ffffff;
+  background-color: black;
+  border-color: black;
 
+}
+
+.btn-primary:hover {
+  color: black;
+  background-color: #F0D234;
+  border-color: #F0D234;
+}
+
+.btn-primary:focus,
+.btn-primary:active,
+.btn-primary.active {
+  color: black;
+  background-color: #FFC63B;
+  border-color: #FFC63B;
+}
+
+
+.quantity_field {
+  width: 80px;
+}
+
+.size_field {
+  width: 150px;
+}
