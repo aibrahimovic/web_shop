@@ -15,7 +15,7 @@
 	<% p = Product.find_by(id: pr) %>
 	<% price = p.price.to_i %>
 	<% qu = x.quantity %>
-	<% sum += (5) %>
+	<% sum += (price*qu) %>
 <% end %>
 
 <!-- price*qu -->
@@ -64,13 +64,23 @@
 			 <b><%= p.price %>KM</b>
 			 <br>
 			 <br>
-			 Količina: <input type="text" value= "<%=y.quantity %>" class="quantity_field">
+			 Količina: <input type="text" value= "<%=y.quantity %>" class="quantity_field" onchange="QuantityFunction()" id="quan">
 			 <br><br><br>
 		</td>
 	</tr>
 	<% end %>
 	<br>
 </table>
+
+<script>
+    function QuantityFunction() {
+
+       	if (document.getElementById("quan").value == 0) {
+       		confirm ("Are you sure you want to delete this item");
+       		var a = "<% home_path %>";
+       	}
+    }
+</script>
 
 
 

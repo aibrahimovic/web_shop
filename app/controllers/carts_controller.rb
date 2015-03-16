@@ -4,7 +4,17 @@ class CartsController < ApplicationController
   end
 
   def show
-  	@cart = Cart.find_by(id: $cart_id)
+    if $cart_id != nil
+  	 @cart = Cart.find_by(id: $cart_id)
+
+    else
+      @cart = Cart.new
+      @cart.user_id = 0
+      @cart.save
+      cookies[:cart_id] = @cart.id
+      $cart_id = cookies[:cart_id]
+      @cart = Cart.find_by(id: @cart.id)
+    end
     all_products
   end
 

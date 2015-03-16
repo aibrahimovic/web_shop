@@ -32,8 +32,8 @@ config.action_mailer.smtp_settings = {
     :address        => 'smtp.gmail.com',
     :domain         => '',
     :port           => 587,
-    :user_name      => 'example@gmail.com', #'aazraa.ibrahimovic@gmail.com',
-    :password       => 'šifra',
+    :user_name      => 'test.atlant@gmail.com',
+    :password       => 'Koliko12',
     :authentication => :plain
 }
 

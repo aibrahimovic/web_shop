@@ -10,10 +10,12 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-   
-
     @user[:role_id] = 2
+    @cart = Cart.new
+  
     if @user.save
+        @cart.user_id = @user.id
+        @cart.save
     	  log_in @user
         SignUpNotifier.registrated(@user).deliver
         redirect_to home_path
