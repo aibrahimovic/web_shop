@@ -5,7 +5,6 @@ class AddressesController < ApplicationController
   	@address = Address.new
   end
 
-
   def create
   	@address = Address.new(address_params)
   	u = current_user
