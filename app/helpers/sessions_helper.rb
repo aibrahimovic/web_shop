@@ -1,11 +1,9 @@
 module SessionsHelper
 
 	  def log_in(user) 
-
       cart = Cart.find_by(user_id: user.id)
       $cart_id = cart.id
     	session[:user_id] = user.id
-
   	end
 
   	def current_user
@@ -21,7 +19,11 @@ module SessionsHelper
   	end
 
   	def log_out
-      $cart_id = cookies[:cart_id]
+      if cookies[:cart_id] != nil
+        $cart_id = cookies[:cart_id]
+      else 
+        $cart_id = nil
+      end
     	session.delete(:user_id)
     	@current_user = nil
   	end
