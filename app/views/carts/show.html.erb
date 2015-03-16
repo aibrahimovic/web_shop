@@ -77,7 +77,13 @@
 
        	if (document.getElementById("quan").value == 0) {
        		confirm ("Are you sure you want to delete this item");
-       		var a = "<% home_path %>";
+       		$.ajax({
+			  url: /items/delete/,
+			  type: 'DELETE',
+			  success: function(result) {
+			    // Do something with the result
+			  }
+			});
        	}
     }
 </script>

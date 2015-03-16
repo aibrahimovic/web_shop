@@ -30,7 +30,7 @@ class ItemsController < ApplicationController
       end
     end
   end
-
+  
   def get_last_category 
   	p = Product.find (@item.product_id)	
   	return p.category_id

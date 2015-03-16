@@ -7,10 +7,13 @@ class SessionsController < ApplicationController
   def create
   	user = User.find_by(email: params[:session][:email].downcase)
 
-    if user.role_id == 2 && user && user.authenticate(params[:session][:password])
+    if user == nil
+      flash.now[:notice] = "Email or password is incorrect."
+      render 'new'
+    elsif user.role.name == "Registrated" && user && user.authenticate(params[:session][:password])
     	log_in user
       redirect_to home_path
-    elsif user.role_id == 1 && user && user.authenticate(params[:session][:password])
+    elsif user.role.name == "Administrator" && user && user.authenticate(params[:session][:password])
       log_in user
       redirect_to categories_path
     else
