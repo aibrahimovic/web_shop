@@ -1,5 +1,5 @@
 class RemoveProductFormItems < ActiveRecord::Migration
   def change
-  	remove_column :items, :product_id
+  	remove_column :items, :product_id, :integer
   end
 end
