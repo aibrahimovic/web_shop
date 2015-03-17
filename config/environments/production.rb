@@ -90,6 +90,6 @@ Test3::Application.configure do
     openssl_verify_mode: 'none'
   }
   config.action_mailer.raise_delivery_errors = true
-
+  config.action_mailer.perform_deliveries = true 
 
 end
