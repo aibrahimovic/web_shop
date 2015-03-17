@@ -79,7 +79,7 @@ Test3::Application.configure do
   config.log_formatter = ::Logger::Formatter.new
 
   config.action_mailer.delivery_method = :smtp
-    comonfig.action_mailer.smtp_settings = {
+    config.action_mailer.smtp_settings = {
     address: "smtp.gmail.com",
     port: 25,
     authentication: "plain",
