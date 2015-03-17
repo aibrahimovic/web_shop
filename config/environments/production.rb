@@ -79,25 +79,15 @@ Test3::Application.configure do
   config.log_formatter = ::Logger::Formatter.new
 
   config.action_mailer.delivery_method = :smtp
-  config.action_mailer.smtp_settings = {
-    :address        => 'smtp.gmail.com',
-    :domain         => '',
-    :port           => 587,
-    :user_name      => 'test.atlant@gmail.com',
-    :password       => 'Koliko12',
-    :authentication => :plain
+    comonfig.action_mailer.smtp_settings = {
+    address: "smtp.gmail.com",
+    port: 25,
+    authentication: "plain",
+    user_name: "test.atlant@gmail.com",
+    password: ENV['SMTP_PASSWORD'],
+    enable_starttls_auto: false
   }
-
-  config.action_mailer.delivery_method = :smtp
-  comonfig.action_mailer.smtp_settings = {
-  address: "smtp.gmail.com",
-  port: 25,
-  authentication: "plain",
-  user_name: "test.atlant@gmail.com",
-  password: ENV['SMTP_PASSWORD'],
-  enable_starttls_auto: false
-}
-config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.raise_delivery_errors = true
 
 
 end
