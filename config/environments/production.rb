@@ -88,5 +88,16 @@ Test3::Application.configure do
     :authentication => :plain
   }
 
+  config.action_mailer.delivery_method = :smtp
+  comonfig.action_mailer.smtp_settings = {
+  address: "smtp.gmail.com",
+  port: 25,
+  authentication: "plain",
+  user_name: "test.atlant@gmail.com",
+  password: ENV['SMTP_PASSWORD'],
+  enable_starttls_auto: false
+}
+config.action_mailer.raise_delivery_errors = true
+
 
 end
