@@ -1,10 +1,13 @@
 class CartsController < ApplicationController
   def new
   	@cart = Cart.new
+    $s = 0
+    $sum_delivery = 0
   end
 
   def show
-    
+    $s = 0
+    $sum_delivery = 0
     if $cart_id != nil
   	 @cart = Cart.find_by(id: $cart_id)
     else

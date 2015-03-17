@@ -2,7 +2,7 @@
 <h2 style="text-align: left;">Adresa za dostavu</h2>
 
 <div class="row">
-  
+
   <%= form_for(@address1) do |f| %>
   <div class="col-md-6">
     
@@ -39,11 +39,15 @@
   
       <br><br>
 
-      <h2 style="text-align: left;">Adresa za račun</h2>
-      <div class="checkbox">
-      
-          <input type="checkbox" id="checkbox1" onchange="myFunction()" checked>  Koristi adresu za dostavu
-       
+      <div class="row">
+        <div class="col-md-6">
+            <h2 style="text-align: left;">Adresa za račun</h2>
+          </div>
+          <div class="col-md-6">
+            <div class="checkbox">
+                <input type="checkbox" id="checkbox1" onchange="myFunction()" value="nesto"checked>Koristi adresu za dostavu
+            </div>
+          </div>
       </div>
 
       <table class="table_total2"> 
@@ -112,11 +116,11 @@
           &nbsp;
         <% end %>
         <br></p>
-        <p style="text-align: right;"> Cijena <br> <b><%= $sum %>KM </b><br><br>
+        <p style="text-align: right;"> Cijena <br> <b><%= $s %>KM </b><br><br>
         Dostava <br> <b><%= $sum_delivery %>KM </b><br>
         <hr>
         <p style="text-align: right;">
-        Ukupno <b><%= $sum+$sum_delivery %></b></p>
+        Ukupno <b><%= $s+$sum_delivery %></b></p>
       </td>
     </tr>
   </table>

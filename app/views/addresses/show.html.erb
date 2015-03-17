@@ -1,1 +1,93 @@
-<h1> Show </h1>
+<br><br>
+<h2 style="text-align: left;">Adresa za dostavu</h2>
+<br>
+
+<% a = Address.where(user_id: current_user.id).all %>
+<% a.each do |x| %>
+	<% @first = x %>
+	<% a.each do |y| %>
+		<% if y.created_at < @first.created_at %>
+			<% @first = y %>
+		<% end %>
+	<% end %>
+<% end %>
+
+<table>
+	<tr class="table2">
+		<td class="table2"> Korištene adrese
+		<td class="table2"> &nbsp;
+		<td class="table2"> <%= link_to "Koristi novu", new_address_path %>
+	</tr>
+	<tr class="table2">
+		<td class="table2"> <hr> </td>
+		<td class="table2"> <hr> </td>
+		<td class="table2"> <hr> </td>
+	</tr>
+	<tr class="table2">
+		<td class="default_address"> 
+			 <%= @first.name %><br>
+			 <%= @first.address_name %><br>
+			 <%= @first.city %>, <%= @first.region %>, <%= @first.zip %> <br>
+			 <%= @first.state %><br>
+			 <%= @first.phone %><br>
+		</td>
+		<td> &nbsp; </td>
+		<td> &nbsp; </td>
+	</tr>
+</table>
+
+<br><br><br><br>
+
+<div class="row">
+  
+  <div class="col-md-6">
+    
+      
+  	<div class="row">
+  		<div class="col-md-6">
+      		<h2 style="text-align: left;">Adresa za račun</h2>
+      	</div>
+      	<div class="col-md-6">
+      		<div class="checkbox">
+          		<input type="checkbox" id="checkbox1" onchange="myFunction()" value="nesto"checked>Koristi adresu za dostavu
+      		</div>
+      	</div>
+    </div>
+
+      <table class="table_total2"> 
+        <tr>
+          <td style="padding:2px; margin:1px;"><%= button_to "ODUSTANI", home_path, :class => "btn btn-default", :method => :get  %></td>
+          <td style="padding:2px; margin:1px;"><%= button_to "NASTAVI", new_charge_path, :class => "btn btn-primary", :method => :get  %></td>
+        </tr>
+      </table>
+
+      <br>
+
+      <%10.times do %>
+        <br>
+      <% end %>
+  </div> 
+
+
+  <div class="col-md-6">
+    <table border = "1" class="table_total">
+    <tr>
+      <td style="padding:20px; margin:10px;">
+        <p style="text-align: left;"> <b>Narudžba</b> <%= $number_items %> proizvoda 
+        <% 17.times do %>
+          &nbsp;
+        <% end %>
+        <br></p>
+        <p style="text-align: right;"> Cijena <br> <b><%= $s %>KM </b><br><br>
+        Dostava <br> <b><%= $sum_delivery %>KM </b><br>
+        <hr>
+        <p style="text-align: right;">
+        Ukupno <b><%= $s+$sum_delivery %></b></p>
+      </td>
+    </tr>
+  </table>
+  </div>
+
+</div>
+
+

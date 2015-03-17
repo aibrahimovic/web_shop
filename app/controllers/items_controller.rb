@@ -4,7 +4,7 @@ class ItemsController < ApplicationController
   end
 
   def create
-
+    $single = nil
     @item = Item.new(item_params)
     tag = false
 
@@ -39,6 +39,10 @@ class ItemsController < ApplicationController
       @c = cookies[:cart_id]
       @i = Item.where(cart_id: @cart_id).destroy_all
     end
+    $single = nil
+    $total = nil
+    $s = 0
+    $sum_delivery = 0
     redirect_to home_path
   end
 

@@ -16,6 +16,7 @@ Test3::Application.routes.draw do
   get ' '       => 'static_pages#home'
   get 'categories' => 'categories#new'
   get 'carts' => 'carts#show'
+  get 'addresses' => 'address#show'
 
   get    'login'   => 'sessions#new'
   post   'login'   => 'sessions#create'

@@ -1,6 +1,5 @@
 
 <% delivery = 5 %>
-<% $sum = 0 %>
 <% @list = [] %>
 
 <br><br>
@@ -13,14 +12,16 @@
 <% @all.each do |x| %>
 	<% pr = x.product_id %>
 	<% p = Product.find_by(id: pr) %>
-	<% price = p.price.to_i %>
-	<% qu = x.quantity %>
-	<% $sum += (price*qu) %>
+	<% price = p.price.to_i %><br>
+	<% qu = x.quantity %><br><br>
+	<% if price != nil && qu != nil %>
+		<% $s += (price*qu) %>
+	<% end %>
 <% end %>
 <% $sum_delivery = @list.length*delivery %>
 <% $number_items = @list.length %>
+<% $total = $s + $sum_delivery %>
 
-<!-- price*qu -->
 
 <table border = "1" class="table_total">
 	<tr>
@@ -30,17 +31,27 @@
 				&nbsp;
 			<% end %>
 			<br></p>
-			<p style="text-align: right;"> Cijena <br> <b><%= $sum %>KM </b><br><br>
+			<p style="text-align: right;"> Cijena <br> <b><%= $s %>KM </b><br><br>
 			Dostava <br> <b><%= $sum_delivery %>KM </b><br>
 			<hr>
 			<p style="text-align: right;">
-			Ukupno <b><%= $sum+$sum_delivery %></b></p>
+			Ukupno <b><%= $s+$sum_delivery %></b></p>
 		</td>
 	</tr>
 </table>
 <table class="table_total2"> 
     <tr><td style="padding:2px; margin:1px;"><%= button_to "ODUSTANI", home_path, :class => "btn btn-default", :method => :get  %></td>
-    <td style="padding:2px; margin:1px;"><%= button_to "NASTAVI", addresses_new_path, :class => "btn btn-primary", :method => :get  %></td></tr>
+    <% if current_user != nil %>
+    	<% a = Address.find_by(user_id: current_user.id) %>
+    	<% if a != nil %>
+    		<% pa = address_path(current_user.id) %>
+    	<% else %> 
+    		<% pa = new_address_path %>
+    	<% end %>
+    <% else %>
+   		<% pa = new_address_path %>
+   	<% end %>
+    <td style="padding:2px; margin:1px;"><%= button_to "NASTAVI", pa, :class => "btn btn-primary", :method => :get  %></td></tr>
 </table>
 
 <!-- <button name="button" type="submit", class="btn btn-primary">NASTAVI</button> -->

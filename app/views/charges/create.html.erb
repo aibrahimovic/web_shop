@@ -1,5 +1,8 @@
-
-<h2>Uplatili ste <strong><%= $sum+$sum_delivery%>KM</strong>!</h2>
+<% if $single != nil %>
+	<h2>Uplatili ste <strong><%= $single %>KM</strong>!</h2>
+<% else %>
+	<h2>Uplatili ste <strong><%= $total%>KM</strong>!</h2>
+<% end %>
 
 <% if $cart_id != nil %>
 	<% @ca = $cart_id %>

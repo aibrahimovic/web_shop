@@ -6,6 +6,7 @@ class AddressesController < ApplicationController
   end
 
   def create
+    $single = nil
   	@address1 = Address.new(address_params)
   	u = current_user
   	
