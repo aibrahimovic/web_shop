@@ -12,7 +12,7 @@
       <br>  
 
       <%= f.label :email %>
-      <%= f.email_field :email, class: "form-control" %>
+      <%= f.email_field :email, class: 'form-control', id: "emailId" %>
 
       <br>
       <%= f.label :password %>
@@ -25,6 +25,22 @@
 
       <%= f.submit "REGISTER", class: "btn btn-primary" %>
     <% end %>
+
+    <script type="text/javascript">
+      function red_fiels(var e) {
+        if (e != "") {
+            red_gone();
+        }
+        else {
+          document.getElementById("emailId").className = document.getElementById("emailId").className + " error";
+        }
+      }
+
+      function red_gone() {
+        document.getElementById("fName").className = document.getElementById("emailId").className.replace(" error", ""); 
+      }
+    </script>
+
   </div>
 </div>
 

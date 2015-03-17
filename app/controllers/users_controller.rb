@@ -14,13 +14,25 @@ class UsersController < ApplicationController
     @cart = Cart.new
   
     if @user.save
-        @cart.user_id = @user.id
-        @cart.save
-    	  log_in @user
-        #SignUpNotifier.registrated(@user).deliver
-        redirect_to home_path
+      @cart.user_id = @user.id
+      @cart.save
+    	log_in @user
+      #SignUpNotifier.registrated(@user).deliver
+      redirect_to home_path
     else
-      flash.now[:same_user] = "Error"
+      u = User.find_by(email: @user.email)
+      pa1 = @user.password
+      pa2 = @user.password_confirmation
+
+      if u != nil
+        flash.now[:same_user] = "User already exists"
+      elsif pa1 != nil && pa2 != nil && pa1 != pa2
+        flash.now[:same_user] = "Repeat password"
+      elsif pa1 != nil && pa1.length < 5
+        flash.now[:same_user] = "Password should be minimum 5 characters"  
+      else 
+        flash.now[:same_user] = "Insert data"          
+      end
       render 'new'
     end
   end

@@ -6,7 +6,9 @@
     <%= form_for(:session, url: login_path) do |f| %>
 
       <% unless flash[:notice].blank? %>
-          <%= flash[:notice] %>
+          <script> 
+            alert ("Email or password is incorrect.");
+          </script>
       <% end %>
 
       <br>
