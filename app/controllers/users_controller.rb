@@ -17,7 +17,7 @@ class UsersController < ApplicationController
         @cart.user_id = @user.id
         @cart.save
     	  log_in @user
-        SignUpNotifier.registrated(@user).deliver
+        #SignUpNotifier.registrated(@user).deliver
         redirect_to home_path
     else
       flash.now[:same_user] = "Error"
