@@ -85,7 +85,9 @@ Test3::Application.configure do
     authentication: "plain",
     user_name: "test.atlant@gmail.com",
     password: ENV['SMTP_PASSWORD'],
-    enable_starttls_auto: false
+    enable_starttls_auto: false,
+    domain: 'https://stormy-bastion-2505.herokuapp.com/',
+    openssl_verify_mode: 'none'
   }
   config.action_mailer.raise_delivery_errors = true
 
