@@ -183,3 +183,35 @@ input {
     height: 24px;
     margin: 0 10px 0 0;
 }
+
+.breadcrumb {
+    color: black;
+    content: "/ ";
+    padding: 0 5px;
+    background-color: white;
+}
+
+.breadcrumb > li + li:before {
+    //color: #CCCCCC;
+    color: gray;
+    content: "/ ";
+    padding: 0 5px;
+}
+
+.bread {
+  color: black;
+} 
+
+.bread:hover {
+  text-decoration: none;
+  color: black;
+} 
+
+.bread2 {
+  color: gray;
+} 
+
+.bread2:hover {
+  text-decoration: none;
+  color: gray;
+} 

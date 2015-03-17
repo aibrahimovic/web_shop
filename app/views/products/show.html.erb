@@ -12,9 +12,13 @@
 
 <br><br>
 <% cat = @product.category_id %>
-<% cat_name = @product.category.name.upcase + " / "%>
-<%= link_to "HOME / ", home_path %><%= link_to cat_name, category_path(@product.category_id) %>
-<%= link_to @product.name.upcase, '#' %>
+<% cat_name = @product.category.name.upcase %>
+
+<ol class="breadcrumb">
+  <li><%= link_to "HOME", home_path, class: "bread2" %></li>
+  <li><%= link_to cat_name, category_path(@product.category_id), class: "bread2" %></li>
+  <li class="active"><%= link_to @product.name.upcase, '#', class: "bread" %></li>
+</ol>
 
 <table id="helpTable1" cellpadding="10">
 	<tr style="padding:0px; margin:2px;">

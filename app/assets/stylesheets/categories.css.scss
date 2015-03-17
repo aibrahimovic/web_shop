@@ -3,10 +3,14 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 #all_products {
-	position: absolute;
+	/*position: absolute;
     left: 500px;
     top: 120px;
-    z-index: -1;
+    z-index: -1;*/
+    position: relative;
+    top: 90px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 #wrapper .text_on_image {
