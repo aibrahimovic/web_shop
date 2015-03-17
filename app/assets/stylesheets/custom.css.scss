@@ -1,10 +1,10 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
-
-    
+   
 /*application design auto*/
 
 body {
+  font-family: 'Montserrat', sans-serif;
   padding-top: 40px;
   margin-left: auto;
   margin-right: auto;
@@ -174,4 +174,12 @@ input {
 
 .size_field {
   width: 150px;
+}
+
+.shopping-cart {
+    display: inline-block;
+    background: url('http://cdn1.iconfinder.com/data/icons/jigsoar-icons/24/_cart.png') no-repeat 0 0;
+    width: 24px;
+    height: 24px;
+    margin: 0 10px 0 0;
 }

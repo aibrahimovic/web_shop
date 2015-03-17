@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <link href='http://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
     <title> Web shop </title>
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
@@ -10,10 +11,7 @@
     <header class="navbar navbar-fixed-top navbar-inverse">
 
 		<div class="container">
-
-
-
-        <nav>
+    <nav>
           <ul class="nav navbar-nav navbar-left">
           <li><%= link_to(image_tag("logo3.png", size: "90x25"), home_path) %></li>
           <% $all_categories = Category.all %>
@@ -45,6 +43,7 @@
               <li> &nbsp; </li>
             <% end %>
 			     <% end %>
+            <!--<li><span><i class="shopping-cart"></i></span></li>-->
             <li><%= link_to(image_tag("cart.png", size: "20x20"), carts_path) %></li>
           </ul>
         
@@ -57,3 +56,4 @@
     </div>
   </body>
 </html> 
+

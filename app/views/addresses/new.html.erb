@@ -2,7 +2,8 @@
 <h2 style="text-align: left;">Adresa za dostavu</h2>
 
 <div class="row">
-  <%= form_for(@address) do |f| %>
+  
+  <%= form_for(@address1) do |f| %>
   <div class="col-md-6">
     
       <% unless flash[:address_error].blank? %>
@@ -30,19 +31,29 @@
       <%= f.label :Država %><br>
       <%= f.select :state, class: 'form-control' %>
       <br>
-
-      <%= f.label :Brojtelefona %>
-      <%= f.text_field :phone, class: 'form-control' %>
       <br>
 
+      <%= f.label :Broj_telefona %>
+      <%= f.text_field :phone, class: 'form-control' %>
+      <br>
+  
       <br><br>
 
       <h2 style="text-align: left;">Adresa za račun</h2>
       <div class="checkbox">
-        <label>
-          <input type="checkbox" id="checkbox1" onchange="myFunction()">  Koristi adresu za dostavu
-        </label>
+      
+          <input type="checkbox" id="checkbox1" onchange="myFunction()" checked>  Koristi adresu za dostavu
+       
       </div>
+
+      <table class="table_total2"> 
+        <tr>
+          <td style="padding:2px; margin:1px;"><%= button_to "ODUSTANI", home_path, :class => "btn btn-default", :method => :get  %></td>
+          <td style="padding:2px; margin:1px;"><%= f.submit "NASTAVI", class: "btn btn-primary"%></td>
+        </tr>
+      </table>
+
+      <% end %>
 
       <br>
 
@@ -54,37 +65,63 @@
       }
       </script>
 
-      <p id="addr"> </p>
+    
+
+      <%= form_for(@address1) do |f2| %>
+
+        <%= f2.label :Ime_i_Prezime %>
+        <%= f2.text_field :name, class: "form-control" %>
+        <br>
+        <%= f2.label :Adresa %>
+        <%= f2.text_field :address_name, class: 'form-control' %>
+        <br>
+        <%= f2.label :Grad %>
+        <%= f2.text_field :city, class: 'form-control' %>
+        <br>
+
+        <%= f2.label :Regija %>
+        <%= f2.text_field :region, class: 'form-control' %>
+        <br>
+
+        <%= f2.label :ZIP %>
+        <%= f2.text_field :zip, class: 'form-control' %>
+        <br>
+
+        <%= f2.label :Država %><br>
+        <%= f2.select :state, class: 'form-control' %>
+        <br>
+        <br>
+
+        <%= f2.label :Broj_telefona %>
+        <%= f2.text_field :phone, class: 'form-control' %>
+      <% end %>
+
+
       <%10.times do %>
         <br>
       <% end %>
-
-  
   </div> 
+
 
   <div class="col-md-6">
     <table border = "1" class="table_total">
-	<tr>
-		<td style="padding:20px; margin:10px;">
-			<p style="text-align: left;"> <b>Narudžba</b> <%= 0 %> proizvoda 
-			<% 17.times do %>
-				&nbsp;
-			<% end %>
-			<br></p>
-			<p style="text-align: right;"> Cijena <br> <b><%= 100 %>KM </b><br><br>
-			Dostava <br> <b><%= 0 %>KM </b><br>
-			<hr>
-			<p style="text-align: right;">
-			Ukupno <b><%= 0 %></b></p>
-		</td>
-	</tr>
-	</table>
-	<table class="table_total2"> 
-	    <tr><td style="padding:2px; margin:1px;"><%= button_to "ODUSTANI", home_path, :class => "btn btn-default", :method => :get  %></td>
-	    <td style="padding:2px; margin:1px;"><%= f.submit "NASTAVI", class: "btn btn-primary" %></td></tr>
-	</table>
+    <tr>
+      <td style="padding:20px; margin:10px;">
+        <p style="text-align: left;"> <b>Narudžba</b> <%= $number_items %> proizvoda 
+        <% 17.times do %>
+          &nbsp;
+        <% end %>
+        <br></p>
+        <p style="text-align: right;"> Cijena <br> <b><%= $sum %>KM </b><br><br>
+        Dostava <br> <b><%= $sum_delivery %>KM </b><br>
+        <hr>
+        <p style="text-align: right;">
+        Ukupno <b><%= $sum+$sum_delivery %></b></p>
+      </td>
+    </tr>
+  </table>
   </div>
-  <% end %>
+
 </div>
 
 

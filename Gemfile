@@ -59,3 +59,7 @@ end
 gem 'bootstrap-sass',  '3.2.0.0'
 
 gem 'rambling-slider-rails'	
+
+gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
+
+gem 'rails_12factor', group: :production

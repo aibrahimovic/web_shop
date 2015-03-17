@@ -30,6 +30,18 @@ class ItemsController < ApplicationController
       end
     end
   end
+
+
+  def destroy
+    if $cart_id != nil
+      @i = Item.where(cart_id: $cart_id).destroy_all
+    else 
+      @c = cookies[:cart_id]
+      @i = Item.where(cart_id: @cart_id).destroy_all
+    end
+    redirect_to home_path
+  end
+
   
   def get_last_category 
   	p = Product.find (@item.product_id)	

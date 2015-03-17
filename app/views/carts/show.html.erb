@@ -1,6 +1,6 @@
 
 <% delivery = 5 %>
-<% sum = 0 %>
+<% $sum = 0 %>
 <% @list = [] %>
 
 <br><br>
@@ -15,24 +15,26 @@
 	<% p = Product.find_by(id: pr) %>
 	<% price = p.price.to_i %>
 	<% qu = x.quantity %>
-	<% sum += (price*qu) %>
+	<% $sum += (price*qu) %>
 <% end %>
+<% $sum_delivery = @list.length*delivery %>
+<% $number_items = @list.length %>
 
 <!-- price*qu -->
 
 <table border = "1" class="table_total">
 	<tr>
 		<td style="padding:20px; margin:10px;">
-			<p style="text-align: left;"> <b>Narudžba</b> <%= @list.length %> proizvoda 
+			<p style="text-align: left;"> <b>Narudžba</b> <%= $number_items %> proizvoda 
 			<% 17.times do %>
 				&nbsp;
 			<% end %>
 			<br></p>
-			<p style="text-align: right;"> Cijena <br> <b><%= sum %>KM </b><br><br>
-			Dostava <br> <b><%= @list.length*delivery %>KM </b><br>
+			<p style="text-align: right;"> Cijena <br> <b><%= $sum %>KM </b><br><br>
+			Dostava <br> <b><%= $sum_delivery %>KM </b><br>
 			<hr>
 			<p style="text-align: right;">
-			Ukupno <b><%= sum+@list.length*delivery %></b></p>
+			Ukupno <b><%= $sum+$sum_delivery %></b></p>
 		</td>
 	</tr>
 </table>

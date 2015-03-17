@@ -1,0 +1,10 @@
+
+<h2>Uplatili ste <strong><%= $sum+$sum_delivery%>KM</strong>!</h2>
+
+<% if $cart_id != nil %>
+	<% @ca = $cart_id %>
+<% else %>
+	<% @ca = cookies[:cart_id] %>
+<% end %>
+
+<%= button_to "HOME", item_path(@ca), :class => "btn btn-primary", :method => :delete  %>

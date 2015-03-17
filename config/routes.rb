@@ -10,7 +10,7 @@ Test3::Application.routes.draw do
   get "static_pages/home"
   get "static_pages/help"
   get "users/new"
-  resources :users
+  delete "items/destroy"
 
   get 'home'       => 'static_pages#home'
   get ' '       => 'static_pages#home'
@@ -21,13 +21,13 @@ Test3::Application.routes.draw do
   post   'login'   => 'sessions#create'
   delete 'logout'  => 'sessions#destroy'
 
+  resources :users
   resources :categories
   resources :products
   resources :carts
   resources :items
   resources :addresses
-
-
+  resources :charges
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
