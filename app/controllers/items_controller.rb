@@ -5,12 +5,13 @@ class ItemsController < ApplicationController
 
   def create
     @item = Item.new(item_params)
-      
 
     @cart.add_item(@item)
-    flash.now[:quantity_number] = "Quantity must be number"
-    hp = HelpProduct.find (@item.help_product_id)
+    hp = HelpProduct.find_by(id: @item.help_product_id)
     redirect_to product_path(hp.product)
+    
+    flash.now[:quantity_number] = "Quantity must be number"
+    
 
     
   end

@@ -28,8 +28,10 @@
       <%= f.text_field :zip, class: 'form-control' %>
       <br>
 
+      <% @array_of_states = []; %>
+      <% @array_of_states << "BiH" %>
       <%= f.label :Država %><br>
-      <%= f.select :state, class: 'form-control' %>
+      <%= f.select :state, class: 'form-control', options_for_select(state: "BiH") %>
       <br>
       <br>
 
@@ -52,7 +54,8 @@
 
       <table class="table_total2"> 
         <tr>
-          <td style="padding:2px; margin:1px;"><%= button_to "ODUSTANI", home_path, :class => "btn btn-default", :method => :get  %></td>
+          <td style="padding:2px; margin:1px;">
+            <%= button_to "ODUSTANI", home_path, :class => "btn btn-default", :method => :get  %></td>
           <td style="padding:2px; margin:1px;"><%= f.submit "NASTAVI", class: "btn btn-primary"%></td>
         </tr>
       </table>
@@ -106,13 +109,13 @@
     <table border = "1" class="table_total">
     <tr>
       <td style="padding:20px; margin:10px;">
-        <p style="text-align: left;"> <b>Narudžba</b> <%= @cart.items.length %> proizvoda 
+        <p style="text-align: left;"> <b>Narudžba</b> <%= @cart.get_total_number %> proizvoda 
         <% 17.times do %>
           &nbsp;
         <% end %>
         <br></p>
         <p style="text-align: right;"> Cijena <br> <b><%= @cart.get_total_price %>KM </b><br><br>
-        Dostava <br> <b><%= @cart.get_delivery_price %>KM </b><br>
+        Dostava <br> <b><%= @cart.get_delivery_price*@cart.items.length %>KM </b><br>
         <hr>
         <p style="text-align: right;">
         Ukupno <b><%= @cart.get_total_with_delivery %></b></p>

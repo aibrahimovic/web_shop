@@ -55,3 +55,9 @@
 	filter: alpha(opacity=30); 
 	color: #FF00FF;
 } 
+
+#fixed {
+    width: 70000px;
+    overflow: hidden;
+    display: inline-block;
+}

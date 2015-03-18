@@ -39,8 +39,9 @@
 					<td>
 				<% end %> 
 
+				<div id="wrapper">
 				<%= link_to(image_tag(x.image, size: "150x150"), product_path(x.id), :class => "pic") %> <br>
-					<div id="wrapper">
+					
 	    				<p class="text_on_image">
 	    					
 	    					<%= x.name %> <br>
@@ -49,7 +50,8 @@
 	    				</p>
 	    				<% counter += 1 %>
 					</div>
-					</td>	
+					</td>
+
 				<% if counter%4 == 0 || counter == $all_products.length %>
 					</tr>
 				<% end %>

@@ -73,13 +73,13 @@
     <table border = "1" class="table_total">
     <tr>
       <td style="padding:20px; margin:10px;">
-        <p style="text-align: left;"> <b>Narudžba</b> <%= @cart.items.length %> proizvoda 
+        <p style="text-align: left;"> <b>Narudžba</b> <%= @cart.get_total_number %> proizvoda 
         <% 17.times do %>
           &nbsp;
         <% end %>
         <br></p>
         <p style="text-align: right;"> Cijena <br> <b><%= @cart.get_total_price %>KM </b><br><br>
-        Dostava <br> <b><%= @cart.get_delivery_price %>KM </b><br>
+        Dostava <br> <b><%= @cart.get_delivery_price*@cart.items.length %>KM </b><br>
         <hr>
         <p style="text-align: right;">
         Ukupno <b><%= @cart.get_total_with_delivery %></b></p>

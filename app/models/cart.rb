@@ -17,7 +17,21 @@ class Cart < ActiveRecord::Base
   end
 
   def get_delivery_price
-    return DELIVERY_COST
+    total = 0
+    self.items.each do |item|
+        total += item.quantity*DELIVERY_COST
+    end
+
+    total
+  end
+
+  def get_total_number
+    total = 0
+    self.items.each do |item|
+      total += item.quantity
+    end
+
+    total
   end
 
   def get_total_price 
@@ -37,9 +51,9 @@ class Cart < ActiveRecord::Base
 
     item = self.items.find_by(id: item_id)
 
-    if item
-      get_total_with_delivery
+    if item 
       item.quantity = quantity
+      get_total_with_delivery
       return item.save
 
     end 
