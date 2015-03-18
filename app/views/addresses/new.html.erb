@@ -29,9 +29,12 @@
       <br>
 
       <% @array_of_states = []; %>
-      <% @array_of_states << "BiH" %>
+      <% @array_of_states << "Bosna i Hercegovina" %>
+      <% @array_of_states << "Hrvatska" %>
+      <% @array_of_states << "Slovenija" %>
+      <% @array_of_states << "Austrija" %>
       <%= f.label :Država %><br>
-      <%= f.select :state, class: 'form-control', options_for_select(state: "BiH") %>
+      <%= f.select("state", @array_of_states.collect {|p| [ p] }, { :include_blank => "Odaberite državu", :selected => params[:get_state], :class => "form-control" }) %>
       <br>
       <br>
 
@@ -89,7 +92,7 @@
         <br>
 
         <%= f2.label :Država %><br>
-        <%= f2.select :state, class: 'form-control' %>
+        <%= f2.select("state", @array_of_states.collect {|p| [ p] }, { :include_blank => "Odaberite državu", :selected => params[:get_state], :class => "form-control" }) %>
         <br>
         <br>
 
