@@ -83,8 +83,8 @@ Test3::Application.configure do
     address: "smtp.mandrillapp.com",
     port: 587,
     user_name: "test.atlant@gmail.com",
-    password: wJnlsLPIRAcoUtxOGA1h5A #ENV['SMTP_PASSWORD']
-    domain: 'https://stormy-bastion-2505.herokuapp.com/',
+    password: 'wJnlsLPIRAcoUtxOGA1h5A', #ENV['SMTP_PASSWORD']
+    domain: 'https://stormy-bastion-2505.herokuapp.com/'
   }
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.perform_deliveries = true 
