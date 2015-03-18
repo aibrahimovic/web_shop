@@ -4,46 +4,29 @@ class ItemsController < ApplicationController
   end
 
   def create
-    $single = nil
     @item = Item.new(item_params)
-    tag = false
+      
 
-    #way to send help_product_id from previous form
-    @id_product = @item.help_product_id
-    hp = HelpProduct.where(product_id: @item.help_product_id).all
-    hp.each do |x| 
-      if x.size == @item.size
-        @item.help_product_id = x.id
-      end
-    end
+    @cart.add_item(@item)
+    flash.now[:quantity_number] = "Quantity must be number"
+    hp = HelpProduct.find (@item.help_product_id)
+    redirect_to product_path(hp.product)
 
-    @item.product_id = @id_product
-
-    #product is not in table items
-    if tag == false
-      if @item.save
-          redirect_to product_path(@id_product)
-          #redirect_to items_new_path
-          #dodati broj na korpu u desnom čošku
-      else
-        render 'new'
-      end
-    end
+    
   end
 
-
   def destroy
-    if $cart_id != nil
-      @i = Item.where(cart_id: $cart_id).destroy_all
+    if @cart!= nil
+      @i = Item.where(cart_id: @cart.id).destroy_all
     else 
-      @c = cookies[:cart_id]
-      @i = Item.where(cart_id: @cart_id).destroy_all
+      @c = session[:cart_id]
+      @i = Item.where(cart_id: @cart.id).destroy_all
     end
-    $single = nil
-    $total = nil
-    $s = 0
-    $sum_delivery = 0
     redirect_to home_path
+  end
+
+  def update
+    redirect_to cart_path
   end
 
   
@@ -54,7 +37,7 @@ class ItemsController < ApplicationController
 
   private
     def item_params
-      params.require(:item).permit(:help_product_id, :cart_id, :size, :quantity, :product_id)
+      params.require(:item).permit(:help_product_id, :quantity)
     end
 
 end

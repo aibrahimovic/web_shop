@@ -20,6 +20,10 @@
   <li class="active"><%= link_to @product.name.upcase, '#', class: "bread" %></li>
 </ol>
 
+<% unless flash[:quantity_number].blank? %>
+    <p><%= flash.now[:quantity_number] %>
+<% end %>
+
 <table id="helpTable1" cellpadding="10">
 	<tr style="padding:0px; margin:2px;">
 	
@@ -33,18 +37,19 @@
 			<%= form_for Item.new do |f| %>
 
 			<% hp = HelpProduct.where(product_id: @product.id).all %>
+			<% hp.each do |x| %>
+				<% x.id %>
+			<% end %>
 			<br>
 
-				<%= f.hidden_field :help_product_id, value: @product.id %>
-				<%= f.hidden_field :cart_id, value: $cart_id %>
-
+				
 				<table>
 					<tr>
 						<td class="table_quan_size"><%= f.label :veličina %>
 						<td class="table_quan_size"><%= f.label :količina %>
 					</tr>
 					<tr>
-						<td class="table_quan_size"><%= f.select("size", hp.collect {|p| [ p.size] }, { :include_blank => "Sve veličine", :selected => params[:size], :class => "form-control" }) %>
+						<td class="table_quan_size"><%= f.select("help_product_id", hp.collect {|p| [ p.size, p.id ] }, { :include_blank => "Sve veličine", :selected => params[:get_help_product_id], :class => "form-control" }) %>
 						<td class="table_quan_size"><%= f.text_field :quantity, :class => "quantity_field"%>
 				</table>
 						
@@ -54,19 +59,16 @@
       				<td style="padding:2px; margin:1px;"><%= f.submit 'DODAJ U KORPU', :class => "btn btn-default"%>
       				</td>
       				
-      				<% $single = @product.price.to_i + 5 %>
       				<td style="padding:2px; margin:1px;">
       					<!-- constant 5KM for delivrey -->
-      					<%= button_to "KUPI ODMAH", new_charge_path, :class => "btn btn-primary", :method => :get %></td>
+      					<%= button_to "KUPI ODMAH", new_address_path, :class => "btn btn-primary", :method => :get %></td>
       				</td>
       			</tr>
       			</table>
       			
 
       			<%= params[:help_product_id] %><br>
-      			<%= params[:cart_id] %><br>
       			<%= params[:quantity] %><br>
-      			<%= params[:size] %><br>
 			
 			<% end %>
 		</td>

@@ -5,7 +5,7 @@
 
   <%= form_for(@address1) do |f| %>
   <div class="col-md-6">
-    
+    <div class="address1">
       <% unless flash[:address_error].blank? %>
           <%= flash[:address_error] %>
       <% end %><br>
@@ -36,7 +36,7 @@
       <%= f.label :Broj_telefona %>
       <%= f.text_field :phone, class: 'form-control' %>
       <br>
-  
+    </div>
       <br><br>
 
       <div class="row">
@@ -45,7 +45,7 @@
           </div>
           <div class="col-md-6">
             <div class="checkbox">
-                <input type="checkbox" id="checkbox1" onchange="myFunction()" value="nesto"checked>Koristi adresu za dostavu
+                <input type="checkbox" id="checkbox1" onchange="myFunction()" value="nesto" checked> Koristi adresu za dostavu
             </div>
           </div>
       </div>
@@ -63,13 +63,7 @@
 
       <% a = params[:name] %>
 
-      <script>
-      function myFunction() {
-          document.getElementById("addr").innerHTML = "Ime i Prezime";
-      }
-      </script>
-
-    
+    <div class="address2">
 
       <%= form_for(@address1) do |f2| %>
 
@@ -100,6 +94,7 @@
         <%= f2.text_field :phone, class: 'form-control' %>
       <% end %>
 
+    </div>
 
       <%10.times do %>
         <br>
@@ -111,16 +106,16 @@
     <table border = "1" class="table_total">
     <tr>
       <td style="padding:20px; margin:10px;">
-        <p style="text-align: left;"> <b>Narudžba</b> <%= $number_items %> proizvoda 
+        <p style="text-align: left;"> <b>Narudžba</b> <%= @cart.items.length %> proizvoda 
         <% 17.times do %>
           &nbsp;
         <% end %>
         <br></p>
-        <p style="text-align: right;"> Cijena <br> <b><%= $s %>KM </b><br><br>
-        Dostava <br> <b><%= $sum_delivery %>KM </b><br>
+        <p style="text-align: right;"> Cijena <br> <b><%= @cart.get_total_price %>KM </b><br><br>
+        Dostava <br> <b><%= @cart.get_delivery_price %>KM </b><br>
         <hr>
         <p style="text-align: right;">
-        Ukupno <b><%= $s+$sum_delivery %></b></p>
+        Ukupno <b><%= @cart.get_total_with_delivery %></b></p>
       </td>
     </tr>
   </table>
@@ -128,4 +123,16 @@
 
 </div>
 
+<script>
+
+  document.getElementsByClassName("address2")[0].style.visibility = "hidden";
+    function myFunction() {
+      checked = document.getElementById("checkbox1").checked;
+      if (checked == true)
+        document.getElementsByClassName("address2")[0].style.visibility = "hidden";
+      else
+        document.getElementsByClassName("address2")[0].style.visibility = "visible";
+    }
+    
+</script>
 

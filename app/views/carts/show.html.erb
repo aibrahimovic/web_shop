@@ -1,73 +1,37 @@
 
-<% delivery = 5 %>
 <% @list = [] %>
-
 <br><br>
-
-<% @all.each do |x| %>
-	<% hp = HelpProduct.find(x.help_product) %>
-	<% @list << hp.product_id %>
-<% end %> 
-
-<% @all.each do |x| %>
-	<% pr = x.product_id %>
-	<% p = Product.find_by(id: pr) %>
-	<% price = p.price.to_i %><br>
-	<% qu = x.quantity %><br><br>
-	<% if price != nil && qu != nil %>
-		<% $s += (price*qu) %>
-	<% end %>
-<% end %>
-<% $sum_delivery = @list.length*delivery %>
-<% $number_items = @list.length %>
-<% $total = $s + $sum_delivery %>
-
 
 <table border = "1" class="table_total">
 	<tr>
 		<td style="padding:20px; margin:10px;">
-			<p style="text-align: left;"> <b>Narudžba</b> <%= $number_items %> proizvoda 
+			<p style="text-align: left;"> <b>Narudžba</b> <%= @cart.items.length %> proizvoda 
 			<% 17.times do %>
 				&nbsp;
 			<% end %>
 			<br></p>
-			<p style="text-align: right;"> Cijena <br> <b><%= $s %>KM </b><br><br>
-			Dostava <br> <b><%= $sum_delivery %>KM </b><br>
+			<p style="text-align: right;"> Cijena <br> <b><%= @cart.get_total_price %>KM </b><br><br>
+			Dostava <br> <b><%= @cart.get_delivery_price %>KM </b><br>
 			<hr>
 			<p style="text-align: right;">
-			Ukupno <b><%= $s+$sum_delivery %></b></p>
+			Ukupno <b><%= @cart.get_total_with_delivery %></b></p>
 		</td>
 	</tr>
 </table>
-<table class="table_total2"> 
-    <tr><td style="padding:2px; margin:1px;"><%= button_to "ODUSTANI", home_path, :class => "btn btn-default", :method => :get  %></td>
-    <% if current_user != nil %>
-    	<% a = Address.find_by(user_id: current_user.id) %>
-    	<% if a != nil %>
-    		<% pa = address_path(current_user.id) %>
-    	<% else %> 
-    		<% pa = new_address_path %>
-    	<% end %>
-    <% else %>
-   		<% pa = new_address_path %>
-   	<% end %>
-    <td style="padding:2px; margin:1px;"><%= button_to "NASTAVI", pa, :class => "btn btn-primary", :method => :get  %></td></tr>
-</table>
-
-<!-- <button name="button" type="submit", class="btn btn-primary">NASTAVI</button> -->
-
 
 <table class="table_cart">
 	<tr> 
 		<td style="padding:30px; margin:2px;"> Vaša korpa </td>
 	</tr>
 
+	<% counter = 0 %>
+
 	<% @all.each do |y| %>
 	<% p = y.help_product.product %>
-
+	<% counter += 1 %>
 	<tr style="padding:0px; margin:2px;"> 
-		<td  style="padding:0px; margin:2px;"> <%= image_tag(p.image, size: "150x150") %> </td>
-		<td  style="padding:30px; margin:2px;"> Model: <%= p.name %> <br>
+		<td style="padding:0px; margin:2px;"> <%= image_tag(p.image, size: "150x150") %> </td>
+		<td style="padding:30px; margin:2px;"> Model: <%= p.name %> <br>
 			 Veličina: <%= y.size %> <br>
 			 Boja: Crvena <br>
 			 ID: 215fd <br>
@@ -77,7 +41,7 @@
 			 <b><%= p.price %>KM</b>
 			 <br>
 			 <br>
-			 Količina: <input type="text" value= "<%=y.quantity %>" class="quantity_field" onchange="QuantityFunction()" id="quan">
+			 Količina: <input data-id="<%= y.id %>" type="text" value= "<%=y.quantity %>" class="quantity_field">
 			 <br><br><br>
 		</td>
 	</tr>
@@ -85,17 +49,97 @@
 	<br>
 </table>
 
+<table class="table_total2"> 
+    <tr><td style="padding:2px; margin:1px;"><%= button_to "ODUSTANI", home_path, :class => "btn btn-default", :method => :get  %></td>
+    <% if @current_user != nil %>
+    	<% a = Address.find_by(user_id: @current_user.id) %>
+    	<% if a != nil %>
+    		<% pa = address_path(@current_user.id) %>
+    	<% else %> 
+    		<% pa = new_address_path %>
+    	<% end %>
+    <% else %>
+   		<% pa = new_address_path %>
+   	<% end %>
+    <td style="padding:2px; margin:1px;"><%= button_to "NASTAVI", pa, :class => "btn btn-primary", :method => :get  %></td></tr>
+</table>
+
+<script type="text/javascript">
+	$(window).bind('page:change', function(){
+		$(".quantity_field").change(function() {
+			
+		var el = $(this);
+		if (el.val() == 0) {
+			confirm("Are you sure you want to delete this item?");
+			$.ajax({
+			    url: '/carts/delete_item',
+			    data: { 
+			    	item_id: el.data("id"), 
+			    },
+			    type: 'DELETE',
+			    success: function(result) {
+			    	if (result.error) {
+			    		el.parents("tr").hide();
+			    	}
+			    	/*console.log(el)
+			    	alert (el.parents("tr").length)
+			   		el.parents("tr").show();*/
+			    }
+
+			});
+		}
+
+		else {
+
+			$.ajax({
+			    url: '/carts/update_item',
+			    data: { 
+			    	item_id: el.data("id"), 
+			    	quantity: el.val(), 
+			    },
+			    type: 'PUT',
+			    success: function(result) {
+			    	if (result.error) {
+			    		alert("Podaci su izmjenjeni");
+			    	}
+			    }
+
+			});
+		}
+		});
+		
+
+	});
+
+	
 
 
 
-<script>
-    function QuantityFunction() {
+	/*
+    function QuantityFunction(j) {
+    	j = j-1
+       	if (document.getElementsByClassName("quantity_field")[j].value == 0) {
+       		document.getElementsByClassName("button_hidden")[j].click();
 
-       	if (document.getElementById("quan").value == 0) {
-       		
        	}
-    }
+
+
+       	else {
+       		
+       	
+       		
+
+       		var a = document.getElementsByClassName("quantity_field")[j].value;
+       		
+       		document.getElementsByClassName("button_hidden2")[j].click();
+       		return a;
+       	}
+    }*/
+
 </script>
+
+
+
 
 
 

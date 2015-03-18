@@ -1,13 +1,7 @@
 module SessionsHelper
 
 	  def log_in(user) 
-      cart = Cart.find_by(user_id: user.id)
-      $cart_id = cart.id
-    	session[:user_id] = user.id
-  	end
-
-  	def current_user
-    	@current_user ||= User.find_by(id: session[:user_id])
+      session[:user_id] = user.id
   	end
 
     def email_now
@@ -15,16 +9,24 @@ module SessionsHelper
     end
 
   	def logged_in?
-    	!current_user.nil?
+    	!@current_user.nil?
   	end
 
   	def log_out
-      if cookies[:cart_id] != nil
-        $cart_id = cookies[:cart_id]
-      else 
-        $cart_id = nil
+      if session[:cart_id] != nil
+        @cart = session[:cart_id]
       end
     	session.delete(:user_id)
-    	@current_user = nil
+    	#@current_user = nil
   	end
+
+    def create_new_cart
+      @cart = Cart.new
+      @cart.user_id = nil
+      @cart.save
+      session[:cart_id] = @cart.id
+
+      @cart
+    end
+
 end

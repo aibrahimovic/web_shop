@@ -2,7 +2,7 @@
 <h2 style="text-align: left;">Adresa za dostavu</h2>
 <br>
 
-<% a = Address.where(user_id: current_user.id).all %>
+<% a = Address.where(user_id: @current_user.id).all %>
 <% a.each do |x| %>
 	<% @first = x %>
 	<% a.each do |y| %>
@@ -73,16 +73,16 @@
     <table border = "1" class="table_total">
     <tr>
       <td style="padding:20px; margin:10px;">
-        <p style="text-align: left;"> <b>Narudžba</b> <%= $number_items %> proizvoda 
+        <p style="text-align: left;"> <b>Narudžba</b> <%= @cart.items.length %> proizvoda 
         <% 17.times do %>
           &nbsp;
         <% end %>
         <br></p>
-        <p style="text-align: right;"> Cijena <br> <b><%= $s %>KM </b><br><br>
-        Dostava <br> <b><%= $sum_delivery %>KM </b><br>
+        <p style="text-align: right;"> Cijena <br> <b><%= @cart.get_total_price %>KM </b><br><br>
+        Dostava <br> <b><%= @cart.get_delivery_price %>KM </b><br>
         <hr>
         <p style="text-align: right;">
-        Ukupno <b><%= $s+$sum_delivery %></b></p>
+        Ukupno <b><%= @cart.get_total_with_delivery %></b></p>
       </td>
     </tr>
   </table>

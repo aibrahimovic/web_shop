@@ -1,5 +1,9 @@
 <br><br>
 
+<% unless flash[:quantity_number].blank? %>
+    <p><%= flash.now[:quantity_number] %>
+<% end %>
+
 <table>
 	<tr>
 		<td> <%= image_tag("4.jpg", :size => "400x400") %> </td>

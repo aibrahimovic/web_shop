@@ -80,14 +80,11 @@ Test3::Application.configure do
 
   config.action_mailer.delivery_method = :smtp
     config.action_mailer.smtp_settings = {
-    address: "smtp.gmail.com",
-    port: 25,
-    authentication: "plain",
+    address: "smtp.mandrillapp.com",
+    port: 587,
     user_name: "test.atlant@gmail.com",
-    password: ENV['SMTP_PASSWORD'],
-    enable_starttls_auto: false,
+    password: wJnlsLPIRAcoUtxOGA1h5A #ENV['SMTP_PASSWORD']
     domain: 'https://stormy-bastion-2505.herokuapp.com/',
-    openssl_verify_mode: 'none'
   }
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.perform_deliveries = true 

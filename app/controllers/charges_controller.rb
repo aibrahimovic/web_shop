@@ -5,11 +5,8 @@ class ChargesController < ApplicationController
 
 	def create
 	  # Amount in cents
-	  if $single != nil
-	  	@amount = $single*100
-	  else
-	  	@amount = ($total)*100
-	  end
+	  
+	  @amount = @cart.get_total_with_delivery
 
 	  customer = Stripe::Customer.create(
 	    :email => 'test.atlant@gmail.com',

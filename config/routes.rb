@@ -11,6 +11,9 @@ Test3::Application.routes.draw do
   get "static_pages/help"
   get "users/new"
   delete "items/destroy"
+  put "items/update"
+
+  #post '/items/up2' => 'items#up2', :as => :items_up2
 
   get 'home'       => 'static_pages#home'
   get ' '       => 'static_pages#home'
@@ -25,7 +28,10 @@ Test3::Application.routes.draw do
   resources :users
   resources :categories
   resources :products
-  resources :carts
+  resources :carts do 
+    put "update_item", on: :collection
+    delete "delete_item", on: :collection
+  end
   resources :items
   resources :addresses
   resources :charges

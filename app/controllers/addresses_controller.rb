@@ -6,12 +6,10 @@ class AddressesController < ApplicationController
   end
 
   def create
-    $single = nil
   	@address1 = Address.new(address_params)
-  	u = current_user
-  	
-    if u != nil
-  		@address1.user_id = u.id
+
+    if @current_user != nil
+  		@address1.user_id = @current_user.id
   	end
 
     @address1.tag = 's'

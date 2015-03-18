@@ -2,7 +2,6 @@ class ProductsController < ApplicationController
 
   def new
   	@product = Product.new
-  	#$all_products = Product.all
   end
 
   def show

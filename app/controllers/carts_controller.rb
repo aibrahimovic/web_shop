@@ -1,28 +1,14 @@
 class CartsController < ApplicationController
   def new
-  	@cart = Cart.new
-    $s = 0
-    $sum_delivery = 0
+  	#@cart = Cart.new
   end
 
   def show
-    $s = 0
-    $sum_delivery = 0
-    if $cart_id != nil
-  	 @cart = Cart.find_by(id: $cart_id)
-    else
-      @cart = Cart.new
-      @cart.user_id = 0
-      @cart.save
-      cookies[:cart_id] = @cart.id
-      #$cart_id = cookies[:cart_id]
-      @cart = Cart.find_by(id: @cart.id)
-    end
-    all_products
+    @all = @cart.items
   end
 
   def all_products
-    if logged_in?
+    if @current_user
       @all = Item.where(cart_id: @cart.id).all
     else
       @h_id = cookies[:cart_id]
@@ -37,9 +23,14 @@ class CartsController < ApplicationController
     end
   end
 
-  def funkti
-    @indexes = []
+  def update_item 
+    is_updated  = @cart.update_item(params[:item_id], params[:quantity])
+    render json: { error: is_updated } 
   end
 
+  def delete_item
+    is_deleted = @cart.delete_item(params[:item_id])
+    render json: { error: is_deleted } 
+  end
 
 end

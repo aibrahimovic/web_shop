@@ -39,11 +39,13 @@
 					<td>
 				<% end %> 
 
+				<%= link_to(image_tag(x.image, size: "150x150"), product_path(x.id), :class => "pic") %> <br>
 					<div id="wrapper">
-						<%= link_to(image_tag(x.image, size: "150x150"), product_path(x.id), :class => "pic") %> <br>
 	    				<p class="text_on_image">
+	    					
 	    					<%= x.name %> <br>
 	    					<b><%= x.price %></b>
+	    					
 	    				</p>
 	    				<% counter += 1 %>
 					</div>
