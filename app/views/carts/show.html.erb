@@ -5,16 +5,19 @@
 <table border = "1" class="table_total">
 	<tr>
 		<td style="padding:20px; margin:10px;">
-			<p style="text-align: left;"> <b>Narudžba</b> <%= @cart.get_total_number %> proizvoda 
+			<p style="text-align: left;"> <b>Narudžba </b> 
+				<span class="cart_total_number"><%= @cart.get_total_number %></span> proizvoda 
 			<% 17.times do %>
 				&nbsp;
 			<% end %>
 			<br></p>
-			<p style="text-align: right;"> Cijena <br> <b><%= @cart.get_total_price %>KM </b><br><br>
-			Dostava <br> <b><%= @cart.get_delivery_price*@cart.items.length %>KM </b><br>
-			<hr>
+			<p style="text-align: right;"> Cijena <br> 
+				<b><span class="cart_price"><%= @cart.get_total_price %></span>KM </b><br><br>
+				Dostava <br> 
+				<b><span class="cart_delivery"><%= @cart.get_delivery_price %>KM </span></b><br>
+				<hr>
 			<p style="text-align: right;">
-			Ukupno <b><%= @cart.get_total_with_delivery %></b></p>
+			Ukupno <b><span class="cart_total"><%= @cart.get_total_with_delivery %></span></b></p>
 		</td>
 	</tr>
 </table>
@@ -65,6 +68,7 @@
 </table>
 
 <script type="text/javascript">
+	
 	$(window).bind('page:change', function(){
 		$(".quantity_field").change(function() {
 			
@@ -111,31 +115,27 @@
 
 	});
 
-	
+	$(window).bind('page:change', function(){
+		$(".quantity_field").change(function() {
+			$.ajax({
+			    url: '/carts/update_price',
+			    type: 'GET',
+			    success: function(result) {
+			    	if (result.number) {
+			    		$(".cart_total_number").html(result.number);
+			    		$(".cart_price").html(result.price);
+			    		$(".cart_delivery").html(result.delivery);
+			    		$(".cart_total").html(result.total);
+			    		//#alert(result.price);
+			    		//#alert(result.delivery);
+			    		//alert(result.total);
+			    	}
+			    }
 
+			});
 
-
-	/*
-    function QuantityFunction(j) {
-    	j = j-1
-       	if (document.getElementsByClassName("quantity_field")[j].value == 0) {
-       		document.getElementsByClassName("button_hidden")[j].click();
-
-       	}
-
-
-       	else {
-       		
-       	
-       		
-
-       		var a = document.getElementsByClassName("quantity_field")[j].value;
-       		
-       		document.getElementsByClassName("button_hidden2")[j].click();
-       		return a;
-       	}
-    }*/
-
+		});
+	});
 </script>
 
 

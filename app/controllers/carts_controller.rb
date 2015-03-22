@@ -24,13 +24,18 @@ class CartsController < ApplicationController
   end
 
   def update_item 
-    is_updated  = @cart.update_item(params[:item_id], params[:quantity])
+    is_updated = @cart.update_item(params[:item_id], params[:quantity])
     render json: { error: is_updated } 
   end
 
   def delete_item
     is_deleted = @cart.delete_item(params[:item_id])
     render json: { error: is_deleted } 
+  end
+
+  def update_price
+    number, price, delivery, total = @cart.count_prices
+    render json: { number: number, price: price, delivery: delivery, total: total } 
   end
 
 end

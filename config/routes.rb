@@ -31,6 +31,7 @@ Test3::Application.routes.draw do
   resources :carts do 
     put "update_item", on: :collection
     delete "delete_item", on: :collection
+    get "update_price", on: :collection
   end
   resources :items
   resources :addresses

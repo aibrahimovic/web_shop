@@ -54,8 +54,8 @@ class Cart < ActiveRecord::Base
     if item 
       item.quantity = quantity
       get_total_with_delivery
-      return item.save
-
+      item.save
+      return true
     end 
 
     false
@@ -71,4 +71,9 @@ class Cart < ActiveRecord::Base
     
     false
   end
+
+  def count_prices 
+    return [get_total_number, get_total_price, get_delivery_price, get_total_with_delivery]
+  end
+
 end
