@@ -31,6 +31,7 @@ class Cart < ActiveRecord::Base
   end
 
   def get_delivery_price
+    
     total = 0
     self.items.each do |item|
         total += item.quantity*DELIVERY_COST
