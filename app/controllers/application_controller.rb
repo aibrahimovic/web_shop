@@ -4,8 +4,8 @@ class ApplicationController < ActionController::Base
   include SessionsHelper
 
   protect_from_forgery with: :exception
-  before_action :set_current_user, :set_cart
-  before_action 
+  before_action :set_current_user, :set_cart, :find_address_path, :set_counter
+
 
   def set_current_user
   	@current_user = User.find_by(id: session[:user_id])
@@ -22,6 +22,26 @@ class ApplicationController < ActionController::Base
   		@cart = create_new_cart
   	end
   end
+
+  def find_address_path
+    if @current_user != nil
+      a = Address.find_by(user_id: @current_user.id)
+      if a != nil
+        pa = address_path(@current_user.id)
+      else
+        pa = new_address_path
+      end
+    else
+      pa = new_address_path
+    end
+
+    return pa
+  end
+
+  def set_counter
+  end
+
+
 
 
 

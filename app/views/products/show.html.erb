@@ -1,3 +1,5 @@
+
+
 <% sizes = [] %>
 
 <% list = HelpProduct.all %>
@@ -24,24 +26,26 @@
     <p><%= flash.now[:quantity_number] %>
 <% end %>
 
-<table id="helpTable1" cellpadding="10">
-	<col width="40px" />
-	<tr style="padding:0px; margin:2px;">
-	
-		<td> <%= image_tag(@product.image, :size => "200x200") %> </td>
-		<td style="margin-top: 200cm;" class="fixed"> 
-			<b><%= @product.name %></b>
-			<br>
-			<br>
-			<%= @product.description %>
-			<br><br>
-			<%= form_for Item.new do |f| %>
+<div class="wrapper">
+	<div class="item">
+		<table id="helpTable1" cellpadding="10">
+			<col width="40px" />
+			<tr style="padding:0px; margin:2px;">
+        
 
-			<% hp = HelpProduct.where(product_id: @product.id).all %>
-			<% hp.each do |x| %>
-				<% x.id %>
-			<% end %>
-			<br>
+			<td> <%= image_tag(@product.image, :size => "200x200", :alt =>"item") %> </td>
+			<td style="margin-top: 200cm;" class="fixed"> 
+				<b><%= @product.name %></b>
+				<br><br>
+				<%= @product.description %>
+				<br><br>
+				<%= form_for Item.new, id: "new_item" do |f| %>
+
+				<% hp = HelpProduct.where(product_id: @product.id).all %>
+				<% hp.each do |x| %>
+					<% x.id %>
+				<% end %>
+				<br>
 
 				
 				<table>
@@ -54,29 +58,59 @@
 						<td class="table_quan_size"><%= f.text_field :quantity, :class => "quantity_field"%>
 				</table>
 						
+					
+				<%= hidden_field_tag 'hidden_buy_now', '' %>
 
-      			<table> 
-      				<tr>
-      				<td style="padding:2px; margin:1px;"><%= f.submit 'DODAJ U KORPU', :class => "btn btn-default"%>
-      				</td>
-      				
-      				<td style="padding:2px; margin:1px;">
-      					<!-- constant 5KM for delivrey -->
-      					<%= button_to "KUPI ODMAH", new_address_path, :class => "btn btn-primary", :method => :get %></td>
-      				</td>
-      			</tr>
-      			</table>
-      			
+	      		<table> 
+	      			<tr>
+	      			<td style="padding:2px; margin:1px;"><%= f.submit 'DODAJ U KORPU', :class => "btn btn-default", :id=> "add-to-cart" %>
+	      			</td>
+	      				
+	      			<td style="padding:2px; margin:1px;">
+	      				<div class="actions">
+	      					<%= f.submit 'KUPI ODMAH', :class => "btn btn-primary", :id=> "buy_now" %>
+	      					<!--<input type="button" value="KUPI ODMAH" class="btn btn-primary" id="buy_now"> -->
+	      				</div>
+	      			</td>
+	      			</tr>
+	      		</table>
+	      		<% end %>
+				
+			</td>
+			</tr>
+		</table>
+	</div> <!-- item -->
+</div> <!-- wraper -->
 
-      			<%= params[:help_product_id] %><br>
-      			<%= params[:quantity] %><br>
-			
-			<% end %>
-		</td>
-		
-	</tr>
-</table>
+<script type="text/javascript">
+	    $('#buy_now').click(function(){
+	    	alert("Kupi odmah");
+	    	
 
+	    	$('#hidden_buy_now').val("1");
+
+        	/*$('#new_item').submit(function() {
+        		
+            var valuesToSubmit = $(this).serialize();
+            console.log(valueToSubmit);
+            alert(valueToSubmit);
+
+            $.ajax({
+			    url: 'items/create',
+			    data: valuesToSubmit,
+
+			    success: function(result) {
+			    }
+
+			});
+
+            alert("method failed");
+            return false; // prevents normal behaviour*/
+        //});
+    });
+
+
+</script>
 
 <br><br><br><br>
 <h2> Slični proizvodi </h2>
@@ -120,25 +154,19 @@
 
 </table>
 
-
-<script>
-	/*
-	Add to cart fly effect with jQuery. - May 05, 2013
-	(c) 2013 @ElmahdiMahmoud - fikra-masri.by
-	license: http://www.opensource.org/licenses/mit-license.php
-*/   
-
-$('.add-to-cart').on('click', function () {
+<script type="text/javascript">
+	
+/*$('#add-to-cart').on('click', function () {
         var cart = $('.shopping-cart');
         var imgtodrag = $(this).parent('.item').find("img").eq(0);
         if (imgtodrag) {
             var imgclone = imgtodrag.clone()
                 .offset({
-	                top: imgtodrag.offset().top,
-	                left: imgtodrag.offset().left
+                top: imgtodrag.offset().top,
+                left: imgtodrag.offset().left
             })
                 .css({
-                'opacity': '0.5',
+                	'opacity': '0.5',
                     'position': 'absolute',
                     'height': '150px',
                     'width': '150px',
@@ -160,13 +188,25 @@ $('.add-to-cart').on('click', function () {
 
             imgclone.animate({
                 'width': 0,
-                    'height': 0
+                'height': 0
             }, function () {
                 $(this).detach()
             });
         }
-    });
+    });*/
+	
 
+	    
+
+		$('#add-to-cart').on('click', function () {
+			//$('.counter').css('visibility', 'visible');
+			var el = $('.counter');
+			var num = el.val() + 1;
+			//$('.counter').html(num);
+		});
+
+ 
 </script>
+
 
 

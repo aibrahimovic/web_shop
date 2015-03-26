@@ -42,4 +42,10 @@ class AddressesController < ApplicationController
     def address_params
       params.require(:address).permit(:name, :address_name, :city, :region, :zip, :state, :phone, :user_id, :tag)
     end
+
+  def single_item_price
+    number, price, delivery, total = @cart.temporary_cart_count_prices
+    render json: { number: number, price: price, delivery: delivery, total: total } 
+  end
+  
 end

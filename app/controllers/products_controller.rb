@@ -5,7 +5,11 @@ class ProductsController < ApplicationController
   end
 
   def show
+    @counter =  session[:counter]
     @product = Product.find(params[:id])
+    if !params[:counter].nil?
+      #@counter += params[:counter].to_i
+    end
   end
 
   def allProducts 

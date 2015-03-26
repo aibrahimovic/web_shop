@@ -1,19 +1,34 @@
 class ItemsController < ApplicationController
+
   def new
-  	@item = Item.new
+  	@item = Item.new    
+    #@counter = session[:counter]
+    ##@counter += 1
+    #session[:counter] = @counter
+
   end
 
   def create
     @item = Item.new(item_params)
+    @path_to_address = find_address_path
+    @counter = session[:counter]
 
-    @cart.add_item(@item)
-    hp = HelpProduct.find_by(id: @item.help_product_id)
-    redirect_to product_path(hp.product)
-    
-    flash.now[:quantity_number] = "Quantity must be number"
-    
+    hidden = params["hidden_buy_now"]
+    if hidden == "1"
+      @cart.add_item_to_temporary_cart(@item)
+      redirect_to @path_to_address
+    else
+      @cart.add_item(@item)
+      hp = HelpProduct.find_by(id: @item.help_product_id)    
+      @counter += 1
+      session[:counter] = @counter
+      #redirect_to new_item_path
+      redirect_to product_path(hp.product)
+      #redirect_to :controller => 'products', :action => 'show', :id => hp.product, :counter => @counter
 
-    
+      flash.now[:quantity_number] = "Quantity must be number"
+    end
+
   end
 
   def destroy

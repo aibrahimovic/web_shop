@@ -19,7 +19,7 @@
               <li> &nbsp; </li>
             <% end %>
           <% $all_categories.each do |x| %>
-            <li class="nav_link"><%= link_to x.name.upcase, category_path(x.id) %></li>
+            <li class="nav_link"><%= link_to x.name.upcase, category_path(x.id), class: "nav2" %></li>
             <% 5.times do %>
               <li> &nbsp; </li>
             <% end %>
@@ -43,8 +43,8 @@
               <li> &nbsp; </li>
             <% end %>
 			     <% end %>
-            <!--<li><span><i class="shopping-cart"></i></span></li>-->
-            <li><%= link_to(image_tag("cart.png", size: "20x20"), carts_path) %></li>
+            <li  id="shopping-cart"><%= link_to(image_tag("cart.png", size: "20x20"), carts_path) %></li>
+            <li class="counter"><%= session[:counter] %></li>
           </ul>
         
         </nav>
@@ -57,3 +57,17 @@
   </body>
 </html> 
 
+<script type="text/javascript">
+    $('.navbar-left li .nav2').click(function (e) {
+      //alert("Klik");
+      //$('.navbar-left .nav_link .nav2').removeClass('.nav_link');
+      //$(this).parent('.li').addClass('active');
+      $(this).addClass('active');
+    });
+
+    $('#shopping-cart').on('click', function () {
+      //alert("Klik na korpu");
+      $('.counter').css('display', 'none');
+    });
+
+</script>

@@ -2,6 +2,8 @@ class Cart < ActiveRecord::Base
   belongs_to :user
   has_many :items, dependent: :destroy
 
+  include ActionView::Helpers::NumberHelper
+
   DELIVERY_COST = 5
 
   def add_item(item)
@@ -13,7 +15,17 @@ class Cart < ActiveRecord::Base
       self.items << item
   		self.save
   	end
+
     get_total_with_delivery
+  end
+
+  def add_item_to_temporary_cart(item)
+    item.cart_id = 0
+    item.save
+  end
+
+  def delete_item_from_temporary_cart(item)
+
   end
 
   def get_delivery_price
@@ -37,8 +49,9 @@ class Cart < ActiveRecord::Base
   def get_total_price 
     total = 0
     self.items.each do |item|
-      total += item.quantity * item.help_product.product.price.to_i
+      total += item.quantity * item.help_product.product.price.to_f
     end
+    #total = number_with_precision(total, :precision => 2)
 
     total
   end
@@ -74,6 +87,11 @@ class Cart < ActiveRecord::Base
 
   def count_prices 
     return [get_total_number, get_total_price, get_delivery_price, get_total_with_delivery]
+  end
+
+  def temporary_cart_count_prices 
+    c = Cart.find_by(id: 0)
+    return [c.get_total_number, c.get_total_price, c.get_delivery_price, c.get_total_with_delivery]
   end
 
 end

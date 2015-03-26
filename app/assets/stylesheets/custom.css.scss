@@ -55,6 +55,40 @@ p {
       padding:15px 10px 15px
 }
 
+/*ul li:active:after {
+   border-bottom: 3px solid #FFC63B;
+   bottom: 0;
+   content: "";
+   left: 0;
+   position: absolute;
+   width: 130px;
+}
+
+ul li:hover:after {
+   color: #FFC63B;
+   bottom: 0;
+   content: "";
+   left: 0;
+   position: absolute;
+   width: 130px;
+}*/
+
+.navbar-left .nav_link .nav2:hover {
+  color: #F0D234;
+}
+
+/*.navbar-left .nav_link .nav2:active {
+   border-bottom: 3px solid red;
+   color: white;
+}*/
+
+.navbar-left li .active {
+   border-bottom: 3px solid #F0D234;
+   color: white;
+}
+
+
+
 #logo {
   float: left;
   margin-right: 10px;
@@ -176,12 +210,40 @@ input {
   width: 150px;
 }
 
-.shopping-cart {
+* {
+    margin: 0;
+    padding: 0;
+}
+
+/*.shopping-cart {
     display: inline-block;
     background: url('http://cdn1.iconfinder.com/data/icons/jigsoar-icons/24/_cart.png') no-repeat 0 0;
     width: 24px;
     height: 24px;
     margin: 0 10px 0 0;
+}*/
+
+.wrapper {
+    //width: 705px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.clear {
+    clear: both;
+}
+
+/*.item {
+    background-color: #fff;
+    float: left;
+    margin: 0 10px 10px 0;
+    width: 205px;
+    padding: 10px;
+    height: 290px;
+}*/
+.item img {
+    display: block;
+    margin: auto;
 }
 
 .breadcrumb {
@@ -215,3 +277,22 @@ input {
   text-decoration: none;
   color: gray;
 } 
+
+.counter {
+  background: #E44A3B;
+  color: white;
+  width: 1.1em;
+  height: 1.1em;
+  -moz-border-radius: 1em;
+  -webkit-border-radius: 2em;
+  border-radius: 2em;
+  padding-left: 2px;
+  padding-bottom: 0.5cm;
+  margin-top: 10px;
+  display: none;
+}
+
+.error {
+  border: solid 2px #FF0000;  
+}
+

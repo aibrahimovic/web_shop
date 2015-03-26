@@ -1,10 +1,13 @@
 class CartsController < ApplicationController
   def new
   	#@cart = Cart.new
+
   end
 
   def show
     @all = @cart.items
+    @path_to_address = find_address_path
+    session[:counter] = 0
   end
 
   def all_products

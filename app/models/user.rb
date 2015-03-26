@@ -9,4 +9,10 @@ class User < ActiveRecord::Base
    validates :password, length: { minimum: 5 }
 
    belongs_to :role
+
+   def is_user_valid(string)
+   	return str.match(/[a-zA-Z0-9._%]@(?:[a-zA-Z0-9]\.)[a-zA-Z]{2,4}/)
+   end
+
+
 end

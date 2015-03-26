@@ -1,3 +1,7 @@
+<script type="text/javascript">
+	//$(".counter" ).hide();
+</script>
+
 
 <% @list = [] %>
 <br><br>
@@ -54,17 +58,7 @@
 
 <table class="table_total2"> 
     <tr><td style="padding:2px; margin:1px;"><%= button_to "ODUSTANI", home_path, :class => "btn btn-default", :method => :get  %></td>
-    <% if @current_user != nil %>
-    	<% a = Address.find_by(user_id: @current_user.id) %>
-    	<% if a != nil %>
-    		<% pa = address_path(@current_user.id) %>
-    	<% else %> 
-    		<% pa = new_address_path %>
-    	<% end %>
-    <% else %>
-   		<% pa = new_address_path %>
-   	<% end %>
-    <td style="padding:2px; margin:1px;"><%= button_to "NASTAVI", pa, :class => "btn btn-primary", :method => :get  %></td></tr>
+    <td style="padding:2px; margin:1px;"><%= button_to "NASTAVI", @path_to_address, :class => "btn btn-primary", :method => :get  %></td></tr>
 </table>
 
 <script type="text/javascript">
@@ -126,9 +120,6 @@
 			    		$(".cart_price").html(result.price);
 			    		$(".cart_delivery").html(result.delivery);
 			    		$(".cart_total").html(result.total);
-			    		//#alert(result.price);
-			    		//#alert(result.delivery);
-			    		//alert(result.total);
 			    	}
 			    }
 

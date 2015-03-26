@@ -51,5 +51,9 @@ class UsersController < ApplicationController
       params.require(:user).permit(:email, :password, :password_confirmation, :role_id)
     end
 
+  def is_user_valid
+    is_valid = @user.is_user_valid(params[:input_email])
+    render json: { error: is_valid }
+  end
   
 end

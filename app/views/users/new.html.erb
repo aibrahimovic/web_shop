@@ -27,7 +27,20 @@
     <% end %>
 
     <script type="text/javascript">
-      function red_fiels(var e) {
+
+    /*$(document).ready(function () {
+      $("#new_user").validate({
+        debug: true,
+        rules: {
+        "user[email]": {required: true, email: true},
+        "user[password]": {required: true, minlength: 6},
+        "user[password_confirmation]": {required: true, equalTo: "#user_password"}
+        }
+      });
+    });*/
+
+
+      /*function red_fiels(var e) {
         if (e != "") {
             red_gone();
         }
@@ -38,7 +51,31 @@
 
       function red_gone() {
         document.getElementById("fName").className = document.getElementById("emailId").className.replace(" error", ""); 
-      }
+      }*/
+
+      $(window).bind('page:change', function(){
+        $("#emailId").change(function() {
+
+
+        //$("#emailId").focusout(function(){
+        alert("OVdje");
+        $.ajax({
+          url: '/users/is_user_valid',
+          data: { 
+            input_email: el.val(), 
+          },
+          type: 'GET',
+          success: function(result) {
+            alert(result);
+          }
+        });
+
+        if ($(this).val() == "")
+          $('#emailId').addClass('error');
+
+      });
+      });
+
     </script>
 
   </div>

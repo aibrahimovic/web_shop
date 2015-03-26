@@ -34,7 +34,7 @@
       <% @array_of_states << "Slovenija" %>
       <% @array_of_states << "Austrija" %>
       <%= f.label :Država %><br>
-      <%= f.select("state", @array_of_states.collect {|p| [ p] }, { :include_blank => "Odaberite državu", :selected => params[:get_state], :class => "form-control" }) %>
+      <%= f.select("state", @array_of_states.collect {|p| [ p] }, { :include_blank => "Odaberite državu", :selected => params[:get_state], :class => 'form-control', :role => "menu"})%>
       <br>
       <br>
 
@@ -107,7 +107,7 @@
       <% end %>
   </div> 
 
-
+<% if @cart.id != 0 %>
   <div class="col-md-6">
     <table border = "1" class="table_total">
     <tr>
@@ -126,10 +126,33 @@
     </tr>
   </table>
   </div>
+<% else %>
+  <div class="col-md-6">
+    <table border = "1" class="table_total">
+  <tr>
+    <td style="padding:20px; margin:10px;">
+      <p style="text-align: left;"> <b>Narudžba </b> 
+        <span class="cart_total_number"><%= @cart.get_total_number %></span> proizvoda 
+      <% 17.times do %>
+        &nbsp;
+      <% end %>
+      <br></p>
+      <p style="text-align: right;"> Cijena <br> 
+        <b><span class="cart_price"><%= @cart.get_total_price %></span>KM </b><br><br>
+        Dostava <br> 
+        <b><span class="cart_delivery"><%= @cart.get_delivery_price %>KM </span></b><br>
+        <hr>
+      <p style="text-align: right;">
+      Ukupno <b><span class="cart_total"><%= @cart.get_total_with_delivery %></span></b></p>
+    </td>
+  </tr>
+</table>
+  </div>
+<% end %>
 
 </div>
 
-<script>
+<script type="text/javascript">
 
   document.getElementsByClassName("address2")[0].style.visibility = "hidden";
     function myFunction() {
@@ -139,6 +162,26 @@
       else
         document.getElementsByClassName("address2")[0].style.visibility = "visible";
     }
+
+    $(window).bind('page:load', function(){
+      $.ajax({
+          url: '/addresses/single_item_price',
+          type: 'GET',
+          success: function(result) {
+            if (result.number) {
+              $(".cart_total_number").html(result.number);
+              $(".cart_price").html(result.price);
+              $(".cart_delivery").html(result.delivery);
+              $(".cart_total").html(result.total);
+            }
+          }
+
+      });
+
+    });
     
 </script>
+
+
+
 
