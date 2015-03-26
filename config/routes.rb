@@ -12,6 +12,7 @@ Test3::Application.routes.draw do
   get "users/new"
   delete "items/destroy"
   put "items/update"
+  get "application/get_counter"
 
   #post '/items/up2' => 'items#up2', :as => :items_up2
 

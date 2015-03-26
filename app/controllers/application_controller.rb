@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   include SessionsHelper
 
   protect_from_forgery with: :exception
-  before_action :set_current_user, :set_cart, :find_address_path, :set_counter
+  before_action :set_current_user, :set_cart, :find_address_path
 
 
   def set_current_user
@@ -38,8 +38,11 @@ class ApplicationController < ActionController::Base
     return pa
   end
 
-  def set_counter
+  def get_counter
+    counter = session[:counter]
+    render json: { counter: counter } 
   end
+
 
 
 

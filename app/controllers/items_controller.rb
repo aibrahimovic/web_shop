@@ -22,11 +22,14 @@ class ItemsController < ApplicationController
       hp = HelpProduct.find_by(id: @item.help_product_id)    
       @counter += 1
       session[:counter] = @counter
-      #redirect_to new_item_path
+
+      if @item.quantity.nil?
+        flash.now[:quantity_number] = "Quantity must be number"
+      end
       redirect_to product_path(hp.product)
       #redirect_to :controller => 'products', :action => 'show', :id => hp.product, :counter => @counter
 
-      flash.now[:quantity_number] = "Quantity must be number"
+      
     end
 
   end

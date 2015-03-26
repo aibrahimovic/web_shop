@@ -16,6 +16,22 @@
 //= require jquery.rambling.slider
 //= require_tree .
 
+$(window).bind('page:load', function(){
+    //alert("Test");
+
+    $.ajax({
+        url: '/application/get_counter',
+        type: 'GET',
+        success: function(result) {
+            if (result.counter == 0) {
+                $('.counter').css('visibility', 'hidden');
+            }
+            else 
+                $('.counter').css('visibility', 'visible');
+        }
+    });
+});
+
 	
 /*$('#add-to-cart').on('click', function () {
         var cart = $('.shopping-cart');

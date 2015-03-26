@@ -9,8 +9,10 @@ class Cart < ActiveRecord::Base
   def add_item(item)
   	cart_item = self.items.find_by(help_product_id: item.help_product_id)
   	if cart_item 
-  		cart_item.quantity += item.quantity
-  		cart_item.save
+      if !item.quantity.nil?
+    		cart_item.quantity += item.quantity
+    		cart_item.save
+      end
   	else 
       self.items << item
   		self.save

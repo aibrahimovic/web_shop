@@ -279,15 +279,17 @@ input {
 } 
 
 .counter {
+  font-size: 10px;
   background: #E44A3B;
   color: white;
-  width: 1.1em;
-  height: 1.1em;
+  width: 1.3em;
+  height: 1.3em;
   -moz-border-radius: 1em;
   -webkit-border-radius: 2em;
   border-radius: 2em;
-  padding-left: 2px;
-  padding-bottom: 0.5cm;
+  padding-left: 3px;
+  padding-bottom: 3px;
+
   margin-top: 10px;
   display: none;
 }
