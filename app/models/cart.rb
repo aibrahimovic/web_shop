@@ -11,14 +11,18 @@ class Cart < ActiveRecord::Base
   	if cart_item 
       if !item.quantity.nil?
     		cart_item.quantity += item.quantity
-    		cart_item.save
+    		if cart_item.save
+          return true
+        end
       end
   	else 
       self.items << item
-  		self.save
+  		if self.save
+        return true
+      end
   	end
 
-    get_total_with_delivery
+    false
   end
 
   def add_item_to_temporary_cart(item)
@@ -36,8 +40,9 @@ class Cart < ActiveRecord::Base
     self.items.each do |item|
         total += item.quantity*DELIVERY_COST
     end
+    pom = total.to_s << ".00"
 
-    total
+    pom
   end
 
   def get_total_number
@@ -54,13 +59,18 @@ class Cart < ActiveRecord::Base
     self.items.each do |item|
       total += item.quantity * item.help_product.product.price.to_f
     end
-    #total = number_with_precision(total, :precision => 2)
+    total = total.to_s << "0"
+    total = number_with_precision(total, :precision => 2)
 
     total
   end
 
   def get_total_with_delivery
-    return get_delivery_price + get_total_price
+    total = get_delivery_price.to_f + get_total_price.to_f
+    total = total.to_s << "0"
+    total = number_with_precision(total, :precision => 2)
+
+    total
   end
 
   def update_item (item_id, quantity)

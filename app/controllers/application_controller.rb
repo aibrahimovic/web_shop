@@ -20,7 +20,13 @@ class ApplicationController < ActionController::Base
 
   	if @cart.nil?
   		@cart = create_new_cart
+      @cart.counter = 0
+      @cart.save()
   	end
+    if session[:counter].nil?
+      session[:counter] = @cart.counter
+    end
+
   end
 
   def find_address_path
@@ -42,10 +48,5 @@ class ApplicationController < ActionController::Base
     counter = session[:counter]
     render json: { counter: counter } 
   end
-
-
-
-
-
 
 end

@@ -46,7 +46,6 @@
             <li  id="shopping-cart"><%= link_to(image_tag("cart.png", size: "20x20"), carts_path) %></li>
             <li class="counter"><%= session[:counter] %></li>
           </ul>
-        
         </nav>
       </div>
     </header>
@@ -54,6 +53,22 @@
     <div class="container">
       <%= yield %>
     </div>
+
+    <div class="row footer_line"><hr></div>
+    <div class="row">
+      <div class="col-md-6 footer_left">
+        <span> Copyright&copy;abhShoes.All rights reserved. </span>
+      </div>
+      <div class="col-md-6 footer_right"> 
+          <% $all_categories.each do |x| %>
+            <span class="footer_category"><%= link_to x.name, category_path(x.id), class: "footer_link"%>
+              <% 3.times do |y| %>
+              &nbsp;
+            <% end %>
+          <% end %>   
+          <span class="footer_category"><%= link_to 'Dodaci', '#', class: "footer_link"%>
+      </div>
+
   </body>
 </html> 
 
@@ -64,5 +79,4 @@
       //$(this).parent('.li').addClass('active');
       $(this).addClass('active');
     });
-
 </script>

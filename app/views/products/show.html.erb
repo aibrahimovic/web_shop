@@ -16,11 +16,18 @@
 <% cat = @product.category_id %>
 <% cat_name = @product.category.name.upcase %>
 
-<ol class="breadcrumb">
-  <li><%= link_to "HOME", home_path, class: "bread2" %></li>
-  <li><%= link_to cat_name, category_path(@product.category_id), class: "bread2" %></li>
-  <li class="active"><%= link_to @product.name.upcase, '#', class: "bread" %></li>
-</ol>
+<div class="row">
+	<div class="col-md-6">
+		<ol class="breadcrumb">
+		  <li><%= link_to "HOME", home_path, class: "bread2" %></li>
+		  <li><%= link_to cat_name, category_path(@product.category_id), class: "bread2" %></li>
+		  <li class="active"><%= link_to @product.name.upcase, '#', class: "bread" %></li>
+		</ol>
+	</div>
+	<div class="col-md-6">
+		<span class="notification_product"></span>
+	</div>
+</div>
 
 <% unless flash[:quantity_number].blank? %>
     <p><%= flash.now[:quantity_number] %>
@@ -39,6 +46,8 @@
 				<br><br>
 				<%= @product.description %>
 				<br><br>
+				
+
 				<%= form_for Item.new, id: "new_item" do |f| %>
 
 				<% hp = HelpProduct.where(product_id: @product.id).all %>
@@ -54,7 +63,7 @@
 						<td class="table_quan_size"><%= f.label :količina %>
 					</tr>
 					<tr>
-						<td class="table_quan_size"><%= f.select("help_product_id", hp.collect {|p| [ p.size, p.id ] }, { :include_blank => "Sve veličine", :selected => params[:get_help_product_id], :class => "form-control" }) %>
+						<td class="table_quan_size"><%= f.select("help_product_id", hp.collect {|p| [ p.size, p.id ] }, { :include_blank => "Sve veličine", :selected => params[:get_help_product_id], :class => "form-control" }, :id => "all_sizes") %>
 						<td class="table_quan_size"><%= f.text_field :quantity, :class => "quantity_field"%>
 				</table>
 						
@@ -63,7 +72,7 @@
 
 	      		<table> 
 	      			<tr>
-	      			<td style="padding:2px; margin:1px;"><%= f.submit 'DODAJ U KORPU', :class => "btn btn-default", :id=> "add-to-cart" %>
+	      			<td style="padding:2px; margin:1px;"><%= f.submit 'DODAJ U KORPU', :class => "btn btn-default add_to_cart", :id=> "add-to-cart" %>
 	      			</td>
 	      				
 	      			<td style="padding:2px; margin:1px;">
@@ -82,35 +91,7 @@
 	</div> <!-- item -->
 </div> <!-- wraper -->
 
-<script type="text/javascript">
-	    $('#buy_now').click(function(){
-	    	alert("Kupi odmah");
-	    	
 
-	    	$('#hidden_buy_now').val("1");
-
-        	/*$('#new_item').submit(function() {
-        		
-            var valuesToSubmit = $(this).serialize();
-            console.log(valueToSubmit);
-            alert(valueToSubmit);
-
-            $.ajax({
-			    url: 'items/create',
-			    data: valuesToSubmit,
-
-			    success: function(result) {
-			    }
-
-			});
-
-            alert("method failed");
-            return false; // prevents normal behaviour*/
-        //});
-    });
-
-
-</script>
 
 <br><br><br><br>
 <h2> Slični proizvodi </h2>
@@ -194,17 +175,73 @@
             });
         }
     });*/
-	    
 
-		$('#add-to-cart').on('click', function () {
-			//$('.counter').css('visibility', 'visible');
-			//var el = $('.counter');
-			//var num = el.val() + 1;
-			//$('.counter').html(num);
+	$( document ).ready(function() {
+		setTimeout(function () { $("#all_sizes").focus(); }, 2);
+
+	});
+	    
+	$(window).bind('page:change', function(){
+		
+		if ($('.all_sizes').selectedIndex == null) {
+			setTimeout(function () { $("#all_sizes").focus(); }, 2);
+		}
+
+		$(".quantity_field").blur(function() {
+			
+			var el = $(this);
+			var flag = $.isNumeric(el.val()); 
+			if (el.val() == "") {
+				$('.notification_product').html("Unesite količinu");
+				setTimeout(function () { $(".quantity_field").focus(); }, 2);
+				alert("Unesite količinu");
+			}
+			else if (el.val() < 1 || flag == false )
+				$('.notification_product').html("Unesite pozitivan broj za količinu");
+		
+			
 		});
+
+		$(".quantity_field").focus(function() {
+			$('.notification_product').html(" ");
+		});
+	});
+
+
+		
+
 
  
 </script>
 
+<script type="text/javascript">
+	    $('#buy_now').click(function(){
+	    	alert("Kupi odmah");
+	    	
+
+	    	$('#hidden_buy_now').val("1");
+
+        	/*$('#new_item').submit(function() {
+        		
+            var valuesToSubmit = $(this).serialize();
+            console.log(valueToSubmit);
+            alert(valueToSubmit);
+
+            $.ajax({
+			    url: 'items/create',
+			    data: valuesToSubmit,
+
+			    success: function(result) {
+			    }
+
+			});
+
+            alert("method failed");
+            return false; // prevents normal behaviour*/
+        //});
+    });
+
+
+</script>
 
 

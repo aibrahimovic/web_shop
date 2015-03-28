@@ -18,20 +18,16 @@ class ItemsController < ApplicationController
       @cart.add_item_to_temporary_cart(@item)
       redirect_to @path_to_address
     else
-      @cart.add_item(@item)
+      is_saved = @cart.add_item(@item)
       hp = HelpProduct.find_by(id: @item.help_product_id)    
-      @counter += 1
-      session[:counter] = @counter
-
-      if @item.quantity.nil?
-        flash.now[:quantity_number] = "Quantity must be number"
+      if is_saved == true
+        @counter += 1
+        session[:counter] = @counter
       end
       redirect_to product_path(hp.product)
-      #redirect_to :controller => 'products', :action => 'show', :id => hp.product, :counter => @counter
-
       
+      #redirect_to :controller => 'products', :action => 'show', :id => hp.product, :counter => @counter
     end
-
   end
 
   def destroy

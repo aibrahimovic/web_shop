@@ -56,8 +56,8 @@
 
       <table class="table_total2"> 
         <tr>
-          <td style="padding:2px; margin:1px;"><%= button_to "ODUSTANI", home_path, :class => "btn btn-default", :method => :get  %></td>
-          <td style="padding:2px; margin:1px;"><%= button_to "NASTAVI", new_charge_path, :class => "btn btn-primary", :method => :get  %></td>
+          <td style="padding-right:18px; padding-left:0px; margin:1px; padding-top:0px;"><%= button_to "ODUSTANI", home_path, :class => "btn btn-default", :method => :get  %></td>
+          <td style="padding-left:0px; padding-right:0px; padding-top:0px; margin-right:1px;"><%= button_to "NASTAVI", new_charge_path, :class => "btn btn-primary", :method => :get  %></td>
         </tr>
       </table>
 
@@ -68,13 +68,20 @@
       <% end %>
   </div> 
 
+  <table class="status_table">
+      <tr class="status_tr">
+        <td class="status_11">KORPA
+        <td class="status_21">DOSTAVA
+        <td class="status_31">PLAĆANJE
+      </tr>
+    </table>
 
   <div class="col-md-6">
     <table border = "1" class="table_total">
     <tr>
       <td style="padding:20px; margin:10px;">
         <p style="text-align: left;"> <b>Narudžba</b> <%= @cart.get_total_number %> proizvoda 
-        <% 17.times do %>
+        <% 13.times do %>
           &nbsp;
         <% end %>
         <br></p>
@@ -82,7 +89,7 @@
         Dostava <br> <b><%= @cart.get_delivery_price*@cart.items.length %>KM </b><br>
         <hr>
         <p style="text-align: right;">
-        Ukupno <b><%= @cart.get_total_with_delivery %></b></p>
+        Ukupno <b><%= @cart.get_total_with_delivery %>KM</b></p>
       </td>
     </tr>
   </table>

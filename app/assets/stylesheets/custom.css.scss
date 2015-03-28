@@ -184,7 +184,15 @@ input {
   color: #ffffff;
   background-color: black;
   border-color: black;
+  width: 120px;
+}
 
+.btn-default {
+  width: 120px;
+}
+
+.add_to_cart {
+  width: 150px;
 }
 
 .btn-primary:hover {
@@ -296,5 +304,58 @@ input {
 
 .error {
   border: solid 2px #FF0000;  
+}
+
+.table_total {
+  border: 1px solid #DADADA;
+}
+
+.cart_part, .delivery_part, .payment_part {
+  padding: 22px;
+}
+
+.three_steps {
+  text-align: right;
+}
+
+three_step_line {
+  width: 200px;
+  text-align: right;
+}
+
+.line {
+  margin-top: 10px;
+
+  margin-right: 0px;
+  margin-left: 28px;
+  //max-width: 370px;
+}
+
+.footer_left {
+  color: gray;
+  text-align: left;
+  padding-bottom: 20px;
+  padding-left: 250px;
+}
+
+.footer_right {
+  color: gray;
+  text-align: right;
+  padding-right: 250px;
+  padding-bottom: 20px;
+}
+
+.footer_category {
+  color: gray;
+  text-align: right;
+}
+
+.footer_line {
+  padding-top: 500px;
+  padding-bottom: 3px;
+}
+
+.footer_link {
+  color: gray;
 }
 
