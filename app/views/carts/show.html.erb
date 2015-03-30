@@ -82,6 +82,7 @@
 <script type="text/javascript">
 	
 	$(window).bind('page:change', function(){
+		var old_element = $(".quantity_field").val();
 		$(".quantity_field").change(function() {
 			
 		var el = $(this);
@@ -105,6 +106,16 @@
 			});
 		}
 
+		else if (el.val() < 0) {
+			confirm("Number must be positive.");
+			$(".quantity_field").val(old_element);
+		}
+
+		else if (Math.floor(el.val()) != el.val()) {
+			confirm("Number must be integer.");
+			$(".quantity_field").val(old_element);
+		}
+ 
 		else {
 
 			$.ajax({
