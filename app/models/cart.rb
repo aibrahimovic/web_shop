@@ -11,7 +11,6 @@ class Cart < ActiveRecord::Base
   	if cart_item 
       if !item.quantity.nil?
     		cart_item.quantity += item.quantity
-        raise
     		if cart_item.save
           return true
         end
@@ -39,9 +38,7 @@ class Cart < ActiveRecord::Base
     
     total = 0
     self.items.each do |item|
-      if item.active == 1
-        total += item.quantity*DELIVERY_COST
-      end
+      total += item.quantity*DELIVERY_COST
     end
     pom = total.to_s << ".00"
 
@@ -51,9 +48,7 @@ class Cart < ActiveRecord::Base
   def get_total_number
     total = 0
     self.items.each do |item|
-      if item.active == 1
-        total += item.quantity
-      end
+      total += item.quantity
     end
 
     total
@@ -62,9 +57,7 @@ class Cart < ActiveRecord::Base
   def get_total_price 
     total = 0
     self.items.each do |item|
-      if item.active == 1
-        total += item.quantity * item.help_product.product.price.to_f
-      end
+      total += item.quantity * item.help_product.product.price.to_f
     end
     total = total.to_s << "0"
     total = number_with_precision(total, :precision => 2)
