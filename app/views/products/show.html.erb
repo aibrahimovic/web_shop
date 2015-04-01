@@ -176,15 +176,15 @@
         }
     });*/
 
-	$( document ).ready(function() {
+	/*$( document ).ready(function() {
 		setTimeout(function () { $("#all_sizes").focus(); }, 2);
 
-	});
+	});*/
 	    
 	$(window).bind('page:change', function(){
 		
 		if ($('.all_sizes').selectedIndex == null) {
-			setTimeout(function () { $("#all_sizes").focus(); }, 2);
+			//setTimeout(function () { $("#all_sizes").focus(); }, 2);
 		}
 
 		$(".quantity_field").blur(function() {
@@ -193,8 +193,8 @@
 			var flag = $.isNumeric(el.val()); 
 			if (el.val() == "") {
 				$('.notification_product').html("Unesite količinu");
-				setTimeout(function () { $(".quantity_field").focus(); }, 2);
-				alert("Unesite količinu");
+				//setTimeout(function () { $(".quantity_field").focus(); }, 2);
+				$(".quantity_field").focus();
 			}
 			else if (el.val() < 1 || flag == false )
 				$('.notification_product').html("Unesite pozitivan broj za količinu");

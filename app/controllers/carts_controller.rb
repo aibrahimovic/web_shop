@@ -4,7 +4,7 @@ class CartsController < ApplicationController
   end
 
   def show
-    @all = @cart.items
+    @all = @cart.items.where(active: 1)
     @path_to_address = find_address_path
     session[:counter] = 0
   end

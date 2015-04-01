@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html>
   <head>
     <link href='http://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
@@ -18,8 +18,10 @@
           <% 13.times do %>
               <li> &nbsp; </li>
             <% end %>
+
           <% $all_categories.each do |x| %>
-            <li class="nav_link"><%= link_to x.name.upcase, category_path(x.id), class: "nav2" %></li>
+            <% active_class = (@category && x.id == @category.id) ? "active" : "" %>
+            <li class="nav_link <%= active_class %>"><%= link_to x.name.upcase, category_path(x.id), class: "nav2" %></li>
             <% 5.times do %>
               <li> &nbsp; </li>
             <% end %>
