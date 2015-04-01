@@ -12,7 +12,6 @@ class ItemsController < ApplicationController
     @item = Item.new(item_params)
     @path_to_address = find_address_path
     @counter = session[:counter]
-    @item.active = 1
 
     hidden = params["hidden_buy_now"]
     if hidden == "1"
@@ -34,16 +33,11 @@ class ItemsController < ApplicationController
   def destroy
 
     @items = @cart.items.where(active: 1)
-    @items.each do |item|
-      item.active = 0
-      item.save
-    end
-
     if @cart!= nil
-      #@i = Item.where(cart_id: @cart.id).destroy_all
+      @i = Item.where(cart_id: @cart.id).destroy_all
     else 
-      #@c = session[:cart_id]
-      #@i = Item.where(cart_id: @cart.id).destroy_all
+      @c = session[:cart_id]
+      @i = Item.where(cart_id: @cart.id).destroy_all
     end
     redirect_to home_path
   end
