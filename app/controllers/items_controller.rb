@@ -31,8 +31,9 @@ class ItemsController < ApplicationController
     set_order
     if !@current_user.nil?
       @order.user_id = @current_user.id
+      @order.email = @current_user.email
     else
-      @order.user_id = 'guest'
+      @order.email = 'guest'
     end
     @order.save
 

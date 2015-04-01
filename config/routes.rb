@@ -37,7 +37,9 @@ Test3::Application.routes.draw do
     get "update_price", on: :collection
   end
   resources :items
-  resources :addresses
+  resources :addresses do
+    post "add_address", on: :collection
+  end
   resources :charges
 
   root to: 'static_pages#home'

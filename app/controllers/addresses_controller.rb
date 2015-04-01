@@ -13,28 +13,26 @@ class AddressesController < ApplicationController
   end
 
   def create
-  	@address1 = Address.new(address_params)
-    @address2 = Address.new(address2_params)
+  	#@address1 = Address.new(address_params)
+    #@address2 = Address.new(address2_params)
 
-    if @current_user != nil
-  		@address1.user_id = @current_user.id
-  	end
+    #if @current_user != nil
+  		#@address1.user_id = @current_user.id
+  	#end
 
-    @address1.tag = 's'
-    @address2.tag = 'b'
-    if @address1.save && @address2.save
+    #@address1.tag = 's'
+    #@address2.tag = 'b'
+    #if @address1.save && @address2.save
       #flag = true
-      return true
-    elsif @address1.save
-      return true
-    else
-      flash.now[:address_error] = "Popunite sva polja"
-      render 'new'
-    end
+      #return true
+    #elsif @address1.save
+      #return true
+    #else
+      #flash.now[:address_error] = "Popunite sva polja"
+      #render 'new'
+    #end
 
-    raise
-
-    redirect_to charges_path
+    #redirect_to charges_path
 
 
     #if flag == true
@@ -52,6 +50,14 @@ class AddressesController < ApplicationController
       #redirect_to new_charge_path
       
     #end
+  end
+
+  def add_address 
+    @adr = Address.new
+    is_added = @adr.create_address(params[:name], params[:address_name], params[:city], params[:region], params[:zip], params[:state], params[:phone], params[:user_id], params[:tag])
+    #return render json: { error: is_added } 
+    
+    redirect_to new_charge_path
   end
 
 

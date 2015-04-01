@@ -1,108 +1,63 @@
 <br><br>
-<h2 style="text-align: left;">Adresa za dostavu</h2>
-
 <div class="row">
-
-  <%= form_for(@address1, :class => "form_shipping") do |f| %>
   <div class="col-md-6">
-    <div class="address1">
-      <% unless flash[:address_error].blank? %>
-          <%= flash[:address_error] %>
-      <% end %><br>
-      
-      <%= f.label :Ime_i_Prezime %>
-      <%= f.text_field :name, class: "form-control" %>
-      <br>
-      <%= f.label :Adresa %>
-      <%= f.text_field :address_name, class: 'form-control' %>
-      <br>
-      <%= f.label :Grad %>
-      <%= f.text_field :city, class: 'form-control' %>
-      <br>
 
-      <%= f.label :Regija %>
-      <%= f.text_field :region, class: 'form-control' %>
-      <br>
+    <span class="address_status"></span><br>
+    <h2 style="text-align: left;">Adresa za dostavu</h2>
 
-      <%= f.label :ZIP %>
-      <%= f.text_field :zip, class: 'form-control' %>
-      <br>
+    <form>
+      <p> Ime i prezime </p>
+      <input type="text" class="form-control name"><br>
+      <p> Adresa </p>
+      <input type="text" class="form-control address_name"><br>
+      <p> Grad </p>
+      <input type="text" class="form-control city"><br>
+      <p> Region </p>
+      <input type="text" class="form-control region"><br>
+      <p> Zip </p>
+      <input type="text" class="form-control zip"><br>
+      <p> Država </p>
+      <input type="text" class="form-control state"><br>
+      <p> Broj telefona </p>
+      <input type="text" class="form-control phone"><br>
+    </form>
 
-      <%= f.label :Država %><br>
-      <%= f.select("state", @array_of_states.collect {|p| [ p] }, { :include_blank => "Odaberite državu", :selected => params[:get_state], :class => 'form-control', :role => "menu"})%>
-      <br>
-      <br>
-
-      <%= f.label :Broj_telefona %>
-      <%= f.text_field :phone, class: 'form-control' %>
-      <br>
-    </div>
-      <br><br>
-
-      <div class="row">
+    <br>
+    <span class="address_status2"></span><br>
+    <div class="row">
         <div class="col-md-6">
-            <h2 style="text-align: left;">Adresa za račun</h2>
+          <h2 style="text-align: left;">Adresa za račun</h2>
+        </div>
+        <div class="col-md-6">
+          <div class="checkbox">
+            <input type="checkbox" id="billing_checkbox" onchange="myFunction()" value="nesto" checked> Koristi adresu za dostavu
           </div>
-          <div class="col-md-6">
-            <div class="checkbox">
-                <input type="checkbox" id="checkbox1" onchange="myFunction()" value="nesto" checked> Koristi adresu za dostavu
-            </div>
-          </div>
-      </div>
+        </div>
+    </div>
+    <br>
 
-      <table class="table_total2"> 
-        <tr>
-          <td style="padding-right:18px; padding-left:0px; margin:1px; padding-top:0px;">
-            <%= button_to "ODUSTANI", home_path, :class => "btn btn-default", :method => :get  %></td>
-          <td style="padding-left:0px; padding-right:0px; padding-top:0px; margin-right:1px;"><%= button_to "NASTAVI", '#', class: "btn btn-primary button_nastavi"%></td>
-        </tr>
-      </table>
-
-      <% end %>
-
-      <br>
-
-      <% a = params[:name] %>
-
-    <div class="address2">
-
-      <%= form_for(@address2, :class => "form_billing") do |f2| %>
-
-        <%= f2.label :Ime_i_Prezime %>
-        <%= f2.text_field :name, class: "form-control" %>
-        <br>
-        <%= f2.label :Adresa %>
-        <%= f2.text_field :address_name, class: 'form-control' %>
-        <br>
-        <%= f2.label :Grad %>
-        <%= f2.text_field :city, class: 'form-control' %>
-        <br>
-
-        <%= f2.label :Regija %>
-        <%= f2.text_field :region, class: 'form-control' %>
-        <br>
-
-        <%= f2.label :ZIP %>
-        <%= f2.text_field :zip, class: 'form-control' %>
-        <br>
-
-        <%= f2.label :Država %><br>
-        <%= f2.select("state", @array_of_states.collect {|p| [ p] }, { :include_blank => "Odaberite državu", :selected => params[:get_state], :class => "form-control" }) %>
-        <br>
-        <br>
-
-        <%= f2.label :Broj_telefona %>
-        <%= f2.text_field :phone, class: 'form-control' %>
-      <% end %>
-
+    <div class="address_billing"
+      <form>
+        <p> Ime i prezime </p>
+        <input type="text" class="form-control name_billing"><br>
+        <p> Adresa </p>
+        <input type="text" class="form-control address_name_billing"><br>
+        <p> Grad </p>
+        <input type="text" class="form-control city_billing"><br>
+        <p> Region </p>
+        <input type="text" class="form-control region_billing"><br>
+        <p> Zip </p>
+        <input type="text" class="form-control zip_billing"><br>
+        <p> Država </p>
+        <input type="text" class="form-control state_billing"><br>
+        <p> Broj telefona </p>
+        <input type="text" class="form-control phone_billing"><br>
+      </form>
     </div>
 
-      <%10.times do %>
-        <br>
-      <% end %>
-  </div> 
+    </div>
+  </div>
 
-<% if @cart.id != 0 %>
   <div class="col-md-6">
 
     <table class="status_table">
@@ -114,58 +69,171 @@
     </table>
 
     <table border = "1" class="table_total">
-    <tr>
-      <td style="padding:20px; margin:10px;">
-        <p style="text-align: left;"> <b>Narudžba</b> <%= @cart.get_total_number %> proizvoda 
-        <% 13.times do %>
-          &nbsp;
-        <% end %>
-        <br></p>
-        <p style="text-align: right;"> Cijena <br> <b><%= @cart.get_total_price %>KM </b><br><br>
-        Dostava <br> <b><%= @cart.get_delivery_price %>KM </b><br>
-        <hr>
-        <p style="text-align: right;">
-        Ukupno <b><%= @cart.get_total_with_delivery %></b></p>
-      </td>
-    </tr>
-  </table>
+      <tr>
+        <td style="padding:20px; margin:10px;">
+          <p style="text-align: left;"> <b>Narudžba</b> <%= @cart.get_total_number %> proizvoda 
+          <% 13.times do %>
+            &nbsp;
+          <% end %>
+          <br></p>
+          <p style="text-align: right;"> Cijena <br> <b><%= @cart.get_total_price %>KM </b><br><br>
+          Dostava <br> <b><%= @cart.get_delivery_price %>KM </b><br>
+          <hr>
+          <p style="text-align: right;">
+          Ukupno <b><%= @cart.get_total_with_delivery %></b></p>
+        </td>
+      </tr>
+    </table>
+  
+    <table class="table_total2"> 
+      <tr>
+        <td style="padding-right:18px; padding-left:0px; margin:1px; padding-top:0px;">
+          <%= button_to "ODUSTANI", home_path, :class => "btn btn-default", :method => :get  %>
+        </td>
+        <td style="padding-left:0px; padding-right:0px; padding-top:0px; margin-right:1px;"><input type="button" value="NASTAVI" class= "btn btn-primary button_nastavi">
+        </td>
+      </tr>
+    </table>
   </div>
-<% else %>
-  <div class="col-md-6">
-    <table border = "1" class="table_total">
-  <tr>
-    <td style="padding:20px; margin:10px;">
-      <p style="text-align: left;"> <b>Narudžba </b> 
-        <span class="cart_total_number"><%= @cart.get_total_number %></span> proizvoda 
-      <% 13.times do %>
-        &nbsp;
-      <% end %>
-      <br></p>
-      <p style="text-align: right;"> Cijena <br> 
-        <b><span class="cart_price"><%= @cart.get_total_price %></span>KM </b><br><br>
-        Dostava <br> 
-        <b><span class="cart_delivery"><%= @cart.get_delivery_price %>KM </span></b><br>
-        <hr>
-      <p style="text-align: right;">
-      Ukupno <b><span class="cart_total"><%= @cart.get_total_with_delivery %>KM</span></b></p>
-    </td>
-  </tr>
-</table>
-  </div>
-<% end %>
 
 </div>
 
 <script type="text/javascript">
 
-  document.getElementsByClassName("address2")[0].style.visibility = "hidden";
-    function myFunction() {
-      checked = document.getElementById("checkbox1").checked;
-      if (checked == true)
-        document.getElementsByClassName("address2")[0].style.visibility = "hidden";
-      else
-        document.getElementsByClassName("address2")[0].style.visibility = "visible";
+  $(".name").focus(function() { $('.address_status').html(" "); });
+  $(".address_name").focus(function() { $('.address_status').html(" "); });
+  $(".city").focus(function() { $('.address_status').html(" "); });
+  $(".region").focus(function() { $('.address_status').html(" "); });
+  $(".zip").focus(function() { $('.address_status').html(" "); });
+  $(".state").focus(function() { $('.address_status').html(" "); });
+  $(".phone").focus(function() { $('.address_status').html(" "); });
+
+  $(".name_billing").focus(function() { $('.address_status2').html(" "); });
+  $(".address_name_billing").focus(function() { $('.address_status2').html(" "); });
+  $(".city_billing").focus(function() { $('.address_status2').html(" "); });
+  $(".region_billing").focus(function() { $('.address_status2').html(" "); });
+  $(".zip_billing").focus(function() { $('.address_status2').html(" "); });
+  $(".state_billing").focus(function() { $('.address_status2').html(" "); });
+  $(".phone_billing").focus(function() { $('.address_status2').html(" "); });
+
+  $('.button_nastavi').click(function(){
+    
+    checked = document.getElementById("billing_checkbox").checked;
+
+    var name = $(".name").val();
+    var address = $(".address_name").val();
+    var city = $(".city").val();
+    var region = $(".region").val();
+    var zip = $(".zip").val();
+    var state = $(".state").val();
+    var phone = $(".phone").val();
+    var user_id = 0;
+    var tag = 'shipping';
+
+    var name_billing = $(".name_billing").val();
+    var address_billing = $(".address_name_billing").val();
+    var city_billing = $(".city_billing").val();
+    var region_billing = $(".region_billing").val();
+    var zip_billing = $(".zip_billing").val();
+    var state_billing = $(".state_billing").val();
+    var phone_billing = $(".phone_billing").val();
+    var user_id_billing = 0;
+    var tag_billing = 'billing';
+
+    if (name == "" || address == "" || city == "" || region == "" || zip == "" || state == "" || phone == "") {
+      $('.address_status').html("Popunite sva polja");
     }
+    else {
+
+      $.ajax({
+            url: '/addresses/add_address',
+            data: { 
+              name: name,
+              address_name: address,
+              city: city,
+              region: region,
+              zip: zip,
+              state: state,
+              phone: phone,
+              user_id: user_id,
+              tag: tag,
+            },
+            type: 'POST',
+            success: function(result) {
+              if (result.error) {
+              }
+            }
+        });
+
+      if (checked == true) {
+        $.ajax({
+            url: '/addresses/add_address',
+            data: { 
+              name: name,
+              address_name: address,
+              city: city,
+              region: region,
+              zip: zip,
+              state: state,
+              phone: phone,
+              user_id: user_id,
+              tag: tag_billing,
+            },
+            type: 'POST',
+            success: function(result) {
+              if (result.error) {
+              }
+            }
+        });
+      }
+      else {
+
+        if (name_billing == "" || address_billing == "" || city_billing == "" || region_billing == "" || zip_billing == "" || state_billing == "" || phone_billing == "") {
+          $('.address_status2').html("Popunite sva polja");
+        }
+        else {
+          $.ajax({
+              url: '/addresses/add_address',
+              data: { 
+                name: name_billing,
+                address_name: address_billing,
+                city: city_billing,
+                region: region_billing,
+                zip: zip_billing,
+                state: state_billing,
+                phone: phone_billing,
+                user_id: user_id_billing,
+                tag: tag_billing,
+              },
+              type: 'POST',
+              success: function(result) {
+                if (result.error) {
+                }
+              }
+          });
+
+        }
+      }
+
+    }
+
+  });
+
+  document.getElementsByClassName("address_billing")[0].style.visibility = "hidden";
+    function myFunction() {
+      checked = document.getElementById("billing_checkbox").checked;
+      if (checked == true)
+        document.getElementsByClassName("address_billing")[0].style.visibility = "hidden";
+      else
+        document.getElementsByClassName("address_billing")[0].style.visibility = "visible";
+    }
+
+</script>
+
+
+
+
+<script type="text/javascript">
 
     $(window).bind('page:load', function(){
       $.ajax({
@@ -182,17 +250,7 @@
 
       });
 
-    });
-
-    $( ".button_nastavi" ).click(function() {
-      alert( "Klik na nastavi" );
-        $(".button_submit").live "click" {
-        $(".form_shipping").trigger "submit";
-        $(".form_billing2").trigger "submit";
-      }
-    });
-
-      
+    });   
 </script>
 
 
