@@ -49,4 +49,10 @@ class ApplicationController < ActionController::Base
     render json: { counter: counter } 
   end
 
+  def set_order
+    if @order.nil?
+      @order = create_new_order
+    end
+  end
+
 end

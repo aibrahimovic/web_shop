@@ -193,8 +193,9 @@
 			var flag = $.isNumeric(el.val()); 
 			if (el.val() == "") {
 				$('.notification_product').html("Unesite količinu");
-				//setTimeout(function () { $(".quantity_field").focus(); }, 2);
-				$(".quantity_field").focus();
+				setTimeout(function () { $(".quantity_field").focus(); }, 2);
+				alert("Unesite količinu");
+				//$(".quantity_field").focus();
 			}
 			else if (el.val() < 1 || flag == false )
 				$('.notification_product').html("Unesite pozitivan broj za količinu");

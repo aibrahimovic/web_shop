@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150401131301) do
+ActiveRecord::Schema.define(version: 20150401133050) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -72,6 +72,30 @@ ActiveRecord::Schema.define(version: 20150401131301) do
   add_index "items", ["cart_id"], name: "index_items_on_cart_id", using: :btree
   add_index "items", ["help_product_id"], name: "index_items_on_help_product_id", using: :btree
   add_index "items", ["product_id"], name: "index_items_on_product_id", using: :btree
+
+  create_table "order_items", force: true do |t|
+    t.integer  "order_id"
+    t.integer  "quantity"
+    t.integer  "help_product_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "order_items", ["help_product_id"], name: "index_order_items_on_help_product_id", using: :btree
+  add_index "order_items", ["order_id"], name: "index_order_items_on_order_id", using: :btree
+
+  create_table "orders", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "billing_address_id"
+    t.integer  "shipping_address_id"
+    t.string   "total"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "orders", ["billing_address_id"], name: "index_orders_on_billing_address_id", using: :btree
+  add_index "orders", ["shipping_address_id"], name: "index_orders_on_shipping_address_id", using: :btree
+  add_index "orders", ["user_id"], name: "index_orders_on_user_id", using: :btree
 
   create_table "products", force: true do |t|
     t.string   "name"

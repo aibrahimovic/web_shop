@@ -86,7 +86,7 @@
         <% end %>
         <br></p>
         <p style="text-align: right;"> Cijena <br> <b><%= @cart.get_total_price %>KM </b><br><br>
-        Dostava <br> <b><%= @cart.get_delivery_price*@cart.items.length %>KM </b><br>
+        Dostava <br> <b><%= @cart.get_delivery_price %>KM </b><br>
         <hr>
         <p style="text-align: right;">
         Ukupno <b><%= @cart.get_total_with_delivery %>KM</b></p>

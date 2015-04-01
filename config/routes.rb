@@ -13,6 +13,7 @@ Test3::Application.routes.draw do
   delete "items/destroy"
   put "items/update"
   get "application/get_counter"
+  get 'orders/create'
 
   #post '/items/up2' => 'items#up2', :as => :items_up2
 
@@ -21,6 +22,7 @@ Test3::Application.routes.draw do
   get 'categories' => 'categories#new'
   get 'carts' => 'carts#show'
   get 'addresses' => 'address#show'
+  get 'charges' => 'charges#create'
 
   get    'login'   => 'sessions#new'
   post   'login'   => 'sessions#create'

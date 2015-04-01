@@ -26,13 +26,21 @@ module SessionsHelper
     	#@current_user = nil
   	end
 
-    def create_new_cart
+    def create_new_cart 
       @cart = Cart.new
       @cart.user_id = nil
       @cart.save
       session[:cart_id] = @cart.id
 
       @cart
+    end
+
+    def create_new_order 
+      @order = Order.new
+      @order.user_id = nil
+      @order.save
+
+      @order
     end
 
 end

@@ -3,7 +3,7 @@
 
 <div class="row">
 
-  <%= form_for(@address1) do |f| %>
+  <%= form_for(@address1, :class => "form_shipping") do |f| %>
   <div class="col-md-6">
     <div class="address1">
       <% unless flash[:address_error].blank? %>
@@ -28,11 +28,6 @@
       <%= f.text_field :zip, class: 'form-control' %>
       <br>
 
-      <% @array_of_states = []; %>
-      <% @array_of_states << "Bosna i Hercegovina" %>
-      <% @array_of_states << "Hrvatska" %>
-      <% @array_of_states << "Slovenija" %>
-      <% @array_of_states << "Austrija" %>
       <%= f.label :Država %><br>
       <%= f.select("state", @array_of_states.collect {|p| [ p] }, { :include_blank => "Odaberite državu", :selected => params[:get_state], :class => 'form-control', :role => "menu"})%>
       <br>
@@ -59,7 +54,7 @@
         <tr>
           <td style="padding-right:18px; padding-left:0px; margin:1px; padding-top:0px;">
             <%= button_to "ODUSTANI", home_path, :class => "btn btn-default", :method => :get  %></td>
-          <td style="padding-left:0px; padding-right:0px; padding-top:0px; margin-right:1px;"><%= f.submit "NASTAVI", class: "btn btn-primary"%></td>
+          <td style="padding-left:0px; padding-right:0px; padding-top:0px; margin-right:1px;"><%= button_to "NASTAVI", '#', class: "btn btn-primary button_nastavi"%></td>
         </tr>
       </table>
 
@@ -71,7 +66,7 @@
 
     <div class="address2">
 
-      <%= form_for(@address1) do |f2| %>
+      <%= form_for(@address2, :class => "form_billing") do |f2| %>
 
         <%= f2.label :Ime_i_Prezime %>
         <%= f2.text_field :name, class: "form-control" %>
@@ -127,7 +122,7 @@
         <% end %>
         <br></p>
         <p style="text-align: right;"> Cijena <br> <b><%= @cart.get_total_price %>KM </b><br><br>
-        Dostava <br> <b><%= @cart.get_delivery_price*@cart.items.length %>KM </b><br>
+        Dostava <br> <b><%= @cart.get_delivery_price %>KM </b><br>
         <hr>
         <p style="text-align: right;">
         Ukupno <b><%= @cart.get_total_with_delivery %></b></p>
@@ -188,7 +183,16 @@
       });
 
     });
-    
+
+    $( ".button_nastavi" ).click(function() {
+      alert( "Klik na nastavi" );
+        $(".button_submit").live "click" {
+        $(".form_shipping").trigger "submit";
+        $(".form_billing2").trigger "submit";
+      }
+    });
+
+      
 </script>
 
 
