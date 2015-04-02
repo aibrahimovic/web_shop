@@ -39,6 +39,8 @@ Test3::Application.routes.draw do
   resources :items
   resources :addresses do
     post "add_address", on: :collection
+    get "send_to_payment", on: :collection
+    post "set_temporary_addresses", on: :collection
   end
   resources :charges
 

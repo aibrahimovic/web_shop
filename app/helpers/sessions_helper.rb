@@ -38,6 +38,8 @@ module SessionsHelper
     def create_new_order 
       @order = Order.new
       @order.user_id = nil
+      @order.shipping_address_id = nil
+      @order.billing_address_id = nil
       @order.save
 
       @order

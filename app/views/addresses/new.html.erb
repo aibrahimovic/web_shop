@@ -91,6 +91,7 @@
           <%= button_to "ODUSTANI", home_path, :class => "btn btn-default", :method => :get  %>
         </td>
         <td style="padding-left:0px; padding-right:0px; padding-top:0px; margin-right:1px;"><input type="button" value="NASTAVI" class= "btn btn-primary button_nastavi">
+          <%= button_to "PROBA", charges_path, class: "btn btn-primary button_nastavi2", :method => :get %>
         </td>
       </tr>
     </table>
@@ -127,7 +128,7 @@
     var zip = $(".zip").val();
     var state = $(".state").val();
     var phone = $(".phone").val();
-    var user_id = 0;
+    var user_id = "<%= get_user_for_address %>";
     var tag = 'shipping';
 
     var name_billing = $(".name_billing").val();
@@ -137,11 +138,12 @@
     var zip_billing = $(".zip_billing").val();
     var state_billing = $(".state_billing").val();
     var phone_billing = $(".phone_billing").val();
-    var user_id_billing = 0;
+    var user_id_billing = "<%= get_user_for_address %>";
     var tag_billing = 'billing';
 
     if (name == "" || address == "" || city == "" || region == "" || zip == "" || state == "" || phone == "") {
       $('.address_status').html("Popunite sva polja");
+      $('.button_nastavi').off();
     }
     else {
 
@@ -216,6 +218,12 @@
       }
 
     }
+    $.ajax({
+      url: '/addresses/send_to_payment',
+      type: 'GET',
+      success: function(result) {
+      }
+    });
 
   });
 

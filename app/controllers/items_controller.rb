@@ -28,10 +28,15 @@ class ItemsController < ApplicationController
 
   def destroy
 
+    shipping_address = params[:sh_address]
+    billing_address = params[:bil_address]
+
     set_order
     if !@current_user.nil?
       @order.user_id = @current_user.id
       @order.email = @current_user.email
+      @order.shipping_address_id = shipping_address
+      @order.billing_address_id = billing_address
     else
       @order.email = 'guest'
     end

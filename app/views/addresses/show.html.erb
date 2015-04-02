@@ -1,74 +1,120 @@
+
 <br><br>
+<%= @a1 %>
+<%= @a2 %>
 <h2 style="text-align: left;">Adresa za dostavu</h2>
-<br>
 
-<% a = Address.where(user_id: @current_user.id).all %>
-<% a.each do |x| %>
-	<% @first = x %>
-	<% a.each do |y| %>
-		<% if y.created_at < @first.created_at %>
-			<% @first = y %>
-		<% end %>
-	<% end %>
-<% end %>
-
-<table>
-	<tr class="table2">
-		<td class="table2"> Korištene adrese
-		<td class="table2"> &nbsp;
-		<td class="table2"> <%= link_to "Koristi novu", new_address_path %>
-	</tr>
-	<tr class="table2">
-		<td class="table2"> <hr> </td>
-		<td class="table2"> <hr> </td>
-		<td class="table2"> <hr> </td>
-	</tr>
-	<tr class="table2">
-		<td class="default_address"> 
-			 <%= @first.name %><br>
-			 <%= @first.address_name %><br>
-			 <%= @first.city %>, <%= @first.region %>, <%= @first.zip %> <br>
-			 <%= @first.state %><br>
-			 <%= @first.phone %><br>
-		</td>
-		<td> &nbsp; </td>
-		<td> &nbsp; </td>
-	</tr>
-</table>
-
-<br><br><br><br>
-
-<div class="row">
-  
+<div class = "row">
   <div class="col-md-6">
     
-      
-  	<div class="row">
-  		<div class="col-md-6">
-      		<h2 style="text-align: left;">Adresa za račun</h2>
-      	</div>
-      	<div class="col-md-6">
-      		<div class="checkbox">
-          		<input type="checkbox" id="checkbox1" onchange="myFunction()" value="nesto"checked>Koristi adresu za dostavu
-      		</div>
-      	</div>
+
+    <div class = "row">
+      <div class="col-md-6">
+        <p> Korištene adrese
+      </div>
+      <div class="col-md-6" style="text-align: right;">
+        <%= link_to "Koristi novu", new_address_path %>
+      </div>
     </div>
 
-      <table class="table_total2"> 
-        <tr>
-          <td style="padding-right:18px; padding-left:0px; margin:1px; padding-top:0px;"><%= button_to "ODUSTANI", home_path, :class => "btn btn-default", :method => :get  %></td>
-          <td style="padding-left:0px; padding-right:0px; padding-top:0px; margin-right:1px;"><%= button_to "NASTAVI", new_charge_path, :class => "btn btn-primary", :method => :get  %></td>
-        </tr>
-      </table>
+    <div class = "row line_in_address_show">
+      <hr>
+    </div>
 
-      <br>
 
-      <%10.times do %>
-        <br>
+    <% @addresses = get_all_user_shipping_addresses %>
+    <% first_address = get_first_address_shipping %>
+
+    <div class="row">
+      
+        
+      <% @addresses.each do |address|%>
+
+        <% if address == first_address %>
+         
+            <div class="col-md-6 first_address" data-id="<%= address.id %>">
+              <%= first_address.name %><br>
+              <%= first_address.address_name %><br>
+              <%= first_address.city %>, <%= first_address.region %>  <%= first_address.zip %>
+              <%= first_address.state %><br>
+              <%= first_address.phone %><br>
+            </div>
+         
+        <% else %>
+            
+              <div class="col-md-6 address" data-id="<%= address.id %>">
+                  <%= address.name %><br>
+                  <%= address.address_name %><br>
+                  <%= address.city %>, <%= address.region %>  <%= address.zip %>
+                  <%= address.state %><br>
+                  <%= address.phone %><br>
+              </div>
+            
+     
+        <% end %>
       <% end %>
-  </div> 
+    </div>
 
-  <table class="status_table">
+
+
+
+    <br><br>
+
+
+    <div class="row">
+      <div class="col-md-6">
+        <h2 style="text-align: left;">Adresa za račun</h2>
+      </div>
+      <div class="col-md-6">
+        <div class="checkbox">
+          <input type="checkbox" id="billing_checkbox" onchange="myFunction()" value="nesto" checked>Koristi adresu za dostavu
+        </div>
+      </div>
+    </div>
+  
+    <div class="address_billing">
+
+      <% @addresses_billing = get_all_user_billing_addresses %>
+        <% first_address2 = get_first_address_billing %>
+
+        <div class="row">
+          
+            
+          <% @addresses_billing.each do |address|%>
+
+            <% if address == first_address2 %>
+             
+                <div class="col-md-6 first_address_billing" data-id="<%= address.id %>">
+                  <%= first_address2.name %><br>
+                  <%= first_address2.address_name %><br>
+                  <%= first_address2.city %>, <%= first_address2.region %>  <%= first_address2.zip %>
+                  <%= first_address2.state %><br>
+                  <%= first_address2.phone %><br>
+                </div>
+             
+            <% else %>
+                
+                  <div class="col-md-6 address_b" data-id="<%= address.id %>">
+                      <%= address.name %><br>
+                      <%= address.address_name %><br>
+                      <%= address.city %>, <%= address.region %>  <%= address.zip %>
+                      <%= address.state %><br>
+                      <%= address.phone %><br>
+                  </div>
+                
+         
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+
+  </div>
+
+
+
+  <div class="col-md-6">
+
+    <table class="status_table">
       <tr class="status_tr">
         <td class="status_11">KORPA
         <td class="status_21">DOSTAVA
@@ -76,25 +122,100 @@
       </tr>
     </table>
 
-  <div class="col-md-6">
-    <table border = "1" class="table_total">
-    <tr>
-      <td style="padding:20px; margin:10px;">
-        <p style="text-align: left;"> <b>Narudžba</b> <%= @cart.get_total_number %> proizvoda 
-        <% 13.times do %>
-          &nbsp;
-        <% end %>
-        <br></p>
-        <p style="text-align: right;"> Cijena <br> <b><%= @cart.get_total_price %>KM </b><br><br>
-        Dostava <br> <b><%= @cart.get_delivery_price %>KM </b><br>
-        <hr>
-        <p style="text-align: right;">
-        Ukupno <b><%= @cart.get_total_with_delivery %>KM</b></p>
-      </td>
-    </tr>
-  </table>
+      <table border = "1" class="table_total">
+      <tr>
+        <td style="padding:20px; margin:10px;">
+          <p style="text-align: left;"> <b>Narudžba</b> <%= @cart.get_total_number %> proizvoda 
+          <% 13.times do %>
+            &nbsp;
+          <% end %>
+          <br></p>
+          <p style="text-align: right;"> Cijena <br> <b><%= @cart.get_total_price %>KM </b><br><br>
+          Dostava <br> <b><%= @cart.get_delivery_price %>KM </b><br>
+          <hr>
+          <p style="text-align: right;">
+          Ukupno <b><%= @cart.get_total_with_delivery %>KM</b></p>
+          </td>
+        </tr>
+      </table>
+
+      <table class="table_total2"> 
+        <tr>
+          <td style="padding-right:18px; padding-left:0px; margin:1px; padding-top:0px;"><%= button_to "ODUSTANI", home_path, :class => "btn btn-default", :method => :get  %></td>
+          <td style="padding-left:0px; padding-right:0px; padding-top:0px; margin-right:1px;"><%= button_to "NASTAVI", new_charge_path, :class => "btn btn-primary proceed_to_payment", :method => :get  %></td>
+        </tr>
+      </table>
   </div>
-
 </div>
+<br><br>
+
+<input type="text" class="sh">
+<input type="text" class="bil">
 
 
+<script type="text/javascript">
+
+    $( document ).ready(function() {
+      $('.sh').val($(".first_address").data("id"));
+      $('.bil').val($(".first_address_billing").data("id"));
+    });
+
+      $( ".first_address" ).click(function() {
+        $( ".first_address" ).css("border", "1px solid #FFC63B");
+        $( ".address" ).css("border", "none");
+        $('.sh').val($(".first_address").data("id"));
+      });
+
+      $( ".address" ).click(function() {
+                
+        $( ".address" ).css("border", "none");
+        $( ".first_address" ).css("border", "none");
+        $(this).css("border", "1px solid #FFC63B");
+        $('.sh').val($(this).data("id"));
+
+      });
+
+      $( ".first_address_billing" ).click(function() {
+        $( ".first_address_billing" ).css("border", "1px solid #FFC63B");
+        $( ".address_b" ).css("border", "none");
+        $('.bil').val($(".first_address_billing").data("id"));
+      });
+
+      $( ".address_b" ).click(function() {
+        
+        $( ".address_b" ).css("border", "none");
+        $( ".first_address_billing" ).css("border", "none");
+        $(this).css("border", "1px solid #FFC63B");
+        $('.bil').val($(this).data("id"));
+      
+      });
+
+    document.getElementsByClassName("address_billing")[0].style.visibility = "hidden";
+    function myFunction() {
+      checked = document.getElementById("billing_checkbox").checked;
+      if (checked == true)
+        document.getElementsByClassName("address_billing")[0].style.visibility = "hidden";
+      else
+        document.getElementsByClassName("address_billing")[0].style.visibility = "visible";
+    }
+
+    $('.proceed_to_payment').click(function() {
+      var address1 = $('.sh').val();
+      var address2 = $('.bil').val();
+      $.ajax({
+            url: '/addresses/set_temporary_addresses',
+            data: { 
+              address1: address1,
+              address2: address2,
+            },
+            type: 'POST',
+            success: function(result) {
+              if (result.error) {
+              }
+            }
+        });
+    });
+
+
+
+    </script>

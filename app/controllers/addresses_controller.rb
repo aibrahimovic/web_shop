@@ -10,6 +10,7 @@ class AddressesController < ApplicationController
     @array_of_states << "Hrvatska"
     @array_of_states << "Slovenija"
     @array_of_states << "Austrija"
+
   end
 
   def create
@@ -52,13 +53,67 @@ class AddressesController < ApplicationController
     #end
   end
 
+  def show
+    (@a1, @a2) = set_temporary_addresses
+  end
+
+  def set_temporary_addresses
+    return [params[:address1], params[:address2]]
+  end
+
+  def get_user_for_address
+    if @current_user.nil?
+      user = 0
+    else
+      user = @current_user.id
+    end
+  end
+
+  def get_first_address_shipping
+    if !@current_user.nil?
+      first = Address.where(user_id: @current_user.id, tag: 'shipping').first
+    end
+
+    first
+  end
+
+  def get_first_address_billing
+    if !@current_user.nil?
+      first = Address.where(user_id: @current_user.id, tag: 'billing').first
+    end
+
+    first
+  end
+
+  def get_all_user_shipping_addresses
+    if !@current_user.nil?
+      all_addresses = Address.where(user_id: @current_user.id, tag: 'shipping').all
+    end
+    all_addresses
+  end
+
+  def get_all_user_billing_addresses
+    if !@current_user.nil?
+      all_addresses = Address.where(user_id: @current_user.id, tag: 'billing').all
+    end
+    all_addresses
+  end
+
   def add_address 
     @adr = Address.new
     is_added = @adr.create_address(params[:name], params[:address_name], params[:city], params[:region], params[:zip], params[:state], params[:phone], params[:user_id], params[:tag])
-    #return render json: { error: is_added } 
-    
-    redirect_to new_charge_path
+    if is_added==false
+      return render json: { error: is_added }
+    else
+      redirect_to home_path
+    end
   end
+
+  def send_to_payment
+    redirect_to home_path
+  end
+
+  helper_method :get_user_for_address, :get_first_address_shipping, :get_first_address_billing, :get_all_user_shipping_addresses, :get_all_user_billing_addresses
 
 
   private

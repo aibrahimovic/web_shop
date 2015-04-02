@@ -2,8 +2,32 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+.line_in_address_show {
+  padding:0px; 
+  margin:0px;
+}
+
+.first_address {
+
+    padding: 25px;
+    border: 1px solid #FFC63B;
+}
+
+.address {
+  padding: 25px;
+}
+
+.first_address_billing {
+
+    padding: 25px;
+    border: 1px solid #FFC63B;
+}
+
+.address_b {
+  padding: 25px;
+}
+
 .table2 {
-	
 	padding:0px; 
 	margin:0px;
 }
