@@ -1,7 +1,7 @@
 class ItemsController < ApplicationController
 
   def new
-  	@item = Item.new    
+  	@item = Item.new   
   end
 
   def create
@@ -30,7 +30,7 @@ class ItemsController < ApplicationController
 
     shipping_address = params[:sh_address]
     billing_address = params[:bil_address]
-
+    
     set_order
     if !@current_user.nil?
       @order.user_id = @current_user.id
@@ -42,24 +42,36 @@ class ItemsController < ApplicationController
     end
     @order.save
 
-    @items = @cart.items.all
-    @order_items = []
-    
-    @items.each do |item|
+    temp_item = Item.find_by(tag: 0)
+    if temp_item.nil?
+
+      @items = @cart.items.all
+      @order_items = []
+      
+      @items.each do |item|
+        @oi = OrderItem.new
+        @oi.quantity = item.quantity
+        @oi.help_product_id = item.help_product_id
+        @oi.order_id = @order.id
+        @oi.save()
+      end
+
+
+      if @cart!= nil
+        @i = Item.where(cart_id: @cart.id).destroy_all
+      else 
+        @c = session[:cart_id]
+        @i = Item.where(cart_id: @cart.id).destroy_all
+      end
+    else
       @oi = OrderItem.new
-      @oi.quantity = item.quantity
-      @oi.help_product_id = item.help_product_id
+      @oi.quantity = temp_item.quantity
+      @oi.help_product_id = temp_item.help_product_id
       @oi.order_id = @order.id
       @oi.save()
+      temp_item.delete()
     end
 
-
-    if @cart!= nil
-      @i = Item.where(cart_id: @cart.id).destroy_all
-    else 
-      @c = session[:cart_id]
-      @i = Item.where(cart_id: @cart.id).destroy_all
-    end
     return redirect_to home_path
   end
 
@@ -71,6 +83,12 @@ class ItemsController < ApplicationController
   def get_last_category 
   	p = Product.find (@item.product_id)	
   	return p.category_id
+  end
+
+  def delete_temp_items
+    temp_items = Item.where(tag: 0).destroy_all
+    is_deleted = true
+    render json: { error: is_deleted } 
   end
 
   private

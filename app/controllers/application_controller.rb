@@ -1,6 +1,8 @@
 class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
+  #PUBLISHABLE_KEY=pk_test_nW9vjMf1mArsmHVLZeoZus3I SECRET_KEY=sk_test_4l0brgkJ6N4gLKWA03eRiBsL rails s
+
   include SessionsHelper
 
   protect_from_forgery with: :exception

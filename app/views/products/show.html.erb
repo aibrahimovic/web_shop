@@ -64,7 +64,7 @@
 					</tr>
 					<tr>
 						<td class="table_quan_size"><%= f.select("help_product_id", hp.collect {|p| [ p.size, p.id ] }, { :include_blank => "Sve veličine", :selected => params[:get_help_product_id], :class => "form-control" }, :id => "all_sizes") %>
-						<td class="table_quan_size"><%= f.text_field :quantity, :class => "quantity_field"%>
+						<td class="table_quan_size"><%= f.text_field :quantity, :class => "quantity_field", :value => 1%>
 				</table>
 						
 					
@@ -217,7 +217,7 @@
 
 <script type="text/javascript">
 	    $('#buy_now').click(function(){
-	    	alert("Kupi odmah");
+	    	//alert("Kupi odmah");
 	    	
 
 	    	$('#hidden_buy_now').val("1");

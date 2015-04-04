@@ -1,4 +1,6 @@
 <br><br>
+
+
 <div class="row">
   <div class="col-md-6">
 
@@ -88,10 +90,11 @@
     <table class="table_total2"> 
       <tr>
         <td style="padding-right:18px; padding-left:0px; margin:1px; padding-top:0px;">
-          <%= button_to "ODUSTANI", home_path, :class => "btn btn-default", :method => :get  %>
+          <%= button_to "ODUSTANI", home_path, :class => "btn btn-default odustani_new_address", :method => :get  %>
         </td>
-        <td style="padding-left:0px; padding-right:0px; padding-top:0px; margin-right:1px;"><input type="button" value="NASTAVI" class= "btn btn-primary button_nastavi">
-          <%= button_to "PROBA", charges_path, class: "btn btn-primary button_nastavi2", :method => :get %>
+        <td style="padding-left:0px; padding-right:0px; padding-top:0px; margin-right:1px;">
+          <%= button_to "NASTAVI", new_charge_path, :class => "btn btn-primary button_nastavi", :method => :get  %>
+          <!--#< button_to "PROBA", charges_path, class: "btn btn-primary button_nastavi2", :method => :get > -->
         </td>
       </tr>
     </table>
@@ -226,6 +229,42 @@
     });
 
   });
+
+  $('.odustani_new_address').click(function(){
+    //alert("klik na osustani");
+      
+
+      $.ajax({
+          url: '/items/delete_temp_items',
+          data: {
+          },
+          type: 'DELETE',
+          success: function(result) {
+            if (result.error) {
+            }
+          }
+
+      });
+
+
+  });
+
+  $('.nav_link').click(function(){
+      $.ajax({
+          url: '/items/delete_temp_items',
+          data: {
+          },
+          type: 'DELETE',
+          success: function(result) {
+            if (result.error) {
+            }
+          }
+
+      });
+
+
+  });
+
 
   document.getElementsByClassName("address_billing")[0].style.visibility = "hidden";
     function myFunction() {

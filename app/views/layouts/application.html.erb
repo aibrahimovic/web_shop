@@ -13,11 +13,11 @@
 		<div class="container">
     <nav>
           <ul class="nav navbar-nav navbar-left">
-          <li><%= link_to(image_tag("logo3.png", size: "90x25"), home_path) %></li>
+          <li><%= link_to(image_tag("logo3.png", size: "90x25"), home_path, class: "nav_link") %></li>
           <% $all_categories = Category.all %>
           <% 13.times do %>
               <li> &nbsp; </li>
-            <% end %>
+            <% end %> 
 
           <% $all_categories.each do |x| %>
             <% active_class = (@category && x.id == @category.id) ? "active" : "" %>
@@ -33,19 +33,19 @@
 	        <ul class="nav navbar-nav navbar-right">
 
           <% if logged_in? %>
-            <li><%= link_to "LOGOUT", logout_path, method: "delete" %></li>
+            <li><%= link_to "LOGOUT", logout_path, method: "delete", class: "nav_link"%></li>
             <% 8.times do %>
               <li> &nbsp; </li>
             <% end %>
           <% else %>
-           	<li><%= link_to "LOGIN", login_path %></li>
+           	<li><%= link_to "LOGIN", login_path, class: "nav_link"%></li>
             <li><%= link_to "|", '#' %></li>
-				    <li><%= link_to "REGISTER", new_user_path %></li>
+				    <li><%= link_to "REGISTER", new_user_path, class: "nav_link"%></li>
             <% 8.times do %>
               <li> &nbsp; </li>
             <% end %>
 			     <% end %>
-            <li  id="shopping-cart"><%= link_to(image_tag("cart.png", size: "20x20"), carts_path) %></li>
+            <li  id="shopping-cart"><%= link_to(image_tag("cart.png", size: "20x20"), carts_path, class: "nav_link") %></li>
             <li class="counter"><%= session[:counter] %></li>
           </ul>
         </nav>

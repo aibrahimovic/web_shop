@@ -11,9 +11,12 @@ class AddressesController < ApplicationController
     @array_of_states << "Slovenija"
     @array_of_states << "Austrija"
 
+    @item = Item.find_by(tag: 0)
+
   end
 
   def create
+    redirect_to home_path
   	#@address1 = Address.new(address_params)
     #@address2 = Address.new(address2_params)
 
@@ -54,11 +57,13 @@ class AddressesController < ApplicationController
   end
 
   def show
-    (@a1, @a2) = set_temporary_addresses
+    @address1 = params[:address1]
+    @address2 = params[:address2]
   end
 
-  def set_temporary_addresses
-    return [params[:address1], params[:address2]]
+  def set_clicked_addresses
+    return params[:address1], params[:address2]
+    raise
   end
 
   def get_user_for_address
@@ -107,6 +112,8 @@ class AddressesController < ApplicationController
     else
       redirect_to home_path
     end
+
+    redirect_to home_path
   end
 
   def send_to_payment

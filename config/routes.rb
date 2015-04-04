@@ -14,8 +14,7 @@ Test3::Application.routes.draw do
   put "items/update"
   get "application/get_counter"
   get 'orders/create'
-
-  #post '/items/up2' => 'items#up2', :as => :items_up2
+  post 'charges/new'
 
   get 'home'       => 'static_pages#home'
   get ' '       => 'static_pages#home'
@@ -23,6 +22,7 @@ Test3::Application.routes.draw do
   get 'carts' => 'carts#show'
   get 'addresses' => 'address#show'
   get 'charges' => 'charges#create'
+
 
   get    'login'   => 'sessions#new'
   post   'login'   => 'sessions#create'
@@ -36,13 +36,18 @@ Test3::Application.routes.draw do
     delete "delete_item", on: :collection
     get "update_price", on: :collection
   end
-  resources :items
+  resources :items do
+    delete 'delete_temp_items', on: :collection
+  end
   resources :addresses do
     post "add_address", on: :collection
     get "send_to_payment", on: :collection
-    post "set_temporary_addresses", on: :collection
+    get "set_clicked_addresses", on: :collection
   end
-  resources :charges
+  resources :charges do
+    get "choosen_addresses", on: :collection
+    get "new", on: :collection
+  end
 
   root to: 'static_pages#home'
 

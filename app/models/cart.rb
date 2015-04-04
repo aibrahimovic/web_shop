@@ -26,19 +26,19 @@ class Cart < ActiveRecord::Base
   end
 
   def add_item_to_temporary_cart(item)
-    item.cart_id = 0
+    item.tag= 0
     item.save
   end
 
-  def delete_item_from_temporary_cart(item)
-
-  end
-
   def get_delivery_price
-    
     total = 0
-    self.items.each do |item|
-      total += item.quantity*DELIVERY_COST
+    item = Item.find_by(tag: 0)
+    if item.nil?
+      self.items.each do |item|
+        total += item.quantity*DELIVERY_COST
+      end
+    else
+      total = item.quantity*DELIVERY_COST
     end
     pom = total.to_s << ".00"
 
@@ -47,17 +47,26 @@ class Cart < ActiveRecord::Base
 
   def get_total_number
     total = 0
-    self.items.each do |item|
-      total += item.quantity
+    item = Item.find_by(tag: 0)
+    if item.nil?
+      self.items.each do |item|
+        total += item.quantity
+      end
+    else
+      total = item.quantity
     end
-
     total
   end
 
   def get_total_price 
     total = 0
-    self.items.each do |item|
-      total += item.quantity * item.help_product.product.price.to_f
+    item = Item.find_by(tag: 0)
+    if item.nil?
+      self.items.each do |item|
+        total += item.quantity * item.help_product.product.price.to_f
+      end
+    else
+      total = item.quantity * item.help_product.product.price.to_f
     end
     total = total.to_s << "0"
     total = number_with_precision(total, :precision => 2)
@@ -69,6 +78,7 @@ class Cart < ActiveRecord::Base
     total = get_delivery_price.to_f + get_total_price.to_f
     total = total.to_s << "0"
     total = number_with_precision(total, :precision => 2)
+    
 
     total
   end

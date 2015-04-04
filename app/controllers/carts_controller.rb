@@ -37,7 +37,7 @@ class CartsController < ApplicationController
 
   def update_price
     number, price, delivery, total = @cart.count_prices
-    render json: { number: number, price: price, delivery: delivery, total: total } 
+    render json: { number: number, price: price, delivery: delivery, total: total }  
   end
 
 end
