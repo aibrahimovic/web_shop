@@ -13,18 +13,12 @@
 		<div class="container">
     <nav>
           <ul class="nav navbar-nav navbar-left">
-          <li><%= link_to(image_tag("logo3.png", size: "90x25"), home_path, class: "nav_link") %></li>
+          <li class="nav_link_image"><%= link_to(image_tag("logo3.png", size: "90x25"), home_path) %></li>
           <% $all_categories = Category.all %>
-          <% 13.times do %>
-              <li> &nbsp; </li>
-            <% end %> 
-
+          
           <% $all_categories.each do |x| %>
-            <% active_class = (@category && x.id == @category.id) ? "active" : "" %>
-            <li class="nav_link <%= active_class %>"><%= link_to x.name.upcase, category_path(x.id), class: "nav2" %></li>
-            <% 5.times do %>
-              <li> &nbsp; </li>
-            <% end %>
+            <% active_class = ((@category && x.id == @category.id) || (!@product.nil? && x.id == @product.category_id)) ? "active" : "" %>
+            <li class="nav_link"><%= link_to x.name.upcase, category_path(x.id), :id => "navigation", :class => "#{active_class}" %></li>
           <% end %> 
 
           </ul>
@@ -33,19 +27,14 @@
 	        <ul class="nav navbar-nav navbar-right">
 
           <% if logged_in? %>
-            <li><%= link_to "LOGOUT", logout_path, method: "delete", class: "nav_link"%></li>
-            <% 8.times do %>
-              <li> &nbsp; </li>
-            <% end %>
+            <li class="nav_link"><%= link_to "LOGOUT", logout_path, method: "delete", class: "nav_link"%></li>
+
           <% else %>
-           	<li><%= link_to "LOGIN", login_path, class: "nav_link"%></li>
+           	<li class="nav_link"><%= link_to "LOGIN", login_path, class: "nav_link"%></li>
             <li><%= link_to "|", '#' %></li>
-				    <li><%= link_to "REGISTER", new_user_path, class: "nav_link"%></li>
-            <% 8.times do %>
-              <li> &nbsp; </li>
-            <% end %>
+				    <li class="nav_link"><%= link_to "REGISTER", new_user_path, class: "nav_link"%></li>
 			     <% end %>
-            <li  id="shopping-cart"><%= link_to(image_tag("cart.png", size: "20x20"), carts_path, class: "nav_link") %></li>
+            <li  id="shopping-cart" class="nav_link_cart"><%= link_to(image_tag("cart.png", size: "20x20"), carts_path, class: "nav_link") %></li>
             <li class="counter"><%= session[:counter] %></li>
           </ul>
         </nav>

@@ -18,7 +18,7 @@
 
 $(window).bind('page:load', function(){
     //alert("Test");
-
+   
     $.ajax({
         url: '/application/get_counter',
         type: 'GET',
@@ -30,7 +30,13 @@ $(window).bind('page:load', function(){
                 $('.counter').css('visibility', 'visible');
         }
     });
+
+    $('.active').css('border-bottom', '2px solid #F0D234');
+    $('.active').css('color', 'white');
+
 });
+
+
 
 	
 /*$('#add-to-cart').on('click', function () {

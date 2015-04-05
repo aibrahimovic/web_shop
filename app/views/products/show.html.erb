@@ -1,5 +1,4 @@
 
-
 <% sizes = [] %>
 
 <% list = HelpProduct.all %>
@@ -21,7 +20,7 @@
 		<ol class="breadcrumb">
 		  <li><%= link_to "HOME", home_path, class: "bread2" %></li>
 		  <li><%= link_to cat_name, category_path(@product.category_id), class: "bread2" %></li>
-		  <li class="active"><%= link_to @product.name.upcase, '#', class: "bread" %></li>
+		  <li class="active_link_in_breadcrumb"><%= link_to @product.name.upcase, '#', class: "bread" %></li>
 		</ol>
 	</div>
 	<div class="col-md-6">
@@ -182,7 +181,12 @@
 	});*/
 	    
 	$(window).bind('page:change', function(){
-		
+
+		//alert("<%= @product.category.name %>");
+		var el = $(".nav_link a").html();
+		//alert(el);
+
+
 		if ($('.all_sizes').selectedIndex == null) {
 			//setTimeout(function () { $("#all_sizes").focus(); }, 2);
 		}

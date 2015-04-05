@@ -1,66 +1,57 @@
 <html>
 	<head>
+		<title>Web shop</title>
 		<script type="text/javascript"> </script>
 	</head>
 
 	<body>
-
 		<div id="sliderId">
 		</div>
+
 		<%= image_tag("cover3.png", :class => "cover_slika", :size => "1150x350") %>
-
-
-		<script>
-			var funkcija = function() {
-				$('#sliderId').ramblingSlider();
-			};
-			  
-			$(window).bind('page:change', funkcija)
-			//https://github.com/gonzedge/rambling.slider/wiki/Options
-
-		</script>
-
 		<br>
 		<br>
-		
 		<h2> Newest products </h2>
-
-
 		<% $all_products = Product.all %>
 		<% counter = 0 %>
-
 		<table id="all_products2">
-			
 			<% $all_products.each do |x| %>
-
 				<% if counter%4 == 0 || counter == 0 %>
 					<tr><td>
 				<% else %>
 					<td>
-				<% end %> 
+				<% end %>
+						<div data-content="<%= x.name%>" class="image">
+							<%= link_to image_tag(x.image), product_path(x.id) %> <br>
+							<% counter += 1 %>
+						</div>
 
-				<div id="wrapper">
-				<%= link_to(image_tag(x.image, size: "150x150"), product_path(x.id), :class => "pic") %> <br>
-					
-	    				<p class="text_on_image">
-	    					
-	    					<%= x.name %> <br>
-	    					<b><%= x.price %></b>
-	    					
-	    				</p>
-	    				<% counter += 1 %>
-					</div>
+						<div id="wrapper">
+						<!-- < link_to(image_tag(x.image, size: "150x150"), product_path(x.id), :class => "pic") > <br>-->
+							<!-- <p class="text_on_image">
+								< x.name > <br>
+								<b>< x.price ></b>
+							</p> -->
+						</div>
 					</td>
-
 				<% if counter%4 == 0 || counter == $all_products.length %>
 					</tr>
 				<% end %>
 			<% end %>
-
 			<% counter = 0 %>
-
 		</table>
+
 	</body>
 </html>
 
 
+<script type="text/javascript">
+	var funkcija = function() {
+		$('#sliderId').ramblingSlider();
+	};
+			  
+	$(window).bind('page:change', funkcija)
+	//https://github.com/gonzedge/rambling.slider/wiki/Options
+</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
