@@ -19,17 +19,17 @@
 			<% counter += 1 %>
 			<tr style="padding:0px; margin:2px;"> 
 				<td style="padding:0px; margin:2px;"> <%= image_tag(p.image, size: "150x150") %> </td>
-				<td style="padding:30px; margin:2px;"> Model: <%= p.name %> <br>
+				<td style="padding:30px; margin:2px; color:gray;"> Model: <%= p.name %> <br>
 					 Veličina: <%= y.help_product.size %> <br>
 					 Boja: Crvena <br>
 					 ID: 215fd <br>
 					 <br><br>
 				</td>
-				<td style="text-align: right; padding:20px; margin:2px;"> Cijena: <br>
-					 <b><%= p.price %>KM</b>
+				<td style="text-align: right; padding:20px; margin:2px; color:gray"> Cijena: <br>
+					 <b style="color:black;"><%= p.price %>KM</b>
 					 <br>
 					 <br>
-					 Količina: <input data-id="<%= y.id %>" type="text" value= "<%=y.quantity %>" class="quantity_field">
+					 <span style="font-size: 12px;">Količina: </span><input data-id="<%= y.id %>" type="text" value= "<%=y.quantity %>" class="quantity_field">
 					 <br><br><br>
 				</td>
 			</tr>

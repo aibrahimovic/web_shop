@@ -63,7 +63,7 @@
 					</tr>
 					<tr>
 						<td class="table_quan_size"><%= f.select("help_product_id", hp.collect {|p| [ p.size, p.id ] }, { :include_blank => "Sve veličine", :selected => params[:get_help_product_id], :class => "form-control" }, :id => "all_sizes") %>
-						<td class="table_quan_size"><%= f.text_field :quantity, :class => "quantity_field", :value => 1%>
+						<td class="table_quan_size"><%= f.text_field :quantity, :class => "product_quantity_field", :value => 1%>
 				</table>
 						
 					
@@ -191,23 +191,23 @@
 			//setTimeout(function () { $("#all_sizes").focus(); }, 2);
 		}
 
-		$(".quantity_field").blur(function() {
+		$(".product_quantity_field").blur(function() {
 			
 			var el = $(this);
 			var flag = $.isNumeric(el.val()); 
 			if (el.val() == "") {
 				$('.notification_product').html("Unesite količinu");
-				setTimeout(function () { $(".quantity_field").focus(); }, 2);
+				setTimeout(function () { $(".product_quantity_field").focus(); }, 2);
 				alert("Unesite količinu");
-				//$(".quantity_field").focus();
+				//$(".product_quantity_field").focus();
 			}
-			else if (el.val() < 1 || flag == false )
+			else if (el.val() < 1 || flag == false || Math.floor(el.val()) != el.val())
 				$('.notification_product').html("Unesite pozitivan broj za količinu");
 		
 			
 		});
 
-		$(".quantity_field").focus(function() {
+		$(".product_quantity_field").focus(function() {
 			$('.notification_product').html(" ");
 		});
 	});
