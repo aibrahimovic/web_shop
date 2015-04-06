@@ -8,8 +8,7 @@ class ItemsController < ApplicationController
     parameter_hp = params[:item][:help_product_id]
     parameter_quantity = params[:item][:quantity]
     product_return = params["hidden_product_id"]
-    raise
-    
+        
     if parameter_hp != ""
       
       @item = Item.new(item_params)
