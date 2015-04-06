@@ -21,7 +21,8 @@
 				<% else %>
 					<td>
 				<% end %>
-						<div data-content="<%= x.name%>" class="image">
+				<% @name_price = "#{x.name} \n\n\n #{x.price} KM"%>
+						<div data-content="<%= @name_price %>" class="image">
 							<%= link_to image_tag(x.image), product_path(x.id) %> <br>
 							<% counter += 1 %>
 						</div>
@@ -49,6 +50,11 @@
 	var funkcija = function() {
 		$('#sliderId').ramblingSlider();
 	};
+
+	$('.image').click(function() {
+		alert($this.val());
+
+	});
 			  
 	$(window).bind('page:change', funkcija)
 	//https://github.com/gonzedge/rambling.slider/wiki/Options

@@ -33,12 +33,12 @@
 <% end %>
 
 <div class="wrapper">
+	<div class="clear"></div>
 	<div class="item">
 		<table id="helpTable1" cellpadding="10">
 			<col width="40px" />
 			<tr style="padding:0px; margin:2px;">
         
-
 			<td> <%= image_tag(@product.image, :size => "200x200", :alt =>"item") %> </td>
 			<td style="margin-top: 200cm;" class="fixed"> 
 				<b><%= @product.name %></b>
@@ -62,12 +62,13 @@
 						<td class="table_quan_size"><%= f.label :količina %>
 					</tr>
 					<tr>
-						<td class="table_quan_size"><%= f.select("help_product_id", hp.collect {|p| [ p.size, p.id ] }, { :include_blank => "Sve veličine", :selected => params[:get_help_product_id], :class => "form-control" }, :id => "all_sizes") %>
+						<td class="table_quan_size"><%= f.select("help_product_id", hp.collect {|p| [ p.size, p.id ] }, { :include_blank => "Sve veličine", :selected => params[:get_help_product_id], :class => "form-control select_velicina" }, :id => "all_sizes") %>
 						<td class="table_quan_size"><%= f.text_field :quantity, :class => "product_quantity_field", :value => 1%>
 				</table>
 						
 					
 				<%= hidden_field_tag 'hidden_buy_now', '' %>
+				<%= hidden_field_tag 'hidden_product_id', @product.id %>
 
 	      		<table> 
 	      			<tr>
@@ -136,17 +137,17 @@
 
 <script type="text/javascript">
 	
-/*$('#add-to-cart').on('click', function () {
-        var cart = $('.shopping-cart');
-        var imgtodrag = $(this).parent('.item').find("img").eq(0);
+	$('#add-to-cart').on('click', function () {
+        var cart = $('#shopping-cart');
+        var imgtodrag = $('.item').find("img").eq(0);
         if (imgtodrag) {
-            var imgclone = imgtodrag.clone()
+            /*var imgclone = imgtodrag.clone()
                 .offset({
                 top: imgtodrag.offset().top,
                 left: imgtodrag.offset().left
             })
                 .css({
-                	'opacity': '0.5',
+                'opacity': '0.5',
                     'position': 'absolute',
                     'height': '150px',
                     'width': '150px',
@@ -158,7 +159,7 @@
                     'left': cart.offset().left + 10,
                     'width': 75,
                     'height': 75
-            }, 1000, 'easeInOutExpo');
+            }, 1000, 'easeInOutExpo');*/
             
             setTimeout(function () {
                 cart.effect("shake", {
@@ -166,30 +167,26 @@
                 }, 200);
             }, 1500);
 
-            imgclone.animate({
+            /*imgclone.animate({
                 'width': 0,
-                'height': 0
+                    'height': 0
             }, function () {
                 $(this).detach()
-            });
+            });*/
         }
-    });*/
+    });
 
-	/*$( document ).ready(function() {
-		setTimeout(function () { $("#all_sizes").focus(); }, 2);
-
-	});*/
-	    
 	$(window).bind('page:change', function(){
 
 		//alert("<%= @product.category.name %>");
 		var el = $(".nav_link a").html();
 		//alert(el);
 
-
-		if ($('.all_sizes').selectedIndex == null) {
-			//setTimeout(function () { $("#all_sizes").focus(); }, 2);
-		}
+		$('.add_to_cart').click(function() {
+			var velicina = $('#all_sizes').val();
+			if (velicina == "")
+				$('.notification_product').html("Unesite veličinu");
+		});
 
 		$(".product_quantity_field").blur(function() {
 			
@@ -203,8 +200,7 @@
 			}
 			else if (el.val() < 1 || flag == false || Math.floor(el.val()) != el.val())
 				$('.notification_product').html("Unesite pozitivan broj za količinu");
-		
-			
+
 		});
 
 		$(".product_quantity_field").focus(function() {

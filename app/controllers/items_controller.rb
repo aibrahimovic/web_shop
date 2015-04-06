@@ -5,24 +5,33 @@ class ItemsController < ApplicationController
   end
 
   def create
-    @item = Item.new(item_params)
-    @path_to_address = find_address_path
-    @counter = session[:counter]
-
-    hidden = params["hidden_buy_now"]
-    if hidden == "1"
-      @cart.add_item_to_temporary_cart(@item)
-      redirect_to @path_to_address
-    else
-      is_saved = @cart.add_item(@item)
-      hp = HelpProduct.find_by(id: @item.help_product_id)    
-      if is_saved == true
-        @counter += 1
-        session[:counter] = @counter
-      end
-      redirect_to product_path(hp.product)
+    parameter_hp = params[:item][:help_product_id]
+    parameter_quantity = params[:item][:quantity]
+    product_return = params["hidden_product_id"]
+    raise
+    
+    if parameter_hp != ""
       
-      #redirect_to :controller => 'products', :action => 'show', :id => hp.product, :counter => @counter
+      @item = Item.new(item_params)
+      @path_to_address = find_address_path
+      @counter = session[:counter]
+
+      hidden = params["hidden_buy_now"]
+      if hidden == "1"
+        @cart.add_item_to_temporary_cart(@item)
+        redirect_to @path_to_address
+      else
+        is_saved = @cart.add_item(@item)
+        hp = HelpProduct.find_by(id: @item.help_product_id)    
+        if is_saved == true
+          @counter += 1
+          session[:counter] = @counter
+        end
+        redirect_to product_path(hp.product)
+      end
+
+    else 
+      redirect_to product_path(product_return)
     end
   end
 

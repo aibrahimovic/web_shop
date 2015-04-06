@@ -248,22 +248,23 @@ input {
 }*/
 
 .wrapper {
-    margin-left: auto;
-    margin-right: auto;
+    width: 705px;
+    margin: 20px auto;
+    padding: 20px;
 }
 
 .clear {
     clear: both;
 }
 
-/*.item {
-    background-color: #fff;
-    float: left;
-    margin: 0 10px 10px 0;
-    width: 205px;
-    padding: 10px;
-    height: 290px;
-}*/
+.item {
+    //background-color: #fff;
+    //float: left;
+    //margin: 0 10px 10px 0;
+    //width: 205px;
+    //padding: 10px;
+    //height: 290px;
+}
 .item img {
     display: block;
     margin: auto;
