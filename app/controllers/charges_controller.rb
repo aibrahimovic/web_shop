@@ -1,8 +1,8 @@
 class ChargesController < ApplicationController
 
 	def new
-    	@a1 = params[:charges]["sh_address"]
-    	@a2 = params[:addresses]["bil_address"]    	
+    	@a1 = params["sh_address"]
+    	@a2 = params["bil_address"]    	
 	end
 
 	def show

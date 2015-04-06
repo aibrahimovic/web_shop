@@ -21,11 +21,15 @@
 				<% else %>
 					<td>
 				<% end %>
-				<% @name_price = "#{x.name} \n\n\n #{x.price} KM"%>
+				<% @name_price = "#{x.name}\n#{x.price}KM"%>
+
+					<%= link_to product_path(x.id) do %>
 						<div data-content="<%= @name_price %>" class="image">
-							<%= link_to image_tag(x.image), product_path(x.id) %> <br>
+							<!-- < link_to image_tag(x.image), product_path(x.id), :class => "product" > <br> -->
+							<%= image_tag(x.image) %>
 							<% counter += 1 %>
 						</div>
+					<% end %>
 
 						<div id="wrapper">
 						<!-- < link_to(image_tag(x.image, size: "150x150"), product_path(x.id), :class => "pic") > <br>-->
@@ -51,13 +55,15 @@
 		$('#sliderId').ramblingSlider();
 	};
 
-	$('.image').click(function() {
-		alert($this.val());
+	$(document).ready(function() {
+    //$(".image").click(function(event) {
+        //alert($(this).html());
+    });
 
-	});
 			  
 	$(window).bind('page:change', funkcija)
 	//https://github.com/gonzedge/rambling.slider/wiki/Options
 </script>
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 <script src="js/bootstrap.min.js"></script>

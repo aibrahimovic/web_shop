@@ -117,4 +117,21 @@ class Cart < ActiveRecord::Base
     return [c.get_total_number, c.get_total_price, c.get_delivery_price, c.get_total_with_delivery]
   end
 
+  def check
+    products = []
+    product_names = []
+    quantities = []
+    items = []
+    all_items = self.items
+    all_items.each do |item|
+      if item.help_product.quantity < item.quantity
+        products << item.help_product_id
+        product_names << item.help_product.product.name
+        quantities << item.help_product.quantity
+        items << item.id
+      end
+    end 
+    return products, product_names, quantities, items
+  end
+
 end

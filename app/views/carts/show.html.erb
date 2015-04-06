@@ -7,6 +7,12 @@
 <div class="row">
 	
 	<div class="col-md-8">
+		<span class="cart_status">
+		</span>
+		<span class="cart_status2"></span>
+		<span class="cart_status3"></span>
+
+
 		<table class="table_cart">
 			<tr> 
 				<td style="padding:30px; margin:2px;"> Vaša korpa </td>
@@ -29,7 +35,7 @@
 					 <b style="color:black;"><%= p.price %>KM</b>
 					 <br>
 					 <br>
-					 <span style="font-size: 12px;">Količina: </span><input data-id="<%= y.id %>" type="text" value= "<%=y.quantity %>" class="quantity_field">
+					 <span style="font-size: 12px;">Količina: </span><input id="<%= y.help_product_id %>" data-id="<%= y.id %>" type="text" value= "<%=y.quantity %>" class="quantity_field">
 					 <br><br><br>
 				</td>
 			</tr>
@@ -82,10 +88,101 @@
 <script type="text/javascript">
 	
 	$(window).bind('page:change', function(){
+		$.ajax({
+			    url: '/carts/check_available',
+			    type: 'GET',
+			    success: function(result) {
+			    	if (result.products) {
+
+			    		var products = result.products;
+						var names = result.product_names;
+						var quantities = result.quantities;
+						var items = result.items;
+
+						status = "";
+						for (i=0; i<products.length; i++) {
+							if (quantities[i] == 0) {
+								status += "Poizvod <b>"+names[i]+"</b> više nije dostupan.<br>";
+								$(".cart_status").html(status);
+								var id_for_item = products[i];
+								$("#"+id_for_item).val(quantities[i]);
+								
+								$.ajax({
+								    url: '/carts/delete_item',
+								    data: { 
+								    	item_id: items[i], 
+								    },
+								    type: 'DELETE',
+								    success: function(result) {
+								    	if (result.error) {
+								    		$("#"+id_for_item).hide();
+								    	}
+							    	}
+								});
+
+								$.ajax({
+								    url: '/carts/update_price',
+								    type: 'GET',
+								    success: function(result) {
+								    	if (result.number) {
+								    		$(".cart_total_number").html(result.number);
+								    		$(".cart_price").html(result.price);
+								    		$(".cart_delivery").html(result.delivery);
+								    		$(".cart_total").html(result.total);
+								    	}
+								    }
+
+								});
+							}
+							else {
+								status += "Poizvod <b>"+names[i]+"</b> ima ograničenu količinu. Možete naručiti najviše <b>"+quantities[i]+"</b> proizvoda.<br>";
+								$(".cart_status").html(status);
+								var id_for_item = products[i];
+								$("#"+id_for_item).val(quantities[i]);
+
+								$.ajax({
+								    url: '/carts/update_item',
+								    data: { 
+								    	item_id: items[i], 
+								    	quantity: quantities[i], 
+								    },
+								    type: 'PUT',
+								    success: function(result) {
+								    	if (result.error) {
+								    		//alert("Podaci su izmjenjeni");
+								    	}
+								    }
+
+								});
+
+								$.ajax({
+								    url: '/carts/update_price',
+								    type: 'GET',
+								    success: function(result) {
+								    	if (result.number) {
+								    		$(".cart_total_number").html(result.number);
+								    		$(".cart_price").html(result.price);
+								    		$(".cart_delivery").html(result.delivery);
+								    		$(".cart_total").html(result.total);
+								    	}
+								    }
+
+								});
+
+							}
+						}
+				    }
+						
+			    }
+		});
+});
+	$(window).bind('page:change myChange', function(){
+
+
 		var old_element = $(".quantity_field").val();
 		$(".quantity_field").change(function() {
 			
-		var el = $(this);
+		var el = $(this); 	
 		if (el.val() == 0) {
 			confirm("Are you sure you want to delete this item?");
 			$.ajax({
@@ -97,6 +194,7 @@
 			    success: function(result) {
 			    	if (result.error) {
 			    		el.parents("tr").hide();
+			    		$(document).trigger('page:change');
 			    	}
 			    	/*console.log(el)
 			    	alert (el.parents("tr").length)
@@ -128,6 +226,8 @@
 			    success: function(result) {
 			    	if (result.error) {
 			    		alert("Podaci su izmjenjeni");
+			    		//$("window").trigger('page:change');
+			    		$(document).trigger('page:change');
 			    	}
 			    }
 

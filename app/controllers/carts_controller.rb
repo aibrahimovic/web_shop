@@ -40,4 +40,9 @@ class CartsController < ApplicationController
     render json: { number: number, price: price, delivery: delivery, total: total }  
   end
 
+  def check_available
+    products, product_names, quantities, items = @cart.check
+    render json: { products: products, product_names: product_names, quantities: quantities, items: items }  
+  end
+
 end

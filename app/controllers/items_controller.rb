@@ -48,7 +48,14 @@ class ItemsController < ApplicationController
     else
       @order.email = 'guest'
     end
-    @order.save
+    if @order.save
+      all_items = @cart.items
+      all_items.each do |item| 
+        hp = HelpProduct.find_by(id: item.help_product_id)
+        hp.quantity = hp.quantity - item.quantity
+        hp.save
+      end
+    end
 
     temp_item = Item.find_by(tag: 0)
     if temp_item.nil?

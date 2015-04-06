@@ -20,13 +20,18 @@
 		<% else %>
 			<td style="padding:20px; margin:2px;">
 		<% end %> 
-		<div id="wrapper">
-				<%= link_to(image_tag(x.image, size: "150x150"), product_path(x.id), :class => "pic") %> <br>
+				
+				<%= link_to product_path(x.id) do %>
+					<div id="wrapper" class="image">
+							<%= image_tag(x.image, size: "150x150")%> <br>
+							
+						
+					</div>
+				<% end %>
 				<%= x.name %><br>
-				<%= x.price %><br>
+				<%= x.price %> KM<br>
 				<% counter += 1 %>
-			</td>	
-		</div>
+
 		<% if counter%4 == 0 || counter == list.length %>
 			</tr>
 		<% end %>

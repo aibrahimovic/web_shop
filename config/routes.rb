@@ -35,6 +35,7 @@ Test3::Application.routes.draw do
     put "update_item", on: :collection
     delete "delete_item", on: :collection
     get "update_price", on: :collection
+    get "check_available", on: :collection
   end
   resources :items do
     delete 'delete_temp_items', on: :collection
