@@ -1,7 +1,7 @@
 <html>
 	<head>
 		<title>Web shop</title>
-		<script type="text/javascript"> </script>
+		
 	</head>
 
 	<body>
@@ -21,12 +21,9 @@
 				<% else %>
 					<td>
 				<% end %>
-				<% @name_price = "#{x.name}\n#{x.price}KM"%>
-
 					<%= link_to product_path(x.id) do %>
-						<div data-content="<%= @name_price %>" class="image">
-							<!-- < link_to image_tag(x.image), product_path(x.id), :class => "product" > <br> -->
-							<%= image_tag(x.image) %>
+						<div data-content1="<%= x.name %>"  data-content2="<%= x.price %>KM"  class="image">
+							<%= image_tag(x.image)%> <br>
 							<% counter += 1 %>
 						</div>
 					<% end %>

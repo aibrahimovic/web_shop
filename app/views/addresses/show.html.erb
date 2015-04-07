@@ -143,19 +143,32 @@
 
       <table class="table_total2"> 
         <tr>
+          <form action="/charges/new" method="post" class="form_hidden">
+            <input type="hidden" class="sh" name="sh" value="#{@address1}" >
+            <input type="hidden" class="bil" name="bil" value="#{@address2}">
+            <%= tag(:input, :type => "hidden", :name => request_forgery_protection_token.to_s, :value => form_authenticity_token) %> 
           <td style="padding-right:18px; padding-left:0px; margin:1px; padding-top:0px;"><%= button_to "ODUSTANI", home_path, :class => "btn btn-default odustani_new_address", :method => :get  %></td>
-          <td style="padding-left:0px; padding-right:0px; padding-top:0px; margin-right:1px;"><%= button_to("NASTAVI", {:controller => "charges", :action => "new", :address3 => "#{@address1}", :address4 => "#{@address2}"}, class: "btn btn-primary proceed_to_payment") %></td>
+          <td style="padding-left:0px; padding-right:0px; padding-top:0px; margin-right:1px;">
+            <!-- < button_tag ("NASTAVI", class: "btn btn-primary proceed_to_payment", onclick: "addAddresses()") %></td> -->
+                
+            <input type="submit" class="btn btn-primary proceed_to_payment" value="NASTAVI">
+          </form>
+
+          <!-- <, :address3 => "#{@address1}", :address4 => "#{@address2}" >-->
         </tr>
       </table>
   </div>
 </div>
 <br><br>
 
-<input type="hidden" class="sh" value="#{@address1}" >
-<input type="hidden" class="bil" value="#{@address2}">
+</form>
 
 
 <script type="text/javascript">
+
+    function addAddresses() {
+      $('.form_hidden').submit();
+    }
 
     $( document ).ready(function() {
       $('.sh').val($(".first_address").data("id"));
@@ -208,20 +221,20 @@
       var address2 = $('.bil').val();
       //alert(address1);
       //alert(address2);
-      $.ajax({
+      $.post({
             url: '/charges/new',
             data: { 
               sh_address: address1,
               bil_address: address2,
             },
-            type: 'POST',
             success: function(result) {
-              alert(result.error)
+              alert(result.error);
               if (result.error) {
               }
             }
         });
     });
+
 
     $('.odustani_new_address').click(function(){
     //alert("klik na osustani");

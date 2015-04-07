@@ -1,8 +1,8 @@
 class ChargesController < ApplicationController
 
 	def new
-    	@a1 = params["sh_address"]
-    	@a2 = params["bil_address"]    	
+    	shipping_address = params["sh"]
+    	billing_address = params["bil"]
 	end
 
 	def show
@@ -21,6 +21,7 @@ class ChargesController < ApplicationController
 			#after new address
 			@shipping_address = Address.where(user_id: @current_user.id, tag: 'shipping').last
 			@billing_address = Address.where(user_id: @current_user.id, tag: 'billing').last
+
 		end
 
 
@@ -40,10 +41,23 @@ class ChargesController < ApplicationController
 	    :currency    => 'BAM'
 	  )
 
+	  redirect_to item_path(@cart, sh_address: @shipping_address, bil_address: @billing_address), :method => :delete
+
+
+	  #redirect_to action: "destroy", id: 5
+	  #redirect_to :controller => 'items', :action => 'destroy'
+	  #redirect_to item_path(@cart, sh_address: @shipping_address, bil_address: @billing_address),
+	  #redirect_to items_destroy_path(@cart, sh_address: @shipping_address, bil_address: @billing_address)
+
+
 	rescue Stripe::CardError => e
 	  flash[:error] = e.message
 	  redirect_to charges_path
+
+	
 	end
+
+
 
 
 

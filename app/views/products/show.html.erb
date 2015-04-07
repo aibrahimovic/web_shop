@@ -1,3 +1,6 @@
+<script type="text/javascript"> 
+			@import url("http://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.5.4/bootstrap-select.min.css");
+		</script>
 
 <% sizes = [] %>
 
@@ -28,10 +31,6 @@
 	</div>
 </div>
 
-<% unless flash[:quantity_number].blank? %>
-    <p><%= flash.now[:quantity_number] %>
-<% end %>
-
 <div class="wrapper">
 	<div class="clear"></div>
 	<div class="item">
@@ -40,7 +39,11 @@
 			<tr style="padding:0px; margin:2px;">
         
 			<td> <%= image_tag(@product.image, :size => "200x200", :alt =>"item") %> </td>
+			<button id="add-to-cart2" type="button" style="visibility: hidden;">Add to cart</button>
+			
+			
 			<td style="margin-top: 200cm;" class="fixed"> 
+
 				<b><%= @product.name %></b>
 				<br><br>
 				<%= @product.description %>
@@ -62,17 +65,21 @@
 						<td class="table_quan_size"><%= f.label :količina %>
 					</tr>
 					<tr>
-						<td class="table_quan_size"><%= f.select("help_product_id", hp.collect {|p| [ p.size, p.id ] }, { :include_blank => "Sve veličine", :selected => params[:get_help_product_id], :class => "form-control select_velicina" }, :id => "all_sizes") %>
+						<td class="table_quan_size"><%= f.select("help_product_id", hp.collect {|p| [ p.size, p.id ] }, { :include_blank => "Sve veličine", :selected => params[:get_help_product_id], :class => "selectpicker" }, :id => "all_sizes") %>
 						<td class="table_quan_size"><%= f.text_field :quantity, :class => "product_quantity_field", :value => 1%>
 				</table>
 						
-					
+
 				<%= hidden_field_tag 'hidden_buy_now', '' %>
 				<%= hidden_field_tag 'hidden_product_id', @product.id %>
 
 	      		<table> 
 	      			<tr>
-	      			<td style="padding:2px; margin:1px;"><%= f.submit 'DODAJ U KORPU', :class => "btn btn-default add_to_cart", :id=> "add-to-cart" %>
+	      			<td style="padding:2px; margin:1px;">
+	      				<!-- < f.submit 'DODAJ U KORPU', :class => "btn btn-default add_to_cart", :id=> "add-to-cart" %> -->
+	      				<input type="button" value="DODAJ U KORPU" class="btn btn-default add_to_cart" id="add_to_cart">
+	      				
+
 	      			</td>
 	      				
 	      			<td style="padding:2px; margin:1px;">
@@ -88,6 +95,7 @@
 			</td>
 			</tr>
 		</table>
+	
 	</div> <!-- item -->
 </div> <!-- wraper -->
 
@@ -117,14 +125,12 @@
 		<% else %>
 			<td>
 		<% end %> 
-			<div id="wrapper">
-				<%= link_to(image_tag(x.image, size: "150x150"), product_path(x.id),  :class => "pic") %> <br>
-				<p class="text_on_image">
-	    			<%= x.name %> <br>
-	    			<b><%= x.price %></b>
-	    		</p>
-				<% counter += 1 %>
-			</div>
+			<%= link_to product_path(x.id) do %>
+				<div data-content1="<%= x.name %>"  data-content2="<%= x.price %>KM"  class="image">
+					<%= image_tag(x.image)%> <br>
+					<% counter += 1 %>
+				</div>
+			<% end %>
 			</td>	
 		<% if counter%4 == 0 || counter == list.length %>
 			</tr>
@@ -136,12 +142,12 @@
 </table>
 
 <script type="text/javascript">
-	
-	$('#add-to-cart').on('click', function () {
+
+	$('#add-to-cart2').on('click', function () {
         var cart = $('#shopping-cart');
-        var imgtodrag = $('.item').find("img").eq(0);
+        var imgtodrag = $(this).parent('.item').find("img").eq(0);
         if (imgtodrag) {
-            /*var imgclone = imgtodrag.clone()
+            var imgclone = imgtodrag.clone()
                 .offset({
                 top: imgtodrag.offset().top,
                 left: imgtodrag.offset().left
@@ -159,7 +165,7 @@
                     'left': cart.offset().left + 10,
                     'width': 75,
                     'height': 75
-            }, 1000, 'easeInOutExpo');*/
+            }, 1000, 'easeInOutExpo');
             
             setTimeout(function () {
                 cart.effect("shake", {
@@ -167,25 +173,28 @@
                 }, 200);
             }, 1500);
 
-            /*imgclone.animate({
+            imgclone.animate({
                 'width': 0,
                     'height': 0
             }, function () {
                 $(this).detach()
-            });*/
-        }
-    });
+                $('form#new_item').trigger('submit.rails');
+            });
 
+        }
+        
+    });
+	
 	$(window).bind('page:change', function(){
 
-		//alert("<%= @product.category.name %>");
 		var el = $(".nav_link a").html();
-		//alert(el);
 
-		$('.add_to_cart').click(function() {
+		$('#add_to_cart').on('click', function() {
 			var velicina = $('#all_sizes').val();
 			if (velicina == "")
 				$('.notification_product').html("Unesite veličinu");
+			else
+				$('#add-to-cart2').trigger('click');
 		});
 
 		$(".product_quantity_field").blur(function() {
@@ -208,12 +217,22 @@
 		});
 	});
 
-
-		
-
-
- 
 </script>
+
+<script type="text/javascript" src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+<script src="/js/Bootstrap/Select/bootstrap-select.js"></script>
+<script src="silviomoreto.github.io/bootstrap-select/javascripts/bootstrap-select.js"></script>
+<script src="silviomoreto.github.io/bootstrap-select/stylesheets/bootstrap-select.css"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.5.4/bootstrap-select.min.css"></script>
+
+
+<script type="text/javascript">
+      window.onload=function(){
+      $('.selectpicker').selectpicker({ 'selectedText': '',style:'btn-lg' });
+  });
+</script>
+
+
 
 <script type="text/javascript">
 	    $('#buy_now').click(function(){
