@@ -76,17 +76,26 @@ Test3::Application.configure do
   # config.autoflush_log = false
 
   # Use default logging formatter so that PID and timestamp are not suppressed.
-  config.log_formatter = ::Logger::Formatter.new
+  #config.log_formatter = ::Logger::Formatter.new
 
-  config.action_mailer.delivery_method = :smtp
-    config.action_mailer.smtp_settings = {
-    address: "smtp.mandrillapp.com",
-    port: 587,
-    user_name: "test.atlant@gmail.com",
-    password: 'wJnlsLPIRAcoUtxOGA1h5A', #ENV['SMTP_PASSWORD']
-    domain: 'https://stormy-bastion-2505.herokuapp.com/'
+  #config.action_mailer.delivery_method = :smtp
+    #config.action_mailer.smtp_settings = {
+    #address: "smtp.mandrillapp.com",
+    #port: 587,
+    #user_name: "test.atlant@gmail.com",
+    #password: 'wJnlsLPIRAcoUtxOGA1h5A', #ENV['SMTP_PASSWORD']
+    #domain: 'https://stormy-bastion-2505.herokuapp.com/'
+  #}
+  #config.action_mailer.raise_delivery_errors = true
+  #config.action_mailer.perform_deliveries = true 
+
+  config.action_mailer.smtp_settings = {
+    :address   => "smtp.mandrillapp.com",
+    :port      => 587, # ports 587, 25 and 2525 are also supported with STARTTLS
+    :enable_starttls_auto => true, # detects and uses STARTTLS
+    :user_name => "aazraa.ibrahimovic@gmail.com",
+    :password  => "amMts8OEtLR64z7W3nUICw", # SMTP password is any valid API key
+    :authentication => 'login', # Mandrill supports 'plain' or 'login'
+    :domain => 'yourdomain.com', # your domain to identify your server when connecting
   }
-  config.action_mailer.raise_delivery_errors = true
-  config.action_mailer.perform_deliveries = true 
-
 end

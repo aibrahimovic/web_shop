@@ -60,3 +60,4 @@ gem 'rambling-slider-rails'
 gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
 
 gem 'rails_12factor', group: :production
+gem 'mandrill-rails'
