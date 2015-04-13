@@ -1,0 +1,25 @@
+<% provide(:title, 'Sign up') %>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= form_for(@user) do |f| %>
+
+      <% unless flash[:same_user].blank? %>
+          <%= flash[:same_user] %>
+      <% end %>
+      <br>
+      <br>  
+
+      <%= f.label :email %>
+      <%= f.email_field :email, class: 'form-control', id: "emailId" %>
+      <br>
+
+      <%= f.label :role_id, "Role" %>
+      <%= f.text_field :role_id, class: 'form-control'%>
+      <br>
+
+      <%= f.submit "IZMJENI", class: "btn btn-primary" %>
+    <% end %>
+
+  </div>
+</div>

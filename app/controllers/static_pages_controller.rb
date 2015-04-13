@@ -8,6 +8,10 @@ class StaticPagesController < ApplicationController
   	$all_categories = Category.all
   end
 
+  def admin
+  	$all_categories = Category.all
+  end
+
   def help
   end
 end

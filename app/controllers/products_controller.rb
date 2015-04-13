@@ -1,4 +1,5 @@
 class ProductsController < ApplicationController
+  before_action :set_product, only: [:show, :edit, :update, :destroy]
 
   def new
   	@product = Product.new
@@ -12,8 +13,30 @@ class ProductsController < ApplicationController
     end
   end
 
+  def create
+    @product = Product.new(product_params)
+
+    respond_to do |format|
+      if @product.save
+        format.html { redirect_to allProducts_path, notice: 'Proizvod je uspješno kreiran.' }
+        format.json { render :show, status: :created, location: @product }
+      else
+        format.html { render :new }
+        format.json { render json: @product.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
   def allProducts 
-  	@products_all = Product.all
+  	@products = Product.all
+  end
+
+  def destroy
+    @product.destroy
+    respond_to do |format|
+      format.html { redirect_to allProducts_path, notice: 'Proizvod je uspješno izbirsan.' }
+      format.json { head :no_content }
+    end
   end
 
   def get_quantity(size, p_id)
@@ -35,6 +58,15 @@ class ProductsController < ApplicationController
   		end
   	end
   end
+
+  private
+    def set_product
+      @product = Product.find(params[:id])
+    end
+
+    def product_params
+      params.require(:product).permit(:name, :image, :price, :description, :category_id)
+    end
 
   helper_method :get_category_name
   helper_method :get_quantity

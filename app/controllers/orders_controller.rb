@@ -25,4 +25,8 @@ class OrdersController < ApplicationController
 		redirect_to home_path
 	end
 
+	def show
+		@orders = Order.all
+	end
+
 end

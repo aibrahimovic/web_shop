@@ -27,6 +27,9 @@ Test3::Application.routes.draw do
   get    'login'   => 'sessions#new'
   post   'login'   => 'sessions#create'
   delete 'logout'  => 'sessions#destroy'
+  get 'admin' => 'static_pages#admin'
+  get 'allProducts' => 'products#allProducts'
+  get 'allUsers' => 'users#allUsers'
 
   resources :users
   resources :categories
@@ -49,6 +52,8 @@ Test3::Application.routes.draw do
     get "choosen_addresses", on: :collection
     get "new", on: :collection
   end
+
+  resources :orders
 
   root to: 'static_pages#home'
 
