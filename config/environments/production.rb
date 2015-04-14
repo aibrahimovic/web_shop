@@ -109,5 +109,4 @@ Test3::Application.configure do
     },
     bucket: ENV['S3_BUCKET_NAME']
   }
-}
 end
