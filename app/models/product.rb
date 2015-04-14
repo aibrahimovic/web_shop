@@ -8,7 +8,11 @@ class Product < ActiveRecord::Base
                       :show => "200x200>",
                       :preview => "500x500>",
                       :slider => "1150x350>"
-                    }
+                    },
+                  :storage => :s3,
+                  :s3_credentials => "#{Rails.root}/config/s3.yml",
+                  :path => "/images/:id/:style.:extension",
+                  :url => ":s3_domain_url"
 	validates_attachment_content_type :image, :content_type => ["image/jpg", "image/jpeg", "image/png", "image/gif"]
 	#has_attached_file :image, styles: { small: "64x64", med: "100x100", large: "200x200" }
 
