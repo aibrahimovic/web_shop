@@ -24,7 +24,8 @@
 				<% end %>
 					<%= link_to product_path(x.id) do %>
 						<div data-content1="<%= x.name %>"  data-content2="<%= x.price %>KM"  class="image">
-							<%= image_tag(x.image)%> <br>
+							<%= image_tag(x.image.url(:small)) %><br>
+							
 							<% counter += 1 %>
 						</div>
 					<% end %>

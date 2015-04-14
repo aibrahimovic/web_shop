@@ -19,12 +19,12 @@
 			</tr>
 
 			<% counter = 0 %>
-
+ 
 			<% @all.each do |y| %>
 			<% p = y.help_product.product %>
 			<% counter += 1 %>
 			<tr style="padding:0px; margin:2px;"> 
-				<td style="padding:0px; margin:2px;"> <%= image_tag(p.image, size: "150x150") %> </td>
+				<td style="padding:0px; margin:2px;"> <%= image_tag(p.image.url(:small)) %> </td>
 				<td style="padding:30px; margin:2px; color:gray;"> Model: <%= p.name %> <br>
 					 Veličina: <%= y.help_product.size %> <br>
 					 Boja: Crvena <br>

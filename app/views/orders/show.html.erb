@@ -1,37 +1,37 @@
 <p id="notice"><%= notice %></p>
 <br>
-<h2>Listing Orders</h2>
+<h2 style="text-align: left;">Sve narudžbe</h2>
 
 <table>
   <thead>
     <tr>
-      <th>Id narudžbe</th>
-      <th>Korisnik</th>
-      <th>Adresa za račun</th>
-      <th>Adresa za dostavu</th>
-      <th>Cijena</th>
+      <th class="admin_first_column">ID</th>
+      <th class="admin_first_column">Korisnik</th>
+      <th class="admin_first_column">Adresa za račun</th>
+      <th class="admin_first_column">Adresa za dostavu</th>
+      <th class="admin_first_column">Cijena</th>
       <th colspan="3"></th>
     </tr>
   </thead>
 
   <tbody>
     <% @orders.each do |order| %>
-      <tr>
-        <td><%= order.id %></td>
-        <td><%= order.user.email %></td>
+      <tr class="admin_table_tr ">
+        <td class="allProducts_table"><%= order.id %></td>
+        <td class="allProducts_table"><%= order.user.email %></td>
         <% billing = Address.find_by(id: order.billing_address_id) %>
         <% shipping = Address.find_by(id: order.shipping_address_id) %>
-        <td><%= billing.address_name %></td>
-        <td><%= shipping.address_name %></td>
-        <td><%= order.total %></td>
-        <td><%= link_to 'Show', order %></td>
-        <td><%= link_to 'Edit', edit_order_path(order) %></td>
-        <td><%= link_to 'Destroy', order, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td class="allProducts_table"><%= billing.address_name %></td>
+        <td class="allProducts_table"><%= shipping.address_name %></td>
+        <td class="allProducts_table"><%= order.total %></td>
+        <td class="allProducts_table">
+          <%= link_to 'Show', order %><br>
+          <%= link_to 'Edit', edit_order_path(order) %><br>
+          <%= link_to 'Destroy', order, method: :delete, data: { confirm: 'Are you sure?' } %>
+        </td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
 <br>
-
-<%= link_to 'New Order', new_order_path %>

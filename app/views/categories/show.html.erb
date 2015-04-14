@@ -23,7 +23,7 @@
 				
 				<%= link_to product_path(x.id) do %>
 					<div id="wrapper" class="image">
-							<%= image_tag(x.image, size: "150x150")%> <br>
+							<%= image_tag(x.image.url(:small))%> <br>
 							
 						
 					</div>

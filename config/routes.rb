@@ -3,7 +3,7 @@ Test3::Application.routes.draw do
   get "items/new"
   post "items/create"
   get "carts/new"
-  get "help_products/new"
+  get "help_products/new" 
   get "products/new"
   get "categories/new"
   get "sessions/new"
@@ -30,10 +30,12 @@ Test3::Application.routes.draw do
   get 'admin' => 'static_pages#admin'
   get 'allProducts' => 'products#allProducts'
   get 'allUsers' => 'users#allUsers'
+  get 'orders' => 'orders#show'
 
   resources :users
   resources :categories
   resources :products
+  resources :help_products
   resources :carts do 
     put "update_item", on: :collection
     delete "delete_item", on: :collection

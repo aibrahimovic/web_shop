@@ -57,33 +57,28 @@ class UsersController < ApplicationController
   def destroy
     @user.destroy
     respond_to do |format|
-      format.html { redirect_to allUsers_path, notice: 'Korisnik je uspješno izbirsan.' }
+      format.html { redirect_to allUsers_path, notice: 'Korisnik je uspješno izbrisan.' }
       format.json { head :no_content }
     end
   end
 
   def update
 
-    @user2 = User.find(params[:id])
-    if @user2.update_attributes(user_params2)
-      redirect_to allUsers_path
-    else
-      raise
-    end
-
-    
-    
-    #respond_to do |format|
+    respond_to do |format|
       
-     # if @user.update(user_params2)
+      if @user.update(user_params2)
 
-      #  format.html { redirect_to allUsers, notice: 'Korisnik je uspješno izmjenjen.' }
-      #  format.json { render :show, status: :ok, location: @user }
-      #else
-       # format.html { render :edit }
-        #format.json { render json: @user.errors, status: :unprocessable_entity }
-      #end
-    #end
+        format.html { redirect_to allUsers_path, notice: 'Korisnik je uspješno izmjenjen.' }
+        format.json { render :show, status: :ok, location: @user }
+      else
+        format.html { render :edit }
+        format.json { render json: @user.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  def edit
+    @roles = Role.all
   end
 
   private

@@ -1,22 +1,21 @@
-<h2>New category</h2>
-
 <div class="row">
-  <div class="col-md-6 col-md-offset-3">
-   
+  <br>
   	<%= form_for(@category) do |f| %>
 
   	  <% unless flash[:same_category].blank? %>
           <%= flash[:same_category] %>
       <% end %>
-      <br>
-      <br>  
+      
 
-      <%= f.label :name %>
-      <%= f.text_field :name, class: "form-control" %>
-      <br>
+        <div class="field">
+          <%= f.label :Kategorija %><br>
+          <%= f.text_field :name, class: "form-control", style: "width: 300px;"%>
+        </div>
+        <br>
+        <br>
 
-      <%= f.submit "New category", class: "btn btn-primary" %>
+      <%= f.submit "Kreiraj kategoriju", class: "btn btn-primary", style: "width: 300px;"%>
     <% end %>
   	
-  </div>
+
 </div>

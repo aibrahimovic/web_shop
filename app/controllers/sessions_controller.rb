@@ -18,7 +18,7 @@ class SessionsController < ApplicationController
       redirect_to home_path
     elsif user.role.name == "Administrator" && user && user.authenticate(params[:session][:password])
       log_in user
-      redirect_to admin_path
+      redirect_to home_path
     else
       flash.now[:notice] = "Email or password is incorrect."
 		  render 'new'

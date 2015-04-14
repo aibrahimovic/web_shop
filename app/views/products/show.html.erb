@@ -34,7 +34,7 @@
 			<col width="40px" />
 			<tr style="padding:0px; margin:2px;">
         
-			<td> <%= image_tag(@product.image, :size => "200x200", :alt =>"item") %> </td>
+			<td> <%= image_tag(@product.image.url(:show), :alt =>"item") %> </td>
 			<button id="add-to-cart2" type="button" style="visibility: hidden;">Add to cart</button>
 			
 			
@@ -61,7 +61,7 @@
 						<td class="table_quan_size"><%= f.label :količina %>
 					</tr>
 					<tr>
-						<td class="table_quan_size"><%= f.select("help_product_id", hp.collect {|p| [ p.size, p.id ] }, { :include_blank => "Sve veličine", :selected => params[:get_help_product_id], :class => "selectpicker" }, :id => "all_sizes") %>
+						<td class="table_quan_size"><%= f.select("help_product_id", hp.collect {|p| [ p.size, p.id ] }, { :include_blank => "Sve veličine", :selected => params[:get_help_product_id], :class => "selectpicker" }, :id => "all_sizes", class: 'form-control', style: "width: 150px;") %>
 						<td class="table_quan_size"><%= f.text_field :quantity, :class => "product_quantity_field", :value => 1%>
 				</table>
 						

@@ -15,11 +15,13 @@
       <br>
 
       <%= f.label :role_id, "Role" %>
-      <%= f.text_field :role_id, class: 'form-control'%>
-      <br>
+      <%= f.select("role_id", @roles.collect {|r| [r.name, r.id] }, { :selected => params[:get_role_id] }, class: 'form-control')%><br><br>
 
       <%= f.submit "IZMJENI", class: "btn btn-primary" %>
     <% end %>
+    <br><br>
+
+    <%= link_to 'Svi korisnici', allUsers_path %>
 
   </div>
 </div>

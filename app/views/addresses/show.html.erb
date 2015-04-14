@@ -51,8 +51,7 @@
                   <%= address.state %><br>
                   <%= address.phone %><br>
               </div>
-            
-     
+
         <% end %>
       <% end %>
     </div>
@@ -151,7 +150,7 @@
           <td style="padding-left:0px; padding-right:0px; padding-top:0px; margin-right:1px;">
             <!-- < button_tag ("NASTAVI", class: "btn btn-primary proceed_to_payment", onclick: "addAddresses()") %></td> -->
                 
-            <input type="submit" class="btn btn-primary proceed_to_payment" value="NASTAVI">
+            <input type="submit" class="btn btn-primary proceed_to_payment" value="NASTAVI" onclick="addAddress()">
           </form>
 
           <!-- <, :address3 => "#{@address1}", :address4 => "#{@address2}" >-->
@@ -167,8 +166,14 @@
 <script type="text/javascript">
 
     function addAddresses() {
+      alert("submit nije bio.");
       $('.form_hidden').submit();
+      alert("submit bio.");
     }
+
+    $('.proceed_to_payment').on('click', function() {
+      $('.form_hidden').submit();
+    });
 
     $( document ).ready(function() {
       $('.sh').val($(".first_address").data("id"));

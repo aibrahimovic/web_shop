@@ -1,2 +1,8 @@
-<h1>HelpProducts#new</h1>
-<p>Find me in app/views/help_products/new.html.erb</p>
+<h2>Varijacije proizvoda</h2>
+
+<%= render 'form' %>
+
+<br><br>
+<%= link_to 'Nazad na proizvod', edit_product_path(@product_parameter) %> |
+<%= link_to 'Svi proizvodi', allProducts_path %>
+

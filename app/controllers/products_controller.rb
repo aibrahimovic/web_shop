@@ -1,8 +1,9 @@
 class ProductsController < ApplicationController
-  before_action :set_product, only: [:show, :edit, :update, :destroy]
+  before_action :set_product, only: [:show, :edit, :update, :destroy] 
 
   def new
   	@product = Product.new
+    @categories = Category.all
   end
 
   def show
@@ -18,10 +19,22 @@ class ProductsController < ApplicationController
 
     respond_to do |format|
       if @product.save
-        format.html { redirect_to allProducts_path, notice: 'Proizvod je uspješno kreiran.' }
+        format.html { redirect_to help_products_new_path(:product_id => @product.id), notice: 'Proizvod je uspješno kreiran.' }
         format.json { render :show, status: :created, location: @product }
       else
         format.html { render :new }
+        format.json { render json: @product.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  def update
+    respond_to do |format|
+      if @product.update(product_params)
+        format.html { redirect_to allProducts_path, notice: 'Proizvod je uspješno izmjenjen.' }
+        format.json { render :show, status: :ok, location: @product }
+      else
+        format.html { render :edit }
         format.json { render json: @product.errors, status: :unprocessable_entity }
       end
     end
@@ -32,11 +45,21 @@ class ProductsController < ApplicationController
   end
 
   def destroy
-    @product.destroy
+    id = @product.id
+    if @product.destroy
+      help_products = HelpProduct.where(product_id: id).all
+      help_products.each do |hp| 
+        hp.destroy
+      end
+    end
     respond_to do |format|
       format.html { redirect_to allProducts_path, notice: 'Proizvod je uspješno izbirsan.' }
       format.json { head :no_content }
     end
+  end
+
+  def edit
+    @categories = Category.all
   end
 
   def get_quantity(size, p_id)

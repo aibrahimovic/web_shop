@@ -9,36 +9,31 @@
     <%= csrf_meta_tags %>
   </head>
   <body>
+<br><br>
 
-    <nav role="navigation" class="navbar navbar-inverse">
-        <div class="navbar-header">
-
-            <button type="button" data-target="#navbarCollapse" data-toggle="collapse" class="navbar-toggle">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            
-        </div>
-
-        <div id="navbarCollapse" class="collapse navbar-collapse">
-            <ul class="nav navbar-nav">
-                <li class="dropdown">
-                    <a data-toggle="dropdown" class="dropdown-toggle" href="#">Proizvodi <b class="caret"></b></a>
-                    <ul role="menu" class="dropdown-menu">
-                        <li><%= link_to "Pregledaj sve", home_path %></li>
-                        <li><a href="#">Drafts</a></li>
-                        <li><a href="#">Sent Items</a></li>
-                        <li class="divider"></li>
-                        <li><a href="#">Trash</a></li>
-                    </ul>
-                </li>
-            </ul>
-        </div>
+<body>
+    <nav class="navbar navbar-default" role="navigation">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+    </div>
+ 
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav">
+            <li><%= link_to "Proizvodi", allProducts_path %></li>
+            <li><%= link_to "Korisnici", allUsers_path %></li>
+            <li><%= link_to "Kategorije", new_category_path %></li>
+            <li><%= link_to "Narudžbe", orders_path %></li>    
+        </ul>
+    </div>
     </nav>
-
+    <!--/.navbar-->
   </body>
 </html> 
 
-
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js" type="text/javascript"></script>
+<script src="js/bootstrap.min.js" type="text/javascript"></script>

@@ -27,9 +27,6 @@
 	        <ul class="nav navbar-nav navbar-right">
 
           <% if logged_in? %>
-            <% if !@current_user.nil? && @current_user.role.name == "Administrator" %> 
-              <li class="nav_link"><%= link_to "ADMIN PANEL", admin_path, method: "get", class: "nav_link"%></li>
-            <% end %>
             <li class="nav_link"><%= link_to "LOGOUT", logout_path, method: "delete", class: "nav_link"%></li>
 
           <% else %>
@@ -43,6 +40,33 @@
         </nav>
       </div>
     </header>
+
+    <% if !@current_user.nil? && @current_user.role.name == "Administrator" %>
+    <header class="navbar navbar-inverse"> 
+      <br>
+      <div class="container">
+      <nav>
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
+     
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav" style="padding-left: 125px;">
+                <li class="nav_link"><%= link_to "PROIZVODI", allProducts_path %></li>
+                <li class="nav_link"><%= link_to "KORISNICI", allUsers_path %></li>
+                <li class="nav_link"><%= link_to "NARUDŽBE", orders_path %></li>   
+                <li class="nav_link"><%= link_to "KATEGORIJE", new_category_path %></li>
+            </ul>
+        </div>
+        </nav>
+      </header>
+
+    <% end %>
 
     <div class="container">
       <%= yield %>

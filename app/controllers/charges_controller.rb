@@ -1,27 +1,20 @@
 class ChargesController < ApplicationController
+	before_action :set_addresses, only: [:show, :new, :create] 
 
 	def new
-    	shipping_address = params["sh"]
-    	billing_address = params["bil"]
 	end
 
 	def show
-
 	end
-
-	def choosen_addresses
-		a1 = params[:address1]
-		a2 = params[:address2]
-	end
-
 
 	def create
-		choosen_addresses
-		if !@current_user.nil?
-			#after new address
+
+		if !@current_user.nil? && !@shipping_address.nil? && !@billing_address.nil?
+			@shipping_address = @shipping
+			@billing_address = @billing
+		else
 			@shipping_address = Address.where(user_id: @current_user.id, tag: 'shipping').last
 			@billing_address = Address.where(user_id: @current_user.id, tag: 'billing').last
-
 		end
 
 
@@ -41,7 +34,7 @@ class ChargesController < ApplicationController
 	    :currency    => 'BAM'
 	  )
 
-	  redirect_to item_path(@cart, sh_address: @shipping_address, bil_address: @billing_address), :method => :delete
+	  #redirect_to item_path(@cart, sh_address: @shipping_address, bil_address: @billing_address), :method => :delete
 
 
 	  #redirect_to action: "destroy", id: 5
@@ -56,6 +49,14 @@ class ChargesController < ApplicationController
 
 	
 	end
+
+	private
+	    def set_addresses
+		    @shipping = params["sh"]
+	    	@billing = params["bil"]
+	    end
+
+
 
 
 

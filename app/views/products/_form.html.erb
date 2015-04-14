@@ -1,6 +1,7 @@
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
-    <%= form_for(@product) do |f| %>
+    <%= form_for(@product, :html => { :multipart => true }) do |f| %>
+
       <% if @product.errors.any? %>
         <div id="error_explanation">
           <h2><%= pluralize(@product.errors.count, "error") %> prohibited this order from being saved:</h2>
@@ -17,10 +18,17 @@
         <%= f.label :naziv %><br>
         <%= f.text_field :name, class: 'form-control'%><br>
       </div>
-      <div class="field">
-        <%= f.label :slika %><br>
-        <%= f.text_field :image, class: 'form-control' %><br>
-      </div>
+      <!-- <div class="field">
+        < f.label :slika %><br>
+        <f.text_field :image, class: 'form-control' %><br>
+      </div>-->
+
+
+      <p>
+        <%= f.label :slika %><br />
+        <%= f.file_field :image %>
+      </p><br>
+
       <div class="field">
         <%= f.label :cijena %><br>
         <%= f.text_field :price, class: 'form-control' %><br>
@@ -31,11 +39,21 @@
       </div>
       <div class="field">
         <%= f.label :kategorija %><br>
-        <%= f.text_field :category_id, class: 'form-control' %><br><br>
+        <%= f.select("category_id", @categories.collect {|r| [ r.name, r.id] }, { :selected => params[:get_category_id] }, class: 'form-control')%><br><br> 
+
       </div>
+
+
+
+      
+      
       <div class="actions">
-        <%= f.submit "Dodaj proizvod", class: "btn btn-primary"  %><br>
+        <%= f.submit "Kreiraj proizvod", class: "btn btn-primary", style: "width: 200px;" %><br>
       </div>
     <% end %>
+    <br><br>
+
+    <%= link_to 'Svi proizvodi', allProducts_path %>
+
   </div>
 </div>
