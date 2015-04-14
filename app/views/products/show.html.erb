@@ -61,7 +61,7 @@
 						<td class="table_quan_size"><%= f.label :količina %>
 					</tr>
 					<tr>
-						<td class="table_quan_size"><%= f.select("help_product_id", hp.collect {|p| [ p.size, p.id ] }, { :include_blank => "Sve veličine", :selected => params[:get_help_product_id], :class => "selectpicker" }, :id => "all_sizes", class: 'form-control', style: "width: 150px;") %>
+						<td class="table_quan_size"><%= f.select("help_product_id", hp.collect {|p| [ p.size, p.id ] }, { :include_blank => "Sve veličine", :selected => params[:get_help_product_id], :class => "selectpicker" }, :id => "all_sizes", class: 'form-control', style: "width: 165px;") %>
 						<td class="table_quan_size"><%= f.text_field :quantity, :class => "product_quantity_field", :value => 1%>
 				</table>
 						
@@ -143,7 +143,7 @@
         var cart = $('#shopping-cart');
         var imgtodrag = $(this).parent('.item').find("img").eq(0);
         if (imgtodrag) {
-            /*var imgclone = imgtodrag.clone()
+            var imgclone = imgtodrag.clone()
                 .offset({
                 top: imgtodrag.offset().top,
                 left: imgtodrag.offset().left
@@ -175,7 +175,7 @@
             }, function () {
                 $(this).detach()
                 $('form#new_item').trigger('submit.rails');
-            });*/
+            });
 
         }
         
@@ -190,8 +190,8 @@
 			if (velicina == "")
 				$('.notification_product').html("Unesite veličinu");
 			else {
-				//$('#add-to-cart2').trigger('click');
-				$('form#new_item').trigger('submit.rails');
+				$('#add-to-cart2').trigger('click');
+				//$('form#new_item').trigger('submit.rails');
 			}
 		});
 
