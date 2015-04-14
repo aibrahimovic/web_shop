@@ -10,9 +10,11 @@ class Product < ActiveRecord::Base
                       :slider => "1150x350>"
                     },
                   :storage => :s3,
-                  :s3_credentials => "#{Rails.root}/config/s3.yml",
-                  :path => "/images/:id/:style.:extension",
-                  :url => ":s3_domain_url"
+                  :s3_credentials => Proc.new{|a| a.instance.s3_credentials }
+
+  def s3_credentials
+    {:bucket => "bucket", :access_key_id => "8N029N81", :secret_access_key => "9s83109d3+583493190"}
+  end
 	validates_attachment_content_type :image, :content_type => ["image/jpg", "image/jpeg", "image/png", "image/gif"]
 	#has_attached_file :image, styles: { small: "64x64", med: "100x100", large: "200x200" }
 
