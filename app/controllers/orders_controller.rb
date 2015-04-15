@@ -29,4 +29,10 @@ class OrdersController < ApplicationController
 		@orders = Order.all
 	end
 
+	def showOrder
+		@order_id = params[:order]
+		@order = Order.find_by(id: @order_id)
+		@order_items = OrderItem.where(order_id: @order_id).all
+	end
+
 end

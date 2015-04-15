@@ -34,7 +34,7 @@ class ItemsController < ApplicationController
     end
   end
 
-  def destroy
+  def destroy 
 
     shipping_address = params[:sh_address]
     billing_address = params[:bil_address]
@@ -87,7 +87,7 @@ class ItemsController < ApplicationController
       temp_item.delete()
     end
 
-    return redirect_to home_path
+    return redirect_to order_path(order: @order.id)
   end
 
   def update

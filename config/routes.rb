@@ -15,6 +15,7 @@ Test3::Application.routes.draw do
   get "application/get_counter"
   get 'orders/create'
   post 'charges/new'
+  get 'charges/create'
 
   get 'home'       => 'static_pages#home'
   get ' '       => 'static_pages#home'
@@ -23,7 +24,6 @@ Test3::Application.routes.draw do
   get 'addresses' => 'address#show'
   get 'charges' => 'charges#create'
 
-
   get    'login'   => 'sessions#new'
   post   'login'   => 'sessions#create'
   delete 'logout'  => 'sessions#destroy'
@@ -31,6 +31,8 @@ Test3::Application.routes.draw do
   get 'allProducts' => 'products#allProducts'
   get 'allUsers' => 'users#allUsers'
   get 'orders' => 'orders#show'
+  get 'itemsDestroy' => 'items#destroy'
+  get 'order' => 'orders#showOrder'
 
   resources :users
   resources :categories
