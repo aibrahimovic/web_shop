@@ -18,7 +18,7 @@ class UsersController < ApplicationController
       @cart.user_id = @user.id
       @cart.counter = 0
       @cart.save
-      if @current_user.role.name == "Administrator"
+      if !@current_user.nil? && @current_user.role.name == "Administrator"
         redirect_to allUsers_path
       else
       	log_in @user
