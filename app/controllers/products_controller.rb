@@ -46,11 +46,18 @@ class ProductsController < ApplicationController
 
   def destroy
     id = @product.id
+    items = Item.all
     if @product.destroy
       help_products = HelpProduct.where(product_id: id).all
-      help_products.each do |hp| 
+      help_products.each do |hp|
+        items.each do |item|
+          if item.help_product == hp
+            item.destroy
+          end
+        end
         hp.destroy
       end
+
     end
     respond_to do |format|
       format.html { redirect_to allProducts_path, notice: 'Proizvod je uspješno izbirsan.' }

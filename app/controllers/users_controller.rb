@@ -16,6 +16,7 @@ class UsersController < ApplicationController
   
     if @user.save
       @cart.user_id = @user.id
+      @cart.counter = 0
       @cart.save
       if @current_user.role.name == "Administrator"
         redirect_to allUsers_path

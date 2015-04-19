@@ -29,9 +29,10 @@ module SessionsHelper
     def create_new_cart 
       @cart = Cart.new
       @cart.user_id = nil
+      @cart.counter = 0
       @cart.save
       session[:cart_id] = @cart.id
-
+      
       @cart
     end
 
