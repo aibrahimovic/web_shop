@@ -62,6 +62,6 @@ gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
 gem 'rails_12factor', group: :production
 gem 'mandrill-rails'
 gem "paperclip", "~> 4.2"
-gem 'aws-sdk', '< 2.0'
+gem 'aws-sdk', '~> 1.5.7'
 #gem 'aws-sdk'
 gem 'cloudinary'
