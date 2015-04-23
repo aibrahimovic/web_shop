@@ -139,7 +139,7 @@
 
 <script type="text/javascript">
 
-	$('#add-to-cart2').on('click', function () {
+	/*$('#add-to-cart2').on('click', function () {
         var cart = $('#shopping-cart');
         var imgtodrag = $(this).parent('.item').find("img").eq(0);
         if (imgtodrag) {
@@ -179,7 +179,7 @@
 
         }
         
-    });
+    });*/
 	
 	$(window).bind('page:change', function(){
 
@@ -190,8 +190,8 @@
 			if (velicina == "")
 				$('.notification_product').html("Unesite veličinu");
 			else {
-				$('#add-to-cart2').trigger('click');
-				//$('form#new_item').trigger('submit.rails');
+				//$('#add-to-cart2').trigger('click');
+				$('form#new_item').trigger('submit.rails');
 			}
 		});
 
