@@ -18,35 +18,23 @@
         <%= f.label :naziv %><br>
         <%= f.text_field :name, class: 'form-control'%><br>
       </div>
-      <!-- <div class="field">
-        < f.label :slika %><br>
-        <f.text_field :image, class: 'form-control' %><br>
-      </div>-->
-
-
-      <p>
-        <%= f.label :slika %><br />
-        <%= f.file_field :image %>
-      </p><br>
-
+      <div class="field">
+        <%= f.label :opis %><br>
+        <%= f.text_area :description, class: 'form-control' %><br>
+      </div>
       <div class="field">
         <%= f.label :cijena %><br>
         <%= f.text_field :price, class: 'form-control' %><br>
       </div>
       <div class="field">
-        <%= f.label :opis %><br>
-        <%= f.text_field :description, class: 'form-control' %><br>
-      </div>
-      <div class="field">
         <%= f.label :kategorija %><br>
-        <%= f.select("category_id", @categories.collect {|r| [ r.name, r.id] }, { :selected => params[:get_category_id] }, class: 'form-control')%><br><br> 
-
+        <%= f.select("category_id", @categories.collect {|r| [ r.name, r.id] }, { :selected => params[:get_category_id] }, class: 'form-control')%><br>
       </div>
+      <p>
+        <%= f.label :slika %><br />
+        <%= f.file_field :image %>
+      </p><br><br>
 
-
-
-      
-      
       <div class="actions">
         <%= f.submit "Kreiraj proizvod", class: "btn btn-primary", style: "width: 200px;" %><br>
       </div>
