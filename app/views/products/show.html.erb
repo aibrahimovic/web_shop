@@ -221,7 +221,14 @@
 
 <script type="text/javascript">
 	    $('#buy_now').click(function(){
-	    	$('#hidden_buy_now').val("1");
+			
+			var velicina = $('#all_sizes').val();
+			if (velicina == "")
+				$('.notification_product').html("Unesite veličinu");
+			else {
+				$('#hidden_buy_now').val("1");
+			}
+	    		
     });
 
 
