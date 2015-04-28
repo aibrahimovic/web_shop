@@ -1,0 +1,62 @@
+# Files in the config/locales directory are used for internationalization
+# and are automatically loaded by Rails. If you want to use locales other
+# than English, add the necessary files in this directory.
+#
+# To use the locales, use `I18n.t`:
+#
+#     I18n.t 'hello'
+#
+# In views, this is aliased to just `t`:
+#
+#     <%= t('hello') %>
+#
+# To use a different locale, set it with `I18n.locale`:
+#
+#     I18n.locale = :es
+#
+# This would use the information in config/locales/es.yml.
+#
+# To learn more, please read the Rails Internationalization guide
+# available at http://guides.rubyonrails.org/i18n.html.
+
+bs:
+  hello: "Pozdrav svijetu"
+  newest: "Najnoviji proizvodi"
+  similar_products: "Slični proizvodi"
+  add_to_cart_button: "DODAJ U KORPU"
+  buy_button: "KUPI ODMAH"
+  size: "Veličina"
+  quantity: "Količina"
+  cart_label: "Korpa"
+  delivery_label: "Dostava"
+  payment_label: "Plaćanje"
+  order_label: "Narudžba"
+  product_counter_label: "proizvoda"
+  price: "Cijena"
+  delivery: "Dostava"
+  total: "Ukupno"
+  back_button: "ODUSTANI"
+  continue_button: "NASTAVI"
+  item_model: "Model"
+  item_size: "Veličina"
+  item_color: "Boja"
+  item_price: "Cijena"
+  item_quantity: "Količina"
+  your_cart: "Vaša korpa"
+  delivery_address: "Adresa za dostavu"
+  billing_address: "Adresa za račun"
+  same_addresses: "Koristi adresu za dostavu"
+  address_name: "Ime i prezime"
+  address_street: "Adresa"
+  address_city: "Grad"
+  address_region: "Regija"
+  address_zip: "ZIP"
+  address_state: "Država"
+  address_phone: "Telefon"
+  used_addresses: "Korištene adrese"
+  use_new_address: "Koristi novu"
+  
+  activerecord:
+    attributes:
+      category:
+        name: "Ime"

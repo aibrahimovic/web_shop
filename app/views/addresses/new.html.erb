@@ -5,22 +5,22 @@
   <div class="col-md-6">
 
     <span class="address_status"></span><br>
-    <h2 style="text-align: left;">Adresa za dostavu</h2>
+    <h2 style="text-align: left;"><%= t('delivery_address') %></h2>
 
     <form>
-      <p> Ime i prezime </p>
+      <p> <%= t('address_name') %> </p>
       <input type="text" class="form-control name"><br>
-      <p> Adresa </p>
+      <p> <%= t('address_street') %> </p>
       <input type="text" class="form-control address_name"><br>
-      <p> Grad </p>
+      <p> <%= t('address_city') %> </p>
       <input type="text" class="form-control city"><br>
-      <p> Region </p>
+      <p> <%= t('address_region') %> </p>
       <input type="text" class="form-control region"><br>
-      <p> Zip </p>
+      <p> <%= t('address_zip') %> </p>
       <input type="text" class="form-control zip"><br>
-      <p> Država </p>
+      <p> <%= t('address_state') %> </p>
       <input type="text" class="form-control state"><br>
-      <p> Broj telefona </p>
+      <p> <%= t('address_phone') %> </p>
       <input type="text" class="form-control phone"><br>
     </form>
 
@@ -28,11 +28,11 @@
     <span class="address_status2"></span><br>
     <div class="row">
         <div class="col-md-6">
-          <h2 style="text-align: left;">Adresa za račun</h2>
+          <h2 style="text-align: left;"><%= t('billing_address') %></h2>
         </div>
         <div class="col-md-6">
           <div class="checkbox">
-            <input type="checkbox" id="billing_checkbox" onchange="myFunction()" value="nesto" checked> Koristi adresu za dostavu
+            <input type="checkbox" id="billing_checkbox" onchange="myFunction()" value="nesto" checked> <%= t('same_addresses') %>
           </div>
         </div>
     </div>
@@ -40,19 +40,19 @@
 
     <div class="address_billing"
       <form>
-        <p> Ime i prezime </p>
+        <p> <%= t('address_name') %> </p>
         <input type="text" class="form-control name_billing"><br>
-        <p> Adresa </p>
+        <p> <%= t('address_street') %> </p>
         <input type="text" class="form-control address_name_billing"><br>
-        <p> Grad </p>
+        <p> <%= t('address_city') %> </p>
         <input type="text" class="form-control city_billing"><br>
-        <p> Region </p>
+        <p> <%= t('address_region') %> </p>
         <input type="text" class="form-control region_billing"><br>
-        <p> Zip </p>
+        <p> <%= t('address_zip') %> </p>
         <input type="text" class="form-control zip_billing"><br>
-        <p> Država </p>
+        <p> <%= t('address_state') %> </p>
         <input type="text" class="form-control state_billing"><br>
-        <p> Broj telefona </p>
+        <p> <%= t('address_phone') %> </p>
         <input type="text" class="form-control phone_billing"><br>
       </form>
     </div>
@@ -64,36 +64,39 @@
 
     <table class="status_table">
       <tr class="status_tr">
-        <td class="status_11">KORPA
-        <td class="status_21">DOSTAVA
-        <td class="status_31">PLAĆANJE
+        <td class="status_11"><%= t('cart_label').upcase %>
+        <td class="status_21"><%= t('delivery_label').upcase %>
+        <td class="status_31"><%= t('payment_label').upcase %>
       </tr>
     </table>
 
     <table border = "1" class="table_total">
       <tr>
         <td style="padding:20px; margin:10px;">
-          <p style="text-align: left;"> <b>Narudžba</b> <%= @cart.get_total_number %> proizvoda 
+          <p style="text-align: left;"> <b> <%= t('order_label') %> </b> 
+            <span class="cart_total_number"><%= @cart.get_total_number %></span> <%= t('product_counter_label') %> 
           <% 13.times do %>
             &nbsp;
           <% end %>
           <br></p>
-          <p style="text-align: right;"> Cijena <br> <b><%= @cart.get_total_price %>KM </b><br><br>
-          Dostava <br> <b><%= @cart.get_delivery_price %>KM </b><br>
-          <hr>
+          <p style="text-align: right;"> <%= t('price') %> <br> 
+            <b><span class="cart_price"><%= @cart.get_total_price %></span>KM </b><br><br>
+            <%= t('delivery') %> <br> 
+            <b><span class="cart_delivery"><%= @cart.get_delivery_price %>KM </span></b><br>
+            <hr>
           <p style="text-align: right;">
-          Ukupno <b><%= @cart.get_total_with_delivery %></b></p>
+          <%= t('total') %> <b><span class="cart_total"><%= @cart.get_total_with_delivery %>KM</span></b></p>
         </td>
       </tr>
     </table>
-  
+ 
     <table class="table_total2"> 
       <tr>
         <td style="padding-right:18px; padding-left:0px; margin:1px; padding-top:0px;">
-          <%= button_to "ODUSTANI", home_path, :class => "btn btn-default odustani_new_address", :method => :get  %>
+          <%= button_to t('back_button'), home_path, :class => "btn btn-default odustani_new_address", :method => :get  %>
         </td>
         <td style="padding-left:0px; padding-right:0px; padding-top:0px; margin-right:1px;">
-          <%= button_to "NASTAVI", new_charge_path, :class => "btn btn-primary button_nastavi", :method => :get  %>
+          <%= button_to t('continue_button'), new_charge_path, :class => "btn btn-primary button_nastavi", :method => :get  %>
           <!--#< button_to "PROBA", charges_path, class: "btn btn-primary button_nastavi2", :method => :get > -->
         </td>
       </tr>

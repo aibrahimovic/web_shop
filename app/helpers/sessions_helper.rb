@@ -46,4 +46,9 @@ module SessionsHelper
       @order
     end
 
+    def language(l)
+      #language = l
+      #session[:language] = language
+    end
+
 end

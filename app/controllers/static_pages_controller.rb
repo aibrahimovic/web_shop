@@ -6,6 +6,7 @@ class StaticPagesController < ApplicationController
 
   def home
   	$all_categories = Category.all
+    
   end
 
   def admin

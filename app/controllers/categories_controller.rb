@@ -8,6 +8,8 @@
 
   def create
     @category = Category.new(category_params)
+    en = params[:name2]
+    category.attributes = { name: @category.name, locale: :ba }
     
     if @category.save
       $all_categories = Category.all
@@ -33,7 +35,7 @@
   private
 
     def category_params
-      params.require(:category).permit(:name)
+      params.require(:category).permit(:name, :name2)
     end
 
 end

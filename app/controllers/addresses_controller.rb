@@ -17,43 +17,6 @@ class AddressesController < ApplicationController
 
   def create
     redirect_to home_path
-  	#@address1 = Address.new(address_params)
-    #@address2 = Address.new(address2_params)
-
-    #if @current_user != nil
-  		#@address1.user_id = @current_user.id
-  	#end
-
-    #@address1.tag = 's'
-    #@address2.tag = 'b'
-    #if @address1.save && @address2.save
-      #flag = true
-      #return true
-    #elsif @address1.save
-      #return true
-    #else
-      #flash.now[:address_error] = "Popunite sva polja"
-      #render 'new'
-    #end
-
-    #redirect_to charges_path
-
-
-    #if flag == true
-      #a_pom = Address.new
-      #a_pom.name = @address1.name
-      #a_pom.address_name = @address1.address_name
-      #a_pom.city = @address1.city
-      #a_pom.region = @address1.region
-      #a_pom.zip = @address1.zip
-      #a_pom.state = @address1.state
-      #a_pom.user_id = @address1.user_id
-      #a_pom.phone = @address1.phone
-      #a_pom.tag = 'b'
-      #a_pom.save()
-      #redirect_to new_charge_path
-      
-    #end
   end
 
   def show

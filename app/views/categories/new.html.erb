@@ -1,5 +1,6 @@
 <div class="row">
   <br>
+  <br>
   	<%= form_for(@category) do |f| %>
 
   	  <% unless flash[:same_category].blank? %>
@@ -8,8 +9,15 @@
       
 
         <div class="field">
-          <%= f.label :Kategorija %><br>
+          <%= f.label :Kategorija %><i> (Bosanski)</i><br>
           <%= f.text_field :name, class: "form-control", style: "width: 300px;"%>
+        </div>
+        <br>
+        <br>
+
+        <div class="field">
+          <p> <b>Kategorija</b> <i>(Engleski)</i><br>
+          <input type="text" name="name2" class="form-control" style="width: 300px;">
         </div>
         <br>
         <br>

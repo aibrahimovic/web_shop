@@ -25,6 +25,10 @@
 
 
 	        <ul class="nav navbar-nav navbar-right">
+            <li class="nav_link"><%= link_to "TEST-bs", change_locale_path(:bs) %>
+            <li class="nav_link"><%= link_to "TEST-en", change_locale_path(:en) %>
+            <li class="nav_link"> <%= link_to "BS", language_path(language: "bs"), method: "get", class: "bs" %> </li>
+            <li class="nav_link"> <%= link_to "EN", language_path(language: "en"), method: "get", class: "en" %> </li>
 
           <% if logged_in? %>
             <li class="nav_link"><%= link_to "LOGOUT", logout_path, method: "delete", class: "nav_link"%></li>
@@ -91,10 +95,45 @@
 </html> 
 
 <script type="text/javascript">
-    $('.navbar-left li .nav2').click(function (e) {
+   $('.navbar-left li .nav2').click(function (e) {
       //alert("Klik");
       //$('.navbar-left .nav_link .nav2').removeClass('.nav_link');
       //$(this).parent('.li').addClass('active');
       $(this).addClass('active');
     });
+
+    /*$('.bs').click(function (){
+      var el = $('.bs').html();
+      alert(el);
+        $.ajax({
+            url: '/languages/my_language',
+            data: { 
+              language: el,
+            },
+            type: 'GET',
+            success: function(result) {
+              if (result.error) {
+              }
+            }
+        });
+      
+    });
+
+    $('.en').click(function (){
+      var el = $('.en').html();
+      alert(el);
+        $.ajax({
+            url: '/languages/my_language',
+            data: { 
+              language: el,
+            },
+            type: 'GET',
+            success: function(result) {
+              if (result.error) {
+              }
+            }
+        });
+    });*/
+
+
 </script>

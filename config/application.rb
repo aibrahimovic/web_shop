@@ -21,5 +21,9 @@ module Test3
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
     config.encoding = "utf-8"
+    config.i18n.fallbacks = true
+    I18n.available_locales = [:en, :bs]
+    config.time_zone = 'Sarajevo'
+    config.i18n.default_locale = :bs
   end
 end

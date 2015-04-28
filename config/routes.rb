@@ -33,6 +33,10 @@ Test3::Application.routes.draw do
   get 'orders' => 'orders#show'
   get 'itemsDestroy' => 'items#destroy'
   get 'order' => 'orders#showOrder'
+  get 'set_language' => 'application#set_language'
+  get 'language' => 'languages#my_language'
+  get '/change_locale/:locale', to: 'languages#change_locale', as: :change_locale
+
 
   resources :users
   resources :categories
@@ -56,6 +60,21 @@ Test3::Application.routes.draw do
     get "choosen_addresses", on: :collection
     get "new", on: :collection
   end
+
+  resources :languages do
+    get "my_language", on: :collection
+  end
+
+  scope '(:locale)' do
+    resources :categories
+    resources :products
+    resources :help_products
+    resources :carts
+    resources :addresses
+    resources :charges
+    #root 'static_pages#home', as: 'home', via: :all
+  end
+
 
   resources :orders
 
