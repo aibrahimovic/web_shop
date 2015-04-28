@@ -55,6 +55,14 @@ bs:
   address_phone: "Telefon"
   used_addresses: "Korištene adrese"
   use_new_address: "Koristi novu"
+  register: "Registracija"
+  email: "Email"
+  password: "Šifra"
+  confirmation: "Potvrda šifre"
+  register_button: "REGISTRACIJA"
+  login: "Prijava"
+  login_button: "PRIJAVA"
+  have_account: "Niste registrovani?"
   
   activerecord:
     attributes:

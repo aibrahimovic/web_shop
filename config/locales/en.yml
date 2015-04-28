@@ -55,6 +55,14 @@ en:
   address_phone: "Phone"
   used_addresses: "Used addresses"
   use_new_address: "Use new address"
+  register: "Register"
+  email: "Email"
+  password: "Password"
+  confirmation: "Password confirmation"
+  register_button: "REGISTER"
+  login: "Login"
+  login_button: "LOGIN"
+  have_account: "Don't have an account?"
 
   activerecord:
     attributes:

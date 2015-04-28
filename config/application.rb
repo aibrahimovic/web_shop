@@ -24,6 +24,6 @@ module Test3
     config.i18n.fallbacks = true
     I18n.available_locales = [:en, :bs]
     config.time_zone = 'Sarajevo'
-    config.i18n.default_locale = :bs
+    config.i18n.default_locale = :en
   end
 end

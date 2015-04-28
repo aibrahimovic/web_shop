@@ -1,5 +1,6 @@
 <% provide(:title, 'Sign up') %>
-<h1>Sign up</h1>
+<br><br>
+<h2><%= t('register') %></h2>
 
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
@@ -11,19 +12,19 @@
       <br>
       <br>  
 
-      <%= f.label :email %>
+      <%= f.label t('email') %>
       <%= f.email_field :email, class: 'form-control', id: "emailId" %>
 
       <br>
-      <%= f.label :password %>
+      <%= f.label t('password') %>
       <%= f.password_field :password, class: 'form-control' %>
       <br>
 
-      <%= f.label :password_confirmation, "Confirmation" %>
+      <%= f.label t('confirmation')%>
       <%= f.password_field :password_confirmation, class: 'form-control'%>
       <br>
 
-      <%= f.submit "REGISTER", class: "btn btn-primary" %>
+      <%= f.submit t('register_button'), class: "btn btn-primary" %>
     <% end %>
 
     <script type="text/javascript">
