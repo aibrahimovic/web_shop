@@ -61,7 +61,7 @@
 						<td class="table_quan_size"><%= f.label t('quantity') %>
 					</tr>
 					<tr>
-						<td class="table_quan_size"><%= f.select("help_product_id", hp.collect {|p| [ p.size, p.id ] }, { :include_blank => "Sve veličine", :selected => params[:get_help_product_id], :class => "selectpicker" }, :id => "all_sizes", class: 'form-control', style: "width: 165px;") %>
+						<td class="table_quan_size"><%= f.select("help_product_id", hp.collect {|p| [ p.size, p.id ] }, { :selected => params[:get_help_product_id], :class => "selectpicker" }, :id => "all_sizes", class: 'form-control', style: "width: 165px;") %>
 						<td class="table_quan_size"><%= f.text_field :quantity, :class => "product_quantity_field", :value => 1%>
 				</table>
 						
