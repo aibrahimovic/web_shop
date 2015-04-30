@@ -20,6 +20,13 @@ class ProductsController < ApplicationController
     english = params[:name2]
     desc_bosnian = @product.description
     desc_english = params[:description2]
+
+    percent = params[:sale_percent]
+    if percent != ""
+      old_price = @product.price.to_f
+      new_price = old_price - (percent.to_f/100)*old_price
+      @product.sale = new_price.to_s
+    end
     
     @product.attributes = { name: bosnian, description: desc_bosnian, locale: :bs }
     @product.attributes = { name: english, description: desc_english, locale: :en }
@@ -103,7 +110,7 @@ class ProductsController < ApplicationController
     end
 
     def product_params
-      params.require(:product).permit(:name, :image, :price, :description, :category_id, :name2, :description2)
+      params.require(:product).permit(:name, :image, :price, :description, :category_id, :name2, :description2, :sale, :sale_percent)
     end
 
   helper_method :get_category_name
