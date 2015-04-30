@@ -1,50 +1,35 @@
-<% $all_products = Product.all %>
-<% counter = 0 %>
-<% list = [] %>
 
-<% $all_products.each do |x| %>
-	<% if x.category_id == @category.id %>
-		<% list << x %>
-	<% end %>
+<div class="row" id="all_products">
+<% @all_products_in_category.each do |product| %>
+		<div class="col-md-3"
+			<%= link_to product_path(product.id) do %>
+			<div id="wrapper" class="image">
+				<%= image_tag(product.image.url(:small))%> <br>
+			</div>
+			<% end %>
+			<%= product.name %><br>
+			
+			<% if product.get_price != product.price %>
+			<div class="row" style="width:200px;">
+				<div class="col-md-6" style="padding-right: 0px;">
+				<span style="text-decoration: line-through; color: red;">
+				 	<span style="color: #686868; font-size: 12px;"><%= product.price %> KM</span>
+				</span>
+
+				<div class="red_letters">
+					- <%= product.get_percent %> %
+				</div>
+				</div>
+				<div class="col-md-6" style="padding-left: 0px;">
+					<%= product.get_price %> KM
+				</div>
+			</div>
+			<% else %>
+				<%= product.price %> KM<br>
+			<% end %>
+
+		</div>
+	
+
 <% end %>
-
-<table id="all_products">
-
-	<tr><td style="padding:0px; margin:2px;"><%= @category.name.upcase %></td></tr>
-	<tr><td style="padding:0px; margin:2px;">&nbsp;</tr>
-	
-	<% list.each do |x| %>
-
-		<% if counter%4 == 0 || counter == 0 %>
-			<tr><td style="padding:20px; margin:2px;">
-		<% else %>
-			<td style="padding:20px; margin:2px;">
-		<% end %> 
-				
-				<%= link_to product_path(x.id) do %>
-					<div id="wrapper" class="image">
-							<%= image_tag(x.image.url(:small))%> <br>
-							
-						
-					</div>
-				<% end %>
-				<%= x.name %><br>
-				<%= x.price %> KM<br>
-				<% counter += 1 %>
-
-		<% if counter%4 == 0 || counter == list.length %>
-			</tr>
-		<% end %>
-	<% end %>
-
-	<% counter = 0 %>
-
-</table>
-
-<script type="text/javascript">
-	
-	$(".pic").click(function() {
-		var el = $(".active").html();
-	});
-
-</script>
+</div>

@@ -21,7 +21,7 @@
 
 bs:
   hello: "Pozdrav svijetu"
-  newest: "Najnoviji proizvodi"
+  newest: "Proizvodi na sniženju"
   similar_products: "Slični proizvodi"
   add_to_cart_button: "DODAJ U KORPU"
   buy_button: "KUPI ODMAH"

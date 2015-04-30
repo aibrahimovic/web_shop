@@ -12,32 +12,24 @@
 		<br>
 		<br>
 		<h2> <%= t('newest') %> </h2>
-		<% $all_products = Product.all %>
+
+
 		<% counter = 0 %>
 		<table id="all_products2">
-			<% $all_products.each do |x| %>
-				<% if counter%4 == 0 || counter == 0 %>
-					<tr><td>
-				<% else %>
-					<td>
-				<% end %>
-					<%= link_to product_path(x.id) do %>
-						<div data-content1="<%= x.name %>"  data-content2="<%= x.price %>KM"  class="image">
-							<%= image_tag(x.image.url(:small)) %><br>
-							
-							<% counter += 1 %>
-						</div>
-					<% end %>
-
-						<div id="wrapper">
-						<!-- < link_to(image_tag(x.image, size: "150x150"), product_path(x.id), :class => "pic") > <br>-->
-							<!-- <p class="text_on_image">
-								< x.name > <br>
-								<b>< x.price ></b>
-							</p> -->
-						</div>
-					</td>
-				<% if counter%4 == 0 || counter == $all_products.length %>
+		<% @all_products_on_sale.each do |product| %>
+			<% if counter%4 == 0 || counter == 0 %>
+				<tr><td>
+			<% else %>
+				<td>
+			<% end %>
+			<%= link_to product_path(product.id) do %>
+				<div data-content1="<%= product.name %>"  data-content2="<%= product.get_price %>KM"  class="image">
+					<%= image_tag(product.image.url(:small)) %><br>
+					<% counter += 1 %>
+				</div>
+			<% end %>
+				</td>
+				<% if counter%4 == 0 || counter == @all_products_on_sale.length %>
 					</tr>
 				<% end %>
 			<% end %>

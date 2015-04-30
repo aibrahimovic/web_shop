@@ -71,7 +71,6 @@ class ApplicationController < ActionController::Base
     end
   end
 
-
   before_action :set_locale
  
   def set_locale

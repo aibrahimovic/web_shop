@@ -8,11 +8,38 @@ class Product < ActiveRecord::Base
                       :show => "200x200>",
                       :preview => "500x500>",
                       :slider => "1150x350>",
-                      #:storage => :s3,
+                      #:storage => :s3, #izmjena!!
                   	  #:s3_credentials => Proc.new{|a| a.instance.s3_credentials }, 
                   	  :default_url => "/images/:style/missing.png"
                     }
 
     validates_attachment_content_type :image, :content_type => ["image/jpg", "image/jpeg", "image/png", "image/gif"]
     translates :name, :description
+
+
+  def get_price
+    if self.sale == ""
+      @price = self.price
+    else
+      @price = self.sale
+    end
+
+    @price
+  end
+
+  def get_percent
+    if self.sale != ""
+      @percent = 100*(1-self.sale.to_f/self.price.to_f)
+  
+      if @percent != @percent.round
+        @percent = @percent.round(2)
+      else
+        @percent.round
+      end
+    end
+  
+    @percent
+  end
+
+
 end
