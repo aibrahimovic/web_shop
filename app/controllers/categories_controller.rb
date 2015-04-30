@@ -1,22 +1,37 @@
  class CategoriesController < ApplicationController
-  
+  before_action :set_category, only: [:show, :edit, :update, :destroy]
+
   def new
   	@category = Category.new
+    @categories = Category.all
     $all_categories = Category.all
   end
 
 
   def create
     @category = Category.new(category_params)
-    en = params[:name2]
+    engleski = params[:name2]
+    bosanski = params[:name]
     
-    I18n.locale = :en
-    post.title # => 'Globalize rocks!'
-    post.name  # => 'Globalize'
+    #previous_locale = I18n.locale
+    #I18n.locale = :en
+    #@category.name = engleski
+    #I18n.locale = previous_locale
 
-    I18n.locale = :nl
-    post.title # => 'Globalize rocks!'
-    post.name  # => 'Globalize'
+
+    @category..attributes = { name: bosanski, locale: :bs }
+    @category.attributes = { name: engleski, locale: :en }
+    @category.save!
+
+
+
+    #I18n.locale = :en
+    #post.title # => 'Globalize rocks!'
+    #post.name  # => 'Globalize'
+
+    #I18n.locale = :nl
+    #post.title # => 'Globalize rocks!'
+    #post.name  # => 'Globalize'
     
     if @category.save
       $all_categories = Category.all
@@ -39,7 +54,32 @@
     end
   end
 
+  def destroy
+    @category.destroy
+    respond_to do |format|
+      format.html { redirect_to categories_path, notice: 'Kategorija je uspješno izbirsana.' }
+      format.json { head :no_content }
+    end
+  end
+
+
+  def update
+    respond_to do |format|
+      if @category.update(product_params)
+        format.html { redirect_to categories_path, notice: 'Kategorija je uspješno izmjenjena.' }
+        format.json { render :show, status: :ok, location: @category }
+      else
+        format.html { render :edit }
+        format.json { render json: @category.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
   private
+
+    def set_category
+      @category = Category.find(params[:id])
+    end
 
     def category_params
       params.require(:category).permit(:name, :name2)

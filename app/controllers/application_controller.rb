@@ -69,9 +69,6 @@ class ApplicationController < ActionController::Base
         I18n.locale = :en
       end
     end
-    #else
-      #I18n.locale = :en
-    #end
   end
 
 
@@ -83,6 +80,10 @@ class ApplicationController < ActionController::Base
     else
       l = I18n.default_locale
       cookies.permanent[:educator_locale] = l
+    end
+
+    if !@current_user.nil? && @current_user.role.name == "Administrator"
+      l = :bs
     end
     I18n.locale = l
   end

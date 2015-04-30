@@ -16,6 +16,14 @@ class ProductsController < ApplicationController
 
   def create
     @product = Product.new(product_params)
+    bosnian = @product.name
+    english = params[:name2]
+    desc_bosnian = @product.description
+    desc_english = params[:description2]
+    
+    @product.attributes = { name: bosnian, description: desc_bosnian, locale: :bs }
+    @product.attributes = { name: english, description: desc_english, locale: :en }
+    #@product.save!
 
     respond_to do |format|
       if @product.save
@@ -95,7 +103,7 @@ class ProductsController < ApplicationController
     end
 
     def product_params
-      params.require(:product).permit(:name, :image, :price, :description, :category_id)
+      params.require(:product).permit(:name, :image, :price, :description, :category_id, :name2, :description2)
     end
 
   helper_method :get_category_name

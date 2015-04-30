@@ -3,7 +3,9 @@
 <%= @a1 %>
 <%= @a2 %>
 
+
 <%= form_tag charges_path(sh:  @shipping , bil: @billing) do %>
+  
   <article>
     <label class="amount">
       <% @a = @cart.get_total_with_delivery.to_i %>

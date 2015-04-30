@@ -96,14 +96,54 @@
           <%= button_to t('back_button'), home_path, :class => "btn btn-default odustani_new_address", :method => :get  %>
         </td>
         <td style="padding-left:0px; padding-right:0px; padding-top:0px; margin-right:1px;">
-          <%= button_to t('continue_button'), new_charge_path, :class => "btn btn-primary button_nastavi", :method => :get  %>
-          <!--#< button_to "PROBA", charges_path, class: "btn btn-primary button_nastavi2", :method => :get > -->
+          <%= form_tag(charges_path(sh:  @shipping , bil: @billing), {:class => 'formaTest'})  do %>
+            <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                  data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+                  data-description="A month's subscription"
+                  data-amount="<%= (@cart.get_total_with_delivery.to_i)*100 %>">
+            </script>
+
+          <% end %>
+       
+         <%= button_to t('continue_button'), charges_path(sh:  @shipping , bil: @billing), :class => "btn btn-primary button_nastavi", :method => :get, :id => "stripe-demo"  %>
+          
         </td>
       </tr>
     </table>
   </div>
 
 </div>
+
+ <script src="https://checkout.stripe.com/checkout.js"></script>
+            <script>
+                /*var handler = StripeCheckout.configure({
+                  key: "pk_test_1MCYLYHQDa4DwnBoKd5CqoaP",
+                  name: "abhShoes payment",
+                  amount: "<%= (@cart.get_total_with_delivery.to_i)*100 %>",
+                  //panelLabel: "<%= (@cart.get_total_with_delivery.to_i)%> KM",
+                  allowRememberMe: false
+                });
+
+                document.getElementById('stripe-demo').addEventListener('click', function(e) {
+                  handler.open();
+                  e.preventDefault();
+                }); */
+
+                /*$.ajax({
+                    url: '/charges/create',
+                    data: { 
+                      sh: <% @shipping %>,
+                      bil: <% @billing %>,
+                    },
+                    type: 'GET',
+                    success: function(result) {
+                      if (result.error) {
+                      }
+                    }
+                });*/
+
+              </script>
+
 
 <script type="text/javascript">
 

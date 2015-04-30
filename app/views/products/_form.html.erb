@@ -15,13 +15,23 @@
       <% end %>
 
       <div class="field">
-        <%= f.label :naziv %><br>
+        <%= f.label :Naziv %><i> (Bosanski)</i><br>
         <%= f.text_field :name, class: 'form-control'%><br>
       </div>
       <div class="field">
-        <%= f.label :opis %><br>
+          <p> <b>Naziv</b> <i>(Engleski)</i><br>
+          <input type="text" name="name2" class="form-control">
+        </div>
+        <br>
+      <div class="field">
+        <%= f.label :Opis %><i> (Bosanski)</i><br>
         <%= f.text_area :description, class: 'form-control' %><br>
       </div>
+      <div class="field">
+          <p> <b>Opis</b> <i>(Engleski)</i><br>
+            <textarea name="description2" class="form-control"></textarea>
+        </div>
+        <br>
       <div class="field">
         <%= f.label :cijena %><br>
         <%= f.text_field :price, class: 'form-control' %><br>

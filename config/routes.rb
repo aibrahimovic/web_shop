@@ -59,6 +59,7 @@ Test3::Application.routes.draw do
   resources :charges do
     get "choosen_addresses", on: :collection
     get "new", on: :collection
+    get 'create', on: :collection
   end
 
   resources :languages do

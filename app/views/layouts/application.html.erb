@@ -25,9 +25,11 @@
 
 
 	        <ul class="nav navbar-nav navbar-right">
-            <li class="nav_link language"><%= link_to "BS", change_locale_path(:bs) %></li>
-            <li class="nav_link language"><%= link_to "|", '#' %></li>
-            <li class="nav_link language"><%= link_to "EN", change_locale_path(:en) %></li>
+            <% if !@current_user.nil? && @current_user.role.name != "Administrator" || @current_user.nil? %>
+              <li class="nav_link language"><%= link_to "BS", change_locale_path(:bs) %></li>
+              <li class="nav_link language"><%= link_to "|", '#' %></li>
+              <li class="nav_link language"><%= link_to "EN", change_locale_path(:en) %></li>
+            <% end %> 
 
           <% if logged_in? %>
             <li class="nav_link"><%= link_to "LOGOUT", logout_path, method: "delete", class: "nav_link"%></li>
@@ -45,6 +47,7 @@
     </header>
 
     <% if !@current_user.nil? && @current_user.role.name == "Administrator" %>
+    <% I18n.locale = :bs %>
     <header class="navbar navbar-inverse"> 
       <br>
       <div class="container">
