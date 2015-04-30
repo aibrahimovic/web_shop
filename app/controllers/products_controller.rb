@@ -46,6 +46,13 @@ class ProductsController < ApplicationController
   def update
     respond_to do |format|
       if @product.update(product_params)
+        percent = params[:sale_percent]
+          if percent != ""
+            old_price = @product.price.to_f
+            new_price = old_price - (percent.to_f/100)*old_price
+            @product.sale = new_price.to_s
+            @product.save!
+          end
         format.html { redirect_to allProducts_path, notice: 'Proizvod je uspješno izmjenjen.' }
         format.json { render :show, status: :ok, location: @product }
       else

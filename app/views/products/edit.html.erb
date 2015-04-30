@@ -21,13 +21,36 @@
         <%= f.text_field :name, class: 'form-control'%><br>
       </div>
       <div class="field">
+          <p> <b>Naziv</b> <i>(Engleski)</i><br>
+          <input type="text" name="name2" class="form-control">
+        </div>
+        <br>
+      <div class="field">
         <%= f.label :opis %><br>
         <%= f.text_area :description, class: 'form-control' %><br>
       </div>
       <div class="field">
+          <p> <b>Opis</b> <i>(Engleski)</i><br>
+            <textarea name="description2" class="form-control"></textarea>
+        </div>
+        <br>
+      <div class="field">
         <%= f.label :cijena %><br>
-        <%= f.text_field :price, class: 'form-control' %><br>
+        <%= f.text_field :price, class: 'form-control price' %><br>
       </div>
+      <div class="field">
+        <%= f.label :snizenje %><br>
+        <input type="radio" name="sale_radion" value="new_price" class="new_price" checked>Unos nove cijene
+        <br>
+        <input type="radio" name="sale_radion" value="percent" class="percent">Unos procenta
+        <br>
+        <input type="radio" name="sale_radion" value="no_sale" class="no_sale">Kraj sniženja
+        <br>
+        <%= f.text_field :sale, class: 'form-control sale_field', placeholder: 'Unesite sniženu cijenu (KM)' %>
+        <input type="text" name="sale_percent" class="form-control sale_percent_field" placeholder="Unesite procenat snižene cijene (%)">
+        <label class="new_price_label"></label>
+      </div>
+      <br>
       <div class="field">
         <%= f.label :kategorija %><br>
         <%= f.select("category_id", @categories.collect {|r| [ r.name, r.id] }, { :selected => params[:get_category_id] }, class: 'form-control')%><br><br> 
@@ -51,4 +74,42 @@
   </div>
 </div>
 
+<script type="text/javascript">
+  
+  $('.sale_percent_field').hide();
+
+  $('.new_price').click(function() {
+    $('.sale_percent_field').hide();
+    $('.sale_field').show();
+    $('.sale_percent_field').val("");
+    $('.new_price_label').hide();
+  });
+
+  $('.percent').click(function() {
+    $('.sale_field').hide();
+    $('.sale_percent_field').show();
+    $('.sale_field').val("");
+  });
+
+  $('.no_sale').click(function(){
+    $('.sale_field').val("");
+    $('.sale_percent_field').val("");
+    $('.sale_field').hide();
+    $('.sale_percent_field').hide();
+    $('.new_price_label').hide();
+  });
+
+  $('.sale_percent_field').blur(function(){
+    $('.new_price_label').show();
+    var price = $('.price').val();
+    var percent = $('.sale_percent_field').val();
+    var new_price = price - (percent/100)*price;
+    $('.new_price_label').html("Nova cijena: "+new_price);
+  });
+
+  $('.sale_percent_field').focus(function(){
+    $('.new_price_label').hide();
+  });
+
+</script>
 
