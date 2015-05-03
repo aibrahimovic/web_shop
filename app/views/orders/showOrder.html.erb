@@ -17,7 +17,7 @@
   		<td class="allProducts_table"> 
   			<b> Naručili ste: </b><br>
   			<% @order_items.each do |item| %>
-  				<%= item.help_product.product.name %> - broj <%= item.help_product.size %> (<%= item.quantity %> komada) <br>
+  				<%= item.help_product.product.name %> - broj <%= item.help_product.size %> (<%= item.quantity %> komada) -- po cijeni <%= item.price %> KM<br>
   			<% end %>
   		</td>
   	</tr>
