@@ -75,8 +75,7 @@ class ProductsController < ApplicationController
                 if new_price != ""
                   item.price = new_price
                 else
-                  p = Product.find(product)
-                  item.price = p.price
+                  item.price = @product.price
                 end
                 item.save
               end
@@ -95,8 +94,7 @@ class ProductsController < ApplicationController
                 if new_price != ""
                   item.price = new_price
                 else
-                  p = Product.find(product)
-                  item.price = p.price
+                  item.price = @product.price
                 end
                 item.save
               end
