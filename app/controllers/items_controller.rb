@@ -8,7 +8,7 @@ class ItemsController < ApplicationController
     parameter_hp = params[:item][:help_product_id]
     parameter_quantity = params[:item][:quantity]
     product_return = params["hidden_product_id"]
-        
+
     if parameter_hp != ""
       
       @item = Item.new(item_params)
@@ -67,6 +67,7 @@ class ItemsController < ApplicationController
         @oi = OrderItem.new
         @oi.quantity = item.quantity
         @oi.help_product_id = item.help_product_id
+        @oi.price = item.price
         @oi.order_id = @order.id
         @oi.save()
       end
@@ -82,6 +83,7 @@ class ItemsController < ApplicationController
       @oi = OrderItem.new
       @oi.quantity = temp_item.quantity
       @oi.help_product_id = temp_item.help_product_id
+      @oi.price = item.price
       @oi.order_id = @order.id
       @oi.save()
       temp_item.delete()
@@ -94,7 +96,6 @@ class ItemsController < ApplicationController
     redirect_to cart_path
   end
 
-  
   def get_last_category 
   	p = Product.find (@item.product_id)	
   	return p.category_id

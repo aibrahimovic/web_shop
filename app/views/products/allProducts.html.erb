@@ -17,7 +17,7 @@
                     <% end %>
         </td>
         <td class="allProducts_table">
-          Cijena: <%= product.price %><br>
+          Cijena: <%= product.get_price %><br>
           <%= link_to 'Prikazivanje', product %><br>
           <%= link_to 'Izmjena', edit_product_path(product) %><br>
           <%= link_to 'Brisanje', product, method: :delete, data: { confirm: 'Da li ste sigurni?' } %><br>

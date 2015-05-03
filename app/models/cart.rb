@@ -7,17 +7,25 @@ class Cart < ActiveRecord::Base
   DELIVERY_COST = 5
 
   def add_item(item)
+
   	cart_item = self.items.find_by(help_product_id: item.help_product_id)
   	if cart_item 
-      if !item.quantity.nil?
-    		cart_item.quantity += item.quantity
-    		if cart_item.save
-          return true
+      #price = cart_item.price
+      #new_item_price = item.help_product.product.get_price
+      #if price == new_item_price
+        if !item.quantity.nil?
+      		cart_item.quantity += item.quantity
+      		if cart_item.save
+            return true
+          end
         end
-      end
-  	else 
+      
+  	else
+
+      item.price = item.help_product.product.get_price*item.quantity
       self.items << item
   		if self.save
+        item.save
         return true
       end
   	end
@@ -63,10 +71,12 @@ class Cart < ActiveRecord::Base
     item = Item.find_by(tag: 0)
     if item.nil?
       self.items.each do |item|
-        total += item.quantity * item.help_product.product.price.to_f
+        #total += item.quantity * item.help_product.product.price.to_f
+        total += item.quantity * item.price.to_f
       end
     else
-      total = item.quantity * item.help_product.product.price.to_f
+      #total = item.quantity * item.help_product.product.price.to_f
+      total = item.quantity * item.price.to_f
     end
     total = total.to_s << "0"
     total = number_with_precision(total, :precision => 2)

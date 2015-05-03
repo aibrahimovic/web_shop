@@ -43,6 +43,23 @@ class ProductsController < ApplicationController
     end
   end
 
+  def update_item_price(new_price, product)
+
+    help_product = HelpProduct.find_by(product_id: product)
+    cart_items = self.items
+    cart_items.each do |item| 
+      if item.help_product_id == help_product.id
+        if new_price != ""
+          item.price = new_price
+        else
+          p = Product.find(product)
+          item.price = p.price
+        end
+        item.save
+      end
+    end
+  end
+
   def update
     respond_to do |format|
       if @product.update(product_params)
@@ -50,8 +67,42 @@ class ProductsController < ApplicationController
           if percent != ""
             old_price = @product.price.to_f
             new_price = old_price - (percent.to_f/100)*old_price
+
+            help_product = HelpProduct.find_by(product_id: @product.id)
+            cart_items = Item.all
+            cart_items.each do |item| 
+              if item.help_product_id == help_product.id
+                if new_price != ""
+                  item.price = new_price
+                else
+                  p = Product.find(product)
+                  item.price = p.price
+                end
+                item.save
+              end
+            end
+
+            #@cart.update_item_price(new_price, @product.id)
             @product.sale = new_price.to_s
             @product.save!
+          else
+            new_price = params[:product][:sale]
+
+            help_product = HelpProduct.find_by(product_id: @product.id)
+            cart_items = Item.all
+            cart_items.each do |item| 
+              if item.help_product_id == help_product.id
+                if new_price != ""
+                  item.price = new_price
+                else
+                  p = Product.find(product)
+                  item.price = p.price
+                end
+                item.save
+              end
+            end
+
+            #@cart.update_item_price(new_price, @product.id)
           end
         format.html { redirect_to allProducts_path, notice: 'Proizvod je uspješno izmjenjen.' }
         format.json { render :show, status: :ok, location: @product }
