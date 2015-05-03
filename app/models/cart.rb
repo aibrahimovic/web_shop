@@ -22,7 +22,7 @@ class Cart < ActiveRecord::Base
       
   	else
 
-      item.price = item.help_product.product.get_price*item.quantity
+      item.price = item.help_product.product.get_price.to_f*item.quantity
       self.items << item
   		if self.save
         item.save
