@@ -1,6 +1,5 @@
 <br><br>
 
-
 <div class="row">
   <div class="col-md-6">
 
@@ -90,63 +89,51 @@
       </tr>
     </table>
  
-    <table class="table_total2"> 
+    <table class="table_total2">
       <tr>
         <td style="padding-right:18px; padding-left:0px; margin:1px; padding-top:0px;">
-          <%= button_to t('back_button'), home_path, :class => "btn btn-default odustani_new_address", :method => :get  %>
+          <%= button_to t('back_button'), home_path, :class => "btn btn-default odustani_new_address", :method => :get %>
         </td>
-        <td style="padding-left:0px; padding-right:0px; padding-top:0px; margin-right:1px;">
-          <%= form_tag(charges_path(sh:  @shipping , bil: @billing), {:class => 'formaTest'})  do %>
-            <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-                  data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
-                  data-description="A month's subscription"
-                  data-amount="<%= (@cart.get_total_with_delivery.to_i)*100 %>">
-            </script>
+        <td style="padding-right:0px; padding-left:0px; margin:1px; padding-top:0px;">
+          <%= button_to "NASTAVI", '#', :class => "btn btn-primary button_nastavi", :method => :get %>
+        </td>
+        <!--<td style="padding-left:0px; padding-right:0px; padding-top:0px; margin-right:1px;">
+          <= button_to t('continue_button'), new_charge_path, :class => "btn btn-primary button_nastavi", :method => :get %>
+        </td>-->
 
-          <% end %>
-       
-         <%= button_to t('continue_button'), charges_path(sh:  @shipping , bil: @billing), :class => "btn btn-primary button_nastavi", :method => :get, :id => "stripe-demo"  %>
+        <td style="padding-left:0px; padding-right:0px; padding-top:0px; margin-right:1px;">
+          <form action="/charges" method="post">
+
+            <%= tag(:input, :type => "hidden", :name => request_forgery_protection_token.to_s, :value => form_authenticity_token) %> 
+              
+            <div class="stripe_script">
+              <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                        data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+                        data-description="A month's subscription"
+                        data-amount="<%= (@cart.get_total_with_delivery.to_i)*100 %>">
+                        
+              </script>
+            </div>
+            <input type="submit" id="payment_button" class="btn btn-primary" value="<%= t('continue_button')%>">
           
-        </td>
+          </form>
+        </td> 
+
+        
       </tr>
+
     </table>
+
   </div>
 
 </div>
 
- <script src="https://checkout.stripe.com/checkout.js"></script>
-            <script>
-                /*var handler = StripeCheckout.configure({
-                  key: "pk_test_1MCYLYHQDa4DwnBoKd5CqoaP",
-                  name: "abhShoes payment",
-                  amount: "<%= (@cart.get_total_with_delivery.to_i)*100 %>",
-                  //panelLabel: "<%= (@cart.get_total_with_delivery.to_i)%> KM",
-                  allowRememberMe: false
-                });
-
-                document.getElementById('stripe-demo').addEventListener('click', function(e) {
-                  handler.open();
-                  e.preventDefault();
-                }); */
-
-                /*$.ajax({
-                    url: '/charges/create',
-                    data: { 
-                      sh: <% @shipping %>,
-                      bil: <% @billing %>,
-                    },
-                    type: 'GET',
-                    success: function(result) {
-                      if (result.error) {
-                      }
-                    }
-                });*/
-
-              </script>
-
 
 <script type="text/javascript">
-
+  
+  $('.stripe_script').hide();
+  $('#payment_button').hide();
+  
   $(".name").focus(function() { $('.address_status').html(" "); });
   $(".address_name").focus(function() { $('.address_status').html(" "); });
   $(".city").focus(function() { $('.address_status').html(" "); });
@@ -164,7 +151,7 @@
   $(".phone_billing").focus(function() { $('.address_status2').html(" "); });
 
   $('.button_nastavi').click(function(){
-    
+    //$('#payment_button').click();
     checked = document.getElementById("billing_checkbox").checked;
 
     var name = $(".name").val();
@@ -192,7 +179,6 @@
       $('.button_nastavi').off();
     }
     else {
-
       $.ajax({
             url: '/addresses/add_address',
             data: { 
@@ -229,7 +215,9 @@
             },
             type: 'POST',
             success: function(result) {
+              $('#payment_button').click();
               if (result.error) {
+                
               }
             }
         });
@@ -255,6 +243,7 @@
               },
               type: 'POST',
               success: function(result) {
+                $('#payment_button').click();
                 if (result.error) {
                 }
               }
@@ -272,6 +261,7 @@
     });
 
   });
+
 
   $('.odustani_new_address').click(function(){
     //alert("klik na osustani");
@@ -307,7 +297,6 @@
 
 
   });
-
 
   document.getElementsByClassName("address_billing")[0].style.visibility = "hidden";
     function myFunction() {

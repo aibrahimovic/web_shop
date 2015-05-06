@@ -145,20 +145,42 @@
 
       <table class="table_total2"> 
         <tr>
-          <form action="/charges/new" method="post" class="form_hidden">
+          <!-- <form action="/charges/new" method="post" class="form_hidden">
             <input type="hidden" class="sh" name="sh" value="#{@address1}" >
             <input type="hidden" class="bil" name="bil" value="#{@address2}">
-            <%= tag(:input, :type => "hidden", :name => request_forgery_protection_token.to_s, :value => form_authenticity_token) %> 
-          <td style="padding-right:18px; padding-left:0px; margin:1px; padding-top:0px;"><%= button_to t('back_button'), home_path, :class => "btn btn-default odustani_new_address", :method => :get  %></td>
+            <= tag(:input, :type => "hidden", :name => request_forgery_protection_token.to_s, :value => form_authenticity_token) %> 
+          <td style="padding-right:18px; padding-left:0px; margin:1px; padding-top:0px;"><= button_to t('back_button'), home_path, :class => "btn btn-default odustani_new_address", :method => :get  %></td>
           <td style="padding-left:0px; padding-right:0px; padding-top:0px; margin-right:1px;">
-            <!-- < button_tag ("NASTAVI", class: "btn btn-primary proceed_to_payment", onclick: "addAddresses()") %></td> -->
-                
-            <input type="submit" class="btn btn-primary proceed_to_payment" value="<%=t('continue_button')%>" onclick="addAddress()">
-          </form>
+   
 
-          <!-- <, :address3 => "#{@address1}", :address4 => "#{@address2}" >-->
+            <input type="submit" class="btn btn-primary proceed_to_payment" value="<%=t('continue_button')%>" onclick="addAddress()">
+          </form> -->
+          <td style="padding-right:18px; padding-left:0px; margin:1px; padding-top:0px;"><%= button_to t('back_button'), home_path, :class => "btn btn-default odustani_new_address", :method => :get  %></td>
+          <td style="padding-right:0px; padding-left:0px; margin:1px; padding-top:0px;">
+            <form action="/charges" method="post">
+              <input type="hidden" class="sh" name="sh" value="#{@address1}" >
+              <input type="hidden" class="bil" name="bil" value="#{@address2}">
+                <%= tag(:input, :type => "hidden", :name => request_forgery_protection_token.to_s, :value => form_authenticity_token) %> 
+                  
+                <div class="stripe_script">
+                  <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                            data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+                            data-description="A month's subscription"
+                            data-amount="<%= (@cart.get_total_with_delivery.to_i)*100 %>">
+                            
+                  </script>
+                </div>
+                <input type="submit" id="payment_button" class="btn btn-primary" value="<%= t('continue_button')%>">
+              
+              </form>
+            </td>
         </tr>
+
+        
+
+
       </table>
+
   </div>
 </div>
 <br><br>
@@ -167,6 +189,8 @@
 
 
 <script type="text/javascript">
+
+    $('.stripe_script').hide();
 
     function addAddresses() {
       alert("submit nije bio.");
@@ -236,6 +260,7 @@
               bil_address: address2,
             },
             success: function(result) {
+              //$('#payment_button').click();
               alert(result.error);
               if (result.error) {
               }

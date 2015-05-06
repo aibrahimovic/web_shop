@@ -70,13 +70,13 @@ class AddressesController < ApplicationController
   def add_address 
     @adr = Address.new
     is_added = @adr.create_address(params[:name], params[:address_name], params[:city], params[:region], params[:zip], params[:state], params[:phone], params[:user_id], params[:tag])
-    if is_added==false
+    #if is_added==false
       return render json: { error: is_added }
-    else
-      redirect_to home_path
-    end
+    #else
+      #redirect_to home_path
+    #end
 
-    redirect_to home_path
+    #redirect_to home_path
   end
 
   def send_to_payment
