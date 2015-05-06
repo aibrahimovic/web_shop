@@ -44,7 +44,7 @@
 				<br><br>
 				<%= @product.description %>
 				<br><br>
-				
+			
 
 				<%= form_for Item.new, id: "new_item" do |f| %>
 
@@ -56,6 +56,10 @@
 
 				
 				<table>
+					<tr> 
+						<td class="table_quan_size">
+						<td class="table_quan_size" style="text-align:right; padding-bottom: 20px;"> <%= @product.get_price %> KM </td>
+					</tr>
 					<tr>
 						<td class="table_quan_size"><%= f.label t('size') %> 
 						<td class="table_quan_size"><%= f.label t('quantity') %>

@@ -34,6 +34,11 @@ class ItemsController < ApplicationController
     end
   end
 
+  def lock_product 
+    
+
+  end
+
   def destroy 
 
     shipping_address = params[:sh_address]
