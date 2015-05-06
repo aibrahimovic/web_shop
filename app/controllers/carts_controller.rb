@@ -5,7 +5,11 @@ class CartsController < ApplicationController
 
   def show
     @all = @cart.items
-    @path_to_address = find_address_path
+    if @cart.items.length == 0
+      @path_to_address = '#'
+    else
+      @path_to_address = find_address_path
+    end
     session[:counter] = 0
   end
 

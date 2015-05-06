@@ -86,9 +86,6 @@
       <div class="col-md-6 footer_right"> 
           <% $all_categories.each do |x| %>
             <span class="footer_category"><%= link_to x.name, category_path(x.id), class: "footer_link"%>
-              <% 3.times do |y| %>
-              &nbsp;
-            <% end %>
           <% end %>   
           <span class="footer_category"><%= link_to 'Dodaci', '#', class: "footer_link"%>
       </div>
