@@ -9,6 +9,15 @@ class ChargesController < ApplicationController
 
 	def create
 
+
+	HelpProduct.transaction do
+		@cart.items.each do |item|
+			item.help_product.lock!
+		end
+		
+		#(0..10000000000).each{ |s| puts(s) }
+
+
 		if !@current_user.nil? && !@shipping.nil? && !@billing.nil?
 			@shipping_address = @shipping
 			@billing_address = @billing
@@ -33,6 +42,15 @@ class ChargesController < ApplicationController
 	    :description => 'Rails Stripe customer',
 	    :currency    => 'bam'
 	  )
+
+	  @cart.items.each do |item|
+			hp = HelpProduct.find_by(id: item.help_product_id)
+	        hp.quantity = hp.quantity - item.quantity
+	        hp.save
+		end
+
+
+	end
 
 	  redirect_to itemsDestroy_path(@cart, sh_address: @shipping_address, bil_address: @billing_address)
 

@@ -50,19 +50,24 @@ class ItemsController < ApplicationController
       @order.email = @current_user.email
       @order.shipping_address_id = shipping_address
       @order.billing_address_id = billing_address
+      @order.save
     else
       @order.email = 'guest'
-    end
-    if @order.save
-      all_items = @cart.items
-      all_items.each do |item| 
-        hp = HelpProduct.find_by(id: item.help_product_id)
-        hp.quantity = hp.quantity - item.quantity
-        hp.save
-      end
+      @order.save
     end
 
+    #save order and quantity --
+    ###if @order.save
+      #all_items = @cart.items
+      #all_items.each do |item| 
+        #hp = HelpProduct.find_by(id: item.help_product_id)
+        #hp.quantity = hp.quantity - item.quantity
+        #hp.save
+      #end
+    #end
+
     temp_item = Item.find_by(tag: 0)
+    #saving orderitems and order
     if temp_item.nil?
 
       @items = @cart.items.all
@@ -76,7 +81,6 @@ class ItemsController < ApplicationController
         @oi.order_id = @order.id
         @oi.save()
       end
-
 
       if @cart!= nil
         @i = Item.where(cart_id: @cart.id).destroy_all
