@@ -66,3 +66,4 @@ gem 'aws-sdk', '~> 1.5.7'
 #gem 'aws-sdk'
 gem 'cloudinary'
 gem 'globalize', '~> 4.0.3'
+gem "passenger"
