@@ -71,7 +71,7 @@ class AddressesController < ApplicationController
     @adr = Address.new
     is_added, address_id = @adr.create_address(params[:name], params[:address_name], params[:city], params[:region], params[:zip], params[:state], params[:phone], params[:user_id], params[:tag])
     #if is_added==false
-      return render json: { error: is_added, address_id: address_id}
+    return render json: { error: is_added, address_id: address_id}
     #else
       #redirect_to home_path
     #end
