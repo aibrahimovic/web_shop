@@ -8,7 +8,7 @@
     <table border="1" class="final_address">
       <tr>
         <td class="final_address_ticket"> 
-          <h2 style="text-align: left;">Shipping address</h2><br>
+          <h2 style="text-align: left;"><%= t('delivery_address') %></h2><br>
           <%= @shipping_address.name %><br>
           <%= @shipping_address.address_name %><br>
           <%= @shipping_address.city %>, <%= @shipping_address.region %>  <%= @shipping_address.zip %>
@@ -17,7 +17,7 @@
         </td>
 
         <td class="final_address_ticket"> 
-          <h2 style="text-align: left;">Billing address</h2><br>
+          <h2 style="text-align: left;"><%= t('billing_address') %></h2><br>
           <%= @billing_address.name %><br>
           <%= @billing_address.address_name %><br>
           <%= @billing_address.city %>, <%= @billing_address.region %>  <%= @billing_address.zip %>
@@ -27,7 +27,7 @@
       </tr>
       <tr>
         <td colspan="2" class="final_address_button_change">
-          <%= button_to "Change", @path_to_address, :class => "btn btn-default final_address_change", :method => :get %>
+          <%= button_to t('change_final_addresses'), @path_to_address, :class => "btn btn-default final_address_change", :method => :get %>
         </td>
       </tr>
     

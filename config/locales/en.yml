@@ -63,6 +63,7 @@ en:
   login: "Login"
   login_button: "LOGIN"
   have_account: "Don't have an account?"
+  change_final_addresses: "CHANGE"
 
   activerecord:
     attributes:

@@ -7,8 +7,11 @@ class PaymentsController < ApplicationController
 		@shipping_address_id = params[:sh]
    	 	@billing_address_id = params[:bil]
 
-   	 	@shipping_address = Address.find(@shipping_address_id)
-   	 	@billing_address = Address.find(@billing_address_id)
+   	 	if !@shipping_address_id.nil? && !@shipping_address_id.nil?
+   	 		@shipping_address = Address.find_by(id: @shipping_address_id)
+   	 		@billing_address = Address.find_by(id: @billing_address_id)
+   	 	end
+
 	end
 
 end
