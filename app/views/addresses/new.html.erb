@@ -93,8 +93,8 @@
       <tr>
 
         <form action="/payments/show" method="get" class="form_hidden">
-           <td> <input type="text" class="sh" name="sh" value="">
-           <td> <input type="text" class="bil" name="bil" value="">
+           <td> <input type="hidden" class="sh" name="sh" value="">
+           <td> <input type="hidden" class="bil" name="bil" value="">
             <%= tag(:input, :type => "hidden", :name => request_forgery_protection_token.to_s, :value => form_authenticity_token) %> 
           <td style="padding-right:18px; padding-left:0px; margin:1px; padding-top:0px;"><%= button_to t('back_button'), home_path, :class => "btn btn-default odustani_new_address", :method => :get  %></td>
           <td style="padding-left:0px; padding-right:0px; padding-top:0px; margin-right:1px;">
@@ -234,10 +234,11 @@
               $(".bil").val(result.address_id);
               var bil = $(".bil").val();
               var ship = $(".sh").val();
-              alert(bil);
-              alert(ship);
-              if (bil != "" && ship != "")
-                $('.form_hidden').submit();
+              setTimeout(
+                function() 
+                {
+                  $('.form_hidden').submit();
+                }, 1500);
               //$('#payment_button').click();
               if (result.error) {
                 
@@ -269,9 +270,11 @@
                 $(".bil").val(result.address_id);
                 var bil = $(".bil").val();
                 var ship = $(".sh").val();
-                if (bil != "" && ship != "")
-                  $('.form_hidden').submit();
-                //$('#payment_button').click();
+                setTimeout(
+                  function() 
+                  {
+                    $('.form_hidden').submit();
+                  }, 1500);
                 if (result.error) {
                 }
               }
