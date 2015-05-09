@@ -1,117 +1,37 @@
 
-<br><br>
-
-<%= @address1 %>
-<%= @address2 %>
-
-<h2 style="text-align: left;"><%= t('delivery_address') %></h2>
 
 <div class = "row">
   <div class="col-md-6">
     
+    <br><br><br><br><br>
 
-    <div class = "row">
-      <div class="col-md-6">
-        <p> <%= t('used_addresses') %>
-      </div>
-      <div class="col-md-6" style="text-align: right;">
-        <%= link_to t('use_new_address'), new_address_path %>
-      </div>
-    </div>
+    <table border="1" class="final_address">
+      <tr>
+        <td class="final_address_ticket"> 
+          <h2 style="text-align: left;">Shipping address</h2><br>
+          <%= @shipping_address.name %><br>
+          <%= @shipping_address.address_name %><br>
+          <%= @shipping_address.city %>, <%= @shipping_address.region %>  <%= @shipping_address.zip %>
+          <%= @shipping_address.state %><br>
+          <%= @shipping_address.phone %><br><br>
+        </td>
 
-    <div class = "row line_in_address_show">
-      <hr>
-    </div>
-
-
-    <% @addresses = get_all_user_shipping_addresses %>
-    <% first_address = get_first_address_shipping %>
-
-    <div class="row">
-      
-        
-      <% @addresses.each do |address|%>
-
-        <% if address == first_address %>
-         
-            <div class="col-md-6 first_address" data-id="<%= address.id %>">
-              <%= first_address.name %><br>
-              <%= first_address.address_name %><br>
-              <%= first_address.city %>, <%= first_address.region %>  <%= first_address.zip %>
-              <%= first_address.state %><br>
-              <%= first_address.phone %><br>
-            </div>
-         
-        <% else %>
-            
-              <div class="col-md-6 address" data-id="<%= address.id %>">
-                  <%= address.name %><br>
-                  <%= address.address_name %><br>
-                  <%= address.city %>, <%= address.region %>  <%= address.zip %>
-                  <%= address.state %><br>
-                  <%= address.phone %><br>
-              </div>
-
-        <% end %>
-      <% end %>
-    </div>
-
-
-
-
-    <br><br>
-
-
-    <div class="row">
-      <div class="col-md-6">
-        <h2 style="text-align: left;"><%= t('billing_address') %></h2>
-      </div>
-      <div class="col-md-6">
-        <div class="checkbox">
-          <input type="checkbox" id="billing_checkbox" onchange="myFunction()" value="nesto" checked><%= t('same_addresses') %>
-        </div>
-      </div>
-    </div>
-  
-    <div class="address_billing">
-
-      <% @addresses_billing = get_all_user_billing_addresses %>
-        <% first_address2 = get_first_address_billing %>
-
-        <div class="row">
-          
-            
-          <% @addresses_billing.each do |address|%>
-
-            <% if address == first_address2 %>
-             
-                <div class="col-md-6 first_address_billing" data-id="<%= address.id %>">
-                  <%= first_address2.name %><br>
-                  <%= first_address2.address_name %><br>
-                  <%= first_address2.city %>, <%= first_address2.region %>  <%= first_address2.zip %>
-                  <%= first_address2.state %><br>
-                  <%= first_address2.phone %><br>
-                </div>
-             
-            <% else %>
-                
-                  <div class="col-md-6 address_b" data-id="<%= address.id %>">
-                      <%= address.name %><br>
-                      <%= address.address_name %><br>
-                      <%= address.city %>, <%= address.region %>  <%= address.zip %>
-                      <%= address.state %><br>
-                      <%= address.phone %><br>
-                  </div>
-                
-         
-            <% end %>
-          <% end %>
-        </div>
-      </div>
-
+        <td class="final_address_ticket"> 
+          <h2 style="text-align: left;">Billing address</h2><br>
+          <%= @billing_address.name %><br>
+          <%= @billing_address.address_name %><br>
+          <%= @billing_address.city %>, <%= @billing_address.region %>  <%= @billing_address.zip %>
+          <%= @billing_address.state %><br>
+          <%= @billing_address.phone %><br><br>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2" class="final_address_button_change">
+          <%= button_to "Change", @path_to_address, :class => "btn btn-default final_address_change", :method => :get %>
+        </td>
+      </tr>
+    
   </div>
-
-
 
   <div class="col-md-6">
 
@@ -145,29 +65,16 @@
 
       <table class="table_total2"> 
         <tr>
-          <form action="/payments/show" method="get" class="form_hidden">
-            <input type="hidden" class="sh" name="sh" value="#{@address1}" >
-            <input type="hidden" class="bil" name="bil" value="#{@address2}">
-            <%= tag(:input, :type => "hidden", :name => request_forgery_protection_token.to_s, :value => form_authenticity_token) %> 
-          <td style="padding-right:18px; padding-left:0px; margin:1px; padding-top:0px;"><%= button_to t('back_button'), home_path, :class => "btn btn-default odustani_new_address", :method => :get  %></td>
-          <td style="padding-left:0px; padding-right:0px; padding-top:0px; margin-right:1px;">
-   
-
-            <input type="submit" class="btn btn-primary proceed_to_payment" value="<%=t('continue_button')%>" onclick="addAddress()">
-          </form>
-          
-          </tr>
-
-          <!-- <td style="padding-right:18px; padding-left:0px; margin:1px; padding-top:0px;"><= button_to t('back_button'), home_path, :class => "btn btn-default odustani_new_address", :id => "odustani_show_address", :method => :get  %></td>
+          <td style="padding-right:18px; padding-left:0px; margin:1px; padding-top:0px;"><%= button_to t('back_button'), home_path, :class => "btn btn-default odustani_new_address", :id => "odustani_show_address", :method => :get  %></td>
           <td style="padding-right:0px; padding-left:0px; margin:1px; padding-top:0px;">
             <form action="/charges" method="post">
-              <input type="hidden" class="sh" name="sh" value="#{@address1}" >
-              <input type="hidden" class="bil" name="bil" value="#{@address2}">
-                <= tag(:input, :type => "hidden", :name => request_forgery_protection_token.to_s, :value => form_authenticity_token) %> 
+              <input type="hidden" class="sh" name="sh" value="<%= @shipping_address_id %>">
+              <input type="hidden" class="bil" name="bil" value="<%= @billing_address_id %>">
+                <%= tag(:input, :type => "hidden", :name => request_forgery_protection_token.to_s, :value => form_authenticity_token) %> 
                   
                 <div class="stripe_script">
                   <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-                            data-key="<= Rails.configuration.stripe[:publishable_key] %>"
+                            data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
                             data-description="A month's subscription"
                             data-amount="<%= (@cart.get_total_with_delivery.to_i)*100 %>">
                             
@@ -176,8 +83,8 @@
                 <input type="submit" id="payment_button" class="btn btn-primary" value="<%= t('continue_button')%>">
               
               </form>
-            </td>-->
-        
+            </td>
+        </tr>
 
         
 
@@ -195,19 +102,14 @@
 
     $('.stripe_script').hide();
 
-    function addAddresses() {
-      alert("test");
-      $('.form_hidden').submit();
-    }
-
     $('.proceed_to_payment').on('click', function() {
       $('.form_hidden').submit();
     });
 
-    $( document ).ready(function() {
-      $('.sh').val($(".first_address").data("id"));
+    /*$( document ).ready(function() {
+      $('.sh').val("azra");
       $('.bil').val($(".first_address_billing").data("id"));
-    });
+    });*/
 
       $( ".first_address" ).click(function() {
         $( ".first_address" ).css("border", "1px solid #FFC63B");
@@ -257,7 +159,7 @@
       //alert(address2);
       $.post({
             //url: '/charges/new',
-            url: '/payments/show',
+            url: '/payment',
             data: { 
               sh_address: address1,
               bil_address: address2,
@@ -303,6 +205,4 @@
           });
       });
 
-
-
-    </script>
+</script>

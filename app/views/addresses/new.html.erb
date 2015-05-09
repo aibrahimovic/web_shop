@@ -91,20 +91,33 @@
  
     <table class="table_total2">
       <tr>
-        <td style="padding-right:18px; padding-left:0px; margin:1px; padding-top:0px;">
-          <%= button_to t('back_button'), home_path, :class => "btn btn-default odustani_new_address", :id => "odustani_new_address", :method => :get %>
+
+        <form action="/payments/show" method="get" class="form_hidden">
+           <td> <input type="hidden" class="sh" name="sh" value="#{@address1}" >
+           <td> <input type="hidden" class="bil" name="bil" value="#{@address2}">
+            <%= tag(:input, :type => "hidden", :name => request_forgery_protection_token.to_s, :value => form_authenticity_token) %> 
+          <td style="padding-right:18px; padding-left:0px; margin:1px; padding-top:0px;"><%= button_to t('back_button'), home_path, :class => "btn btn-default odustani_new_address", :method => :get  %></td>
+          <td style="padding-left:0px; padding-right:0px; padding-top:0px; margin-right:1px;">
+   
+
+            <input type="submit" class="btn btn-primary button_nastavi" value="<%=t('continue_button')%>">
+          </form>
+
+
+
+
+        <!-- <td style="padding-right:18px; padding-left:0px; margin:1px; padding-top:0px;">
+          <= button_to t('back_button'), home_path, :class => "btn btn-default odustani_new_address", :id => "odustani_new_address", :method => :get %>
         </td>
         <td style="padding-right:0px; padding-left:0px; margin:1px; padding-top:0px;">
-          <%= button_to "NASTAVI", '#', :class => "btn btn-primary button_nastavi", :id => "nastavi_new_address", :method => :get %>
+          <= button_to "NASTAVI", '#', :class => "btn btn-primary button_nastavi", :id => "nastavi_new_address", :method => :get %>
         </td>
-        <!--<td style="padding-left:0px; padding-right:0px; padding-top:0px; margin-right:1px;">
-          <= button_to t('continue_button'), new_charge_path, :class => "btn btn-primary button_nastavi", :method => :get %>
-        </td>-->
+
 
         <td style="padding-left:0px; padding-right:0px; padding-top:0px; margin-right:1px;">
           <form action="/charges" method="post">
 
-            <%= tag(:input, :type => "hidden", :name => request_forgery_protection_token.to_s, :value => form_authenticity_token) %> 
+            <= tag(:input, :type => "hidden", :name => request_forgery_protection_token.to_s, :value => form_authenticity_token) %> 
               
             <div class="stripe_script">
               <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
@@ -117,7 +130,7 @@
             <input type="submit" id="payment_button" class="btn btn-primary" value="<%= t('continue_button')%>">
           
           </form>
-        </td> 
+        </td> -->
 
         
       </tr>
@@ -132,7 +145,8 @@
 <script type="text/javascript">
   
   $('.stripe_script').hide();
-  $('#payment_button').hide();
+  //$('#payment_button').hide();
+
   
   $(".name").focus(function() { $('.address_status').html(" "); });
   $(".address_name").focus(function() { $('.address_status').html(" "); });
@@ -194,6 +208,8 @@
             },
             type: 'POST',
             success: function(result) {
+              $(".sh").val(result.address_id);
+              //alert(result.address_id);
               if (result.error) {
               }
             }
@@ -215,7 +231,9 @@
             },
             type: 'POST',
             success: function(result) {
-              $('#payment_button').click();
+              $(".bil").val(result.address_id);
+              $('.form_hidden').submit();
+              //$('#payment_button').click();
               if (result.error) {
                 
               }
@@ -243,7 +261,9 @@
               },
               type: 'POST',
               success: function(result) {
-                $('#payment_button').click();
+                $(".bil").val(result.address_id);
+                $('.form_hidden').submit();
+                //$('#payment_button').click();
                 if (result.error) {
                 }
               }

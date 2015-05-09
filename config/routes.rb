@@ -1,5 +1,6 @@
 Test3::Application.routes.draw do
   get "addresses/new"
+  get 'addresses' => 'address#show'
   get "items/new"
   post "items/create"
   get "carts/new"
@@ -21,8 +22,8 @@ Test3::Application.routes.draw do
   get ' '       => 'static_pages#home'
   get 'categories' => 'categories#new'
   get 'carts' => 'carts#show'
-  get 'addresses' => 'address#show'
   get 'charges' => 'charges#create'
+  get 'payment' => 'payment#show'
 
   get    'login'   => 'sessions#new'
   post   'login'   => 'sessions#create'
@@ -67,6 +68,8 @@ Test3::Application.routes.draw do
     get "my_language", on: :collection
   end
 
+  resources :payments
+
   scope '(:locale)' do
     resources :categories
     resources :products
@@ -74,6 +77,7 @@ Test3::Application.routes.draw do
     resources :carts
     resources :addresses
     resources :charges
+    resources :payments
     #root 'static_pages#home', as: 'home', via: :all
   end
 

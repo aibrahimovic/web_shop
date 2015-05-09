@@ -15,7 +15,7 @@ class Address < ActiveRecord::Base
 		address.tag = tag
 
 		if address.save
-			return true
+			return true, address.id
 		end
 
 		false

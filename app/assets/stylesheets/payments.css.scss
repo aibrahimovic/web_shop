@@ -1,0 +1,30 @@
+// Place all the styles related to the Payments controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+.final_address {
+	width: 700px;
+	margin-top: 12px;
+
+}
+
+.final_address_ticket {
+	width: 500px;
+	padding-left:50px; 
+	padding-right:50px; 
+	padding-top: 0px;
+	padding-bottom: 30px;
+	margin:0px;
+}
+
+.final_address_button_change {
+	padding-top: 10px;
+	padding-bottom: 10px;
+	margin: 0px;
+	text-align: center;
+}
+
+.final_address_change {
+	width: 300px;
+}

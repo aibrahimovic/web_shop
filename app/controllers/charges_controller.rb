@@ -9,7 +9,7 @@ class ChargesController < ApplicationController
 
 	def create
 
-
+		
 	HelpProduct.transaction do
 		@cart.items.each do |item|
 			item.help_product.lock!
