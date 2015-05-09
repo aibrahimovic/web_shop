@@ -18,3 +18,4 @@ class PaymentsController < ApplicationController
 	end
 
 end
+
