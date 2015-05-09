@@ -16,48 +16,48 @@
 
       <div class="field">
         <%= f.label :Naziv %><i> (Bosanski)</i><br>
-        <%= f.text_field :name, class: 'form-control'%><br>
+        <%= f.text_field :name, class: 'form-control', id: 'new_product_name_bs'%><br>
       </div>
       <div class="field">
           <p> <b>Naziv</b> <i>(Engleski)</i><br>
-          <input type="text" name="name2" class="form-control">
+          <input type="text" name="name2" class="form-control" id='new_product_name_en'>
         </div>
         <br>
       <div class="field">
         <%= f.label :Opis %><i> (Bosanski)</i><br>
-        <%= f.text_area :description, class: 'form-control' %><br>
+        <%= f.text_area :description, class: 'form-control', id: 'new_product_description_bs'%><br>
       </div>
       <div class="field">
           <p> <b>Opis</b> <i>(Engleski)</i><br>
-            <textarea name="description2" class="form-control"></textarea>
+            <textarea name="description2" class="form-control" id='new_product_description_en'></textarea>
         </div>
         <br>
       <div class="field">
         <%= f.label :cijena %><br>
-        <%= f.text_field :price, class: 'form-control price' %><br>
+        <%= f.text_field :price, class: 'form-control price', id: 'new_product_price'%><br>
       </div>
       <div class="field">
         <%= f.label :snizenje %><br>
-        <input type="radio" name="sale_radion" value="new_price" class="new_price">Unos nove cijene
+        <input type="radio" name="sale_radion" value="new_price" class="new_price" id='new_product_sale_radio1'>Unos nove cijene
         <br>
-        <input type="radio" name="sale_radion" value="percent" class="percent">Unos procenta
+        <input type="radio" name="sale_radion" value="percent" class="percent" id='new_product_sale_radio2'>Unos procenta
         <br>
-        <%= f.text_field :sale, class: 'form-control sale_field', placeholder: 'Unesite sniženu cijenu (KM)' %>
-        <input type="text" name="sale_percent" class="form-control sale_percent_field" placeholder="Unesite procenat snižene cijene (%)">
+        <%= f.text_field :sale, class: 'form-control sale_field', placeholder: 'Unesite sniženu cijenu (KM)', id: 'new_product_sale_price'%>
+        <input type="text" name="sale_percent" class="form-control sale_percent_field" placeholder="Unesite procenat snižene cijene (%)" id='new_product_sale_percent'>
         <label class="new_price_label"></label>
       </div>
       <br>
       <div class="field">
         <%= f.label :kategorija %><br>
-        <%= f.select("category_id", @categories.collect {|r| [ r.name, r.id] }, { :selected => params[:get_category_id] }, class: 'form-control')%><br>
+        <%= f.select("category_id", @categories.collect {|r| [ r.name, r.id] }, { :selected => params[:get_category_id] }, class: 'form-control', id: 'new_product_category')%><br>
       </div>
       <p>
         <%= f.label :slika %><br />
-        <%= f.file_field :image %>
+        <%= f.file_field :image, id: 'new_product_image' %>
       </p><br><br>
 
       <div class="actions">
-        <%= f.submit "Kreiraj proizvod", class: "btn btn-primary", style: "width: 200px;" %><br>
+        <%= f.submit "Kreiraj proizvod", class: "btn btn-primary", id: 'new_product_button', style: "width: 200px;" %><br>
       </div>
     <% end %>
     <br><br>

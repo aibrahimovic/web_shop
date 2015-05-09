@@ -19,11 +19,11 @@
 
   <div class="field">
     <%= f.label :Veličina %><br>
-    <%= f.text_field :size %>
+    <%= f.text_field :size, :id => "help_product_size" %>
   </div>
   <div class="field">
     <%= f.label :Količina %><br>
-    <%= f.text_field :quantity %>
+    <%= f.text_field :quantity, :id => "help_product_quantity"  %>
   </div>
   <br>
   
@@ -31,7 +31,7 @@
     <% if @product_parameter.nil? %>
       <p> Azra </p>
     <% else %>
-      <%= f.submit "Dodaj varijaciju proizvoda", class: "btn btn-primary", style:"width: 200px;"%>
+      <%= f.submit "Dodaj varijaciju proizvoda", class: "btn btn-primary", id: "add_help_product_button", style:"width: 200px;"%>
     <% end %>
   </div>
 <% end %>

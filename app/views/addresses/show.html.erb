@@ -155,7 +155,7 @@
 
             <input type="submit" class="btn btn-primary proceed_to_payment" value="<%=t('continue_button')%>" onclick="addAddress()">
           </form> -->
-          <td style="padding-right:18px; padding-left:0px; margin:1px; padding-top:0px;"><%= button_to t('back_button'), home_path, :class => "btn btn-default odustani_new_address", :method => :get  %></td>
+          <td style="padding-right:18px; padding-left:0px; margin:1px; padding-top:0px;"><%= button_to t('back_button'), home_path, :class => "btn btn-default odustani_new_address", :id => "odustani_show_address", :method => :get  %></td>
           <td style="padding-right:0px; padding-left:0px; margin:1px; padding-top:0px;">
             <form action="/charges" method="post">
               <input type="hidden" class="sh" name="sh" value="#{@address1}" >

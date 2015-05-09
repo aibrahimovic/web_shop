@@ -8,19 +8,19 @@
 
     <form>
       <p> <%= t('address_name') %> </p>
-      <input type="text" class="form-control name"><br>
+      <input type="text" class="form-control name" id="new_address_name_s"><br>
       <p> <%= t('address_street') %> </p>
-      <input type="text" class="form-control address_name"><br>
+      <input type="text" class="form-control address_name" id="new_address_street_s"><br>
       <p> <%= t('address_city') %> </p>
-      <input type="text" class="form-control city"><br>
+      <input type="text" class="form-control city" id="new_address_city_s"><br>
       <p> <%= t('address_region') %> </p>
-      <input type="text" class="form-control region"><br>
+      <input type="text" class="form-control region" id="new_address_region_s"><br>
       <p> <%= t('address_zip') %> </p>
-      <input type="text" class="form-control zip"><br>
+      <input type="text" class="form-control zip" id="new_address_zip_s"><br>
       <p> <%= t('address_state') %> </p>
-      <input type="text" class="form-control state"><br>
+      <input type="text" class="form-control state" id="new_address_state_s"><br>
       <p> <%= t('address_phone') %> </p>
-      <input type="text" class="form-control phone"><br>
+      <input type="text" class="form-control phone" id="new_address_phone_s"><br>
     </form>
 
     <br>
@@ -40,19 +40,19 @@
     <div class="address_billing"
       <form>
         <p> <%= t('address_name') %> </p>
-        <input type="text" class="form-control name_billing"><br>
+        <input type="text" class="form-control name_billing" id="new_address_name_b"><br>
         <p> <%= t('address_street') %> </p>
-        <input type="text" class="form-control address_name_billing"><br>
+        <input type="text" class="form-control address_name_billing" id="new_address_street_b"><br>
         <p> <%= t('address_city') %> </p>
-        <input type="text" class="form-control city_billing"><br>
+        <input type="text" class="form-control city_billing" id="new_address_city_b"><br>
         <p> <%= t('address_region') %> </p>
-        <input type="text" class="form-control region_billing"><br>
+        <input type="text" class="form-control region_billing" id="new_address_region_b"><br>
         <p> <%= t('address_zip') %> </p>
-        <input type="text" class="form-control zip_billing"><br>
+        <input type="text" class="form-control zip_billing" id="new_address_zip_b"><br>
         <p> <%= t('address_state') %> </p>
-        <input type="text" class="form-control state_billing"><br>
+        <input type="text" class="form-control state_billing" id="new_address_state_b"><br>
         <p> <%= t('address_phone') %> </p>
-        <input type="text" class="form-control phone_billing"><br>
+        <input type="text" class="form-control phone_billing" id="new_address_phone_b"><br>
       </form>
     </div>
 
@@ -92,10 +92,10 @@
     <table class="table_total2">
       <tr>
         <td style="padding-right:18px; padding-left:0px; margin:1px; padding-top:0px;">
-          <%= button_to t('back_button'), home_path, :class => "btn btn-default odustani_new_address", :method => :get %>
+          <%= button_to t('back_button'), home_path, :class => "btn btn-default odustani_new_address", :id => "odustani_new_address", :method => :get %>
         </td>
         <td style="padding-right:0px; padding-left:0px; margin:1px; padding-top:0px;">
-          <%= button_to "NASTAVI", '#', :class => "btn btn-primary button_nastavi", :method => :get %>
+          <%= button_to "NASTAVI", '#', :class => "btn btn-primary button_nastavi", :id => "nastavi_new_address", :method => :get %>
         </td>
         <!--<td style="padding-left:0px; padding-right:0px; padding-top:0px; margin-right:1px;">
           <= button_to t('continue_button'), new_charge_path, :class => "btn btn-primary button_nastavi", :method => :get %>

@@ -15,9 +15,9 @@
       <br>
 
       <%= f.label :role_id, "Role" %>
-      <%= f.select("role_id", @roles.collect {|r| [r.name, r.id] }, { :selected => params[:get_role_id] }, class: 'form-control')%><br><br>
+      <%= f.select("role_id", @roles.collect {|r| [r.name, r.id] }, { :selected => params[:get_role_id] }, class: 'form-control', id: 'edit_user_role')%><br><br>
 
-      <%= f.submit "IZMJENI", class: "btn btn-primary" %>
+      <%= f.submit "IZMJENI", class: "btn btn-primary", id: 'edit_user_button' %>
     <% end %>
     <br><br>
 
