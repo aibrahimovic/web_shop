@@ -235,7 +235,7 @@
               //var bil = $(".bil").val();
               //var ship = $(".sh").val();
               if (result.error == true && result.address_id != "") {
-                //alert("sve ok");
+                alert("sve ok");
                 //$(".bil").val(result.address_id);
                 $('.form_hidden').submit();
               }
@@ -264,7 +264,7 @@
               type: 'POST',
               success: function(result) {
                 if (result.error == true && result.address_id != "") {
-                  //alert("sve ok billing ima");
+                  alert("sve ok billing ima");
                   $('.form_hidden').submit();
                 }
               }
