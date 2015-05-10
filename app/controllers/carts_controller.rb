@@ -11,6 +11,8 @@ class CartsController < ApplicationController
       @path_to_address = find_address_path
     end
     session[:counter] = 0
+    @nuber_of_items = @cart.items.length
+
   end
 
   def all_products
@@ -36,7 +38,8 @@ class CartsController < ApplicationController
 
   def delete_item
     is_deleted = @cart.delete_item(params[:item_id])
-    render json: { error: is_deleted } 
+    number = @cart.items.length
+    render json: { error: is_deleted, itemsNumber: number } 
   end
 
   def update_price

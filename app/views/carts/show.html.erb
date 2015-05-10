@@ -116,6 +116,9 @@
 								    success: function(result) {
 								    	if (result.error) {
 								    		$("#"+id_for_item).hide();
+								    		//alert("<%= @nuber_of_items %>");
+								    		if ("<%= @nuber_of_items %>" == 0)
+								    			$('.table_total').hide();
 								    		$(document).trigger('page:change');
 								    		$.ajax({
 											    url: '/carts/update_price',
@@ -221,7 +224,30 @@
 			    success: function(result) {
 			    	if (result.error) {
 			    		el.parents("tr").hide();
-			    		$(document).trigger('page:change');
+			    		
+			    		if(result.itemsNumber == 0) {
+							//$('.table_total').hide();
+							$(".cart_total_number").html("0");
+							$(".cart_price").html("0.00");
+							$(".cart_delivery").html("0.00");
+							$(".cart_total").html("0.00");
+							$('.table_total2').hide();
+						}
+			    		$.ajax({
+							url: '/carts/update_price',
+							type: 'GET',
+							success: function(result) {
+							if (result.number) {
+								$(".cart_total_number").html(result.number);
+								$(".cart_price").html(result.price);
+								$(".cart_delivery").html(result.delivery);
+								$(".cart_total").html(result.total);
+
+							}
+							
+						}
+						});
+						$(document).trigger('page:change');
 			    		/*$.ajax({
 						    url: '/carts/update_price',
 						    type: 'GET',
@@ -279,6 +305,11 @@
 	});
 
 	$(window).bind('page:change', function(){
+
+		if ("<%= @nuber_of_items %>" == 0)
+			$('.table_total2').hide();
+
+
 		$(".quantity_field").change(function() {
 			$.ajax({
 			    url: '/carts/update_price',
