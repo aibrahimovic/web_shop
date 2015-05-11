@@ -34,15 +34,15 @@
 			<col width="40px" />
 			<tr style="padding:0px; margin:2px;">
         
-			<td> <%= image_tag(@product.image.url(:show), :alt =>"item") %> </td>
+			<td> <%= image_tag(@product.image.url(:show), :alt =>"item", :id => @product.id) %> </td>
 			<button id="add-to-cart2" type="button" style="visibility: hidden;">Add to cart</button>
 			
 			
 			<td style="margin-top: 200cm;" class="fixed"> 
 
-				<b><%= @product.name %></b>
+				<span id="name_<%=@product.id %>"><b><%= @product.name %></b></span>
 				<br><br>
-				<%= @product.description %>
+				<span id="description_<%=@product.id %>"><%= @product.description %></span>
 				<br><br>
 			
 
@@ -58,7 +58,7 @@
 				<table>
 					<tr> 
 						<td class="table_quan_size">
-						<td class="table_quan_size" style="text-align:right; padding-bottom: 20px;"> <%= @product.get_price %> KM </td>
+						<td class="table_quan_size" style="text-align:right; padding-bottom: 20px;"><span id="price_<%=@product.id %>"><%= @product.get_price %> KM </span></td>
 					</tr>
 					<tr>
 						<td class="table_quan_size"><%= f.label t('size') %> 
