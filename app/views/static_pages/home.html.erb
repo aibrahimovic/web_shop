@@ -13,7 +13,7 @@
 			  <a href="#" class="control_prev"><</a>
 			  <ul>
 			  <% @special.each do |product| %>
-			  	<li style="padding-top: 80px;"><%= image_tag(product.image) %>
+			  	<li style="padding-top: 80px;"><%= image_tag(product.image.url(:show)) %>
 			  <% end %>
 			  	
 			  	<!--<li style="padding-top: 80px;"><= image_tag("c1.png") %></li>
