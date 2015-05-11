@@ -11,8 +11,10 @@ class PaymentsController < ApplicationController
    	 		@shipping_address = Address.find_by(id: @shipping_address_id)
    	 		@billing_address = Address.find_by(id: @billing_address_id)
    	 	else
+
    	 		@shipping_address = Address.where(user_id: @current_user.id, tag: 'shipping').last
    	 		@billing_address = Address.where(user_id: @current_user.id, tag: 'billing').last
+            
    	 	end
 
 	end
