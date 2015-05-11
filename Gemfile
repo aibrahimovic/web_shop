@@ -67,3 +67,4 @@ gem 'aws-sdk', '~> 1.5.7'
 gem 'cloudinary'
 gem 'globalize', '~> 4.0.3'
 gem "passenger"
+gem 'newrelic_rpm'
