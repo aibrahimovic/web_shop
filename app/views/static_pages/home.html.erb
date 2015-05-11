@@ -1,17 +1,31 @@
 <html>
 	<head>
 		<title>Web shop</title>
-		
+	
 	</head>
 
-	<%= image_tag("carousel.jpg", :class => "cover_slika", :size => "1150x350") %>
+	<!-- <= image_tag("carousel.jpg", :class => "cover_slika", :size => "1150x350") %> -->
 	<body>
-		<div id="sliderId">
+		<div id="header-wrapper">
+
+			<div id="slider">
+			  <a href="#" class="control_next">>></a>
+			  <a href="#" class="control_prev"><</a>
+			  <ul>
+			  <% @special.each do |product| %>
+			  	<li style="padding-top: 80px;"><%= image_tag(product.image) %>
+			  <% end %>
+			  	
+			  	<!--<li style="padding-top: 80px;"><= image_tag("c1.png") %></li>
+			    <li style="padding-top: 80px;"><= image_tag("c2.png") %></li>
+			    <li style="padding-top: 80px;"><= image_tag("c3.png") %></li> -->
+
+			  </ul>  
+			</div>
+
 		</div>
-		
-		<br>
-		<br>
-		<h2 id="prodaucts_on_sale"> <%= t('newest') %> </h2>
+
+		<h2 id="prodaucts_on_sale" style="margin-top: 450px;"> <%= t('newest') %> </h2>
 
 
 		<% counter = 0 %>
@@ -40,23 +54,64 @@
 </html>
 
 
-<script type="text/javascript">
-	/*var funkcija = function() {
-		$('#sliderId').ramblingSlider();
-	};
-
-	$(document).ready(function() {
-    //$(".image").click(function(event) {
-        //alert($(this).html());
-    });
-
-			  
-	$(window).bind('page:change', funkcija)*/
-	//https://github.com/gonzedge/rambling.slider/wiki/Options
-</script>
-
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 <!-- <script src="js/bootstrap.min.js"></script> -->
 
 <%= stylesheet_link_tag    "/assets/bootstrap.min" %>
 <%= javascript_include_tag "/assets/bootstrap.min" %>
+
+<script>
+jQuery(document).ready(function ($) {
+
+  setInterval(function () {
+        moveRight();
+    }, 5000);
+
+
+
+  /*$('#checkbox').change(function(){
+    setInterval(function () {
+        moveRight();
+    }, 3000);
+  });*/
+  
+	var slideCount = $('#slider ul li').length;
+	var slideWidth = $('#slider ul li').width();
+	var slideHeight = $('#slider ul li').height();
+	var sliderUlWidth = slideCount * slideWidth;
+	
+	$('#slider').css({ width: slideWidth, height: slideHeight });
+	
+	$('#slider ul').css({ width: sliderUlWidth, marginLeft: - slideWidth });
+	
+    $('#slider ul li:last-child').prependTo('#slider ul');
+
+    function moveLeft() {
+        $('#slider ul').animate({
+            left: + slideWidth
+        }, 200, function () {
+            $('#slider ul li:last-child').prependTo('#slider ul');
+            $('#slider ul').css('left', '');
+        });
+    };
+
+    function moveRight() {
+        $('#slider ul').animate({
+            left: - slideWidth
+        }, 200, function () {
+            $('#slider ul li:first-child').appendTo('#slider ul');
+            $('#slider ul').css('left', '');
+        });
+    };
+
+    $('a.control_prev').click(function () {
+        moveLeft();
+    });
+
+    $('a.control_next').click(function () {
+        moveRight();
+    });
+
+});    
+
+</script>

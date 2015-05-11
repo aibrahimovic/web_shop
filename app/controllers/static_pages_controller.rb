@@ -13,6 +13,16 @@ class StaticPagesController < ApplicationController
         @all_products_on_sale << product
       end
     end
+
+    @special = Product.where(special: '1', sale: '').all
+    @special_sale = []
+    @all = Product.where(special: '1').all
+    @all.each do |product|
+      if product.sale != ''
+        @special_sale << product
+      end
+    end
+
   end
 
   def admin

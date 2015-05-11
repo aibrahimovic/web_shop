@@ -51,6 +51,11 @@
         <%= f.label :kategorija %><br>
         <%= f.select("category_id", @categories.collect {|r| [ r.name, r.id] }, { :selected => params[:get_category_id] }, class: 'form-control', id: 'new_product_category')%><br>
       </div>
+      <%= f.label :special %><br>
+        <input type="radio" name="special" value="1" class="new_special" id='new_special'>Da
+        <br>
+        <input type="radio" name="special" value="0" class="new_no_special" id='new_no_special' checked>Ne
+        <br><br>
       <p>
         <%= f.label :slika %><br />
         <%= f.file_field :image, id: 'new_product_image' %>

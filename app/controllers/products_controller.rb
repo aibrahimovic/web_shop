@@ -28,6 +28,9 @@ class ProductsController < ApplicationController
       @product.sale = new_price.to_s
     end
     
+    special = params[:special]
+    @product.special = special
+
     @product.attributes = { name: bosnian, description: desc_bosnian, locale: :bs }
     @product.attributes = { name: english, description: desc_english, locale: :en }
     #@product.save!
