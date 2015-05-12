@@ -5,24 +5,55 @@
   <tbody>
 
   	<tr> 
-      <td class="allProducts_table">
+      <td colspan='4' class="allProducts_table" style="text-align: left; padding-top: 15px; padding-bottom: 30px;"> 
         <% billing = Address.find_by(id: @order.billing_address_id) %>
-          <% shipping = Address.find_by(id: @order.shipping_address_id) %>
+        <% shipping = Address.find_by(id: @order.shipping_address_id) %>
         <% if @order.email != 'guest' %>
-         Korisnik: <%= @order.user.email %><br>
+        <%= t('order_user') %>: <%= @order.user.email %><br>
         <% end %>
-        Adresa dostave: <%= billing.address_name %><br>
-        Adresa za račun: <%= shipping.address_name %><br>
-      </td>
-    <tr>
-    <tr>
-      <td class="allProducts_table"> 
-        <b> Naručili ste: </b><br>
-        <% @order_items.each do |item| %>
-          <%= item.help_product.product.name %> - broj <%= item.help_product.size %> (<%= item.quantity %> komada) -- po cijeni <%= item.price %> KM<br>
-        <% end %>
+        <%= t('delivery_address') %>: <%= shipping.address_name %>, <%= shipping.city %>, <%= shipping.region %>, <%= shipping.state%>
+        <br>
+        <%= t('billing_address') %>: <%= billing.address_name %>, <%= billing.city %>, <%= billing.region %>, <%= billing.state%>
       </td>
     </tr>
+
+    <tr> <td colspan='4' class="allProducts_table" style="padding: 15px 0px 15px 0px;"> <b>Račun<br> </td> </tr>
+
+    <tr>
+      <td class="allProducts_table"> <%= t('order_product') %> </td>
+      <td class="allProducts_table"> <%= t('order_quantity') %> </td>
+      <td class="allProducts_table"> <%= t('order_price') %> </td>
+      <td class="allProducts_table"> <%= t('order_total_price') %> </td>
+    </tr>
+    
+    <% @order_items.each do |item| %> 
+    <tr>
+      <td class="allProducts_table">
+        <%= item.help_product.product.name %> (<%= item.help_product.size %>)
+      </td>
+      <td class="allProducts_table">
+        <%= item.quantity %>
+      </td>
+      <td class="allProducts_table"> 
+        <%= item.price %> KM
+      </td>
+      <td class="allProducts_table">
+        <%= item.price.to_f * item.quantity %> KM
+      </td>
+    </tr>
+    <% end %>
+
+    <tr></tr>
+    <tr> 
+      <td colspan='4' class="allProducts_table" style="text-align:right; padding: 15px 6px 15px 0px;"> 
+        <%= t('order_price').capitalize %>: <%= @total %> KM <br>
+        <%= t('order_delivery_price') %>: <%= @delivery %> KM <br><br>
+        Total: <b style="font-size: 16px;"> <%= @total+@delivery %> KM </b>
+      </td> 
+    </tr>
+    
+    
+
 </table>
 <br><br>
 

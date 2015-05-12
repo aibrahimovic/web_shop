@@ -65,6 +65,13 @@ en:
   have_account: "Don't have an account?"
   change_final_addresses: "CHANGE"
   new_final_addresses: "NEW"
+  order_user: "User"
+  your_order: "Your order"
+  order_product: "PRODUCT"
+  order_quantity: "QUANTITY"
+  order_price: "PRICE"
+  order_total_price: "TOTAL"
+  order_delivery_price: "Delivery"
 
   activerecord:
     attributes:

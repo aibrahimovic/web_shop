@@ -33,6 +33,12 @@ class OrdersController < ApplicationController
 		@order_id = params[:order]
 		@order = Order.find_by(id: @order_id)
 		@order_items = OrderItem.where(order_id: @order_id).all
+		@total = 0
+		@delivery = 0
+		@order_items.each do |item|
+			@total += item.price.to_f*item.quantity
+			@delivery += item.quantity*5
+		end
 	end
 
 end

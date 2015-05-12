@@ -65,6 +65,15 @@ bs:
   have_account: "Niste registrovani?"
   change_final_addresses: "PROMJENI"
   new_final_addresses: "NOVA"
+  order_user: "Korisnik"
+  your_order: "Naručili ste"
+  order_product: "PROIZVOD"
+  order_quantity: "KOLIČINA"
+  order_price: "CIJENA"
+  order_total_price: "UKUPNO"
+  order_delivery_price: "Dostava"
+
+
   
   activerecord:
     attributes:
