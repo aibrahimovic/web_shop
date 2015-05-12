@@ -5,22 +5,24 @@
   <tbody>
 
   	<tr> 
-  		<td class="allProducts_table">
-  			<% billing = Address.find_by(id: @order.billing_address_id) %>
-        	<% shipping = Address.find_by(id: @order.shipping_address_id) %>
-  			Korisnik: <%= @order.user.email %><br>
-  			Adresa dostave: <%= billing.address_name %><br>
-  			Adresa za račun: <%= shipping.address_name %><br>
-  		</td>
-  	<tr>
-  	<tr>
-  		<td class="allProducts_table"> 
-  			<b> Naručili ste: </b><br>
-  			<% @order_items.each do |item| %>
-  				<%= item.help_product.product.name %> - broj <%= item.help_product.size %> (<%= item.quantity %> komada) -- po cijeni <%= item.price %> KM<br>
-  			<% end %>
-  		</td>
-  	</tr>
+      <td class="allProducts_table">
+        <% billing = Address.find_by(id: @order.billing_address_id) %>
+          <% shipping = Address.find_by(id: @order.shipping_address_id) %>
+        <% if @order.email != 'guest' %>
+         Korisnik: <%= @order.user.email %><br>
+        <% end %>
+        Adresa dostave: <%= billing.address_name %><br>
+        Adresa za račun: <%= shipping.address_name %><br>
+      </td>
+    <tr>
+    <tr>
+      <td class="allProducts_table"> 
+        <b> Naručili ste: </b><br>
+        <% @order_items.each do |item| %>
+          <%= item.help_product.product.name %> - broj <%= item.help_product.size %> (<%= item.quantity %> komada) -- po cijeni <%= item.price %> KM<br>
+        <% end %>
+      </td>
+    </tr>
 </table>
 <br><br>
 

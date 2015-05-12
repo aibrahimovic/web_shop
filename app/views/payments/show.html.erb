@@ -26,9 +26,15 @@
         </td>
       </tr>
       <tr>
-        <td colspan="2" class="final_address_button_change">
-          <%= button_to t('change_final_addresses'), @path_to_address, :class => "btn btn-default final_address_change", :method => :get %>
-        </td>
+        <% if @current_user.nil? %>
+          <td colspan="2" class="final_address_button_change">
+            <%= button_to t('new_final_addresses'), @path_to_address, :class => "btn btn-default final_address_new", :method => :get %>
+          </td>
+        <% else %>
+          <td colspan="2" class="final_address_button_change">
+            <%= button_to t('change_final_addresses'), @path_to_address, :class => "btn btn-default final_address_change", :method => :get %>
+          </td>
+        <% end %>
       </tr>
     
   </div>
