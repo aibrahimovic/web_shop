@@ -64,6 +64,7 @@ bs:
   login_button: "PRIJAVA"
   have_account: "Niste registrovani?"
   change_final_addresses: "PROMJENI"
+  new_final_addresses: "NOVA"
   
   activerecord:
     attributes:
