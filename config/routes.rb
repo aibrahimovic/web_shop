@@ -17,6 +17,7 @@ Test3::Application.routes.draw do
   get 'orders/create'
   post 'charges/new'
   get 'charges/create'
+  get 'images/new'
 
   get 'home'       => 'static_pages#home'
   get ' '       => 'static_pages#home'
@@ -78,6 +79,7 @@ Test3::Application.routes.draw do
     resources :addresses
     resources :charges
     resources :payments
+    resources :images
     #root 'static_pages#home', as: 'home', via: :all
   end
 

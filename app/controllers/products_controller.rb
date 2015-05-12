@@ -16,6 +16,7 @@ class ProductsController < ApplicationController
 
   def create
     @product = Product.new(product_params)
+    
     bosnian = @product.name
     english = params[:name2]
     desc_bosnian = @product.description
@@ -37,7 +38,8 @@ class ProductsController < ApplicationController
 
     respond_to do |format|
       if @product.save
-        format.html { redirect_to help_products_new_path(:product_id => @product.id), notice: 'Proizvod je uspješno kreiran.' }
+        #format.html { redirect_to help_products_new_path(:product_id => @product.id), notice: 'Proizvod je uspješno kreiran.' }
+        format.html { redirect_to images_new_path(:product_id => @product.id), notice: 'Proizvod je uspješno kreiran.' }
         format.json { render :show, status: :created, location: @product }
       else
         format.html { render :new }

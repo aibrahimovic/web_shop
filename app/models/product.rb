@@ -7,7 +7,7 @@ class Product < ActiveRecord::Base
                       :small => "150x150>",
                       :show => "200x200>",
                       :preview => "500x500>",
-                      :slider => "1150x350>",
+                      :slider => "300x300>",
                       #:storage => :s3, #izmjena!!
                   	  #:s3_credentials => Proc.new{|a| a.instance.s3_credentials }, 
                   	  :default_url => "/images/:style/missing.png"
