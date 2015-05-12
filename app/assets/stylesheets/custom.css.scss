@@ -77,16 +77,25 @@ ul li:hover:after {
    width: 130px;
 }*/
 
+.navbar-nav > li {
+  margin-left: 0px;
+  margin-right: 0px;
+}
+
 .nav_link_image {
   padding: 0px 30px 0px 0px;
 }
 
 .nav_link {
-  padding: 2px 10px 0px 10px;
+  padding: 2px 5px 0px 5px;
 }
 
 .nav_link_cart {
   padding: 0px 0px 0px 0px;
+}
+
+.login {
+  padding: 0px;
 }
 
 #navigation:hover {
@@ -472,9 +481,16 @@ a.control_next {
 }
 
 #header-wrapper{
-   top: 0;
+   top: 5;
    left: 0;
    height: auto;
    position: absolute;
    width: 100%;
+}
+
+.sale_tag {
+  font-size: 45px;
+  color: #E44A3B;
+  padding-top: 50px;
+  padding-left: 800px;
 }

@@ -53,6 +53,8 @@ class ItemsController < ApplicationController
       @order.save
     else
       @order.email = 'guest'
+      @order.shipping_address_id = shipping_address
+      @order.billing_address_id = billing_address
       @order.save
     end
 

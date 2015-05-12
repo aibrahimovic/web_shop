@@ -67,20 +67,25 @@ class ProductsController < ApplicationController
     respond_to do |format|
       if @product.update(product_params)
         percent = params[:sale_percent]
+        new_price = params[:product][:sale]
           if percent != ""
             old_price = @product.price.to_f
             new_price = old_price - (percent.to_f/100)*old_price
 
             help_product = HelpProduct.find_by(product_id: @product.id)
-            cart_items = Item.all
-            cart_items.each do |item| 
-              if item.help_product_id == help_product.id
-                if new_price != ""
-                  item.price = new_price
-                else
-                  item.price = @product.price
+            if !help_product.nil?
+              cart_items = Item.all
+              cart_items.each do |item| 
+                if !item.nil?
+                  if item.help_product_id == help_product.id
+                    if new_price != ""
+                      item.price = new_price
+                    else
+                      item.price = @product.price
+                    end
+                    item.save
+                  end
                 end
-                item.save
               end
             end
 
@@ -88,23 +93,29 @@ class ProductsController < ApplicationController
             @product.sale = new_price.to_s
             @product.save!
           else
-            new_price = params[:product][:sale]
+            #new_price = params[:product][:sale]
 
             help_product = HelpProduct.find_by(product_id: @product.id)
-            cart_items = Item.all
-            cart_items.each do |item| 
-              if item.help_product_id == help_product.id
-                if new_price != ""
-                  item.price = new_price
-                else
-                  item.price = @product.price
+            if !help_product.nil?
+              cart_items = Item.all
+              cart_items.each do |item| 
+                if !item.nil?
+                  if item.help_product_id == help_product.id
+                    if new_price != ""
+                      item.price = new_price
+                    else
+                      item.price = @product.price
+                    end
+                    item.save
+                  end
                 end
-                item.save
               end
             end
 
             #@cart.update_item_price(new_price, @product.id)
           end
+        @product.special = params[:special]
+        @product.save!
         format.html { redirect_to allProducts_path, notice: 'Proizvod je uspješno izmjenjen.' }
         format.json { render :show, status: :ok, location: @product }
       else

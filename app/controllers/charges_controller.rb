@@ -22,8 +22,15 @@ class ChargesController < ApplicationController
 			@shipping_address = @shipping
 			@billing_address = @billing
 		else
-			@shipping_address = Address.where(user_id: @current_user.id, tag: 'shipping').last
-			@billing_address = Address.where(user_id: @current_user.id, tag: 'billing').last
+			#@shipping_address = Address.where(user_id: @current_user.id, tag: 'shipping').last
+			#@billing_address = Address.where(user_id: @current_user.id, tag: 'billing').last
+			if !@current_user.nil?
+	       		@shipping_address = Address.where(user_id: @current_user.id, tag: 'shipping').last
+	      		@billing_address = Address.where(user_id: @current_user.id, tag: 'billing').last
+	        else
+	            @shipping_address = Address.where(user_id: '0', tag: 'shipping').last
+	            @billing_address = Address.where(user_id: '0', tag: 'billing').last
+	        end
 		end	
 
 

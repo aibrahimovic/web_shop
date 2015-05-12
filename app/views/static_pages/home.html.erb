@@ -13,9 +13,27 @@
 			  <a href="#" class="control_prev"><</a>
 			  <ul>
 			  <% @special.each do |product| %>
-			  	<li style="padding-top: 80px;"><%= image_tag(product.image.url(:show)) %>
+			  	<li style="padding-top: 130px;">
+			  		<span>
+			  			<%= link_to product_path(product.id) do %>
+			  				<%= image_tag(product.image.url(:slider)) %>
+			  			<% end %>
+			  		</span>
 			  <% end %>
-			  	
+			  
+			  <% @special_sale.each do |product| %>
+			  	<li style="padding-top: 10px;">
+			  		<p class="sale_tag"> <i>-<%= product.get_percent %>%</i> <p>
+			  		<span>
+			  			<%= link_to product_path(product.id) do %>
+			  				<%= image_tag(product.image.url(:slider)) %>
+			  			<% end %>
+			  		</span>	
+			  	</li> 			
+			  <% end %>
+			  	 <!-- <= image_tag(product.image.url(:show)) %> -->
+			  
+
 			  	<!--<li style="padding-top: 80px;"><= image_tag("c1.png") %></li>
 			    <li style="padding-top: 80px;"><= image_tag("c2.png") %></li>
 			    <li style="padding-top: 80px;"><= image_tag("c3.png") %></li> -->
@@ -25,7 +43,7 @@
 
 		</div>
 
-		<h2 id="prodaucts_on_sale" style="margin-top: 450px;"> <%= t('newest') %> </h2>
+		<h2 id="prodaucts_on_sale" style="margin-top: 500px;"> <%= t('newest') %> </h2>
 
 
 		<% counter = 0 %>
