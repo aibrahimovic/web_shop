@@ -15,6 +15,10 @@
           Veličine: <% hp.each do |help_prodcut| %>
                       <%= help_prodcut.size %>
                     <% end %>
+          <br>
+          <% if product.special == "1" %>
+            <b>Izdvojen proizvod</b>
+          <%end%>
         </td>
         <td class="allProducts_table">
           Cijena: <%= product.get_price %><br>
