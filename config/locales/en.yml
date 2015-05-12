@@ -72,6 +72,9 @@ en:
   order_price: "PRICE"
   order_total_price: "TOTAL"
   order_delivery_price: "Delivery"
+  home_login: "LOGIN"
+  home_register: "REGISTER"
+  home_logout: "LOGOUT"
 
   activerecord:
     attributes:

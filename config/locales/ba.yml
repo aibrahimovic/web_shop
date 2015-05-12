@@ -72,6 +72,9 @@ bs:
   order_price: "CIJENA"
   order_total_price: "UKUPNO"
   order_delivery_price: "Dostava"
+  home_login: "PRIJAVA"
+  home_register: "REGISTRACIJA"
+  home_logout: "ODJAVA"
 
 
   

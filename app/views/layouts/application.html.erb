@@ -32,12 +32,12 @@
             <% end %> 
 
           <% if logged_in? %>
-            <li class="nav_link"><%= link_to "LOGOUT", logout_path, method: "delete", class: "nav_link"%></li>
+            <li class="nav_link"><%= link_to t('home_logout'), logout_path, method: "delete", class: "nav_link"%></li>
 
           <% else %>
-           	<li class="nav_link"><%= link_to "LOGIN", login_path, class: "nav_link"%></li>
+           	<li class="nav_link"><%= link_to t('home_login'), login_path, class: "nav_link"%></li>
             <li><%= link_to "|", '#' %></li>
-				    <li class="nav_link"><%= link_to "REGISTER", new_user_path, class: "nav_link"%></li>
+				    <li class="nav_link"><%= link_to t('home_register'), new_user_path, class: "nav_link"%></li>
 			     <% end %>
             <li  id="shopping-cart" class="nav_link_cart"><%= link_to(image_tag("cart.png", size: "20x20"), carts_path, class: "nav_link") %></li>
             <li class="counter" id="counter"><%= session[:counter] %></li>
