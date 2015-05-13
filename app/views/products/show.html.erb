@@ -41,13 +41,13 @@
         	<% else %>
 			<td> 
 
-				<table>
+				<table border="1">
 					<tr>
-						<td colspan='3' style="padding:0px; margin:2px;"> <%= image_tag(@main_image.avatar.url(:show), :alt =>"item", :id => @product.id) %> </td>
+						<td id="main_image" colspan='3' class='main_image' style="padding:0px; margin:2px;" data-id="<%= @main_image.id %>"> Glavna <%= image_tag(@main_image.avatar.url(:show), :alt =>"item", :id => @product.id) %> </td>
 					</tr>
 					<tr>
 						<% @other_images.each do |other_im| %>
-							<td style="padding:0px; margin:2px;"> <%= image_tag(other_im.avatar.url(:thumb), :alt =>"item", :id => @product.id) %> </td>
+							<td id='small_image_<%= other_im.id%>' class='small_image' style="padding:0px; margin:2px;" data-id="<%= other_im.id %>"> <%= other_im.id %> <%= image_tag(other_im.avatar.url(:thumb), :alt =>"item", :id => @product.id) %> </td>
 						<% end %>
 					</tr>
 				</table>
@@ -159,6 +159,47 @@
 	<% counter = 0 %>
 
 </table>
+
+<script type="text/javascript">
+	
+
+	$( ".main_image" ).click(function() {
+		var main = $(this).data("id");
+		alert("uvecava se slika "+main);
+	});
+
+
+	$( ".small_image" ).click(function() {
+		var main = $( ".main_image" ).data("id");
+		var small = $(this).data("id");
+		//alert(small+" treba zamjena sa "+main);
+
+		var temp = $( ".main_image" ).html();
+		var small_image = $(this).html();
+		var main_image_id = $( ".main_image" ).data("id");
+		var small_image_id = $(this).data("id");
+		//alert(main_image_id);
+		//alert("Small image id: "+small_image_id);
+
+		/*$("#main_image").attr("data-id", small_image_id);
+		var string = "#small_image_"+small;
+		$(string).attr("data-id", main_image_id);
+		var new_string = "small_image_"+main_image_id;
+		$(string).attr("id", new_string);*/
+
+		$(".main_image" ).html(small_image);
+		$(this).html(temp);
+
+
+
+	});
+	
+
+
+
+</script>
+
+
 
 <script type="text/javascript">
 
