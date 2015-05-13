@@ -42,19 +42,92 @@
 			<td> 
 
 				<table border="1">
-					<tr style="width:300px; height:300px;">
-						<td id="main_image" colspan='3' class='main_image' style="padding:0px; margin:2px; width:300px; height:300px;" data-id="<%= @main_image.id %>"> Glavna <%= image_tag(@main_image.avatar.url(:thumb), :alt =>"item", :id => @main_image.id, :class=> 'main_show') %> </td>
-					</tr>
+					
+						<% @all_images.each do |im| %>
+							<% if @main_image.id == im.id %>
+							<tr>
+								<td colspan='3' id="<%= im.id %>" class='main_image active_image' style="padding:0px; margin:2px;" data-id="<%= im.id %>"> Glavna <%= image_tag(im.avatar.url(:show), :alt =>"item", :class=> 'main_show') %> 
+								</td>
+							<% else %>
+								<td colspan='3' id="<%= im.id %>" class='main_image' style="padding:0px; margin:2px; visibility: hidden;" data-id="<%= im.id %>"> Sporedne <%= image_tag(im.avatar.url(:show), :alt =>"item", :class=> 'main_show') %> 
+								</td>
+							<% end %>
+							</tr>
+						<% end %>
+					
 					<tr>
-						<% @other_images.each do |other_im| %>
+						<% @all_images.each do |other_im| %>
 							<td id='small_image_<%= other_im.id%>' class='small_image' style="padding:0px; margin:2px;" data-id="<%= other_im.id %>"> <%= other_im.id %> <%= image_tag(other_im.avatar.url(:thumb), :alt =>"item", :id => other_im.id) %> </td>
 						<% end %>
 					</tr>
 				</table>
 			</td>
 			<% end %>
-
 			</td>
+
+<script type="text/javascript">
+	
+
+	$( ".main_image" ).click(function() {
+		var main = $(this).data("id");
+		alert("uvecava se slika "+main);
+	});
+
+
+
+	$( ".small_image" ).click(function() {
+
+		var current_main = $( ".active_image" ).data("id");
+		var small = $(this).data("id");
+		var id_image = '#'+small;
+		var old_active_id = '#'+current_main;
+
+		$( ".active_image" ).css('visibility', 'hidden');
+		$(old_active_id).attr('class', 'main_image');
+		$(id_image).attr('class', 'main_image active_image');
+		$(id_image).css('visibility', 'visible');
+		
+
+		/*var main = $( ".main_image" ).data("id");
+		var small = $(this).data("id");
+		//alert(small+" treba zamjena sa "+main);
+
+		var temp = $( ".main_image" ).html();
+		var small_image = $(this).html();
+		var main_image_id = $( ".main_image" ).data("id");
+		var small_image_id = $(this).data("id");
+		//alert(main_image_id);
+		//alert("Small image id: "+small_image_id);
+
+		/*$("#main_image").attr("data-id", small_image_id);
+		var string = "#small_image_"+small;
+		$(string).attr("data-id", main_image_id);
+		var new_string = "small_image_"+main_image_id;
+		$(string).attr("id", new_string);
+
+		
+		//$(this).find('img').attr('src', 'Test');
+
+		var string_image = "#"+small;
+		//alert(string_image);
+		$(string_image).attr("src", "Test");
+		//alert($(string_image).html());
+
+		$(".main_image" ).html(small_image);
+		$(this).html(temp);*/
+		
+		
+
+	});
+	
+
+</script>
+
+
+
+
+
+
 			<button id="add-to-cart2" type="button" style="visibility: hidden;">Add to cart</button>
 			
 			
@@ -160,53 +233,6 @@
 
 </table>
 
-<script type="text/javascript">
-	
-	$('.main_image').attr('size', '300x300');
-
-	$( ".main_image" ).click(function() {
-		var main = $(this).data("id");
-		alert("uvecava se slika "+main);
-	});
-
-
-	$( ".small_image" ).click(function() {
-		var main = $( ".main_image" ).data("id");
-		var small = $(this).data("id");
-		//alert(small+" treba zamjena sa "+main);
-
-		var temp = $( ".main_image" ).html();
-		var small_image = $(this).html();
-		var main_image_id = $( ".main_image" ).data("id");
-		var small_image_id = $(this).data("id");
-		//alert(main_image_id);
-		//alert("Small image id: "+small_image_id);
-
-		/*$("#main_image").attr("data-id", small_image_id);
-		var string = "#small_image_"+small;
-		$(string).attr("data-id", main_image_id);
-		var new_string = "small_image_"+main_image_id;
-		$(string).attr("id", new_string);*/
-
-		
-		//$(this).find('img').attr('src', 'Test');
-
-		var string_image = "#"+small;
-		//alert(string_image);
-		$(string_image).attr("src", "Test");
-		//alert($(string_image).html());
-
-		$(".main_image" ).html(small_image);
-		$(this).html(temp);
-		
-		
-
-	});
-	
-
-
-
-</script>
 
 
 
