@@ -1,0 +1,18 @@
+rspec:
+    shop:
+        full_host:   'https://webshop-abhshoes.herokuapp.com//'
+    locale:
+        language:    'en'
+    target:
+        os:         'Linux'
+        browser:    'chrome'
+        browser2:   'ff'
+        browser3:   'ff'
+    #test_db:
+        #adapter:    'postgresql'
+        #encoding:   'unicode'
+        #database:   'd7e0n3n29ckrhd'
+        #pool:       '50'
+        #username:   'digwzjwwvmtsjv'
+        #password:   '2vCQY6dsjXpj_xPYT6ud5NKbuY'
+        #host:       'ec2-23-21-183-70.compute-1.amazonaws.com'
