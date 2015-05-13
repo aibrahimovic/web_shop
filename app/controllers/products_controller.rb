@@ -144,6 +144,10 @@ class ProductsController < ApplicationController
         end
         hp.destroy
       end
+      images = Image.where(product_id: id).all
+      images.each do |im|
+        im.destroy
+      end
 
     end
     respond_to do |format|

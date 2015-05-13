@@ -70,7 +70,8 @@
       </div>
     <% end %>
     <br>
-    <%= link_to "Pregledaj varijante proizvoda", help_products_new_path(:product_id => @product.id) %>
+    <%= link_to "Pregledaj varijante proizvoda", help_products_new_path(:product_id => @product.id) %><br>
+    <%= link_to "Pregledaj slike proizvoda", images_new_path(:product_id => @product.id) %>
 
     <br><br><br>
 	<%= link_to 'Prikaži proizvod', @product %> |

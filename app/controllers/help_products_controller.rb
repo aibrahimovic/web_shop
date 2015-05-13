@@ -4,6 +4,9 @@ class HelpProductsController < ApplicationController
 
   def new
     @product_parameter = params[:product_param]
+    if @product_parameter.nil?
+      @product_parameter = params[:product_id]
+    end
     @help_product = HelpProduct.new
     @help_products = HelpProduct.where(product_id: @product_parameter).all
     
@@ -12,7 +15,7 @@ class HelpProductsController < ApplicationController
   def create
     if @help_product_exists.nil?
       @help_product = HelpProduct.new(help_product_params)
-      
+
       respond_to do |format|
         if @help_product.save
           format.html { redirect_to help_products_new_path(:product_param => @help_product.product_id), notice: 'Varijacije proizvoda su uspješno kreirane.' }

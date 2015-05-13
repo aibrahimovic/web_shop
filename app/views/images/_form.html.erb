@@ -36,29 +36,119 @@
 
 <form action="/help_products/new" method="get">
   <input type="hidden" class="sh" name="product_param" value="<%= @product_parameter %>">
-  <!--<= tag(:input, :type => "hidden", :name => request_forgery_protection_token.to_s, :value => form_authenticity_token) %> -->
   <input type="submit" id="add_help_products" class="btn btn-primary" value="Dodaj varijantu proizvoda" style="width: 200px;">
 </form>
 
-
-
-<!-- button_to "HOME", item_path(@cart, sh_address: @shipping_address, bil_address: @billing_address), :class => "btn btn-primary", :method => :delete -->
 
 <h2>Sve slike proizvoda</h2>
 
 <table>
   
     <tr>
-      <td>
+      
         <% @product_images.each do |image| %>
+          
           <% if !image.nil? %>
-            <%= image_tag(image.avatar.url(:small)) %>
+          
+            <% if @main.id != image.id %>
+              
+              <td class="image" data-id="<%= image.id %>">
+                <span>
+                  <%= image.id %><br>
+                  <%= image_tag(image.avatar.url(:small)) %><br>
+                  <span style="text-align:center"><%= link_to 'Brisanje', image, method: :delete, data: { confirm: 'Da li ste sigurni?' } %></span>
+                </span>
+              </td>
+              
+            <% else %>
+              
+              <td style=" border: 1px solid #FFC63B;" class="image_main" data-id="<%= image.id %>">
+                <span>
+                  <%= image.id %><br>
+                  <%= image_tag(image.avatar.url(:small)) %><br>
+                  <span style="text-align:center"><%= link_to 'Brisanje', image, method: :delete, data: { confirm: 'Da li ste sigurni?' } %></span>
+                  </span>
+              </td>
+              
+            <% end %>
+
           <% end %>
         <% end %>
-      </td>
+      
     </tr>
 </table>
 
 <br>
+
+<input type="hidden" class="im1" name="im1" value="" >
+<input type="hidden" class="product_parameter" name="product_old" value="<%= @product_parameter %>" >
+
+<script type="text/javascript">
+      
+    /*$( document ).ready(function() {
+      $('.im1').val($(".image_main").data("id"));
+    });*/
+    
+
+      $( ".image_main" ).click(function() {
+
+        var main = $(this).data("id");
+        var product = $('.product_parameter').val();
+
+        $.ajax({
+            url: '/images/update_main_image',
+            data: { 
+              product_param: product,
+              main: main,
+            },
+            type: 'GET',
+            success: function(result) {   
+              if (result.error == true) {
+                //alert("sve ok");
+                //$(".bil").val(result.address_id);
+              }
+            }
+        });
+
+        $( ".image_main" ).css("border", "1px solid #FFC63B");
+        $( ".image" ).css("border", "none");
+        $('.im1').val($(this).data("id"));
+
+        
+
+      });
+
+      $( ".image" ).click(function() {
+
+        var main = $(this).data("id");
+        var product = $('.product_parameter').val();
+
+
+        $.ajax({
+              url: '/images/update_main_image',
+              data: { 
+                product_param: product,
+                main: main,
+              },
+              type: 'GET',
+              success: function(result) {   
+                if (result.error == true) {
+                  //alert("sve ok");
+                  //$(".bil").val(result.address_id);
+                }
+                else
+                  alert("greska");
+              }
+          });                
+        $( ".image" ).css("border", "none");
+        $( ".image_main" ).css("border", "none");
+        $(this).css("border", "1px solid #FFC63B");
+        $('.im1').val($(this).data("id"));
+
+
+      });
+
+
+</script>
 
 
