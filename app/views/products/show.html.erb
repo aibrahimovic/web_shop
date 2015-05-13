@@ -42,19 +42,19 @@
 			<td> 
 
 				<table border="1">
-					
+					<tr>
+						<td colspan='4'>
 						<% @all_images.each do |im| %>
 							<% if @main_image.id == im.id %>
-							<tr>
-								<td colspan='3' id="<%= im.id %>" class='main_image active_image' style="padding:0px; margin:2px;" data-id="<%= im.id %>"> Glavna <%= image_tag(im.avatar.url(:show), :alt =>"item", :class=> 'main_show') %> 
-								</td>
+								<span id="<%= im.id %>" class='main_image active_image' style="padding:0px; margin:2px;" data-id="<%= im.id %>"> <%= image_tag(im.avatar.url(:show), :alt =>"item", :class=> 'main_show') %> 
+								</span>
 							<% else %>
-								<td colspan='3' id="<%= im.id %>" class='main_image' style="padding:0px; margin:2px; visibility: hidden;" data-id="<%= im.id %>"> Sporedne <%= image_tag(im.avatar.url(:show), :alt =>"item", :class=> 'main_show') %> 
-								</td>
-							<% end %>
-							</tr>
+								<span id="<%= im.id %>" class='main_image' style="padding:0px; margin:2px; display:none" data-id="<%= im.id %>"> <%= image_tag(im.avatar.url(:show), :alt =>"item", :class=> 'main_show') %> 
+								</span>
+							<% end %>	
 						<% end %>
-					
+						</td>
+					</tr>
 					<tr>
 						<% @all_images.each do |other_im| %>
 							<td id='small_image_<%= other_im.id%>' class='small_image' style="padding:0px; margin:2px;" data-id="<%= other_im.id %>"> <%= other_im.id %> <%= image_tag(other_im.avatar.url(:thumb), :alt =>"item", :id => other_im.id) %> </td>
@@ -82,10 +82,10 @@
 		var id_image = '#'+small;
 		var old_active_id = '#'+current_main;
 
-		$( ".active_image" ).css('visibility', 'hidden');
+		$( ".active_image" ).css('display', 'none');
 		$(old_active_id).attr('class', 'main_image');
 		$(id_image).attr('class', 'main_image active_image');
-		$(id_image).css('visibility', 'visible');
+		$(id_image).css('display', 'inline');
 		
 
 		/*var main = $( ".main_image" ).data("id");
