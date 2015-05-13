@@ -3,19 +3,19 @@ class HelpProductsController < ApplicationController
   before_action :product_exists, only: [:create]
 
   def new
-    @product_parameter = params[:product_id]
-  	#@all = HelpProducts.all 
+    @product_parameter = params[:product_param]
     @help_product = HelpProduct.new
     @help_products = HelpProduct.where(product_id: @product_parameter).all
+    
   end
 
   def create
     if @help_product_exists.nil?
       @help_product = HelpProduct.new(help_product_params)
-
+      
       respond_to do |format|
         if @help_product.save
-          format.html { redirect_to help_products_new_path(:product_id => @help_product.product_id), notice: 'Varijacije proizvoda su uspješno kreirane.' }
+          format.html { redirect_to help_products_new_path(:product_param => @help_product.product_id), notice: 'Varijacije proizvoda su uspješno kreirane.' }
           format.json { render :show, status: :created, location: @help_product }
         else
           format.html { render :new }
@@ -27,7 +27,7 @@ class HelpProductsController < ApplicationController
       quantity_to_update = params[:help_product][:quantity]
       @help_product.quantity += quantity_to_update.to_i
       if @help_product.save
-        redirect_to help_products_new_path(:product_id => @help_product.product_id)
+        redirect_to help_products_new_path(:product_param => @help_product.product_id)
       end
     end 
   end
@@ -35,7 +35,7 @@ class HelpProductsController < ApplicationController
   def destroy
     @help_product.destroy
     respond_to do |format|
-      format.html { redirect_to help_products_new_path(:product_id => @help_product.product_id), notice: 'Proizvod je uspješno izbirsan.' }
+      format.html { redirect_to help_products_new_path(:product_param => @help_product.product_id), notice: 'Proizvod je uspješno izbirsan.' }
       format.json { head :no_content }
     end
   end

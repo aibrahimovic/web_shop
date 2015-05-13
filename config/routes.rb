@@ -69,6 +69,8 @@ Test3::Application.routes.draw do
     get "my_language", on: :collection
   end
 
+  resources :images
+
   resources :payments
 
   scope '(:locale)' do

@@ -5,6 +5,7 @@ class ImagesController < ApplicationController
   def new
     @product_parameter = params[:product_id]
     @image = Image.new
+    @product_images = Image.where(product_id: @product_parameter).all
   end
 
   def create
