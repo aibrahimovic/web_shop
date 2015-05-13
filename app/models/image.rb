@@ -4,8 +4,8 @@ class Image < ActiveRecord::Base
   has_attached_file :avatar, :styles => {
                       :thumb => "120x120>",
                       :small => "150x150>",
-                      :show => "200x200>",
-                      :preview => "500x500>",
+                      :show => "300x300>",
+                      :preview => "700x700>",
                       :slider => "1150x350>",
                       #:storage => :s3, #izmjena!!
                   	  #:s3_credentials => Proc.new{|a| a.instance.s3_credentials }, 

@@ -3,8 +3,6 @@
 	<head>
 	</head>
 <body>
-<br><br>
-
 <% sizes = [] %>
 
 <% list = HelpProduct.all %>
@@ -37,16 +35,16 @@
 <div class="wrapper">
 	<div class="clear"></div>
 	<div class="item">
-		<table id="helpTable1" cellpadding="10" border="1">
+		<table id="helpTable1" cellpadding="10">
 			<col width="40px" />
 			<tr style="padding:0px; margin:2px;">
         
         	<% if @main_image.nil? %>
-        	<td>
+        	<td style="padding:0px; margin:2px;">
         		<%= image_tag(@product.image.url(:show), :alt =>"item", :id => @product.id) %>
         	</td>
         	<% else %>
-			<td> 
+			<td style="padding:0px; margin:2px;"> 
 
 				<table>
 					<tr>
@@ -58,7 +56,9 @@
 									<%=link_to image_tag(im.avatar.url(:show)), im.avatar.url(:preview), :popup=>['original_image', 'height=700,width=900'] %>
 								</span>
 							<% else %>
-								<span id="<%= im.id %>" class='main_image' style="padding:0px; margin:2px; display:none" data-id="<%= im.id %>"> <%= image_tag(im.avatar.url(:show), :alt =>"item", :class=> 'main_show') %> 
+								<span id="<%= im.id %>" class='main_image' style="padding:0px; margin:2px; display:none" data-id="<%= im.id %>"> 
+									<!-- <= image_tag(im.avatar.url(:show), :alt =>"item", :class=> 'main_show') %> -->
+									<%=link_to image_tag(im.avatar.url(:show)), im.avatar.url(:preview), :popup=>['original_image', 'height=800,width=800'] %>
 								</span>
 							<% end %>	
 						<% end %>
