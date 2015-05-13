@@ -30,11 +30,31 @@
 <div class="wrapper">
 	<div class="clear"></div>
 	<div class="item">
-		<table id="helpTable1" cellpadding="10">
+		<table id="helpTable1" cellpadding="10" border="1">
 			<col width="40px" />
 			<tr style="padding:0px; margin:2px;">
         
-			<td> <%= image_tag(@product.image.url(:show), :alt =>"item", :id => @product.id) %> </td>
+        	<% if @main_image.nil? %>
+        	<td>
+        		<%= image_tag(@product.image.url(:show), :alt =>"item", :id => @product.id) %>
+        	</td>
+        	<% else %>
+			<td> 
+
+				<table border="1">
+					<tr>
+						<td colspan='3' style="padding:0px; margin:2px;"> <%= image_tag(@main_image.avatar.url(:show), :alt =>"item", :id => @product.id) %> </td>
+					</tr>
+					<tr>
+						<% @other_images.each do |other_im| %>
+							<td style="padding:0px; margin:2px;"> <%= image_tag(other_im.avatar.url(:small), :alt =>"item", :id => @product.id) %> </td>
+						<% end %>
+					</tr>
+				</table>
+			</td>
+			<% end %>
+
+			</td>
 			<button id="add-to-cart2" type="button" style="visibility: hidden;">Add to cart</button>
 			
 			

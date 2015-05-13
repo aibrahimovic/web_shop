@@ -51,14 +51,15 @@
           <% if !image.nil? %>
           
             <% if @main.id != image.id %>
-              
-              <td class="image" data-id="<%= image.id %>">
+
+              <td class="image_product" data-id="<%= image.id %>">
                 <span>
                   <%= image.id %><br>
                   <%= image_tag(image.avatar.url(:small)) %><br>
-                  <span style="text-align:center"><%= link_to 'Brisanje', image, method: :delete, data: { confirm: 'Da li ste sigurni?' } %></span>
                 </span>
+                <span style="text-align:center"><%= link_to 'Brisanje', image, method: :delete, data: { confirm: 'Da li ste sigurni?' } %></span>
               </td>
+
               
             <% else %>
               
@@ -66,8 +67,8 @@
                 <span>
                   <%= image.id %><br>
                   <%= image_tag(image.avatar.url(:small)) %><br>
-                  <span style="text-align:center"><%= link_to 'Brisanje', image, method: :delete, data: { confirm: 'Da li ste sigurni?' } %></span>
-                  </span>
+                </span>
+                <span style="text-align:center"><%= link_to 'Brisanje', image, method: :delete, data: { confirm: 'Da li ste sigurni?' } %></span>
               </td>
               
             <% end %>
@@ -85,11 +86,7 @@
 
 <script type="text/javascript">
       
-    /*$( document ).ready(function() {
-      $('.im1').val($(".image_main").data("id"));
-    });*/
     
-
       $( ".image_main" ).click(function() {
 
         var main = $(this).data("id");
@@ -111,14 +108,14 @@
         });
 
         $( ".image_main" ).css("border", "1px solid #FFC63B");
-        $( ".image" ).css("border", "none");
+        $( ".image_product" ).css("border", "none");
         $('.im1').val($(this).data("id"));
 
         
 
       });
 
-      $( ".image" ).click(function() {
+      $( ".image_product" ).click(function() {
 
         var main = $(this).data("id");
         var product = $('.product_parameter').val();
@@ -140,7 +137,7 @@
                   alert("greska");
               }
           });                
-        $( ".image" ).css("border", "none");
+        $( ".image_product" ).css("border", "none");
         $( ".image_main" ).css("border", "none");
         $(this).css("border", "1px solid #FFC63B");
         $('.im1').val($(this).data("id"));

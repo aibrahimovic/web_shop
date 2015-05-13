@@ -9,6 +9,9 @@ class ProductsController < ApplicationController
   def show
     @counter =  session[:counter]
     @product = Product.find(params[:id])
+    @main_image = Image.find_by(product_id: @product.id, main: '1')
+    @other_images = Image.where(product_id: @product.id, main: nil).all
+
     if !params[:counter].nil?
       #@counter += params[:counter].to_i
     end
