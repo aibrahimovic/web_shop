@@ -1,0 +1,4 @@
+--color
+--require spec_helper
+--format html -o "spec/reports/report.html"
+--format documentation

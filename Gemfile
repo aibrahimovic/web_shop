@@ -47,11 +47,16 @@ gem 'bcrypt-ruby', '~> 3.0.0'
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
-group :development do
+group :development, :test do
   gem "binding_of_caller"
   gem 'better_errors', '~> 2.1.1'
   gem 'byebug'
 end
+
+gem 'watir'
+gem 'watir-webdriver'
+gem 'rspec'
+gem 'require_all'
 
 gem 'bootstrap-sass',  '3.2.0.0'
 
