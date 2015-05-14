@@ -1,3 +1,8 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	</head>
+<body>
 <% sizes = [] %>
 
 <% list = HelpProduct.all %>
@@ -34,7 +39,41 @@
 			<col width="40px" />
 			<tr style="padding:0px; margin:2px;">
         
-			<td> <%= image_tag(@product.image.url(:show), :alt =>"item", :id => @product.id) %> </td>
+        	<% if @main_image.nil? %>
+        	<td style="padding:0px; margin:2px;">
+        		<%= image_tag(@product.image.url(:show), :alt =>"item", :id => @product.id) %>
+        	</td>
+        	<% else %>
+			<td style="padding:0px; margin:2px;"> 
+
+				<table>
+					<tr>
+						<td colspan='4'>
+						<% @all_images.each do |im| %>
+							<% if @main_image.id == im.id %>
+								<span id="<%= im.id %>" class='main_image active_image' style="padding:0px; margin:2px;" data-id="<%= im.id %>"> 
+									<!--<= image_tag(im.avatar.url(:show), :alt =>"item", :class=> 'main_show') %> -->
+									<%=link_to image_tag(im.avatar.url(:show)), im.avatar.url(:preview), :popup=>['original_image', 'height=700,width=900'] %>
+								</span>
+							<% else %>
+								<span id="<%= im.id %>" class='main_image' style="padding:0px; margin:2px; display:none" data-id="<%= im.id %>"> 
+									<!-- <= image_tag(im.avatar.url(:show), :alt =>"item", :class=> 'main_show') %> -->
+									<%=link_to image_tag(im.avatar.url(:show)), im.avatar.url(:preview), :popup=>['original_image', 'height=800,width=800'] %>
+								</span>
+							<% end %>	
+						<% end %>
+						</td>
+					</tr>
+					<tr>
+						<% @all_images.each do |other_im| %>
+							<td id='small_image_<%= other_im.id%>' class='small_image' style="padding:0px; margin:2px;" data-id="<%= other_im.id %>"> <%= image_tag(other_im.avatar.url(:thumb), :alt =>"item", :id => other_im.id) %> </td>
+						<% end %>
+					</tr>
+				</table>
+			</td>
+			<% end %>
+			</td>
+
 			<button id="add-to-cart2" type="button" style="visibility: hidden;">Add to cart</button>
 			
 			
@@ -99,7 +138,6 @@
 </div> <!-- wraper -->
 
 
-
 <br><br><br><br>
 <h2> <%= t('similar_products') %></h2>
 <br>
@@ -139,6 +177,74 @@
 	<% counter = 0 %>
 
 </table>
+
+
+
+</body>
+</html>
+
+
+
+<script type="text/javascript">
+	
+	function changePicture() {
+		 var myPopup = window.open("", "", "width=200, height=100");
+	}
+
+	$( ".main_image" ).click(function() {
+		var main = $(this).data("id");
+		//alert("uvecava se slika "+main);
+	});
+
+	$( ".small_image" ).click(function() {
+
+		var current_main = $( ".active_image" ).data("id");
+		var small = $(this).data("id");
+		var id_image = '#'+small;
+		var old_active_id = '#'+current_main;
+
+		$( ".active_image" ).css('display', 'none');
+		$(old_active_id).attr('class', 'main_image');
+		$(id_image).attr('class', 'main_image active_image');
+		$(id_image).css('display', 'inline');
+		
+
+		/*var main = $( ".main_image" ).data("id");
+		var small = $(this).data("id");
+		//alert(small+" treba zamjena sa "+main);
+
+		var temp = $( ".main_image" ).html();
+		var small_image = $(this).html();
+		var main_image_id = $( ".main_image" ).data("id");
+		var small_image_id = $(this).data("id");
+		//alert(main_image_id);
+		//alert("Small image id: "+small_image_id);
+
+		/*$("#main_image").attr("data-id", small_image_id);
+		var string = "#small_image_"+small;
+		$(string).attr("data-id", main_image_id);
+		var new_string = "small_image_"+main_image_id;
+		$(string).attr("id", new_string);
+
+		
+		//$(this).find('img').attr('src', 'Test');
+
+		var string_image = "#"+small;
+		//alert(string_image);
+		$(string_image).attr("src", "Test");
+		//alert($(string_image).html());
+
+		$(".main_image" ).html(small_image);
+		$(this).html(temp);*/
+		
+		
+
+	});
+	
+
+</script>
+
+
 
 <script type="text/javascript">
 

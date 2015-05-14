@@ -1,6 +1,8 @@
 
 <div class="row" id="all_products">
 <% @all_products_in_category.each do |product| %>
+	<% @main_image = Image.find_by(product_id: product.id, main: '1') %>
+		<% if @main_image.nil? %>
 		<div class="col-md-3">
 			<%= link_to product_path(product.id) do %>
 			<div id="wrapper" class="image">
@@ -29,6 +31,36 @@
 			<% end %>
 
 		</div>
+		<% else %>
+		<div class="col-md-3">
+			<%= link_to product_path(product.id) do %>
+			<div id="wrapper" class="image">
+				<%= image_tag(@main_image.avatar.url(:small))%> <br>
+			</div>
+			<% end %>
+			<%= product.name %><br>
+			
+			<% if product.get_price != product.price %>
+			<div class="row" style="width:200px;">
+				<div class="col-md-6" style="padding-right: 0px;">
+				<span style="text-decoration: line-through; color: red;">
+				 	<span style="color: #686868; font-size: 12px;"><%= product.price %> KM</span>
+				</span>
+
+				<div class="red_letters">
+					- <%= product.get_percent %> %
+				</div>
+				</div>
+				<div class="col-md-6" style="padding-left: 0px;">
+					<%= product.get_price %> KM
+				</div>
+			</div>
+			<% else %>
+				<%= product.price %> KM<br>
+			<% end %>
+
+		</div>
+		<% end %>
 	
 
 <% end %>

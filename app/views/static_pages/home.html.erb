@@ -13,23 +13,47 @@
 			  <a href="#" class="control_prev"><</a>
 			  <ul>
 			  <% @special.each do |product| %>
-			  	<li style="padding-top: 130px;">
-			  		<span>
-			  			<%= link_to product_path(product.id) do %>
-			  				<%= image_tag(product.image.url(:slider)) %>
-			  			<% end %>
-			  		</span>
+			  	<% @main_image = Image.find_by(product_id: product.id, main: '1') %>
+			  	<% if @main_image.nil? %>
+				  	<li style="padding-top: 130px;">
+				  		<span>
+				  			<%= link_to product_path(product.id) do %>
+				  				<%= image_tag(product.image.url(:slider)) %>
+				  			<% end %>
+				  		</span>
+				  	</li>
+			  	<% else %>
+				  	<li style="padding-top: 130px;">
+				  		<span>
+				  			<%= link_to product_path(product.id) do %>
+				  				<%= image_tag(@main_image.avatar.url(:slider)) %>
+				  			<% end %>
+				  		</span>
+				  	</li>
+			  	<% end %>
 			  <% end %>
 			  
 			  <% @special_sale.each do |product| %>
-			  	<li style="padding-top: 10px;">
-			  		<p class="sale_tag"> <i>-<%= product.get_percent %>%</i> <p>
-			  		<span>
-			  			<%= link_to product_path(product.id) do %>
-			  				<%= image_tag(product.image.url(:slider)) %>
-			  			<% end %>
-			  		</span>	
-			  	</li> 			
+			  	<% @main_image = Image.find_by(product_id: product.id, main: '1') %>
+			  	<% if @main_image.nil? %>
+				  	<li style="padding-top: 10px;">
+				  		<p class="sale_tag"> <i>-<%= product.get_percent %>%</i> <p>
+				  		<span>
+				  			<%= link_to product_path(product.id) do %>
+				  				<%= image_tag(product.image.url(:slider)) %>
+				  			<% end %>
+				  		</span>	
+				  	</li> 			
+			  	<% else %>
+				  	<li style="padding-top: 10px;">
+				  		<p class="sale_tag"> <i>-<%= product.get_percent %>%</i> <p>
+				  		<span>
+				  			<%= link_to product_path(product.id) do %>
+				  				<%= image_tag(@main_image.avatar.url(:slider)) %>
+				  			<% end %>
+				  		</span>	
+				  	</li> 	
+				 <% end %>			
 			  <% end %>
 			  	 <!-- <= image_tag(product.image.url(:show)) %> -->
 			  
@@ -49,21 +73,27 @@
 		<% counter = 0 %>
 		<table id="all_products2">
 		<% @all_products_on_sale.each do |product| %>
-			<% if counter%4 == 0 || counter == 0 %>
-				<tr><td>
-			<% else %>
-				<td>
-			<% end %>
-			<%= link_to product_path(product.id) do %>
-				<div data-content1="<%= product.name %>"  data-content2="<%= product.get_price %>KM"  class="image">
-					<%= image_tag(product.image.url(:small)) %><br>
-					<% counter += 1 %>
-				</div>
-			<% end %>
-				</td>
-				<% if counter%4 == 0 || counter == @all_products_on_sale.length %>
-					</tr>
+		<% @main_image = Image.find_by(product_id: product.id, main: '1') %>
+			
+				<% if counter%4 == 0 || counter == 0 %>
+					<tr><td>
+				<% else %>
+					<td>
 				<% end %>
+				<%= link_to product_path(product.id) do %>
+					<div data-content1="<%= product.name %>"  data-content2="<%= product.get_price %>KM"  class="image">
+					<% if @main_image.nil? %>
+						<%= image_tag(product.image.url(:small)) %><br>
+					<% else %>
+						<%= image_tag(@main_image.avatar.url(:small)) %><br>
+					<% end %>
+						<% counter += 1 %>
+					</div>
+				<% end %>
+					</td>
+					<% if counter%4 == 0 || counter == @all_products_on_sale.length %>
+						</tr>
+					<% end %>
 			<% end %>
 			<% counter = 0 %>
 		</table>

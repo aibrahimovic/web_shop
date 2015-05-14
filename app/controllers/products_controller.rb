@@ -9,6 +9,9 @@ class ProductsController < ApplicationController
   def show
     @counter =  session[:counter]
     @product = Product.find(params[:id])
+    @main_image = Image.find_by(product_id: @product.id, main: '1')
+    @all_images = Image.where(product_id: @product.id).all
+
     if !params[:counter].nil?
       #@counter += params[:counter].to_i
     end
@@ -144,6 +147,10 @@ class ProductsController < ApplicationController
         end
         hp.destroy
       end
+      images = Image.where(product_id: id).all
+      images.each do |im|
+        im.destroy
+      end
 
     end
     respond_to do |format|
@@ -182,7 +189,7 @@ class ProductsController < ApplicationController
     end
 
     def product_params
-      params.require(:product).permit(:name, :image, :price, :description, :category_id, :name2, :description2, :sale, :sale_percent)
+      params.require(:product).permit(:name, :image, :price, :description, :category_id, :name2, :description2, :sale, :sale_percent, :special)
     end
 
   helper_method :get_category_name

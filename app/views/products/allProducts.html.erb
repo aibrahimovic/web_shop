@@ -5,8 +5,13 @@
 <table>
   <tbody>
     <% @products.each do |product| %>
+      <% product_image = Image.find_by(product_id: product.id, main: '1') %>
       <tr class="admin_table_tr">
-        <td class="allProducts_table"><%= image_tag(product.image.url(:thumb)) %></td>
+        <td class="allProducts_table">
+          <% if !product_image.nil? %>
+            <%= image_tag(product_image.avatar.url(:thumb)) %>
+          <% end %>
+        </td>
         <td class="allProducts_table">
           Model: <%= product.name %><br>
           Opis: <%= product.description %><br>
