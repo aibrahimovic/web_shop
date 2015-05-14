@@ -20,11 +20,18 @@
 
 			<% counter = 0 %>
  
-			<% @all.each do |y| %>
+			<% @all.each do |y| %>	
 			<% p = y.help_product.product %>
+			<% @main_image = Image.find_by(product_id: p.id, main: '1') %>	
 			<% counter += 1 %>
 			<tr style="padding:0px; margin:2px;"> 
-				<td style="padding:0px; margin:2px;"> <%= image_tag(p.image.url(:small)) %> </td>
+				<td style="padding:0px; margin:2px;"> 
+					<% if @main_image.nil? %>
+						<%= image_tag(p.image.url(:small)) %> 
+					<% else %>
+						<%= image_tag(@main_image.avatar.url(:small)) %> 
+					<% end %>
+				</td>
 				<td style="padding:30px; margin:2px; color:gray;"> <%= t('item_model') %>: <%= p.name %> <br>
 					 <%= t('item_size') %>: <%= y.help_product.size %> <br>
 					 <%= t('item_color') %>: Crvena <br>
