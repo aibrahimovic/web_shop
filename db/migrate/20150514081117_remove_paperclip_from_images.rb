@@ -1,5 +1,5 @@
 class RemovePaperclipFromImages < ActiveRecord::Migration
- 	def change
-    remove_column :images, :avatar
+  def change
+    remove_column :images, :avatar_file_name
   end
 end
