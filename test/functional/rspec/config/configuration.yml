@@ -5,7 +5,7 @@ rspec:
         language:    'en'
     target:
         os:         'Linux'
-        browser:    'chrome'
+        browser:    'ff'
         browser2:   'ff'
         browser3:   'ff'
     #test_db:
