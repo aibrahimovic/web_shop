@@ -83,13 +83,13 @@ ActiveRecord::Schema.define(version: 20150512194608) do
   add_index "images", ["product_id"], name: "index_images_on_product_id", using: :btree
 
   create_table "items", force: true do |t|
+    t.integer  "product_id"
     t.integer  "cart_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "size"
     t.integer  "quantity"
     t.integer  "help_product_id"
-    t.integer  "product_id"
     t.integer  "tag"
     t.string   "price"
   end
@@ -164,6 +164,9 @@ ActiveRecord::Schema.define(version: 20150512194608) do
     t.datetime "updated_at"
     t.string   "password_digest"
     t.integer  "role_id"
+    t.integer  "address_id"
   end
+
+  add_index "users", ["address_id"], name: "index_users_on_address_id", using: :btree
 
 end

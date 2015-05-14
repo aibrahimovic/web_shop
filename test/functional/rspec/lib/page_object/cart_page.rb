@@ -118,7 +118,7 @@ class CartPage < PageContainer
 	def set_quantity(quantity)
 		quantity_field.click
 		puts quantity_field.value
-		quantity_field.set "0"
+		quantity_field.set "0"	
 		puts quantity_field.value + "1"
 		#@browser.send_keys :enter
 		sleep 5

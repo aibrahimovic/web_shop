@@ -22,8 +22,8 @@ default: &default
  
 development:
   <<: *default
-  username: postgres
-  password: a
+  username: azra
+  password: 
   database: test3_development
  
   # The specified database role being used to connect to postgres.

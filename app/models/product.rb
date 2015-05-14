@@ -10,7 +10,8 @@ class Product < ActiveRecord::Base
                       :slider => "300x300>",
                       #:storage => :s3, #izmjena!!
                   	  #:s3_credentials => Proc.new{|a| a.instance.s3_credentials }, 
-                  	  :default_url => "/images/:style/missing.png"
+                  	  :default_url => "/images/:style/missing.png",
+                      :path => ":rails_root/public/system/:attachment/:id/:style/:filename"
                     }
 
     validates_attachment_content_type :image, :content_type => ["image/jpg", "image/jpeg", "image/png", "image/gif"]

@@ -91,7 +91,7 @@ describe "Cart functionalities" do
 
 
 	after(:all) do
-		#$browser.quit
+		$browser.quit
 	end
 
 end
