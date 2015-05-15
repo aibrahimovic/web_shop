@@ -15,6 +15,7 @@
 //= require turbolinks
 //= require jquery.rambling.slider
 //= require_tree .
+//= require magnific-popup
 
 $(window).bind('page:load', function(){
     //alert("Test");
