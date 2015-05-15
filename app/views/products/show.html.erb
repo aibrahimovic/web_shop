@@ -58,7 +58,7 @@
 							<% else %>
 								<span id="<%= im.id %>" class='main_image' style="padding:0px; margin:2px; display:none" data-id="<%= im.id %>"> 
 									<!-- <= image_tag(im.avatar.url(:show), :alt =>"item", :class=> 'main_show') %> -->
-									<%=link_to image_tag(im.avatar.url(:show)) %>
+									<%=link_to image_tag(im.avatar.url(:show))	 %>
 								</span>
 							<% end %>	
 						<% end %>
@@ -156,7 +156,7 @@
 <table id="all_products2">
 	
 	<% list.each do |x| %>
-
+		<% @main_image = Image.find_by(product_id: x.id, main: '1') %>
 		<% if counter%4 == 0 || counter == 0 %>
 			<tr><td>
 		<% else %>
@@ -164,7 +164,11 @@
 		<% end %> 
 			<%= link_to product_path(x.id) do %>
 				<div data-content1="<%= x.name %>"  data-content2="<%= x.price %>KM"  class="image">
-					<%= image_tag(x.image)%> <br>
+					<% if @main_image.nil? %>
+						<%= image_tag(x.image.url(:small))%> <br>
+					<% else %>
+						<%= image_tag(@main_image.avatar.url(:small))%> <br>
+					<% end %>
 					<% counter += 1 %>
 				</div>
 			<% end %>
@@ -196,7 +200,7 @@ $(document).ready(function() { // Begin Step 2
       verticalFit: true,
       titleSrc: function(item) {
         var caption = item.el.attr('title');
-        return caption + ' &middot; <input type="button" value="Rotate" class="rotate" />';  // Step 3
+        return caption + ' &middot; <input type="button" value="Rotate" class="rotat" />';  // Step 3
       }
     },  // End Step 2
 
