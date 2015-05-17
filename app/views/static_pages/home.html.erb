@@ -76,9 +76,9 @@
 		<% @main_image = Image.find_by(product_id: product.id, main: '1') %>
 			
 				<% if counter%4 == 0 || counter == 0 %>
-					<tr><td style="padding: 15px;">
+					<tr><td style="padding: 25px;">
 				<% else %>
-					<td style="padding: 15px;">
+					<td style="padding: 25px;">
 				<% end %>
 				<%= link_to product_path(product.id) do %>
 					<div data-content1="<%= product.name %>"  data-content2="<%= product.get_price %>KM"  data-content3="<%= product.get_percent %>%" data-content4="<%= product.price %>KM" class="image">

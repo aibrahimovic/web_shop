@@ -3,7 +3,7 @@ class Image < ActiveRecord::Base
 
   has_attached_file :avatar, :styles => {
                       :thumb => "120x120>",
-                      :small => "200x200>",
+                      :small => "170x170>",
                       :show => "300x300>",
                       :preview => "700x700>",
                       :slider => "1150x350>",

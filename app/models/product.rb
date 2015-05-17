@@ -1,5 +1,7 @@
 class Product < ActiveRecord::Base
 
+  include ActionView::Helpers::NumberHelper
+
 	belongs_to :category
 	has_many :items
 	has_attached_file :image, :styles => {
@@ -24,7 +26,8 @@ class Product < ActiveRecord::Base
       @price = self.sale
     end
 
-    @price
+    @price = @price.to_s << "00"
+    @price = number_with_precision(@price, :precision => 2)
   end
 
   def get_percent

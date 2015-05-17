@@ -1,5 +1,7 @@
 class ItemsController < ApplicationController
 
+  include ActionView::Helpers::NumberHelper
+
   def new
   	@item = Item.new   
   end

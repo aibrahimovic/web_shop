@@ -23,6 +23,9 @@ class Cart < ActiveRecord::Base
   	else
 
       item.price = item.help_product.product.get_price.to_f*item.quantity
+      item.price = item.price.to_s << "0"
+      item.price = number_with_precision(item.price, :precision => 2)
+      
       self.items << item
   		if self.save
         item.save
