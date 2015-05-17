@@ -109,7 +109,7 @@
 						status = "";
 						for (i=0; i<products.length; i++) {
 							if (quantities[i] == 0) {
-								status += "Poizvod <b>"+names[i]+"</b> više nije dostupan.<br>";
+								status += "<%= t('status_product') %> <b>"+names[i]+"</b> <%= t('status_available1') %>.<br>";
 								$(".cart_status").html(status);
 								var id_for_item = products[i];
 								$("#"+id_for_item).val(quantities[i]);
@@ -146,7 +146,7 @@
 
 							}
 							else {
-								status += "Poizvod <b>"+names[i]+"</b> ima ograničenu količinu. Možete naručiti najviše <b>"+quantities[i]+"</b> proizvoda.<br>";
+								status += "<%= t('status_product') %> <b>"+names[i]+"</b> <%= t('status_available2') %> <b>"+quantities[i]+"</b> <%= t('status_products') %>.<br>";
 								$(".cart_status").html(status);
 								var id_for_item = products[i];
 								$("#"+id_for_item).val(quantities[i]);
@@ -227,6 +227,7 @@
 							$(".cart_total").html("0.00KM");
 							$('.table_total2').hide();
 							$('.table_total').hide();
+							$('.your_cart').html("<%= t('your_cart_empty')%>");
 						}
 			    		$.ajax({
 							url: '/carts/update_price',
@@ -304,7 +305,7 @@
 		if ("<%= @nuber_of_items %>" == 0) {
 			$('.table_total2').hide();
 			$('.table_total').hide();
-			$('.your_cart').html("<%= t('your_cart_empity')%>");
+			$('.your_cart').html("<%= t('your_cart_empty')%>");
 		}
 
 

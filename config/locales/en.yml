@@ -76,6 +76,10 @@ en:
   home_register: "REGISTER"
   home_logout: "LOGOUT"
   your_cart_empty: 'Your cart is empty'
+  status_product: "Product"
+  status_available1: "is no longer available"
+  status_available2: "has limited quantity. You can order"
+  status_products: "products"
 
   activerecord:
     attributes:
