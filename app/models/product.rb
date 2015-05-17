@@ -26,8 +26,10 @@ class Product < ActiveRecord::Base
       @price = self.sale
     end
 
-    @price = @price.to_s << "00"
+    @price.to_f
     @price = number_with_precision(@price, :precision => 2)
+
+    @price
   end
 
   def get_percent
