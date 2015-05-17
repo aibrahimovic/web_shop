@@ -39,47 +39,40 @@ class CartsController < ApplicationController
     is_updated = @cart.update_item(params[:item_id], params[:quantity])
     quantity = params[:quantity]
     @counter = session[:counter]
+    puts 'iz prvi update:'+@counter.to_s
 
     if quantity.to_i > old_qunantity.to_i
-      puts 'counter_prije: '+@couter.to_s
+      puts 'counter_prije: '+@counter.to_s
       puts 'Stara: '+old_qunantity.to_s
       puts 'Nova: '+quantity.to_s
-      @couter = (@counter - old_qunantity.to_i) + quantity.to_i
-       puts 'counter_nakon: '+@couter.to_s
+      @counter = (@counter.to_i - old_qunantity.to_i) + quantity.to_i
+      puts 'counter_nakon: '+@counter.to_s
+      session[:counter] = @counter
     else
-      puts 'counter_prije: '+@couter.to_s
+      puts 'counter_prije: '+@counter.to_s
       puts 'Stara: '+old_qunantity.to_s
       puts 'Nova: '+quantity.to_s
-      @couter = (@counter - quantity.to_i)
-      puts 'counter_nakon: '+@couter.to_s
+      @counter = @counter.to_i - (old_qunantity.to_i - quantity.to_i)
+      puts 'counter_nakon: '+@counter.to_s
+      session[:counter] = @counter
     end
-    
 
-    set_counter(@couter)
-
-    #@counter += quantity.to_i
-
-    #if is_updated == true
-      #@brojac = 0
-      #@cart.items.each do |item| 
-        #puts 'Količina:'+item.quantity.to_s
-        #@brojac += item.quantity.to_i
-      #end
-      #set_counter(@brojac)
-    #end
-    render json: { error: is_updated } 
+    render json: { error: is_updated, counter: @counter} 
   end
 
   def delete_item
+
+    item = Item.find(params[:item_id])
+    old_qunantity = item.quantity
+
     is_deleted = @cart.delete_item(params[:item_id])
     number = @cart.items.length
+
     @counter = session[:counter]
-    @cart.items.each do |item| 
-      @counter += item.quantity.to_i
-    end
-    set_counter(@counter)
-    #session[:counter] = totalNumber
-    render json: { error: is_deleted, itemsNumber: number} 
+    @counter = @counter.to_i - old_qunantity.to_i
+    session[:counter] = @counter
+
+    render json: { error: is_deleted, itemsNumber: number, counter: @counter} 
   end
 
   def update_price

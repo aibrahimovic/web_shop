@@ -25,8 +25,9 @@ class ItemsController < ApplicationController
         hp = HelpProduct.find_by(id: @item.help_product_id)    
         if is_saved == true
           @counter += @item.quantity
-          set_counter(@counter)
-          #session[:counter] = @counter
+          #set_counter(@counter)
+          session[:counter] = @counter
+          puts 'iz itemCreate novi:'+session[:counter].to_s
         end
 
         redirect_to product_path(hp.product)

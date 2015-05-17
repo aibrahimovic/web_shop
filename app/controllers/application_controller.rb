@@ -54,7 +54,7 @@ class ApplicationController < ActionController::Base
   end
 
   def set_counter(counter)
-    session[:counter] = counter
+    #session[:counter] = counter
   end
 
   def set_order
