@@ -15,7 +15,7 @@
 
 		<table class="table_cart">
 			<tr> 
-				<td style="padding:30px; margin:2px;"> <%= t('your_cart')%></td>
+				<td style="padding:30px; margin:2px;" class="your_cart"> <%= t('your_cart')%> </td>
 			</tr>
 
 			<% counter = 0 %>
@@ -121,9 +121,9 @@
 								    },
 								    type: 'DELETE',
 								    success: function(result) {
+								    	
 								    	if (result.error) {
 								    		$("#"+id_for_item).hide();
-								    		//alert("<%= @nuber_of_items %>");
 								    		if ("<%= @nuber_of_items %>" == 0)
 								    			$('.table_total').hide();
 								    		$(document).trigger('page:change');
@@ -144,19 +144,6 @@
 							    	}
 								});
 
-								/*$.ajax({
-								    url: '/carts/update_price',
-								    type: 'GET',
-								    success: function(result) {
-								    	if (result.number) {
-								    		$(".cart_total_number").html(result.number);
-								    		$(".cart_price").html(result.price);
-								    		$(".cart_delivery").html(result.delivery);
-								    		$(".cart_total").html(result.total);
-								    	}
-								    }
-
-								});*/
 							}
 							else {
 								status += "Poizvod <b>"+names[i]+"</b> ima ograničenu količinu. Možete naručiti najviše <b>"+quantities[i]+"</b> proizvoda.<br>";
@@ -239,6 +226,7 @@
 							$(".cart_delivery").html("0.00KM");
 							$(".cart_total").html("0.00KM");
 							$('.table_total2').hide();
+							$('.table_total').hide();
 						}
 			    		$.ajax({
 							url: '/carts/update_price',
@@ -254,7 +242,7 @@
 							
 						}
 						});
-						$(document).trigger('page:change');
+						//$(document).trigger('page:change');
 			    		/*$.ajax({
 						    url: '/carts/update_price',
 						    type: 'GET',
@@ -313,8 +301,11 @@
 
 	$(window).bind('page:change', function(){
 
-		if ("<%= @nuber_of_items %>" == 0)
+		if ("<%= @nuber_of_items %>" == 0) {
 			$('.table_total2').hide();
+			$('.table_total').hide();
+			$('.your_cart').html("<%= t('your_cart_empity')%>");
+		}
 
 
 		$(".quantity_field").change(function() {

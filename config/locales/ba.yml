@@ -75,6 +75,7 @@ bs:
   home_login: "PRIJAVA"
   home_register: "REGISTRACIJA"
   home_logout: "ODJAVA"
+  your_cart_empty: "Vaša korpa je prazna"
 
 
   

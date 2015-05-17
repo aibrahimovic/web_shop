@@ -9,6 +9,10 @@ class ImagesController < ApplicationController
     @main = Image.find_by(product_id: @product_parameter, main: '1')
   end
 
+  def show
+    @image = Image.find(params[:id])
+  end
+
   def create
       @product_parameter = params[:image][:product_id]
       @image = Image.new(image_params)

@@ -3,6 +3,7 @@
 	<head>
 	</head>
 <body>
+		
 <% sizes = [] %>
 
 <% list = HelpProduct.all %>
@@ -53,7 +54,7 @@
 							<% if @main_image.id == im.id %>
 								<span id="<%= im.id %>" class='main_image active_image' style="padding:0px; margin:2px;" data-id="<%= im.id %>"> 
 									<!--<= image_tag(im.avatar.url(:show), :alt =>"item", :class=> 'main_show') %> -->
-									<%=link_to image_tag(im.avatar.url(:show)) %>
+									<%=link_to image_tag(im.avatar.url(:show), :title => "Test") %>
 								</span>
 							<% else %>
 								<span id="<%= im.id %>" class='main_image' style="padding:0px; margin:2px; display:none" data-id="<%= im.id %>"> 
@@ -187,9 +188,12 @@
 </body>
 </html>
 
-<script type="text/javascript">
 
-$(document).ready(function() { // Begin Step 2
+
+<script type="text/javascript">
+	
+
+ $(document).ready(function() { // Begin Step 2
   $('.active_image').magnificPopup({
     type:'image',
     zoom: {
@@ -200,7 +204,10 @@ $(document).ready(function() { // Begin Step 2
       verticalFit: true,
       titleSrc: function(item) {
         var caption = item.el.attr('title');
+        //var caption = item.el.
+        
         return caption + ' &middot; <input type="button" value="Rotate" class="rotat" />';  // Step 3
+        alert(caption);
       }
     },  // End Step 2
 

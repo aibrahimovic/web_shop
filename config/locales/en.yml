@@ -75,6 +75,7 @@ en:
   home_login: "LOGIN"
   home_register: "REGISTER"
   home_logout: "LOGOUT"
+  your_cart_empty: 'Your cart is empty'
 
   activerecord:
     attributes:
