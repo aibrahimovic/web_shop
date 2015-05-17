@@ -122,7 +122,7 @@
 								    type: 'DELETE',
 								    success: function(result) {
 								    	if (result.error) {
-								    		$('#counter').html(result.counter);
+								    		//$('#counter').html(result.counter);
 								    		$("#"+id_for_item).hide();
 								    		if ("<%= @nuber_of_items %>" == 0)
 								    			$('.table_total').hide();
@@ -135,8 +135,8 @@
 											    	if (result.number) {
 											    		$(".cart_total_number").html(result.number);
 											    		$(".cart_price").html(result.price);
-											    		$(".cart_delivery").html(result.delivery);
-											    		$(".cart_total").html(result.total);
+											    		$(".cart_delivery").html(result.delivery+"KM");
+											    		$(".cart_total").html(result.total+"KM");
 														//$('#counter').html(result.number);
 											    	}
 											    }
@@ -162,7 +162,8 @@
 								    type: 'PUT',
 								    success: function(result) {
 								    	if (result.error) {
-								    		$('#counter').html(result.counter);
+								    		alert(result.counter);
+								    		//$('#counter').html(result.counter);
 								    		//alert("Podaci su izmjenjeni");
 								    		$.ajax({
 											    url: '/carts/update_price',
@@ -171,8 +172,8 @@
 											    	if (result.number) {
 											    		$(".cart_total_number").html(result.number);
 											    		$(".cart_price").html(result.price);
-											    		$(".cart_delivery").html(result.delivery);
-											    		$(".cart_total").html(result.total);
+											    		$(".cart_delivery").html(result.delivery+"KM");
+											    		$(".cart_total").html(result.total+"KM");
 											    		//$('#counter').html(result.number);
 											    	}
 											    }
@@ -203,8 +204,33 @@
 						
 			    }
 		});
-});
-	$(window).bind('page:change myChange', function(){
+
+		if ("<%= @nuber_of_items %>" == 0) {
+			$('.table_total2').hide();
+			$('.table_total').hide();
+			$('.your_cart').html("<%= t('your_cart_empty')%>");
+		}
+
+
+		$(".quantity_field").change(function() {
+			$.ajax({
+			    url: '/carts/update_price',
+			    type: 'GET',
+			    success: function(result) {
+			    	if (result.number) {
+			    		$(".cart_total_number").html(result.number);
+			    		$(".cart_price").html(result.price);
+			    		$(".cart_delivery").html(result.delivery+"KM");
+			    		$(".cart_total").html(result.total+"KM");
+			    	}
+			    }
+
+			});
+
+		});
+	});
+	
+	//$(window).bind('page:change myChange', function(){
 
 
 		var old_element = $(".quantity_field").val();
@@ -233,7 +259,7 @@
 							$('.table_total').hide();
 							$('.your_cart').html("<%= t('your_cart_empty')%>");
 						}
-						$('#counter').html(result.counter);
+						//$('#counter').html(result.counter);
 			    		$.ajax({
 							url: '/carts/update_price',
 							type: 'GET',
@@ -241,31 +267,15 @@
 							if (result.number) {
 								$(".cart_total_number").html(result.number);
 								$(".cart_price").html(result.price);
-								$(".cart_delivery").html(result.delivery);
-								$(".cart_total").html(result.total);
+								$(".cart_delivery").html(result.delivery+"KM");
+								$(".cart_total").html(result.total+"KM");
 								//$('#counter').html(result.number);
 							}
 							
 						}
 						});
-						//$(document).trigger('page:change');
-			    		/*$.ajax({
-						    url: '/carts/update_price',
-						    type: 'GET',
-						    success: function(result) {
-						    	if (result.number) {
-						    		$(".cart_total_number").html(result.number);
-						    		$(".cart_price").html(result.price);
-						    		$(".cart_delivery").html(result.delivery);
-						    		$(".cart_total").html(result.total);
-						    	}
-						    }
-
-						});*/
+						
 			    	}
-			    	/*console.log(el)
-			    	alert (el.parents("tr").length)
-			   		el.parents("tr").show();*/
 			    }
 
 			});
@@ -291,11 +301,12 @@
 			    },
 			    type: 'PUT',
 			    success: function(result) {
-			    	if (result.error) {
-			    		$('#counter').html(result.counter);
+			    	if (result.error == true) {
+			    		//alert(result.counter);
+			    		//$('#counter').html(result.counter);
 			    		//alert("Podaci su izmjenjeni");
 			    		//$("window").trigger('page:change');
-			    		$(document).trigger('page:change');
+			    		//$(document).trigger('page:change');
 			    	}
 			    }
 
@@ -304,37 +315,8 @@
 		});
 		
 
-	});
+	//});
 
-	$(window).bind('page:change', function(){
-
-		var cartTotalNumber = "<%= @cart.get_total_number %>";
-		//$('#counter').html(cartTotalNumber);
-
-		if ("<%= @nuber_of_items %>" == 0) {
-			$('.table_total2').hide();
-			$('.table_total').hide();
-			$('.your_cart').html("<%= t('your_cart_empty')%>");
-		}
-
-
-		$(".quantity_field").change(function() {
-			$.ajax({
-			    url: '/carts/update_price',
-			    type: 'GET',
-			    success: function(result) {
-			    	if (result.number) {
-			    		$(".cart_total_number").html(result.number);
-			    		$(".cart_price").html(result.price);
-			    		$(".cart_delivery").html(result.delivery);
-			    		$(".cart_total").html(result.total);
-			    	}
-			    }
-
-			});
-
-		});
-	});
 </script>
 
 </body>

@@ -24,7 +24,9 @@ class ItemsController < ApplicationController
         is_saved = @cart.add_item(@item)
         hp = HelpProduct.find_by(id: @item.help_product_id)    
         if is_saved == true
-          @counter += @item.quantity
+          if !@item.quantity.nil?
+            @counter += @item.quantity
+          end
           #set_counter(@counter)
           session[:counter] = @counter
           puts 'iz itemCreate novi:'+session[:counter].to_s
