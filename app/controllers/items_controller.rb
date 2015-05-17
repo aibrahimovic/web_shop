@@ -13,7 +13,7 @@ class ItemsController < ApplicationController
       
       @item = Item.new(item_params)
       @path_to_address = find_address_path
-      @counter = session[:counter]
+      @counter = cookies[:counter].to_i
       puts 'iz itemCreate:'+@counter.to_s
 
       hidden = params["hidden_buy_now"]
@@ -28,8 +28,8 @@ class ItemsController < ApplicationController
             @counter += @item.quantity
           end
           #set_counter(@counter)
-          session[:counter] = @counter
-          puts 'iz itemCreate novi:'+session[:counter].to_s
+          cookies[:counter] = @counter
+          puts 'iz itemCreate novi:'+cookies[:counter].to_s
         end
 
         redirect_to product_path(hp.product)

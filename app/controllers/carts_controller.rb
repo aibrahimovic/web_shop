@@ -39,27 +39,26 @@ class CartsController < ApplicationController
     is_updated = @cart.update_item(params[:item_id], params[:quantity])
     
     quantity = params[:quantity]
-    @counter = session[:counter]
+    @counter = cookies[:counter]
     puts 'iz prvi update:'+@counter.to_s
     
     if quantity.to_i > old_qunantity.to_i
       puts 'counter_prije: '+@counter.to_s
       puts 'Stara: '+old_qunantity.to_s
       puts 'Nova: '+quantity.to_s
-      #@counter = (@counter.to_i - old_qunantity.to_i) + quantity.to_i
+      @counter = (@counter.to_i - old_qunantity.to_i) + quantity.to_i
       puts 'counter_nakon: '+@counter.to_s
-      #session[:counter] = @counter
+      cookies[:counter] = @counter
     else
       puts 'counter_prije: '+@counter.to_s
       puts 'Stara: '+old_qunantity.to_s
       puts 'Nova: '+quantity.to_s
-      #@counter = @counter.to_i - (old_qunantity.to_i - quantity.to_i)
+      @counter = @counter.to_i - (old_qunantity.to_i - quantity.to_i)
       puts 'counter_nakon: '+@counter.to_s
-      #session[:counter] = @counter
+      cookies[:counter] = @counter
     
     end
-    
-    session[:counter] = 100
+
     render json: { error: is_updated, counter: @counter}
   end
   
@@ -71,9 +70,9 @@ class CartsController < ApplicationController
     is_deleted = @cart.delete_item(params[:item_id])
     
     number = @cart.items.length
-    @counter = session[:counter]
+    @counter = cookies[:counter]
     @counter = @counter.to_i - old_qunantity.to_i
-    session[:counter] = @counter
+    cookies[:counter] = @counter
     
     render json: { error: is_deleted, itemsNumber: number, counter: @counter}
   end

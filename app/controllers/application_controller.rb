@@ -26,7 +26,8 @@ class ApplicationController < ActionController::Base
       @cart.counter = 0
       @cart.save()
   	end
-    if session[:counter].nil?
+    if session[:counter].nil? || cookies[:counter].nil?
+      cookies[:counter] = @cart.counter
       session[:counter] = @cart.counter
     end
 

@@ -14,7 +14,8 @@ module SessionsHelper
   	end
 
   	def log_out
-      @cart.counter = session[:counter]
+      #@cart.counter = session[:counter]
+      @cart.counter = cookies[:counter]
       @cart.save
       session.delete(:counter)
       if session[:cart_id] != nil
