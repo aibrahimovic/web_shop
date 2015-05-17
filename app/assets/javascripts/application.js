@@ -20,7 +20,7 @@
 $(window).bind('page:load', function(){
     //alert("Test");
    
-    $.ajax({
+    /*$.ajax({
         url: '/application/get_counter',
         type: 'GET',
         success: function(result) {
@@ -30,7 +30,7 @@ $(window).bind('page:load', function(){
             else 
                 $('.counter').css('visibility', 'visible');
         }
-    });
+    });*/
 
     $('.active').css('border-bottom', '2px solid #F0D234');
     $('.active').css('color', 'white');

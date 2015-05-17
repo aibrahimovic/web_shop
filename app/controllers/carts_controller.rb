@@ -1,4 +1,6 @@
 class CartsController < ApplicationController
+  skip_before_action :verify_authenticity_token
+
   def new
   	#@cart = Cart.new
   end
@@ -31,16 +33,49 @@ class CartsController < ApplicationController
   end
 
   def update_item 
+    item = Item.find(params[:item_id])
+    old_qunantity = item.quantity
+
     is_updated = @cart.update_item(params[:item_id], params[:quantity])
+    quantity = params[:quantity]
+    @counter = session[:counter]
+
+    if quantity.to_i > old_qunantity.to_i
+      puts 'counter_prije: '+@couter.to_s
+      puts 'Stara: '+old_qunantity.to_s
+      puts 'Nova: '+quantity.to_s
+      @couter = (@counter - old_qunantity.to_i) + quantity.to_i
+       puts 'counter_nakon: '+@couter.to_s
+    else
+      puts 'counter_prije: '+@couter.to_s
+      puts 'Stara: '+old_qunantity.to_s
+      puts 'Nova: '+quantity.to_s
+      @couter = (@counter - quantity.to_i)
+      puts 'counter_nakon: '+@couter.to_s
+    end
+    
+
+    set_counter(@couter)
+
+    #@counter += quantity.to_i
+
+    #if is_updated == true
+      #@brojac = 0
+      #@cart.items.each do |item| 
+        #puts 'Količina:'+item.quantity.to_s
+        #@brojac += item.quantity.to_i
+      #end
+      #set_counter(@brojac)
+    #end
     render json: { error: is_updated } 
   end
 
   def delete_item
     is_deleted = @cart.delete_item(params[:item_id])
     number = @cart.items.length
-    @counter = 0
+    @counter = session[:counter]
     @cart.items.each do |item| 
-      @counter += item.quantity
+      @counter += item.quantity.to_i
     end
     set_counter(@counter)
     #session[:counter] = totalNumber
@@ -49,14 +84,6 @@ class CartsController < ApplicationController
 
   def update_price
     number, price, delivery, total = @cart.count_prices
-    @counter = 0
-    @cart.items.each do |item| 
-      @counter += item.quantity
-    end
-    session[:counter] = 0
-    set_counter(@counter)
-    #session[:counter] = totalNumber
-    #puts 'Iz update-a: '+session[:counter].to_s
     render json: { number: number, price: price, delivery: delivery, total: total}  
   end
 
