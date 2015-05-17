@@ -9,11 +9,11 @@
         <% billing = Address.find_by(id: @order.billing_address_id) %>
         <% shipping = Address.find_by(id: @order.shipping_address_id) %>
         <% if @order.email != 'guest' %>
-        <%= t('order_user') %>: <%= @order.user.email %><br>
+        <%= t('order_user') %>: <span id="order_user"><%= @order.user.email %><br></span>
         <% end %>
-        <%= t('delivery_address') %>: <%= shipping.address_name %>, <%= shipping.city %>, <%= shipping.region %>, <%= shipping.state%>
+        <%= t('delivery_address') %>: <span id="order_address"><%= shipping.address_name %></span>, <span id="order_city"><%= shipping.city %></span>, <span id="order_region"><%= shipping.region %></span>, <span id="order_state"><%= shipping.state%></span>
         <br>
-        <%= t('billing_address') %>: <%= billing.address_name %>, <%= billing.city %>, <%= billing.region %>, <%= billing.state%>
+        <%= t('billing_address') %>: <span id="order_address_b"><%= billing.address_name %></span>, <span id="order_city_b"><%= billing.city %></span>, <span id="order_region_b"><%= billing.region %>, <span id="order_state_b"><%= billing.state%></span>
       </td>
     </tr>
 
@@ -29,16 +29,16 @@
     <% @order_items.each do |item| %> 
     <tr>
       <td class="allProducts_table">
-        <%= item.help_product.product.name %> (<%= item.help_product.size %>)
+        <span id="<%= item.id %>_order_name"><%= item.help_product.product.name %></span> (<span id="<%= item.id %>_order_size"><%= item.help_product.size %></span>)
       </td>
       <td class="allProducts_table">
-        <%= item.quantity %>
+        <span id="<%= item.id %>_order_quantity"><%= item.quantity %></span>
       </td>
       <td class="allProducts_table"> 
-        <%= item.price %> KM
+        <span id="<%= item.id %>_order_price"><%= item.price %> KM</span>
       </td>
       <td class="allProducts_table">
-        <%= item.price.to_f * item.quantity %> KM
+        <span id="<%= item.id %>_order_total"><%= item.price.to_f * item.quantity %> KM</span>
       </td>
     </tr>
     <% end %>
@@ -46,9 +46,9 @@
     <tr></tr>
     <tr> 
       <td colspan='4' class="allProducts_table" style="text-align:right; padding: 15px 6px 15px 0px;"> 
-        <%= t('order_price').capitalize %>: <%= @total %> KM <br>
-        <%= t('order_delivery_price') %>: <%= @delivery %> KM <br><br>
-        Total: <b style="font-size: 16px;"> <%= @total+@delivery %> KM </b>
+        <%= t('order_price').capitalize %>: <span id="order_total"> <%= @total %> KM <br></span>
+        <%= t('order_delivery_price') %>: <span id="order_delivery"><%= @delivery %> KM <br><br></span>
+        Total: <b style="font-size: 16px;"> <span id="order_total_delivery"><%= @total+@delivery %> KM </b></span>
       </td> 
     </tr>
     
