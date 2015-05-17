@@ -10,7 +10,6 @@ class CartsController < ApplicationController
     else
       @path_to_address = find_address_path
     end
-    session[:counter] = 0
     @nuber_of_items = @cart.items.length
 
   end
@@ -39,12 +38,26 @@ class CartsController < ApplicationController
   def delete_item
     is_deleted = @cart.delete_item(params[:item_id])
     number = @cart.items.length
-    render json: { error: is_deleted, itemsNumber: number } 
+    @counter = 0
+    @cart.items.each do |item| 
+      @counter += item.quantity
+    end
+    set_counter(@counter)
+    #session[:counter] = totalNumber
+    render json: { error: is_deleted, itemsNumber: number} 
   end
 
   def update_price
     number, price, delivery, total = @cart.count_prices
-    render json: { number: number, price: price, delivery: delivery, total: total }  
+    @counter = 0
+    @cart.items.each do |item| 
+      @counter += item.quantity
+    end
+    session[:counter] = 0
+    set_counter(@counter)
+    #session[:counter] = totalNumber
+    #puts 'Iz update-a: '+session[:counter].to_s
+    render json: { number: number, price: price, delivery: delivery, total: total}  
   end
 
   def check_available

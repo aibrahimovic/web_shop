@@ -7,7 +7,8 @@ class ProductsController < ApplicationController
   end
 
   def show
-    @counter =  session[:counter]
+    #@counter =  session[:counter]
+    #puts 'iz productShow:'+@counter.to_s
     @product = Product.find(params[:id])
     @main_image = Image.find_by(product_id: @product.id, main: '1')
     @all_images = Image.where(product_id: @product.id).all

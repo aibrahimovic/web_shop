@@ -21,8 +21,10 @@
         <td class="allProducts_table"><%= order.user.email %></td>
         <% billing = Address.find_by(id: order.billing_address_id) %>
         <% shipping = Address.find_by(id: order.shipping_address_id) %>
-        <td class="allProducts_table"><%= billing.address_name %></td>
-        <td class="allProducts_table"><%= shipping.address_name %></td>
+        <% if !billing.nil? && !shipping.nil? %>
+          <td class="allProducts_table"><%= billing.address_name %></td>
+          <td class="allProducts_table"><%= shipping.address_name %></td>
+        <% end %>
         <td class="allProducts_table"><%= order.total %></td>
         <td class="allProducts_table">
           <%= link_to 'Show', order %><br>

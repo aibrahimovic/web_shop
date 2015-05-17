@@ -3,7 +3,6 @@ module SessionsHelper
 	  def log_in(user) 
       session.delete(:counter);
       session[:user_id] = user.id
-      #session[:counter] = @cart.counter
   	end
 
     def email_now
@@ -20,7 +19,6 @@ module SessionsHelper
       session.delete(:counter)
       if session[:cart_id] != nil
         @cart = session[:cart_id]
-        #session[:counter] = @cart.counter
       end
     	session.delete(:user_id)
     	#@current_user = nil

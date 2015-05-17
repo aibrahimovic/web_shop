@@ -14,6 +14,7 @@ class ItemsController < ApplicationController
       @item = Item.new(item_params)
       @path_to_address = find_address_path
       @counter = session[:counter]
+      puts 'iz itemCreate:'+@counter.to_s
 
       hidden = params["hidden_buy_now"]
       if hidden == "1"
@@ -23,9 +24,11 @@ class ItemsController < ApplicationController
         is_saved = @cart.add_item(@item)
         hp = HelpProduct.find_by(id: @item.help_product_id)    
         if is_saved == true
-          @counter += 1
-          session[:counter] = @counter
+          @counter += @item.quantity
+          set_counter(@counter)
+          #session[:counter] = @counter
         end
+
         redirect_to product_path(hp.product)
       end
 
@@ -86,9 +89,11 @@ class ItemsController < ApplicationController
 
       if @cart!= nil
         @i = Item.where(cart_id: @cart.id).destroy_all
+        session[:counter] = 0
       else 
         @c = session[:cart_id]
         @i = Item.where(cart_id: @cart.id).destroy_all
+        session[:counter] = 0
       end
     else
       @oi = OrderItem.new

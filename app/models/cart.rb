@@ -111,7 +111,6 @@ class Cart < ActiveRecord::Base
 
     item = self.items.find_by(id: item_id)
     if item.destroy
-      #get_total_with_delivery
       return true
     end
     

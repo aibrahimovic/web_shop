@@ -48,8 +48,13 @@ class ApplicationController < ActionController::Base
   end
 
   def get_counter
-    counter = session[:counter]
-    render json: { counter: counter } 
+    #counter = session[:counter]
+    #puts 'iz get_counter:'+counter.to_s
+    #render json: { counter: counter } 
+  end
+
+  def set_counter(counter)
+    session[:counter] = counter
   end
 
   def set_order

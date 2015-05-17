@@ -8,31 +8,31 @@
     <table border="1" class="final_address">
       <tr>
         <td class="final_address_ticket"> 
-          <h2 style="text-align: left;"><%= t('delivery_address') %></h2><br>
-          <%= @shipping_address.name %><br>
-          <%= @shipping_address.address_name %><br>
-          <%= @shipping_address.city %>, <%= @shipping_address.region %>  <%= @shipping_address.zip %>
-          <%= @shipping_address.state %><br>
-          <%= @shipping_address.phone %><br><br>
+          <h2 id="payment_h2" style="text-align: left;"><%= t('delivery_address') %></h2><br>
+          <span id="payment_name"><%= @shipping_address.name %><br></span>
+          <span id="payment_adress"><%= @shipping_address.address_name %><br></span>
+          <span id="payment_city"><%= @shipping_address.city %></span>, <span id="payment_region"><%= @shipping_address.region %></span> <span id="payment_zip"><%= @shipping_address.zip %></span>
+          <span id="payment_state"><%= @shipping_address.state %><br></span>
+          <span id="payment_phone"><%= @shipping_address.phone %><br><br></span>
         </td>
 
         <td class="final_address_ticket"> 
-          <h2 style="text-align: left;"><%= t('billing_address') %></h2><br>
-          <%= @billing_address.name %><br>
-          <%= @billing_address.address_name %><br>
-          <%= @billing_address.city %>, <%= @billing_address.region %>  <%= @billing_address.zip %>
-          <%= @billing_address.state %><br>
-          <%= @billing_address.phone %><br><br>
+          <h2 id="payment_h2_b" style="text-align: left;"><%= t('billing_address') %></h2><br>
+          <span id="payment_name_b"><%= @billing_address.name %><br></span>
+          <span id="payment_address_b"><%= @billing_address.address_name %><br></span>
+          <span id="payment_city_b"><%= @billing_address.city %></span>, <span id="payment_region_b"><%= @billing_address.region %></span>  <span id="payment_zip_b"><%= @billing_address.zip %></span>
+          <span id="payment_state_b"><%= @billing_address.state %><br></span>
+          <span id="payment_phone_b"><%= @billing_address.phone %><br><br></span>
         </td>
       </tr>
       <tr>
         <% if @current_user.nil? %>
           <td colspan="2" class="final_address_button_change">
-            <%= button_to t('new_final_addresses'), @path_to_address, :class => "btn btn-default final_address_new", :method => :get %>
+            <%= button_to t('new_final_addresses'), @path_to_address, :class => "btn btn-default final_address_new", :id => "payment_new_button", :method => :get %>
           </td>
         <% else %>
           <td colspan="2" class="final_address_button_change">
-            <%= button_to t('change_final_addresses'), @path_to_address, :class => "btn btn-default final_address_change", :method => :get %>
+            <%= button_to t('change_final_addresses'), @path_to_address, :class => "btn btn-default final_address_change", :id => "payment_change_button", :method => :get %>
           </td>
         <% end %>
       </tr>

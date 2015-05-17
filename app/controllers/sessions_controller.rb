@@ -5,8 +5,6 @@ class SessionsController < ApplicationController
   end
 
   def create
-    #//@cart.counter = session[:counter]
-    #@cart.save
 
   	user = User.find_by(email: params[:session][:email].downcase)
 

@@ -18,7 +18,7 @@ class ChargesController < ApplicationController
 		#(0..10000000000).each{ |s| puts(s) }
 
 
-		if !@current_user.nil? && !@shipping.nil? && !@billing.nil?
+		if !@current_user.nil? && !@shipping.nil? && !@billing.nil? && @shipping != "" && @billing != ""
 			@shipping_address = @shipping
 			@billing_address = @billing
 		else
@@ -27,12 +27,12 @@ class ChargesController < ApplicationController
 			if !@current_user.nil?
 	       		@shipping_address = Address.where(user_id: @current_user.id, tag: 'shipping').last
 	      		@billing_address = Address.where(user_id: @current_user.id, tag: 'billing').last
+	      		
 	        else
 	            @shipping_address = Address.where(user_id: '0', tag: 'shipping').last
 	            @billing_address = Address.where(user_id: '0', tag: 'billing').last
 	        end
 		end	
-
 
 	  # Amount in cents
 	  
