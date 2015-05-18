@@ -115,14 +115,16 @@ allP.each do |prodi|
   	hpp2.save
   end
 end
-
+=end 
+=begin
 gi = Image.find_by(product_id: 209)
+
 allP.each do |prodi|
-  if prodi.id != 210 && prodi.id != 209
+  if prodi.id == 261
     ii = Image.new
     ii.product_id = prodi.id
     ii.main = 1
-    ii.picture_from_url "https://s3.amazonaws.com/web-shop-images/images/avatars/000/000/628/default_url/c6.png"
+    ii.picture_from_url "https://s3.amazonaws.com/web-shop-images/images/avatars/000/000/681/default_url/m1.png"
     ii.save!
   end
 end
@@ -135,9 +137,9 @@ allP.each do |product|
   end
 end
 
-=end
 
-=begin
+
+
 ii.picture_from_url "https://s3.amazonaws.com/web-shop-images/images/avatars/000/000/628/default_url/c6.png"  
 
 ii.avatar = gi.avatar
