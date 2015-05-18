@@ -24,17 +24,19 @@
 #ca1 = Cart.create(user_id: 1)
 #ca2 = Cart.create(user_id: 2)
 
-p1 = Product.new(name: "Plave tene za žene", name2: "Blue shoes fof women",  price: 100, description: "Udobna obuća za djevojke i žene.", description2: "Comfortable shoes for women", category_id: 1, sale: 80, special: 0)
-p2 = Product.new(name: "Udobne štikle", name2: "Comfortable heels", price: 10, description: "Udobne štikle za lagano hodanje.", description2: "Comfortable shoes for women", category_id: 1, sale: '', special: 1)
-p3 = Product.new(name: "Crne čizme", name2: "Comfortable heels", price: 190, description: "Čizme za proljeće. Dostupne u tri boje.", description2: "Comfortable shoes for women", category_id: 1, sale: 150, special: 0)
-p4 = Product.new(name: "Crne zimske čizme", name2: "Comfortable heels", price: 80, description: "Čizme idealne za zimske dane.", description2: "Comfortable shoes for women", category_id: 1, sale: '', special: 1)
-p5 = Product.new(name: "Gležnjače", name2: "Comfortable heels", price: 50, description: "Idealna obuća za jeden. Dostupne u dvije boje.", description2: "Comfortable shoes for women", category_id: 1, sale: '', special: 0)
+p1 = Product.new(name: "Plave tene za žene", price: 100, description: "Udobna obuća za djevojke i žene.", category_id: 1, sale: 80, special: 0)
+p2 = Product.new(name: "Udobne štikle", price: 10, description: "Udobne štikle za lagano hodanje.", category_id: 1, sale: '', special: 1)
+p3 = Product.new(name: "Crne čizme", price: 190, description: "Čizme za proljeće. Dostupne u tri boje.", category_id: 1, sale: 150, special: 0)
+p4 = Product.new(name: "Crne zimske čizme", price: 80, description: "Čizme idealne za zimske dane.", category_id: 1, sale: '', special: 1)
+p5 = Product.new(name: "Gležnjače", price: 50, description: "Idealna obuća za jeden. Dostupne u dvije boje.", category_id: 1, sale: '', special: 0)
 
 p1.save()
 p2.save()
 p3.save()
 p4.save()
 p5.save()
+
+
 
 hp1 = HelpProduct.create(size: "36", quantity: 100, product_id: p1.id)
 hp2 = HelpProduct.create(size: "37", quantity: 100, product_id: p1.id)
