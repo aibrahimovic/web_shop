@@ -15,6 +15,8 @@
 //= require turbolinks
 //= require jquery.rambling.slider
 //= require_tree .
+//= require jquery.colorbox
+//= require jquery.colorbox-min
 //= require magnific-popup
 
 $(window).bind('page:load', function(){

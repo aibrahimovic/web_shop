@@ -9,10 +9,11 @@ class StaticPagesController < ApplicationController
     @all_products = Product.all
     @all_products_on_sale = []
     @all_products.each do |product|
-      if product.get_price != product.price
+      if product.get_price != product.price && product.sale != ""
         @all_products_on_sale << product
       end
     end
+
 
     @special = Product.where(special: '1', sale: '').all
     @special_sale = []

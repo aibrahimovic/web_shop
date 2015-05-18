@@ -94,11 +94,11 @@ class ItemsController < ApplicationController
 
       if @cart!= nil
         @i = Item.where(cart_id: @cart.id).destroy_all
-        session[:counter] = 0
+        cookies[:counter] = 0
       else 
         @c = session[:cart_id]
         @i = Item.where(cart_id: @cart.id).destroy_all
-        session[:counter] = 0
+        cookies[:counter] = 0
       end
     else
       @oi = OrderItem.new

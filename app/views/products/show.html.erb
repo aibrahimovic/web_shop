@@ -1,9 +1,14 @@
 <!DOCTYPE html>
 <html>
 	<head>
+		<link rel="stylesheet" href="colorbox.css" />
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+		<script src="../jquery.colorbox.js"></script>
 	</head>
 <body>
-		
+
+
+<br><br>	
 <% sizes = [] %>
 
 <% list = HelpProduct.all %>
@@ -53,12 +58,12 @@
 						<% @all_images.each do |im| %>
 							<% if @main_image.id == im.id %>
 								<span id="<%= im.id %>" class='main_image active_image' style="padding:0px; margin:2px;" data-id="<%= im.id %>"> 
+									<p><a class="group1" href="<%= im.avatar.url(:show) %>" title="<%=@product.name%>">ColotboxTest</a></p>
 									<!--<= image_tag(im.avatar.url(:show), :alt =>"item", :class=> 'main_show') %> -->
 									<%=link_to image_tag(im.avatar.url(:show), :title => "Test") %>
 								</span>
 							<% else %>
 								<span id="<%= im.id %>" class='main_image' style="padding:0px; margin:2px; display:none" data-id="<%= im.id %>"> 
-									<!-- <= image_tag(im.avatar.url(:show), :alt =>"item", :class=> 'main_show') %> -->
 									<%=link_to image_tag(im.avatar.url(:show))	 %>
 								</span>
 							<% end %>	
@@ -188,6 +193,12 @@
 </body>
 </html>
 
+<script>
+	$(document).ready(function(){
+		alert("Ovdje");
+		(".group1").colorbox({rel:'group1'});
+	});
+</script>
 
 
 <script type="text/javascript">
