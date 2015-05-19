@@ -57,11 +57,13 @@
 						<td colspan='4'>
 						<% @all_images.each do |im| %>
 							<% if @main_image.id == im.id %>
-							<p><a class="group1" href="<%= im.avatar.url(:preview) %>" title="<%=@product.name%>">
+							
 								<span id="<%= im.id %>" class='main_image active_image' style="padding:0px; margin:2px;" data-id="<%= im.id %>"> 
-									<%=link_to image_tag(im.avatar.url(:show), :title => "Test") %>
+									<a class="group1" href="<%= im.avatar.url(:preview) %>" title="<%=@product.name%>">
+									<%=image_tag(im.avatar.url(:show)) %>
+									</a>
 								</span>
-								</a></p>
+								
 							<% else %>
 								<span id="<%= im.id %>" class='main_image' style="padding:0px; margin:2px; display:none" data-id="<%= im.id %>"> 
 									<%=link_to image_tag(im.avatar.url(:show))	 %>
