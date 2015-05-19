@@ -57,11 +57,11 @@
 						<td colspan='4'>
 						<% @all_images.each do |im| %>
 							<% if @main_image.id == im.id %>
+							<p><a class="group1" href="<%= im.avatar.url(:preview) %>" title="<%=@product.name%>">
 								<span id="<%= im.id %>" class='main_image active_image' style="padding:0px; margin:2px;" data-id="<%= im.id %>"> 
-									<p><a class="group1" href="<%= im.avatar.url(:show) %>" title="<%=@product.name%>">ColotboxTest</a></p>
-									<!--<= image_tag(im.avatar.url(:show), :alt =>"item", :class=> 'main_show') %> -->
 									<%=link_to image_tag(im.avatar.url(:show), :title => "Test") %>
 								</span>
+								</a></p>
 							<% else %>
 								<span id="<%= im.id %>" class='main_image' style="padding:0px; margin:2px; display:none" data-id="<%= im.id %>"> 
 									<%=link_to image_tag(im.avatar.url(:show))	 %>
@@ -204,7 +204,7 @@
 <script type="text/javascript">
 	
 
- $(document).ready(function() { // Begin Step 2
+ /*$(document).ready(function() { // Begin Step 2
   $('.active_image').magnificPopup({
     type:'image',
     zoom: {
@@ -238,7 +238,7 @@
       }
     }
   });
-});
+});*/
 
 
 </script>

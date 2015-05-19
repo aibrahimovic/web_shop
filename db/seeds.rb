@@ -89,7 +89,10 @@ i10.picture_from_url "http://web-shop-images.s3.amazonaws.com/images/avatars/000
 =end
 
 =begin
-50.times do |i| 
+
+=end 
+
+100.times do |i| 
   p = Product.new
   p.name = g.name
   p.price = g.price
@@ -99,6 +102,7 @@ i10.picture_from_url "http://web-shop-images.s3.amazonaws.com/images/avatars/000
   p.special = g.special
   p.save
 end
+
 
 allP = Product.all
 allP.each do |prodi|
@@ -115,19 +119,20 @@ allP.each do |prodi|
   	hpp2.save
   end
 end
-=end 
-=begin
-gi = Image.find_by(product_id: 209)
 
-allP.each do |prodi|
-  if prodi.id == 261
-    ii = Image.new
-    ii.product_id = prodi.id
-    ii.main = 1
-    ii.picture_from_url "https://s3.amazonaws.com/web-shop-images/images/avatars/000/000/681/default_url/m1.png"
-    ii.save!
+  gi = Image.find_by(product_id: 209)
+
+  allP.each do |prodi|
+    if prodi.id == 261
+      ii = Image.new
+      ii.product_id = prodi.id
+      ii.main = 1
+
+      ii.avatar = gi.avatar
+      
+      ii.save!
+    end
   end
-end
 
 allP = Product.all
 allP.each do |product|
@@ -137,9 +142,9 @@ allP.each do |product|
   end
 end
 
+=begin
 
-
-
+ii.picture_from_url "https://s3.amazonaws.com/web-shop-images/images/avatars/000/000/685/default_url/c1.png"
 ii.picture_from_url "https://s3.amazonaws.com/web-shop-images/images/avatars/000/000/628/default_url/c6.png"  
 
 ii.avatar = gi.avatar
