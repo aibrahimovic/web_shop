@@ -59,7 +59,7 @@
 							<% if @main_image.id == im.id %>
 							
 								<span id="<%= im.id %>" class='main_image active_image' style="padding:0px; margin:2px;" data-id="<%= im.id %>"> 
-									<a class="group1" href="<%= im.avatar.url(:preview) %>" title="<%=@product.name%>">
+									<a class="group1" style="width: 600px; height: 600px; float: none;" href="<%= im.avatar.url(:preview) %>" title="<%=@product.name%>">
 									<%=image_tag(im.avatar.url(:show)) %>
 									</a>
 								</span>

@@ -89,8 +89,7 @@ i10.picture_from_url "http://web-shop-images.s3.amazonaws.com/images/avatars/000
 =end
 
 =begin
-
-=end 
+ 
 
 100.times do |i| 
   p = Product.new
@@ -142,6 +141,7 @@ allP.each do |product|
   end
 end
 
+=end
 =begin
 
 ii.picture_from_url "https://s3.amazonaws.com/web-shop-images/images/avatars/000/000/685/default_url/c1.png"
