@@ -83,9 +83,9 @@
 				<%= link_to product_path(product.id) do %>
 					<div data-content1="<%= product.name %>"  data-content2="<%= product.get_price %>KM"  data-content3="<%= product.get_percent %>%" data-content4="<%= product.price %>KM" class="image">
 					<% if @main_image.nil? %>
-						<%= image_tag(product.image.url(:small)) %><br>
+						<%= image_tag(product.image.url(:preview)) %><br>
 					<% else %>
-						<%= image_tag(@main_image.avatar.url(:small)) %><br>
+						<%= image_tag(@main_image.avatar.url(:preview)) %><br>
 					<% end %>
 						<% counter += 1 %>
 					</div>
