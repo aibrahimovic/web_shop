@@ -69,3 +69,4 @@ gem 'globalize', '~> 4.0.3'
 gem "passenger"
 gem 'newrelic_rpm'
 gem 'magnific-popup-rails'
+gem 'will_paginate-bootstrap'

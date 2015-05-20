@@ -1,4 +1,6 @@
 <div class="row" id="all_products">
+
+
 <% @all_products_in_category.each do |product| %>
 	<% @main_image = Image.find_by(product_id: product.id, main: '1') %>
 		<% if @main_image.nil? %>
@@ -64,3 +66,7 @@
 
 <% end %>
 </div>
+
+
+<br><br><br><br><br><br>	
+<%= will_paginate @all_products_in_category, renderer: BootstrapPagination::Rails %>

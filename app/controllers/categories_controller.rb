@@ -36,9 +36,8 @@
   def show
     @category = Category.find(params[:id])
     @all_products_in_category = Product.includes(:images).where(category_id: @category.id)
-    @all_products_in_category2 = Product.where(category_id: @category.id).all
-    #raise
-    #
+    #@all_products_in_category2 = Product.where(category_id: @category.id).all
+    @all_products_in_category = @all_products_in_category.paginate(:page => params[:page], :per_page => 20)
   end
 
   def return_all 

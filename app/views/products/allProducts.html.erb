@@ -35,8 +35,10 @@
         </td>
       </tr>
     <% end %>
+
   </tbody>
 </table>
+<br><br>
 
 <br>
-
+<%= will_paginate @products, renderer: BootstrapPagination::Rails %>

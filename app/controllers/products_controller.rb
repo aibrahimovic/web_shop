@@ -136,7 +136,10 @@ class ProductsController < ApplicationController
 
   def allProducts 
   	#@products2 = Product.all
-    @products = Product.includes([:help_products, :images]).all
+    #@products = Product.includes([:help_products, :images]).all
+    @products = Product.includes([:images, :help_products])
+    @products = @products.paginate(:page => params[:page], :per_page => 20)
+
   end
 
   def destroy
