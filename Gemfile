@@ -70,7 +70,3 @@ gem "passenger"
 gem 'newrelic_rpm'
 gem 'magnific-popup-rails'
 gem 'will_paginate-bootstrap'
-
-configure :production do
-  require 'newrelic_rpm'
-end
