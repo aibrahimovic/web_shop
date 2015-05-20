@@ -64,20 +64,12 @@
 								<% if @main_image.id == im.id %>
 									<span id="<%= im.id %>" class='main_image active_image' style="padding:0px; margin:2px;" data-id="<%= im.id %>">
 									<!--<= image_tag(im.avatar.url(:show), :alt =>"item", :class=> 'main_show') %> -->
-
-									<a class="group1" style="width: 600px; height: 600px; float: none;" href="<%= im.avatar.url(:preview) %>" title="<%=@product.name%>">
-										<%=image_tag(im.avatar.url(:show)) %>
-									</a>
-
-								    <ul class="enlarge">
-							    		<li><%= image_tag("c1.png", :width=>"150px")%><span>
-							    			<%= image_tag("c1.png")%><br /><%=@product.name%></span>
-							    		</li>
-							   		</ul>
-
+									<!--<a class="group1" style="width: 600px; height: 600px; float: none;" href="<= im.avatar.url(:preview) %>" title="<%=@product.name%>">
+										<=image_tag(im.avatar.url(:show)) %>
+									</a>-->
 							   		<ul class="enlarge">
 							    		<li><%=image_tag(im.avatar.url(:show)) %><span>
-							    			<%=image_tag(im.avatar.url(:show), :width=>'400', :height=>'400') %><br /><%=@product.name%></span>
+							    			<%=image_tag(im.avatar.url(:show), :width=>'380', :height=>'380') %><br /><%=@product.name%></span>
 							    		</li>
 							   		</ul>
 
