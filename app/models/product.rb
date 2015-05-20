@@ -26,8 +26,8 @@ class Product < ActiveRecord::Base
       @price = self.sale
     end
 
-    @price.to_f
-    @price = number_with_precision(@price, :precision => 2)
+    #@price.to_f
+    #@price = number_with_precision(@price, :precision => 2)
 
     @price
   end

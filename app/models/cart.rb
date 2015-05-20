@@ -38,6 +38,9 @@ class Cart < ActiveRecord::Base
 
   def add_item_to_temporary_cart(item)
     item.tag= 0
+    item.price = item.help_product.product.get_price.to_f*item.quantity
+    item.price = item.price.to_s << "0"
+    item.price = number_with_precision(item.price, :precision => 2)
     item.save
   end
 
