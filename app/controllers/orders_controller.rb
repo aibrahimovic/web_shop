@@ -1,5 +1,6 @@
 class OrdersController < ApplicationController
 	include SessionsHelper
+	include ActionView::Helpers::NumberHelper
 
 	def create
 		order_items = params[:order_items]
@@ -39,6 +40,9 @@ class OrdersController < ApplicationController
 			@total += item.price.to_f*item.quantity
 			@delivery += item.quantity*5
 		end
+
+		@total = @total.to_s << "0"
+    	@total = number_with_precision(@total, :precision => 2)
 	end
 
 end

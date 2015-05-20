@@ -160,6 +160,7 @@
 			<% counter = 0 %>
 		</table>
 	</body>
+	<input type="hidden" class="hidden_flag" val="">
 </html>
 
 <script>
@@ -192,6 +193,7 @@
 
 <script type="text/javascript">
 	$('#add-to-cart2').on('click', function () {
+
 		var cart = $('#shopping-cart');
 		var imgtodrag = $(this).parent('.item').find("img").eq(0);
 		if (imgtodrag) {
@@ -232,15 +234,7 @@
 
 	$(window).bind('page:change', function(){
 		var el = $(".nav_link a").html();
-		$('#add_to_cart').on('click', function() {
-			var velicina = $('#all_sizes').val();
-			if (velicina == "")
-				$('.notification_product').html("Unesite veličinu");
-			else {
-				$('#add-to-cart2').trigger('click');
-				//$('form#new_item').trigger('submit.rails');
-			}
-		});
+		
 		$(".product_quantity_field").blur(function() {
 		var el = $(this);
 		var flag = $.isNumeric(el.val());
@@ -248,14 +242,37 @@
 			$('.notification_product').html("Unesite količinu");
 			setTimeout(function () { $(".product_quantity_field").focus(); }, 2);
 			alert("Unesite količinu");
+			$('.hidden_flag').val("false");
 			//$(".product_quantity_field").focus();
 		}
-		else if (el.val() < 1 || flag == false || Math.floor(el.val()) != el.val())
+		else if (el.val() < 1 || flag == false || Math.floor(el.val()) != el.val()) {	
 			$('.notification_product').html("Unesite pozitivan broj za količinu");
+			$('.hidden_flag').val("false");
+			 
+		}
+		else
+			$('.hidden_flag').val("true");
 		});
+
 		$(".product_quantity_field").focus(function() {
 		$('.notification_product').html(" ");
 		});
+
+
+		$('#add_to_cart').on('click', function() {
+
+			var velicina = $('#all_sizes').val();
+			var flagT = $('.hidden_flag').val();
+			//alert(flagT);
+			if (velicina == "")
+				$('.notification_product').html("Unesite veličinu");
+			else if (flagT == true || flagT == "") {
+				$('#add-to-cart2').trigger('click');
+				//$('form#new_item').trigger('submit.rails');
+			}
+		});
+
+
 	});
 </script>
 <script type="text/javascript" src="https://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>

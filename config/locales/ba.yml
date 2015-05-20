@@ -80,7 +80,8 @@ bs:
   status_available1: "više nije dostupan"
   status_available2: "ima ograničenu količinu. Možete naručiti najviše"
   status_products: "proizvoda"
-
+  order_bill: "Račun"
+  your_order_bill: "Vaša narudžba"
 
   
   activerecord:
