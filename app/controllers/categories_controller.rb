@@ -36,7 +36,7 @@
   def show
     @category = Category.find(params[:id])
     @all_products_in_category = Product.includes(:help_products).where(category_id: @category.id).all
-    #@all_products_in_category = Product.where(category_id: @category.id).all
+    #@all_products_in_category2 = Product.where(category_id: @category.id).all
   end
 
   def return_all 

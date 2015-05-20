@@ -89,7 +89,7 @@ i10.picture_from_url "http://web-shop-images.s3.amazonaws.com/images/avatars/000
 =end
 
 =begin
- 
+260 
 
 100.times do |i| 
   p = Product.new

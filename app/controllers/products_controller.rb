@@ -135,7 +135,8 @@ class ProductsController < ApplicationController
   end
 
   def allProducts 
-  	@products = Product.all
+  	#@products = Product.all
+    @products = Product.includes(:help_products).all
   end
 
   def destroy
