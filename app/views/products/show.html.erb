@@ -1,264 +1,272 @@
 <!DOCTYPE html>
 <html>
-<head>
-</head>
-<body>
-<% sizes = [] %>
-<% list = HelpProduct.all %>
-<% list.each do |x| %>
-<% if x.product_id == @product.id %>
-<% sizes << x.size %>
-<% end %>
-<% end %>
-<% get_quantity('45', @product.id) %> <br>
-<br><br>
-<% cat = @product.category_id %>
-<% cat_name = @product.category.name.upcase %>
-<div class="row">
-<div class="col-md-6">
-<ol class="breadcrumb">
-<li><%= link_to "HOME", home_path, class: "bread2" %></li>
-<li><%= link_to cat_name, category_path(@product.category_id), class: "bread2" %></li>
-<li class="active_link_in_breadcrumb"><%= link_to @product.name.upcase, '#', class: "bread" %></li>
-</ol>
-</div>
-<div class="col-md-6">
-<span class="notification_product"></span>
-</div>
-</div>
-<div class="wrapper">
-<div class="clear"></div>
-<div class="item">
-<table id="helpTable1" cellpadding="10">
-<col width="40px" />
-<tr style="padding:0px; margin:2px;">
-<% if @main_image.nil? %>
-<td style="padding:0px; margin:2px;">
-<%= image_tag(@product.image.url(:show), :alt =>"item", :id => @product.id) %>
-</td>
-<% else %>
-<td style="padding:0px; margin:2px;">
-<table>
-<tr>
-<td colspan='4'>
-<% @all_images.each do |im| %>
-<% if @main_image.id == im.id %>
-<span id="<%= im.id %>" class='main_image active_image' style="padding:0px; margin:2px;" data-id="<%= im.id %>">
-<!--<= image_tag(im.avatar.url(:show), :alt =>"item", :class=> 'main_show') %> -->
-<%=link_to image_tag(im.avatar.url(:show)), im.avatar.url(:preview), :popup=>['original_image', 'height=700,width=900'] %>
-</span>
-<% else %>
-<span id="<%= im.id %>" class='main_image' style="padding:0px; margin:2px; display:none" data-id="<%= im.id %>">
-<!-- <= image_tag(im.avatar.url(:show), :alt =>"item", :class=> 'main_show') %> -->
-<%=link_to image_tag(im.avatar.url(:show)), im.avatar.url(:preview), :popup=>['original_image', 'height=800,width=800'] %>
-</span>
-<% end %>	
-<% end %>
-</td>
-</tr>
-<tr>
-<% @all_images.each do |other_im| %>
-<td id='small_image_<%= other_im.id%>' class='small_image' style="padding:0px; margin:2px;" data-id="<%= other_im.id %>"> <%= image_tag(other_im.avatar.url(:thumb), :alt =>"item", :id => other_im.id) %> </td>
-<% end %>
-</tr>
-</table>
-</td>
-<% end %>
-</td>
-<button id="add-to-cart2" type="button" style="visibility: hidden;">Add to cart</button>
-<td style="margin-top: 200cm;" class="fixed">
-<span id="name_<%=@product.id %>"><b><%= @product.name %></b></span>
-<br><br>
-<span id="description_<%=@product.id %>"><%= @product.description %></span>
-<br><br>
-<%= form_for Item.new, id: "new_item" do |f| %>
-<% hp = HelpProduct.where(product_id: @product.id).all %>
-<% hp.each do |x| %>
-<% x.id %>
-<% end %>
-<br>
-<table>
-<tr>
-<td class="table_quan_size">
-<td class="table_quan_size" style="text-align:right; padding-bottom: 20px;"><span id="price_<%=@product.id %>"><%= @product.get_price %> KM </span></td>
-</tr>
-<tr>
-<td class="table_quan_size"><%= f.label t('size') %>
-<td class="table_quan_size"><%= f.label t('quantity') %>
-</tr>
-<tr>
-<td class="table_quan_size"><%= f.select("help_product_id", hp.collect {|p| [ p.size, p.id ] }, { :selected => params[:get_help_product_id], :class => "selectpicker" }, :id => "all_sizes", class: 'form-control', style: "width: 165px;") %>
-<td class="table_quan_size"><%= f.text_field :quantity, :class => "product_quantity_field", :id => 'product_quantity_field_id',:value => 1%> <!-- :include_blank => "Sve veličine", -->
-</table>
-<%= hidden_field_tag 'hidden_buy_now', '' %>
-<%= hidden_field_tag 'hidden_product_id', @product.id %>
-<table>
-<tr>
-<td style="padding:2px; margin:1px;">
-<input type="button" value="<%= t('add_to_cart_button') %>" class="btn btn-default add_to_cart" id="add_to_cart">
-</td>
-<td style="padding:2px; margin:1px;">
-<div class="actions">
-<%= f.submit t('buy_button'), :class => "btn btn-primary", :id=> "buy_now" %>
-<!--<input type="button" value="KUPI ODMAH" class="btn btn-primary" id="buy_now"> -->
-</div>
-</td>
-</tr>
-</table>
-<% end %>
-</td>
-</tr>
-</table>
-</div> <!-- item -->
-</div> <!-- wraper -->
+	<head>
+	</head>
+	<body>
+		<% sizes = [] %>
+		<% list = HelpProduct.all %>
+		<% list.each do |x| %>
+			<% if x.product_id == @product.id %>
+				<% sizes << x.size %>
+			<% end %>
+		<% end %>
+		<% get_quantity('45', @product.id) %> <br>
+		<br><br>
+		<% cat = @product.category_id %>
+		<% cat_name = @product.category.name.upcase %>
+		
+
+		<div class="row">
+			<div class="col-md-6">
+				<ol class="breadcrumb">
+					<li><%= link_to "HOME", home_path, class: "bread2" %></li>
+					<li><%= link_to cat_name, category_path(@product.category_id), class: "bread2" %></li>
+					<li class="active_link_in_breadcrumb"><%= link_to @product.name.upcase, '#', class: "bread" %></li>
+				</ol>
+			</div>
+			<div class="col-md-6">
+				<span class="notification_product"></span>
+			</div>
+		</div>
+		
+		<div class="wrapper">
+			<div class="clear"></div>
+		<div class="item">
+		<table id="helpTable1" cellpadding="10">
+			<col width="40px" />
+			<tr style="padding:0px; margin:2px;">
+				<% if @main_image.nil? %>
+				<td style="padding:0px; margin:2px;">
+					<%= image_tag(@product.image.url(:show), :alt =>"item", :id => @product.id) %>
+				</td>
+				<% else %>
+				<td style="padding:0px; margin:2px;">
+					<table>
+						<tr>
+						<td colspan='4'>
+							<% @all_images.each do |im| %>
+								<% if @main_image.id == im.id %>
+									<span id="<%= im.id %>" class='main_image active_image' style="padding:0px; margin:2px;" data-id="<%= im.id %>">
+									<!--<= image_tag(im.avatar.url(:show), :alt =>"item", :class=> 'main_show') %> -->
+
+									<a class="group1" style="width: 600px; height: 600px; float: none;" href="<%= im.avatar.url(:preview) %>" title="<%=@product.name%>">
+										<%=image_tag(im.avatar.url(:show)) %>
+									</a>
+									</span>
+								<% else %>
+									<span id="<%= im.id %>" class='main_image' style="padding:0px; margin:2px; display:none" data-id="<%= im.id %>">
+									<!-- <= image_tag(im.avatar.url(:show), :alt =>"item", :class=> 'main_show') %> -->
+									<%=link_to image_tag(im.avatar.url(:show)), im.avatar.url(:preview), :popup=>['original_image', 'height=800,width=800'] %>
+									</span>
+								<% end %>	
+							<% end %>
+						</td>
+						</tr>
+						<tr>
+							<% @all_images.each do |other_im| %>
+							<td id='small_image_<%= other_im.id%>' class='small_image' style="padding:0px; margin:2px;" data-id="<%= other_im.id %>"> <%= image_tag(other_im.avatar.url(:thumb), :alt =>"item", :id => other_im.id) %> </td>
+							<% end %>
+						</tr>
+						</table>
+				</td>
+				<% end %>
+			</td>
+			<button id="add-to-cart2" type="button" style="visibility: hidden;">Add to cart</button>
+			<td style="margin-top: 200cm;" class="fixed">
+				<span id="name_<%=@product.id %>"><b><%= @product.name %></b></span>
+				<br><br>
+				<span id="description_<%=@product.id %>"><%= @product.description %></span>
+				<br><br>
+				<%= form_for Item.new, id: "new_item" do |f| %>
+					<% hp = HelpProduct.where(product_id: @product.id).all %>
+					<% hp.each do |x| %>
+					<% x.id %>
+				<% end %>
+				<br>
+				<table>
+					<tr>
+						<td class="table_quan_size">
+						<td class="table_quan_size" style="text-align:right; padding-bottom: 20px;"><span id="price_<%=@product.id %>"><%= @product.get_price %> KM </span></td>
+					</tr>
+					<tr>
+						<td class="table_quan_size"><%= f.label t('size') %>
+						<td class="table_quan_size"><%= f.label t('quantity') %>
+					</tr>
+					<tr>
+						<td class="table_quan_size"><%= f.select("help_product_id", hp.collect {|p| [ p.size, p.id ] }, { :selected => params[:get_help_product_id], :class => "selectpicker" }, :id => "all_sizes", class: 'form-control', style: "width: 165px;") %>
+						<td class="table_quan_size"><%= f.text_field :quantity, :class => "product_quantity_field", :id => 'product_quantity_field_id',:value => 1%> <!-- :include_blank => "Sve veličine", -->
+				</table>
+
+
+				<%= hidden_field_tag 'hidden_buy_now', '' %>
+				<%= hidden_field_tag 'hidden_product_id', @product.id %>
+		
+
+				<table>
+					<tr>
+						<td style="padding:2px; margin:1px;">
+							<input type="button" value="<%= t('add_to_cart_button') %>" class="btn btn-default add_to_cart" id="add_to_cart">
+						</td>
+						<td style="padding:2px; margin:1px;">
+							<div class="actions">
+								<%= f.submit t('buy_button'), :class => "btn btn-primary", :id=> "buy_now" %>
+							<!--<input type="button" value="KUPI ODMAH" class="btn btn-primary" id="buy_now"> -->
+							</div>
+						</td>
+					</tr>
+				</table>
+				
+			<% end %>
+			</td>
+			</tr>
+		</table>
+	</div> <!-- item -->
+	</div> <!-- wraper -->
+
+
+
 <br><br><br><br>
-<h2> <%= t('similar_products') %></h2>
-<br>
-<% $all_products = Product.all %>
-<% counter = 0 %>
-<% list = [] %>
-<% $all_products.each do |x| %>
-<% if x.category_id == @product.category_id %>
-<% list << x %>
-<% end %>
-<% end %>
-<table id="all_products2">
-<% list.each do |x| %>
-<% if counter%4 == 0 || counter == 0 %>
-<tr><td>
-<% else %>
-<td>
-<% end %>
-<%= link_to product_path(x.id) do %>
-<div data-content1="<%= x.name %>" data-content2="<%= x.price %>KM" class="image">
-<%= image_tag(x.image)%> <br>
-<% counter += 1 %>
-</div>
-<% end %>
-</td>
-<% if counter%4 == 0 || counter == list.length %>
-</tr>
-<% end %>
-<% end %>
-<% counter = 0 %>
-</table>
-</body>
+		<h2> <%= t('similar_products') %></h2>
+		<br>
+		<% $all_products = Product.all %>
+		<% counter = 0 %>
+		<% list = [] %>
+		<% $all_products.each do |x| %>
+			<% if x.category_id == @product.category_id %>
+				<% list << x %>
+			<% end %>
+		<% end %>
+		
+
+		<table id="all_products2">
+			<% list.each do |x| %>
+			<% if counter%4 == 0 || counter == 0 %>
+				<tr><td>
+			<% else %>
+				<td>
+			<% end %>
+			
+			<%= link_to product_path(x.id) do %>
+				<div data-content1="<%= x.name %>" data-content2="<%= x.price %>KM" class="image">
+					<%= image_tag(x.image)%> <br>
+					<% counter += 1 %>
+				</div>
+				<% end %>
+					</td>
+				<% if counter%4 == 0 || counter == list.length %>
+					</tr>
+				<% end %>
+			<% end %>
+			<% counter = 0 %>
+		</table>
+	</body>
 </html>
-<script type="text/javascript">
-function changePicture() {
-var myPopup = window.open("", "", "width=200, height=100");
-}
-$( ".main_image" ).click(function() {
-var main = $(this).data("id");
-//alert("uvecava se slika "+main);
-});
-$( ".small_image" ).click(function() {
-var current_main = $( ".active_image" ).data("id");
-var small = $(this).data("id");
-var id_image = '#'+small;
-var old_active_id = '#'+current_main;
-$( ".active_image" ).css('display', 'none');
-$(old_active_id).attr('class', 'main_image');
-$(id_image).attr('class', 'main_image active_image');
-$(id_image).css('display', 'inline');
-/*var main = $( ".main_image" ).data("id");
-var small = $(this).data("id");
-//alert(small+" treba zamjena sa "+main);
-var temp = $( ".main_image" ).html();
-var small_image = $(this).html();
-var main_image_id = $( ".main_image" ).data("id");
-var small_image_id = $(this).data("id");
-//alert(main_image_id);
-//alert("Small image id: "+small_image_id);
-/*$("#main_image").attr("data-id", small_image_id);
-var string = "#small_image_"+small;
-$(string).attr("data-id", main_image_id);
-var new_string = "small_image_"+main_image_id;
-$(string).attr("id", new_string);
-//$(this).find('img').attr('src', 'Test');
-var string_image = "#"+small;
-//alert(string_image);
-$(string_image).attr("src", "Test");
-//alert($(string_image).html());
-$(".main_image" ).html(small_image);
-$(this).html(temp);*/
-});
+
+<script>
+	$(document).ready(function(){
+		$(".group1").colorbox({rel:'group1'});
+	});
 </script>
+
+
 <script type="text/javascript">
-$('#add-to-cart2').on('click', function () {
-var cart = $('#shopping-cart');
-var imgtodrag = $(this).parent('.item').find("img").eq(0);
-if (imgtodrag) {
-var imgclone = imgtodrag.clone()
-.offset({
-top: imgtodrag.offset().top,
-left: imgtodrag.offset().left
-})
-.css({
-'opacity': '0.5',
-'position': 'absolute',
-'height': '150px',
-'width': '150px',
-'z-index': '100'
-})
-.appendTo($('body'))
-.animate({
-'top': cart.offset().top + 10,
-'left': cart.offset().left + 10,
-'width': 75,
-'height': 75
-}, 1000, 'easeInOutExpo');
-setTimeout(function () {
-cart.effect("shake", {
-times: 2
-}, 200);
-}, 1500);
-imgclone.animate({
-'width': 0,
-'height': 0
-}, function () {
-$(this).detach()
-$('form#new_item').trigger('submit.rails');
-});
-}
-});
-$(window).bind('page:change', function(){
-var el = $(".nav_link a").html();
-$('#add_to_cart').on('click', function() {
-var velicina = $('#all_sizes').val();
-if (velicina == "")
-$('.notification_product').html("Unesite veličinu");
-else {
-$('#add-to-cart2').trigger('click');
-//$('form#new_item').trigger('submit.rails');
-}
-});
-$(".product_quantity_field").blur(function() {
-var el = $(this);
-var flag = $.isNumeric(el.val());
-if (el.val() == "") {
-$('.notification_product').html("Unesite količinu");
-setTimeout(function () { $(".product_quantity_field").focus(); }, 2);
-alert("Unesite količinu");
-//$(".product_quantity_field").focus();
-}
-else if (el.val() < 1 || flag == false || Math.floor(el.val()) != el.val())
-$('.notification_product').html("Unesite pozitivan broj za količinu");
-});
-$(".product_quantity_field").focus(function() {
-$('.notification_product').html(" ");
-});
-});
+	function changePicture() {
+		var myPopup = window.open("", "", "width=200, height=100");
+	}
+	$( ".main_image" ).click(function() {
+		var main = $(this).data("id");
+		//alert("uvecava se slika "+main);
+	});
+	$( ".small_image" ).click(function() {
+		var current_main = $( ".active_image" ).data("id");
+		var small = $(this).data("id");
+		var id_image = '#'+small;
+		var old_active_id = '#'+current_main;
+		$( ".active_image" ).css('display', 'none');
+		$(old_active_id).attr('class', 'main_image');
+		$(id_image).attr('class', 'main_image active_image');
+		$(id_image).css('display', 'inline');
+	});
+</script>
+
+
+<script type="text/javascript">
+	$('#add-to-cart2').on('click', function () {
+		var cart = $('#shopping-cart');
+		var imgtodrag = $(this).parent('.item').find("img").eq(0);
+		if (imgtodrag) {
+		var imgclone = imgtodrag.clone()
+		.offset({
+			top: imgtodrag.offset().top,
+			left: imgtodrag.offset().left
+		})
+		.css({
+			'opacity': '0.5',
+			'position': 'absolute',
+			'height': '150px',
+			'width': '150px',
+			'z-index': '100'
+		})
+		.appendTo($('body'))
+		.animate({
+			'top': cart.offset().top + 10,
+			'left': cart.offset().left + 10,
+			'width': 75,
+			'height': 75
+		}, 1000, 'easeInOutExpo');
+		setTimeout(function () {
+			cart.effect("shake", {
+			times: 2
+		}, 200);
+		}, 1500);
+		imgclone.animate({
+			'width': 0,
+			'height': 0
+		}, function () {
+			$(this).detach()
+			$('form#new_item').trigger('submit.rails');
+		});
+		}
+	});
+	
+
+	$(window).bind('page:change', function(){
+		var el = $(".nav_link a").html();
+		$('#add_to_cart').on('click', function() {
+			var velicina = $('#all_sizes').val();
+			if (velicina == "")
+				$('.notification_product').html("Unesite veličinu");
+			else {
+				$('#add-to-cart2').trigger('click');
+				//$('form#new_item').trigger('submit.rails');
+			}
+		});
+		$(".product_quantity_field").blur(function() {
+		var el = $(this);
+		var flag = $.isNumeric(el.val());
+		if (el.val() == "") {
+			$('.notification_product').html("Unesite količinu");
+			setTimeout(function () { $(".product_quantity_field").focus(); }, 2);
+			alert("Unesite količinu");
+			//$(".product_quantity_field").focus();
+		}
+		else if (el.val() < 1 || flag == false || Math.floor(el.val()) != el.val())
+			$('.notification_product').html("Unesite pozitivan broj za količinu");
+		});
+		$(".product_quantity_field").focus(function() {
+		$('.notification_product').html(" ");
+		});
+	});
 </script>
 <script type="text/javascript" src="https://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
 <script type="text/javascript">
-$('#buy_now').click(function(){
-var velicina = $('#all_sizes').val();
-if (velicina == "")
-$('.notification_product').html("Unesite veličinu");
-else {
-$('#hidden_buy_now').val("1");
-}
-});
+	$('#buy_now').click(function(){
+		var velicina = $('#all_sizes').val();
+		if (velicina == "")
+			$('.notification_product').html("Unesite veličinu");
+		else {
+			$('#hidden_buy_now').val("1");
+		}
+	});
 </script>
 
