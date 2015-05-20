@@ -84,10 +84,9 @@ i9.picture_from_url "http://web-shop-images.s3.amazonaws.com/images/avatars/000/
 i10.picture_from_url "http://web-shop-images.s3.amazonaws.com/images/avatars/000/000/016/thumb/m2.png?1431949342"
 =end
 
-=begin
 260 
 
-100.times do |i| 
+20.times do |i| 
   p = Product.new
   p.name = g.name
   p.price = g.price
@@ -99,21 +98,25 @@ i10.picture_from_url "http://web-shop-images.s3.amazonaws.com/images/avatars/000
 end
 
 
-allP = Product.all
+
+
+allP = Product.where(category_id: 5).all
 allP.each do |prodi|
-  if prodi.id != 209
+  if prodi.id != 415
   	hpp = HelpProduct.new
-  	hpp.size = 36
-  	hpp.quantity = 100
+  	hpp.size = 37
+  	hpp.quantity = 10
   	hpp.product_id = prodi.id
   	hpp.save
   	hpp2 = HelpProduct.new
-  	hpp2.size = 37
-  	hpp2.quantity = 100
+  	hpp2.size = 38
+  	hpp2.quantity = 10
   	hpp2.product_id = prodi.id
   	hpp2.save
   end
 end
+
+=begin
 
   gi = Image.find_by(product_id: 209)
 

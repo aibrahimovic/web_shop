@@ -3,6 +3,22 @@
 	<head>
 	</head>
 	<body>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 		<% sizes = [] %>
 		<% list = HelpProduct.all %>
 		<% list.each do |x| %>
@@ -52,6 +68,19 @@
 									<a class="group1" style="width: 600px; height: 600px; float: none;" href="<%= im.avatar.url(:preview) %>" title="<%=@product.name%>">
 										<%=image_tag(im.avatar.url(:show)) %>
 									</a>
+
+								    <ul class="enlarge">
+							    		<li><%= image_tag("c1.png", :width=>"150px")%><span>
+							    			<%= image_tag("c1.png")%><br /><%=@product.name%></span>
+							    		</li>
+							   		</ul>
+
+							   		<ul class="enlarge">
+							    		<li><%=image_tag(im.avatar.url(:show)) %><span>
+							    			<%=image_tag(im.avatar.url(:show), :width=>'400', :height=>'400') %><br /><%=@product.name%></span>
+							    		</li>
+							   		</ul>
+
 									</span>
 								<% else %>
 									<span id="<%= im.id %>" class='main_image' style="padding:0px; margin:2px; display:none" data-id="<%= im.id %>">
@@ -161,6 +190,15 @@
 		</table>
 	</body>
 	<input type="text" class="hidden_flag" val="">
+
+	    <ul class="enlarge">
+    		<li><%= image_tag("c1.png", :width=>"150px")%><span>
+    			<%= image_tag("c1.png")%><br />Deckchairs on Blackpool beach</span>
+    		</li>
+   		</ul>
+
+
+
 </html>
 
 <script>
