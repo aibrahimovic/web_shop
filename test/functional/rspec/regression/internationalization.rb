@@ -121,6 +121,8 @@ describe "Internationalization" do
 	
 
 
+
+
 	#context "check registration field" do
 		#it "registration field is translated" do
 			#expect(@landing_page_object.check_registration_field).to eq true

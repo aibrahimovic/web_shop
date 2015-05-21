@@ -5,6 +5,7 @@ class LandingPage < PageContainer
 	#verify
 
 	def verify
+		puts 1
 				
 		Watir::Wait.until { @browser.url =='https://webshop-abhshoes.herokuapp.com//' }
 				
@@ -167,7 +168,7 @@ class LandingPage < PageContainer
 	def check_login_button
 		return login_button.text == "PRIJAVA"
 	end
-	
+
 	def check_product_description
 		#puts select_element(@browser.a(:href => '/products/7').div(:class=> 'image')).attribute_value('datacontent1')
 		return select_element(@browser.a(:href => '/products/7').div(:class=> 'image')).attribute_value('datacontent1') == "Elegantne cipele"
