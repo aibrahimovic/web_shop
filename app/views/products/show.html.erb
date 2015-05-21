@@ -149,7 +149,7 @@
 		
 
 		<table id="all_products2">
-			<% list.each do |x| %>
+			<% @similar_products.each do |x| %>
 			<% if counter%4 == 0 || counter == 0 %>
 				<tr><td>
 			<% else %>
@@ -174,7 +174,7 @@
 			<% counter = 0 %>
 		</table>
 	<br>
-	<!-- <= will_paginate @similar_products, renderer: BootstrapPagination::Rails %> -->
+	<%= will_paginate @similar_products, renderer: BootstrapPagination::Rails %>
 	</body>
 	<input type="hidden" class="hidden_flag" val="">
 

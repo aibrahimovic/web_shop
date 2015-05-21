@@ -15,7 +15,7 @@ class ProductsController < ApplicationController
     @main_image = Image.find_by(product_id: @product.id, main: '1')
     @all_images = Image.where(product_id: @product.id).all
     @similar_products = Product.includes(:images).where(category_id: @product.category_id)
-    #@similar_products = @similar_products.paginate(:page => params[:page], :per_page => 20)
+    @similar_products = @similar_products.paginate(:page => params[:page], :per_page => 20)
 
     if !params[:counter].nil?
       #@counter += params[:counter].to_i
