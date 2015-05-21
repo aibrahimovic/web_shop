@@ -38,7 +38,7 @@
         <span id="<%= item.id %>_order_price"><%= item.price %> KM</span>
       </td>
       <td class="allProducts_table">
-        <span id="<%= item.id %>_order_total"><%= item.price.to_f * item.quantity %> KM</span>
+        <span id="<%= item.id %>_order_total"><%= item.price * item.quantity %> KM</span>
       </td>
     </tr>
     <% end %>
