@@ -71,3 +71,9 @@ gem 'newrelic_rpm'
 gem 'magnific-popup-rails'
 gem 'will_paginate-bootstrap'
 gem 'magic_encoding'
+
+
+gem 'watir'
+gem 'watir-webdriver'
+gem 'rspec'
+gem 'require_all'

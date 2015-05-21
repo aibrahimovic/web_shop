@@ -1,0 +1,11 @@
+options:
+  suite: "smoke test" #this can be used in a setup where multiple projects share the same test results database 
+  build: "2345" #
+  backtrace: false #set backtrace to true for more details and metadata
+dbconnection:
+  adapter: postgresql
+  database:  rspec_test_report
+  username: postgres
+  password: password
+  host: localhost
+  port: 5432
