@@ -70,3 +70,4 @@ gem "passenger"
 gem 'newrelic_rpm'
 gem 'magnific-popup-rails'
 gem 'will_paginate-bootstrap'
+gem 'magic_encoding'

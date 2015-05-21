@@ -158,7 +158,11 @@
 			
 			<%= link_to product_path(x.id) do %>
 				<div data-content1="<%= x.name %>" data-content2="<%= x.price %>KM" class="image">
-					<%= image_tag(x.image)%> <br>
+					<% if @main_image.nil? %>
+						<%= image_tag(x.image)%> <br>
+					<% else %>
+						<%= image_tag(@main_image.avatar.url(:small))%> <br>
+					<% end %>
 					<% counter += 1 %>
 				</div>
 				<% end %>
@@ -170,15 +174,7 @@
 			<% counter = 0 %>
 		</table>
 	</body>
-	<input type="text" class="hidden_flag" val="">
-
-	    <ul class="enlarge">
-    		<li><%= image_tag("c1.png", :width=>"150px")%><span>
-    			<%= image_tag("c1.png")%><br />Deckchairs on Blackpool beach</span>
-    		</li>
-   		</ul>
-
-
+	<input type="hidden" class="hidden_flag" val="">
 
 </html>
 
