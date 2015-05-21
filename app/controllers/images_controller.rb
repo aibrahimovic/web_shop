@@ -9,6 +9,10 @@ class ImagesController < ApplicationController
     @main = Image.find_by(product_id: @product_parameter, main: '1')
   end
 
+  def show
+    @image = Image.find(params[:id])
+  end
+
   def create
       @product_parameter = params[:image][:product_id]
       @image = Image.new(image_params)
@@ -41,8 +45,10 @@ class ImagesController < ApplicationController
     if flag==true
       @other_images = Image.where(product_id: @image.product_id).all
       @new_main_image = @other_images.last
-      @new_main_image.main = '1'
-      @new_main_image.save!
+      if !@new_main_image.nil?
+        @new_main_image.main = '1'
+        @new_main_image.save!
+      end
     end
     respond_to do |format|
       format.html { redirect_to images_new_path(:product_id => @image.product_id), notice: 'Slika je uspješno izbirsana.' }

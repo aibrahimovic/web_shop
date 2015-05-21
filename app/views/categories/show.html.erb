@@ -1,17 +1,18 @@
-
 <div class="row" id="all_products">
+
+
 <% @all_products_in_category.each do |product| %>
 	<% @main_image = Image.find_by(product_id: product.id, main: '1') %>
 		<% if @main_image.nil? %>
-		<div class="col-md-3">
+		<div class="col-md-3 categories_allProducts">
 			<%= link_to product_path(product.id) do %>
-			<div id="wrapper" class="image">
+			<div id="wrapper" class="image catergory_image">
 				<%= image_tag(product.image.url(:small))%> <br>
 			</div>
 			<% end %>
 			<%= product.name %><br>
 			
-			<% if product.get_price != product.price %>
+			<% if product.get_price != product.price && product.sale != "" %>
 			<div class="row" style="width:200px;">
 				<div class="col-md-6" style="padding-right: 0px;">
 				<span style="text-decoration: line-through; color: red;">
@@ -31,8 +32,8 @@
 			<% end %>
 
 		</div>
-		<% else %>
-		<div class="col-md-3">
+		<% else %>	
+		<div class="col-md-3 categories_allProducts">
 			<%= link_to product_path(product.id) do %>
 			<div id="wrapper" class="image">
 				<%= image_tag(@main_image.avatar.url(:small))%> <br>
@@ -40,7 +41,7 @@
 			<% end %>
 			<%= product.name %><br>
 			
-			<% if product.get_price != product.price %>
+			<% if product.get_price != product.price && product.sale != "" %>
 			<div class="row" style="width:200px;">
 				<div class="col-md-6" style="padding-right: 0px;">
 				<span style="text-decoration: line-through; color: red;">
@@ -65,3 +66,7 @@
 
 <% end %>
 </div>
+
+
+<br><br><br><br><br><br>	
+<%= will_paginate @all_products_in_category, renderer: BootstrapPagination::Rails %>

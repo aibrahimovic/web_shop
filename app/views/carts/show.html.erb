@@ -15,7 +15,7 @@
 
 		<table class="table_cart">
 			<tr> 
-				<td style="padding:30px; margin:2px;"> <%= t('your_cart')%></td>
+				<td style="padding:30px; margin:2px;" class="your_cart"> <%= t('your_cart')%> </td>
 			</tr>
 
 			<% counter = 0 %>
@@ -109,7 +109,7 @@
 						status = "";
 						for (i=0; i<products.length; i++) {
 							if (quantities[i] == 0) {
-								status += "Poizvod <b>"+names[i]+"</b> više nije dostupan.<br>";
+								status += "<%= t('status_product') %> <b>"+names[i]+"</b> <%= t('status_available1') %>.<br>";
 								$(".cart_status").html(status);
 								var id_for_item = products[i];
 								$("#"+id_for_item).val(quantities[i]);
@@ -122,11 +122,12 @@
 								    type: 'DELETE',
 								    success: function(result) {
 								    	if (result.error) {
+								    		$('#counter').html(result.counter);
 								    		$("#"+id_for_item).hide();
-								    		//alert("<%= @nuber_of_items %>");
 								    		if ("<%= @nuber_of_items %>" == 0)
 								    			$('.table_total').hide();
 								    		$(document).trigger('page:change');
+
 								    		$.ajax({
 											    url: '/carts/update_price',
 											    type: 'GET',
@@ -134,8 +135,9 @@
 											    	if (result.number) {
 											    		$(".cart_total_number").html(result.number);
 											    		$(".cart_price").html(result.price);
-											    		$(".cart_delivery").html(result.delivery);
-											    		$(".cart_total").html(result.total);
+											    		$(".cart_delivery").html(result.delivery+"KM");
+											    		$(".cart_total").html(result.total+"KM");
+														//$('#counter').html(result.number);
 											    	}
 											    }
 
@@ -144,22 +146,9 @@
 							    	}
 								});
 
-								/*$.ajax({
-								    url: '/carts/update_price',
-								    type: 'GET',
-								    success: function(result) {
-								    	if (result.number) {
-								    		$(".cart_total_number").html(result.number);
-								    		$(".cart_price").html(result.price);
-								    		$(".cart_delivery").html(result.delivery);
-								    		$(".cart_total").html(result.total);
-								    	}
-								    }
-
-								});*/
 							}
 							else {
-								status += "Poizvod <b>"+names[i]+"</b> ima ograničenu količinu. Možete naručiti najviše <b>"+quantities[i]+"</b> proizvoda.<br>";
+								status += "<%= t('status_product') %> <b>"+names[i]+"</b> <%= t('status_available2') %> <b>"+quantities[i]+"</b> <%= t('status_products') %>.<br>";
 								$(".cart_status").html(status);
 								var id_for_item = products[i];
 								$("#"+id_for_item).val(quantities[i]);
@@ -173,6 +162,8 @@
 								    type: 'PUT',
 								    success: function(result) {
 								    	if (result.error) {
+								    		//alert(result.counter);
+								    		$('#counter').html(result.counter);
 								    		//alert("Podaci su izmjenjeni");
 								    		$.ajax({
 											    url: '/carts/update_price',
@@ -181,8 +172,9 @@
 											    	if (result.number) {
 											    		$(".cart_total_number").html(result.number);
 											    		$(".cart_price").html(result.price);
-											    		$(".cart_delivery").html(result.delivery);
-											    		$(".cart_total").html(result.total);
+											    		$(".cart_delivery").html(result.delivery+"KM");
+											    		$(".cart_total").html(result.total+"KM");
+											    		//$('#counter').html(result.number);
 											    	}
 											    }
 
@@ -191,29 +183,39 @@
 								    }
 
 								});
-
-								/*$.ajax({
-								    url: '/carts/update_price',
-								    type: 'GET',
-								    success: function(result) {
-								    	if (result.number) {
-								    		$(".cart_total_number").html(result.number);
-								    		$(".cart_price").html(result.price);
-								    		$(".cart_delivery").html(result.delivery);
-								    		$(".cart_total").html(result.total);
-								    	}
-								    }
-
-								});*/
-
 							}
 						}
 				    }
 						
 			    }
 		});
-});
-	$(window).bind('page:change myChange', function(){
+
+		if ("<%= @nuber_of_items %>" == 0) {
+			$('.table_total2').hide();
+			$('.table_total').hide();
+			$('.your_cart').html("<%= t('your_cart_empty')%>");
+		}
+
+
+		$(".quantity_field").change(function() {
+			$.ajax({
+			    url: '/carts/update_price',
+			    type: 'GET',
+			    success: function(result) {
+			    	if (result.number) {
+			    		$(".cart_total_number").html(result.number);
+			    		$(".cart_price").html(result.price);
+			    		$(".cart_delivery").html(result.delivery+"KM");
+			    		$(".cart_total").html(result.total+"KM");
+			    	}
+			    }
+
+			});
+
+		});
+	});
+	
+	//$(window).bind('page:change myChange', function(){
 
 
 		var old_element = $(".quantity_field").val();
@@ -239,7 +241,10 @@
 							$(".cart_delivery").html("0.00KM");
 							$(".cart_total").html("0.00KM");
 							$('.table_total2').hide();
+							$('.table_total').hide();
+							$('.your_cart').html("<%= t('your_cart_empty')%>");
 						}
+						$('#counter').html(result.counter);
 			    		$.ajax({
 							url: '/carts/update_price',
 							type: 'GET',
@@ -247,31 +252,15 @@
 							if (result.number) {
 								$(".cart_total_number").html(result.number);
 								$(".cart_price").html(result.price);
-								$(".cart_delivery").html(result.delivery);
-								$(".cart_total").html(result.total);
-
+								$(".cart_delivery").html(result.delivery+"KM");
+								$(".cart_total").html(result.total+"KM");
+								//$('#counter').html(result.number);
 							}
 							
 						}
 						});
-						$(document).trigger('page:change');
-			    		/*$.ajax({
-						    url: '/carts/update_price',
-						    type: 'GET',
-						    success: function(result) {
-						    	if (result.number) {
-						    		$(".cart_total_number").html(result.number);
-						    		$(".cart_price").html(result.price);
-						    		$(".cart_delivery").html(result.delivery);
-						    		$(".cart_total").html(result.total);
-						    	}
-						    }
-
-						});*/
+						
 			    	}
-			    	/*console.log(el)
-			    	alert (el.parents("tr").length)
-			   		el.parents("tr").show();*/
 			    }
 
 			});
@@ -297,10 +286,12 @@
 			    },
 			    type: 'PUT',
 			    success: function(result) {
-			    	if (result.error) {
+			    	if (result.error == true) {
+			    		//alert(result.counter);
+			    		$('#counter').html(result.counter);
 			    		//alert("Podaci su izmjenjeni");
 			    		//$("window").trigger('page:change');
-			    		$(document).trigger('page:change');
+			    		//$(document).trigger('page:change');
 			    	}
 			    }
 
@@ -309,31 +300,8 @@
 		});
 		
 
-	});
+	//});
 
-	$(window).bind('page:change', function(){
-
-		if ("<%= @nuber_of_items %>" == 0)
-			$('.table_total2').hide();
-
-
-		$(".quantity_field").change(function() {
-			$.ajax({
-			    url: '/carts/update_price',
-			    type: 'GET',
-			    success: function(result) {
-			    	if (result.number) {
-			    		$(".cart_total_number").html(result.number);
-			    		$(".cart_price").html(result.price);
-			    		$(".cart_delivery").html(result.delivery);
-			    		$(".cart_total").html(result.total);
-			    	}
-			    }
-
-			});
-
-		});
-	});
 </script>
 
 </body>

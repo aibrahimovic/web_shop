@@ -40,8 +40,8 @@ wrapper .text_on_image {
 
 .image {
     position:relative;
-    width:150px;
-    height:150px;
+    width:170px;
+    height:170px;
 }
 
 .image img {
@@ -67,13 +67,19 @@ wrapper .text_on_image {
     color:#fff;
     z-index:1;
     bottom:0;
-    padding:50px 10px; //ova linija
+    padding:60px 10px; //ova linija
     text-align:center;
     box-sizing:border-box;
     -moz-box-sizing:border-box;
 }
 .image:hover:after, .image:hover:before {
     opacity:1;
+}
+
+.percent_on_image {
+    text-align: right;
+    color: #E44A3B;
+    font-size: 14px;
 }
 
 /*.image {

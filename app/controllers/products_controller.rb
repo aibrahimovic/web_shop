@@ -1,13 +1,16 @@
 class ProductsController < ApplicationController
   before_action :set_product, only: [:show, :edit, :update, :destroy] 
 
+  include ActionView::Helpers::NumberHelper
+
   def new
   	@product = Product.new
     @categories = Category.all
   end
 
   def show
-    @counter =  session[:counter]
+    #@counter =  session[:counter]
+    #puts 'iz productShow:'+@counter.to_s
     @product = Product.find(params[:id])
     @main_image = Image.find_by(product_id: @product.id, main: '1')
     @all_images = Image.where(product_id: @product.id).all
@@ -29,7 +32,8 @@ class ProductsController < ApplicationController
     if percent != ""
       old_price = @product.price.to_f
       new_price = old_price - (percent.to_f/100)*old_price
-      @product.sale = new_price.to_s
+      @product.sale = new_price.to_s << "00"
+      @product.sale = number_with_precision(@product.sale, :precision => 2)
     end
     
     special = params[:special]
@@ -38,7 +42,7 @@ class ProductsController < ApplicationController
     @product.attributes = { name: bosnian, description: desc_bosnian, locale: :bs }
     @product.attributes = { name: english, description: desc_english, locale: :en }
     #@product.save!
-
+    
     respond_to do |format|
       if @product.save
         #format.html { redirect_to help_products_new_path(:product_id => @product.id), notice: 'Proizvod je uspješno kreiran.' }
@@ -131,7 +135,11 @@ class ProductsController < ApplicationController
   end
 
   def allProducts 
-  	@products = Product.all
+  	#@products2 = Product.all
+    #@products = Product.includes([:help_products, :images]).all
+    @products = Product.includes([:images, :help_products])
+    @products = @products.paginate(:page => params[:page], :per_page => 20)
+
   end
 
   def destroy

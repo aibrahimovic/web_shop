@@ -1,7 +1,9 @@
 <p id="notice"><%= notice %></p>
 <br>
 <h2 style="text-align: left;">Svi proizvodi</h2>
-
+<br>
+<%= link_to 'Novi proizvod', new_product_path %>
+<br><br>
 <table>
   <tbody>
     <% @products.each do |product| %>
@@ -33,9 +35,10 @@
         </td>
       </tr>
     <% end %>
+
   </tbody>
 </table>
+<br><br>
 
 <br>
-
-<%= link_to 'Novi proizvod', new_product_path %>
+<%= will_paginate @products, renderer: BootstrapPagination::Rails %>

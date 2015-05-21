@@ -1,4 +1,6 @@
 class CartsController < ApplicationController
+  skip_before_action :verify_authenticity_token
+
   def new
   	#@cart = Cart.new
   end
@@ -10,7 +12,6 @@ class CartsController < ApplicationController
     else
       @path_to_address = find_address_path
     end
-    session[:counter] = 0
     @nuber_of_items = @cart.items.length
 
   end
@@ -31,20 +32,54 @@ class CartsController < ApplicationController
     end
   end
 
-  def update_item 
+  def update_item
+    item = Item.find(params[:item_id])
+    old_qunantity = item.quantity
+    
     is_updated = @cart.update_item(params[:item_id], params[:quantity])
-    render json: { error: is_updated } 
+    
+    quantity = params[:quantity]
+    @counter = cookies[:counter]
+    puts 'iz prvi update:'+@counter.to_s
+    
+    if quantity.to_i > old_qunantity.to_i
+      puts 'counter_prije: '+@counter.to_s
+      puts 'Stara: '+old_qunantity.to_s
+      puts 'Nova: '+quantity.to_s
+      @counter = (@counter.to_i - old_qunantity.to_i) + quantity.to_i
+      puts 'counter_nakon: '+@counter.to_s
+      cookies[:counter] = @counter
+    else
+      puts 'counter_prije: '+@counter.to_s
+      puts 'Stara: '+old_qunantity.to_s
+      puts 'Nova: '+quantity.to_s
+      @counter = @counter.to_i - (old_qunantity.to_i - quantity.to_i)
+      puts 'counter_nakon: '+@counter.to_s
+      cookies[:counter] = @counter
+    
+    end
+
+    render json: { error: is_updated, counter: @counter}
   end
+  
 
   def delete_item
+    item = Item.find(params[:item_id])
+    old_qunantity = item.quantity
+    
     is_deleted = @cart.delete_item(params[:item_id])
+    
     number = @cart.items.length
-    render json: { error: is_deleted, itemsNumber: number } 
+    @counter = cookies[:counter]
+    @counter = @counter.to_i - old_qunantity.to_i
+    cookies[:counter] = @counter
+    
+    render json: { error: is_deleted, itemsNumber: number, counter: @counter}
   end
 
   def update_price
     number, price, delivery, total = @cart.count_prices
-    render json: { number: number, price: price, delivery: delivery, total: total }  
+    render json: { number: number, price: price, delivery: delivery, total: total}  
   end
 
   def check_available

@@ -1,5 +1,7 @@
 class ItemsController < ApplicationController
 
+  include ActionView::Helpers::NumberHelper
+
   def new
   	@item = Item.new   
   end
@@ -13,7 +15,8 @@ class ItemsController < ApplicationController
       
       @item = Item.new(item_params)
       @path_to_address = find_address_path
-      @counter = session[:counter]
+      @counter = cookies[:counter].to_i
+      puts 'iz itemCreate:'+@counter.to_s
 
       hidden = params["hidden_buy_now"]
       if hidden == "1"
@@ -23,9 +26,14 @@ class ItemsController < ApplicationController
         is_saved = @cart.add_item(@item)
         hp = HelpProduct.find_by(id: @item.help_product_id)    
         if is_saved == true
-          @counter += 1
-          session[:counter] = @counter
+          if !@item.quantity.nil?
+            @counter += @item.quantity
+          end
+          #set_counter(@counter)
+          cookies[:counter] = @counter
+          puts 'iz itemCreate novi:'+cookies[:counter].to_s
         end
+
         redirect_to product_path(hp.product)
       end
 
@@ -86,9 +94,11 @@ class ItemsController < ApplicationController
 
       if @cart!= nil
         @i = Item.where(cart_id: @cart.id).destroy_all
+        cookies[:counter] = 0
       else 
         @c = session[:cart_id]
         @i = Item.where(cart_id: @cart.id).destroy_all
+        cookies[:counter] = 0
       end
     else
       @oi = OrderItem.new

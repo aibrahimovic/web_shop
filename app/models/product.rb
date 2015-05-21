@@ -1,7 +1,11 @@
 class Product < ActiveRecord::Base
 
+  include ActionView::Helpers::NumberHelper
+
 	belongs_to :category
 	has_many :items
+  has_many :help_products
+  has_many :images
 	has_attached_file :image, :styles => {
                       :thumb => "120x120>",
                       :small => "150x150>",
@@ -24,6 +28,9 @@ class Product < ActiveRecord::Base
     else
       @price = self.sale
     end
+
+    #@price.to_f
+    #@price = number_with_precision(@price, :precision => 2)
 
     @price
   end

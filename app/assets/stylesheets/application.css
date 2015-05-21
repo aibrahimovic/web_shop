@@ -10,8 +10,11 @@
  *
  *= require_self
  *= require_tree .
+ *= require magnific-popup
+ *= require colorbox
  */
 
 /*
 *= require jquery.rambling.slider
 */
+

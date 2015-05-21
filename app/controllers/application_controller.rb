@@ -26,7 +26,8 @@ class ApplicationController < ActionController::Base
       @cart.counter = 0
       @cart.save()
   	end
-    if session[:counter].nil?
+    if session[:counter].nil? || cookies[:counter].nil?
+      cookies[:counter] = @cart.counter
       session[:counter] = @cart.counter
     end
 
@@ -48,8 +49,13 @@ class ApplicationController < ActionController::Base
   end
 
   def get_counter
-    counter = session[:counter]
-    render json: { counter: counter } 
+    #counter = session[:counter]
+    #puts 'iz get_counter:'+counter.to_s
+    #render json: { counter: counter } 
+  end
+
+  def set_counter(counter)
+    #session[:counter] = counter
   end
 
   def set_order

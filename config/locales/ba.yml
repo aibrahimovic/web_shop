@@ -75,7 +75,13 @@ bs:
   home_login: "PRIJAVA"
   home_register: "REGISTRACIJA"
   home_logout: "ODJAVA"
-
+  your_cart_empty: "Vaša korpa je prazna"
+  status_product: "Proizvod"
+  status_available1: "više nije dostupan"
+  status_available2: "ima ograničenu količinu. Možete naručiti najviše"
+  status_products: "proizvoda"
+  order_bill: "Račun"
+  your_order_bill: "Vaša narudžba"
 
   
   activerecord:
