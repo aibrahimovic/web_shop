@@ -14,8 +14,8 @@ class LandingPage < PageContainer
 
 	def verify_product_button
 		#select_element(@browser.div(:id, 'featured_products').div(:index => 0).div(:index => 0).a(:href => '/categories/1/products/3')).wait_until_present
-		select_element(@browser.a(:href => '/products/7')).wait_until_present
-		return select_element(@browser.a(:href => '/products/7')).exist?
+		select_element(@browser.table(:id=>'all_products2').a(:href => '/products/260')).wait_until_present
+		return select_element(@browser.table(:id=>'all_products2').a(:href => '/products/260')).exist?
 	end
 
 	def verify_login_button
@@ -44,8 +44,8 @@ class LandingPage < PageContainer
 	#element getters
 	def product_button
 		#select_element(@browser.div(:id, 'featured_products').div(:index => 0).div(:index => 0).a(:href => '/categories/1/products/10')).wait_until_present
-		select_element(@browser.a(:href => '/products/7')).wait_until_present
-		return select_element(@browser.a(:href => '/products/7'))
+		select_element(@browser.table(:id=>'all_products2').a(:href => '/products/260')).wait_until_present
+		return select_element(@browser.table(:id=>'all_products2').a(:href => '/products/260'))
 	end
 
 	def product_picture
@@ -82,26 +82,32 @@ class LandingPage < PageContainer
 
 	def zenska_obuca
 		#Watir::Wait.until { select_element(@browser.a(:href => '/categories/4')).present? }
-		select_element(@browser.a(:href => '/categories/4')).wait_until_present
-		return select_element(@browser.a(:href => '/categories/4'))
+		select_element(@browser.a(:href => '/categories/3')).wait_until_present
+		return select_element(@browser.a(:href => '/categories/3'))
 	end
 
 	def muska_obuca
 		#Watir::Wait.until { select_element(@browser.a(:href => '/categories/5')).present? }
-		select_element(@browser.a(:href => '/categories/5')).wait_until_present
-		return select_element(@browser.a(:href => '/categories/5'))
+		select_element(@browser.a(:href => '/categories/4')).wait_until_present
+		return select_element(@browser.a(:href => '/categories/4'))
 	end
 
 	def sportska_obuca
 		#Watir::Wait.until { select_element(@browser.a(:href => '/categories/6')).present? }
-		select_element(@browser.a(:href => '/categories/6')).wait_until_present
-		return select_element(@browser.a(:href => '/categories/6'))
+		select_element(@browser.a(:href => '/categories/5')).wait_until_present
+		return select_element(@browser.a(:href => '/categories/5'))
 	end
 
 	def naslov
 		select_element(@browser.h2).wait_until_present
 		return select_element(@browser.h2)
 	end
+
+	def admin_products
+		select_element(@browser.a(:href => '/allProducts')).wait_until_present
+		return select_element(@browser.a(:href => '/allProducts'))
+	end
+
 
 
 
@@ -114,6 +120,7 @@ class LandingPage < PageContainer
 
 	def get_login_page
 		login_button.click
+		@browser.refresh
 		return LoginPage.new(@browser)
 	end
 
@@ -125,6 +132,12 @@ class LandingPage < PageContainer
 	def get_cart_page
 		cart_button.click
 		return CartPage.new(@browser)
+	end
+
+	def get_admin_page_products
+		admin_products.click
+		@browser.refresh
+		return AdminPage.new(@browser)
 	end
 
 	def change_language
@@ -148,8 +161,13 @@ class LandingPage < PageContainer
 
 	def check_registration_field
 		
-		return signup_link.text == "Registracija"	
+		return signup_link.text == "REGISTRACIJA"	
 	end
+
+	def check_login_button
+		return login_button.text == "PRIJAVA"
+	end
+	
 	def check_product_description
 		#puts select_element(@browser.a(:href => '/products/7').div(:class=> 'image')).attribute_value('datacontent1')
 		return select_element(@browser.a(:href => '/products/7').div(:class=> 'image')).attribute_value('datacontent1') == "Elegantne cipele"

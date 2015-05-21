@@ -7,11 +7,11 @@ class ProductPage < PageContainer
 
 	def verify
 		
-    	Watir::Wait.until { @browser.url.include? 'products/7' }
+    	Watir::Wait.until { @browser.url.include? '/products/260' }
   		#end
 		#return select_element(@browser.div(:class => 'page-wrap').div(:class => 'container-fluid')).exist?
 		
-		return @browser.url.include? 'products/7'
+		return @browser.url.include? '/products/260'
 	    
 	end
 
@@ -35,8 +35,8 @@ class ProductPage < PageContainer
     end
 
     def verify_product_price(price)
-		select_element(@browser.span(:id=>'price_7')).wait_until_present
-		return select_element(@browser.span(:id =>'price_7')).text == price
+		select_element(@browser.span(:id=>'price_260')).wait_until_present
+		return select_element(@browser.span(:id =>'price_260')).text == price
 	end
 
 	def quantity_field
@@ -56,10 +56,10 @@ class ProductPage < PageContainer
 		return select_element(@browser.a(:class => 'nav_link', :href => '/carts'))
 	end
 
-	def product_name
-		select_element(@browser.b(:text => 'Elegant shoes')).wait_until_present
-		return select_element(@browser.b(:text => 'Elegant shoes')).text
-	end
+	#def product_name
+		#select_element(@browser.b(:text => 'Elegant shoes')).wait_until_present
+		#return select_element(@browser.b(:text => 'Elegant shoes')).text
+	#end
 
 	def size
 		select_element(@browser.select_list(:id => 'all_sizes'))
@@ -77,7 +77,7 @@ class ProductPage < PageContainer
 	end
 
 	def change_size
-		size.select '42'
+		size.select '43'
 	end
 
 	def set_quantity(quantity)

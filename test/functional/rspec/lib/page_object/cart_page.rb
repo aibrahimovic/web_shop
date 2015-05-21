@@ -9,11 +9,20 @@ class CartPage < PageContainer
 
     def verify_cart_quantity(quantity)
     	#sleep 15
-    	@browser.refresh
+    	#@browser.refresh
+    	sleep 5
+    	#puts quantity
+    	quantity = quantity.to_s
+
     	Watir::Wait.until { @browser.li(:id =>'counter').present? }
     	#element=select_element(@browser.li(:id =>'counter')).wait_until_present
     	#@browser.refresh
 		#select_element(@browser.li(:id =>'counter')).exist?
+		#a = 99
+		#puts a
+		#a = select_element(@browser.li(:id => 'counter')).text
+		#puts a
+		#puts select_element(@browser.li(:id => 'counter')).text.to_s
 		return select_element(@browser.li(:id => 'counter')).text == quantity
     end
 

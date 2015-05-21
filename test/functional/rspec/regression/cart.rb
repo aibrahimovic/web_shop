@@ -27,7 +27,7 @@ describe "Cart functionalities" do
 	
 	context "check cart price" do
 		it "price is correct" do
-			expect($product_page_object.verify_product_price("130.00")).to eq true
+			expect($product_page_object.verify_product_price("120.00 KM")).to eq true
 		end
 	end
 
@@ -63,6 +63,7 @@ describe "Cart functionalities" do
 			$cart_page_object=$product_page_object.get_cart_page
 			expect($cart_page_object.verify).to eq true
 			#expect($cart_page_object.product_name).to eq 'Elegant shoes'
+
 			expect($cart_page_object.verify_cart_quantity(4)).to eq true
 		end
 	end
@@ -72,7 +73,7 @@ describe "Cart functionalities" do
 
 	context "check cart price" do
 		it "price is correct" do
-			expect($cart_page_object.verify_product_price("520.00")).to eq true
+			expect($cart_page_object.verify_product_price("480.00")).to eq true
 		end
 	end
 

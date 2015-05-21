@@ -281,435 +281,123 @@ a {
 <div class="results">
 <div id="div_group_1" class="example_group passed">
   <dl style="margin-left: 0px;">
-  <dt id="example_group_1" class="passed">Log in</dt>
+  <dt id="example_group_1" class="passed">Internationalization</dt>
   </dl>
 </div>
 <div id="div_group_2" class="example_group passed">
   <dl style="margin-left: 15px;">
   <dt id="example_group_2" class="passed">loading landing page</dt>
-    <script type="text/javascript">makeRed('rspec-header');</script>
-    <script type="text/javascript">makeRed('div_group_2');</script>
-    <script type="text/javascript">makeRed('example_group_2');</script>
-    <script type="text/javascript">moveProgressBar('7.6');</script>
-    <dd class="example failed">
-      <span class="failed_spec_name">is loaded correctly</span>
-      <span class="duration">0.00001s</span>
-      <div class="failure" id="failure_1">
-        <div class="message"><pre>Unable to find the chromedriver executable. Please download the server from http://chromedriver.storage.googleapis.com/index.html and place it somewhere on your PATH. More info at http://code.google.com/p/selenium/wiki/ChromeDriver.</pre></div>
-        <div class="backtrace"><pre>/home/azra/.rvm/gems/ruby-2.2.1/gems/selenium-webdriver-2.45.0/lib/selenium/webdriver/chrome/service.rb:20:in `executable_path&#39;
-/home/azra/.rvm/gems/ruby-2.2.1/gems/selenium-webdriver-2.45.0/lib/selenium/webdriver/chrome/service.rb:33:in `default_service&#39;
-/home/azra/.rvm/gems/ruby-2.2.1/gems/selenium-webdriver-2.45.0/lib/selenium/webdriver/chrome/bridge.rb:14:in `initialize&#39;
-/home/azra/.rvm/gems/ruby-2.2.1/gems/selenium-webdriver-2.45.0/lib/selenium/webdriver/common/driver.rb:37:in `new&#39;
-/home/azra/.rvm/gems/ruby-2.2.1/gems/selenium-webdriver-2.45.0/lib/selenium/webdriver/common/driver.rb:37:in `for&#39;
-/home/azra/.rvm/gems/ruby-2.2.1/gems/selenium-webdriver-2.45.0/lib/selenium/webdriver.rb:67:in `for&#39;
-/home/azra/.rvm/gems/ruby-2.2.1/gems/watir-webdriver-0.7.0/lib/watir-webdriver/browser.rb:46:in `initialize&#39;
-./lib/helpers/environment_helpers.rb:3:in `new&#39;
-./lib/helpers/environment_helpers.rb:3:in `set_browser&#39;
-./regression/log_in.rb:10:in `block (2 levels) in &lt;top (required)&gt;&#39;</pre></div>
-    <pre class="ruby"><code><span class="linenum">18</span>          @executable_path ||= (
-<span class="linenum">19</span>            path = Platform.find_binary "chromedriver"
-<span class="offending"><span class="linenum">20</span>            path or raise Error::WebDriverError, MISSING_TEXT</span>
-<span class="linenum">21</span>            Platform.assert_executable path
-<span class="linenum">22</span>
-<span class="linenum">23</span><span class="comment"># Install the coderay gem to get syntax highlighting</span></code></pre>
-      </div>
-    </dd>
+    <script type="text/javascript">moveProgressBar('6.2');</script>
+    <dd class="example passed"><span class="passed_spec_name">is loaded correctly</span><span class='duration'>2.46301s</span></dd>
   </dl>
 </div>
 <div id="div_group_3" class="example_group passed">
   <dl style="margin-left: 15px;">
-  <dt id="example_group_3" class="passed">log in</dt>
+  <dt id="example_group_3" class="passed">change language</dt>
+    <script type="text/javascript">moveProgressBar('12.5');</script>
+    <dd class="example passed"><span class="passed_spec_name">language is changed</span><span class='duration'>8.23571s</span></dd>
   </dl>
 </div>
 <div id="div_group_4" class="example_group passed">
-  <dl style="margin-left: 30px;">
-  <dt id="example_group_4" class="passed">click login button on navbar</dt>
-    <script type="text/javascript">makeRed('div_group_4');</script>
-    <script type="text/javascript">makeRed('example_group_4');</script>
-    <script type="text/javascript">moveProgressBar('15.3');</script>
-    <dd class="example failed">
-      <span class="failed_spec_name">opens login page</span>
-      <span class="duration">0.00001s</span>
-      <div class="failure" id="failure_2">
-        <div class="message"><pre>Unable to find the chromedriver executable. Please download the server from http://chromedriver.storage.googleapis.com/index.html and place it somewhere on your PATH. More info at http://code.google.com/p/selenium/wiki/ChromeDriver.</pre></div>
-        <div class="backtrace"><pre>/home/azra/.rvm/gems/ruby-2.2.1/gems/selenium-webdriver-2.45.0/lib/selenium/webdriver/chrome/service.rb:20:in `executable_path&#39;
-/home/azra/.rvm/gems/ruby-2.2.1/gems/selenium-webdriver-2.45.0/lib/selenium/webdriver/chrome/service.rb:33:in `default_service&#39;
-/home/azra/.rvm/gems/ruby-2.2.1/gems/selenium-webdriver-2.45.0/lib/selenium/webdriver/chrome/bridge.rb:14:in `initialize&#39;
-/home/azra/.rvm/gems/ruby-2.2.1/gems/selenium-webdriver-2.45.0/lib/selenium/webdriver/common/driver.rb:37:in `new&#39;
-/home/azra/.rvm/gems/ruby-2.2.1/gems/selenium-webdriver-2.45.0/lib/selenium/webdriver/common/driver.rb:37:in `for&#39;
-/home/azra/.rvm/gems/ruby-2.2.1/gems/selenium-webdriver-2.45.0/lib/selenium/webdriver.rb:67:in `for&#39;
-/home/azra/.rvm/gems/ruby-2.2.1/gems/watir-webdriver-0.7.0/lib/watir-webdriver/browser.rb:46:in `initialize&#39;
-./lib/helpers/environment_helpers.rb:3:in `new&#39;
-./lib/helpers/environment_helpers.rb:3:in `set_browser&#39;
-./regression/log_in.rb:10:in `block (2 levels) in &lt;top (required)&gt;&#39;</pre></div>
-    <pre class="ruby"><code><span class="linenum">18</span>          @executable_path ||= (
-<span class="linenum">19</span>            path = Platform.find_binary "chromedriver"
-<span class="offending"><span class="linenum">20</span>            path or raise Error::WebDriverError, MISSING_TEXT</span>
-<span class="linenum">21</span>            Platform.assert_executable path
-<span class="linenum">22</span>
-<span class="linenum">23</span><span class="comment"># Install the coderay gem to get syntax highlighting</span></code></pre>
-      </div>
-    </dd>
+  <dl style="margin-left: 15px;">
+  <dt id="example_group_4" class="passed">check categories</dt>
+    <script type="text/javascript">moveProgressBar('18.7');</script>
+    <dd class="example passed"><span class="passed_spec_name">categories are translated</span><span class='duration'>13.33975s</span></dd>
   </dl>
 </div>
 <div id="div_group_5" class="example_group passed">
-  <dl style="margin-left: 30px;">
-  <dt id="example_group_5" class="passed">enter login information</dt>
-    <script type="text/javascript">makeRed('div_group_5');</script>
-    <script type="text/javascript">makeRed('example_group_5');</script>
-    <script type="text/javascript">moveProgressBar('23.0');</script>
-    <dd class="example failed">
-      <span class="failed_spec_name">enters information</span>
-      <span class="duration">0.00000s</span>
-      <div class="failure" id="failure_3">
-        <div class="message"><pre>Unable to find the chromedriver executable. Please download the server from http://chromedriver.storage.googleapis.com/index.html and place it somewhere on your PATH. More info at http://code.google.com/p/selenium/wiki/ChromeDriver.</pre></div>
-        <div class="backtrace"><pre>/home/azra/.rvm/gems/ruby-2.2.1/gems/selenium-webdriver-2.45.0/lib/selenium/webdriver/chrome/service.rb:20:in `executable_path&#39;
-/home/azra/.rvm/gems/ruby-2.2.1/gems/selenium-webdriver-2.45.0/lib/selenium/webdriver/chrome/service.rb:33:in `default_service&#39;
-/home/azra/.rvm/gems/ruby-2.2.1/gems/selenium-webdriver-2.45.0/lib/selenium/webdriver/chrome/bridge.rb:14:in `initialize&#39;
-/home/azra/.rvm/gems/ruby-2.2.1/gems/selenium-webdriver-2.45.0/lib/selenium/webdriver/common/driver.rb:37:in `new&#39;
-/home/azra/.rvm/gems/ruby-2.2.1/gems/selenium-webdriver-2.45.0/lib/selenium/webdriver/common/driver.rb:37:in `for&#39;
-/home/azra/.rvm/gems/ruby-2.2.1/gems/selenium-webdriver-2.45.0/lib/selenium/webdriver.rb:67:in `for&#39;
-/home/azra/.rvm/gems/ruby-2.2.1/gems/watir-webdriver-0.7.0/lib/watir-webdriver/browser.rb:46:in `initialize&#39;
-./lib/helpers/environment_helpers.rb:3:in `new&#39;
-./lib/helpers/environment_helpers.rb:3:in `set_browser&#39;
-./regression/log_in.rb:10:in `block (2 levels) in &lt;top (required)&gt;&#39;</pre></div>
-    <pre class="ruby"><code><span class="linenum">18</span>          @executable_path ||= (
-<span class="linenum">19</span>            path = Platform.find_binary "chromedriver"
-<span class="offending"><span class="linenum">20</span>            path or raise Error::WebDriverError, MISSING_TEXT</span>
-<span class="linenum">21</span>            Platform.assert_executable path
-<span class="linenum">22</span>
-<span class="linenum">23</span><span class="comment"># Install the coderay gem to get syntax highlighting</span></code></pre>
-      </div>
-    </dd>
+  <dl style="margin-left: 15px;">
+  <dt id="example_group_5" class="passed">check title</dt>
+    <script type="text/javascript">moveProgressBar('25.0');</script>
+    <dd class="example passed"><span class="passed_spec_name">title is translated</span><span class='duration'>2.11850s</span></dd>
   </dl>
 </div>
 <div id="div_group_6" class="example_group passed">
-  <dl style="margin-left: 30px;">
-  <dt id="example_group_6" class="passed">click login button</dt>
-    <script type="text/javascript">makeRed('div_group_6');</script>
-    <script type="text/javascript">makeRed('example_group_6');</script>
-    <script type="text/javascript">moveProgressBar('30.7');</script>
-    <dd class="example failed">
-      <span class="failed_spec_name">logs user</span>
-      <span class="duration">0.00000s</span>
-      <div class="failure" id="failure_4">
-        <div class="message"><pre>Unable to find the chromedriver executable. Please download the server from http://chromedriver.storage.googleapis.com/index.html and place it somewhere on your PATH. More info at http://code.google.com/p/selenium/wiki/ChromeDriver.</pre></div>
-        <div class="backtrace"><pre>/home/azra/.rvm/gems/ruby-2.2.1/gems/selenium-webdriver-2.45.0/lib/selenium/webdriver/chrome/service.rb:20:in `executable_path&#39;
-/home/azra/.rvm/gems/ruby-2.2.1/gems/selenium-webdriver-2.45.0/lib/selenium/webdriver/chrome/service.rb:33:in `default_service&#39;
-/home/azra/.rvm/gems/ruby-2.2.1/gems/selenium-webdriver-2.45.0/lib/selenium/webdriver/chrome/bridge.rb:14:in `initialize&#39;
-/home/azra/.rvm/gems/ruby-2.2.1/gems/selenium-webdriver-2.45.0/lib/selenium/webdriver/common/driver.rb:37:in `new&#39;
-/home/azra/.rvm/gems/ruby-2.2.1/gems/selenium-webdriver-2.45.0/lib/selenium/webdriver/common/driver.rb:37:in `for&#39;
-/home/azra/.rvm/gems/ruby-2.2.1/gems/selenium-webdriver-2.45.0/lib/selenium/webdriver.rb:67:in `for&#39;
-/home/azra/.rvm/gems/ruby-2.2.1/gems/watir-webdriver-0.7.0/lib/watir-webdriver/browser.rb:46:in `initialize&#39;
-./lib/helpers/environment_helpers.rb:3:in `new&#39;
-./lib/helpers/environment_helpers.rb:3:in `set_browser&#39;
-./regression/log_in.rb:10:in `block (2 levels) in &lt;top (required)&gt;&#39;</pre></div>
-    <pre class="ruby"><code><span class="linenum">18</span>          @executable_path ||= (
-<span class="linenum">19</span>            path = Platform.find_binary "chromedriver"
-<span class="offending"><span class="linenum">20</span>            path or raise Error::WebDriverError, MISSING_TEXT</span>
-<span class="linenum">21</span>            Platform.assert_executable path
-<span class="linenum">22</span>
-<span class="linenum">23</span><span class="comment"># Install the coderay gem to get syntax highlighting</span></code></pre>
-      </div>
-    </dd>
+  <dl style="margin-left: 15px;">
+  <dt id="example_group_6" class="passed">check registration field</dt>
+    <script type="text/javascript">moveProgressBar('31.2');</script>
+    <dd class="example passed"><span class="passed_spec_name">registration field is translated</span><span class='duration'>2.17740s</span></dd>
   </dl>
 </div>
 <div id="div_group_7" class="example_group passed">
   <dl style="margin-left: 15px;">
-  <dt id="example_group_7" class="passed">select product</dt>
+  <dt id="example_group_7" class="passed">check login field</dt>
+    <script type="text/javascript">moveProgressBar('37.5');</script>
+    <dd class="example passed"><span class="passed_spec_name">registration field is translated</span><span class='duration'>2.12062s</span></dd>
   </dl>
 </div>
 <div id="div_group_8" class="example_group passed">
-  <dl style="margin-left: 30px;">
-  <dt id="example_group_8" class="passed">click product button</dt>
-    <script type="text/javascript">makeRed('div_group_8');</script>
-    <script type="text/javascript">makeRed('example_group_8');</script>
-    <script type="text/javascript">moveProgressBar('38.4');</script>
-    <dd class="example failed">
-      <span class="failed_spec_name">opens product page</span>
-      <span class="duration">0.00000s</span>
-      <div class="failure" id="failure_5">
-        <div class="message"><pre>Unable to find the chromedriver executable. Please download the server from http://chromedriver.storage.googleapis.com/index.html and place it somewhere on your PATH. More info at http://code.google.com/p/selenium/wiki/ChromeDriver.</pre></div>
-        <div class="backtrace"><pre>/home/azra/.rvm/gems/ruby-2.2.1/gems/selenium-webdriver-2.45.0/lib/selenium/webdriver/chrome/service.rb:20:in `executable_path&#39;
-/home/azra/.rvm/gems/ruby-2.2.1/gems/selenium-webdriver-2.45.0/lib/selenium/webdriver/chrome/service.rb:33:in `default_service&#39;
-/home/azra/.rvm/gems/ruby-2.2.1/gems/selenium-webdriver-2.45.0/lib/selenium/webdriver/chrome/bridge.rb:14:in `initialize&#39;
-/home/azra/.rvm/gems/ruby-2.2.1/gems/selenium-webdriver-2.45.0/lib/selenium/webdriver/common/driver.rb:37:in `new&#39;
-/home/azra/.rvm/gems/ruby-2.2.1/gems/selenium-webdriver-2.45.0/lib/selenium/webdriver/common/driver.rb:37:in `for&#39;
-/home/azra/.rvm/gems/ruby-2.2.1/gems/selenium-webdriver-2.45.0/lib/selenium/webdriver.rb:67:in `for&#39;
-/home/azra/.rvm/gems/ruby-2.2.1/gems/watir-webdriver-0.7.0/lib/watir-webdriver/browser.rb:46:in `initialize&#39;
-./lib/helpers/environment_helpers.rb:3:in `new&#39;
-./lib/helpers/environment_helpers.rb:3:in `set_browser&#39;
-./regression/log_in.rb:10:in `block (2 levels) in &lt;top (required)&gt;&#39;</pre></div>
-    <pre class="ruby"><code><span class="linenum">18</span>          @executable_path ||= (
-<span class="linenum">19</span>            path = Platform.find_binary "chromedriver"
-<span class="offending"><span class="linenum">20</span>            path or raise Error::WebDriverError, MISSING_TEXT</span>
-<span class="linenum">21</span>            Platform.assert_executable path
-<span class="linenum">22</span>
-<span class="linenum">23</span><span class="comment"># Install the coderay gem to get syntax highlighting</span></code></pre>
-      </div>
-    </dd>
+  <dl style="margin-left: 15px;">
+  <dt id="example_group_8" class="passed">click login button on navbar</dt>
+    <script type="text/javascript">moveProgressBar('43.7');</script>
+    <dd class="example passed"><span class="passed_spec_name">opens login page</span><span class='duration'>6.46213s</span></dd>
   </dl>
 </div>
 <div id="div_group_9" class="example_group passed">
   <dl style="margin-left: 15px;">
-  <dt id="example_group_9" class="passed">add to cart</dt>
+  <dt id="example_group_9" class="passed">check login title</dt>
+    <script type="text/javascript">moveProgressBar('50.0');</script>
+    <dd class="example passed"><span class="passed_spec_name">title is translated</span><span class='duration'>2.11893s</span></dd>
   </dl>
 </div>
 <div id="div_group_10" class="example_group passed">
-  <dl style="margin-left: 30px;">
-  <dt id="example_group_10" class="passed">click add to cart button</dt>
-    <script type="text/javascript">makeRed('div_group_10');</script>
-    <script type="text/javascript">makeRed('example_group_10');</script>
-    <script type="text/javascript">moveProgressBar('46.1');</script>
-    <dd class="example failed">
-      <span class="failed_spec_name">adds product to the cart</span>
-      <span class="duration">0.00000s</span>
-      <div class="failure" id="failure_6">
-        <div class="message"><pre>Unable to find the chromedriver executable. Please download the server from http://chromedriver.storage.googleapis.com/index.html and place it somewhere on your PATH. More info at http://code.google.com/p/selenium/wiki/ChromeDriver.</pre></div>
-        <div class="backtrace"><pre>/home/azra/.rvm/gems/ruby-2.2.1/gems/selenium-webdriver-2.45.0/lib/selenium/webdriver/chrome/service.rb:20:in `executable_path&#39;
-/home/azra/.rvm/gems/ruby-2.2.1/gems/selenium-webdriver-2.45.0/lib/selenium/webdriver/chrome/service.rb:33:in `default_service&#39;
-/home/azra/.rvm/gems/ruby-2.2.1/gems/selenium-webdriver-2.45.0/lib/selenium/webdriver/chrome/bridge.rb:14:in `initialize&#39;
-/home/azra/.rvm/gems/ruby-2.2.1/gems/selenium-webdriver-2.45.0/lib/selenium/webdriver/common/driver.rb:37:in `new&#39;
-/home/azra/.rvm/gems/ruby-2.2.1/gems/selenium-webdriver-2.45.0/lib/selenium/webdriver/common/driver.rb:37:in `for&#39;
-/home/azra/.rvm/gems/ruby-2.2.1/gems/selenium-webdriver-2.45.0/lib/selenium/webdriver.rb:67:in `for&#39;
-/home/azra/.rvm/gems/ruby-2.2.1/gems/watir-webdriver-0.7.0/lib/watir-webdriver/browser.rb:46:in `initialize&#39;
-./lib/helpers/environment_helpers.rb:3:in `new&#39;
-./lib/helpers/environment_helpers.rb:3:in `set_browser&#39;
-./regression/log_in.rb:10:in `block (2 levels) in &lt;top (required)&gt;&#39;</pre></div>
-    <pre class="ruby"><code><span class="linenum">18</span>          @executable_path ||= (
-<span class="linenum">19</span>            path = Platform.find_binary "chromedriver"
-<span class="offending"><span class="linenum">20</span>            path or raise Error::WebDriverError, MISSING_TEXT</span>
-<span class="linenum">21</span>            Platform.assert_executable path
-<span class="linenum">22</span>
-<span class="linenum">23</span><span class="comment"># Install the coderay gem to get syntax highlighting</span></code></pre>
-      </div>
-    </dd>
+  <dl style="margin-left: 15px;">
+  <dt id="example_group_10" class="passed">check pass label</dt>
+    <script type="text/javascript">moveProgressBar('56.2');</script>
+    <dd class="example passed"><span class="passed_spec_name">label is translated</span><span class='duration'>2.09571s</span></dd>
   </dl>
 </div>
 <div id="div_group_11" class="example_group passed">
-  <dl style="margin-left: 30px;">
-  <dt id="example_group_11" class="passed">click cart button</dt>
-    <script type="text/javascript">makeRed('div_group_11');</script>
-    <script type="text/javascript">makeRed('example_group_11');</script>
-    <script type="text/javascript">moveProgressBar('53.8');</script>
-    <dd class="example failed">
-      <span class="failed_spec_name">opens cart page</span>
-      <span class="duration">0.00000s</span>
-      <div class="failure" id="failure_7">
-        <div class="message"><pre>Unable to find the chromedriver executable. Please download the server from http://chromedriver.storage.googleapis.com/index.html and place it somewhere on your PATH. More info at http://code.google.com/p/selenium/wiki/ChromeDriver.</pre></div>
-        <div class="backtrace"><pre>/home/azra/.rvm/gems/ruby-2.2.1/gems/selenium-webdriver-2.45.0/lib/selenium/webdriver/chrome/service.rb:20:in `executable_path&#39;
-/home/azra/.rvm/gems/ruby-2.2.1/gems/selenium-webdriver-2.45.0/lib/selenium/webdriver/chrome/service.rb:33:in `default_service&#39;
-/home/azra/.rvm/gems/ruby-2.2.1/gems/selenium-webdriver-2.45.0/lib/selenium/webdriver/chrome/bridge.rb:14:in `initialize&#39;
-/home/azra/.rvm/gems/ruby-2.2.1/gems/selenium-webdriver-2.45.0/lib/selenium/webdriver/common/driver.rb:37:in `new&#39;
-/home/azra/.rvm/gems/ruby-2.2.1/gems/selenium-webdriver-2.45.0/lib/selenium/webdriver/common/driver.rb:37:in `for&#39;
-/home/azra/.rvm/gems/ruby-2.2.1/gems/selenium-webdriver-2.45.0/lib/selenium/webdriver.rb:67:in `for&#39;
-/home/azra/.rvm/gems/ruby-2.2.1/gems/watir-webdriver-0.7.0/lib/watir-webdriver/browser.rb:46:in `initialize&#39;
-./lib/helpers/environment_helpers.rb:3:in `new&#39;
-./lib/helpers/environment_helpers.rb:3:in `set_browser&#39;
-./regression/log_in.rb:10:in `block (2 levels) in &lt;top (required)&gt;&#39;</pre></div>
-    <pre class="ruby"><code><span class="linenum">18</span>          @executable_path ||= (
-<span class="linenum">19</span>            path = Platform.find_binary "chromedriver"
-<span class="offending"><span class="linenum">20</span>            path or raise Error::WebDriverError, MISSING_TEXT</span>
-<span class="linenum">21</span>            Platform.assert_executable path
-<span class="linenum">22</span>
-<span class="linenum">23</span><span class="comment"># Install the coderay gem to get syntax highlighting</span></code></pre>
-      </div>
-    </dd>
+  <dl style="margin-left: 15px;">
+  <dt id="example_group_11" class="passed">check email label</dt>
+    <script type="text/javascript">moveProgressBar('62.5');</script>
+    <dd class="example passed"><span class="passed_spec_name">label is translated</span><span class='duration'>2.10992s</span></dd>
   </dl>
 </div>
 <div id="div_group_12" class="example_group passed">
   <dl style="margin-left: 15px;">
-  <dt id="example_group_12" class="passed">click log out button</dt>
-    <script type="text/javascript">makeRed('div_group_12');</script>
-    <script type="text/javascript">makeRed('example_group_12');</script>
-    <script type="text/javascript">moveProgressBar('61.5');</script>
-    <dd class="example failed">
-      <span class="failed_spec_name">logs out</span>
-      <span class="duration">0.00000s</span>
-      <div class="failure" id="failure_8">
-        <div class="message"><pre>Unable to find the chromedriver executable. Please download the server from http://chromedriver.storage.googleapis.com/index.html and place it somewhere on your PATH. More info at http://code.google.com/p/selenium/wiki/ChromeDriver.</pre></div>
-        <div class="backtrace"><pre>/home/azra/.rvm/gems/ruby-2.2.1/gems/selenium-webdriver-2.45.0/lib/selenium/webdriver/chrome/service.rb:20:in `executable_path&#39;
-/home/azra/.rvm/gems/ruby-2.2.1/gems/selenium-webdriver-2.45.0/lib/selenium/webdriver/chrome/service.rb:33:in `default_service&#39;
-/home/azra/.rvm/gems/ruby-2.2.1/gems/selenium-webdriver-2.45.0/lib/selenium/webdriver/chrome/bridge.rb:14:in `initialize&#39;
-/home/azra/.rvm/gems/ruby-2.2.1/gems/selenium-webdriver-2.45.0/lib/selenium/webdriver/common/driver.rb:37:in `new&#39;
-/home/azra/.rvm/gems/ruby-2.2.1/gems/selenium-webdriver-2.45.0/lib/selenium/webdriver/common/driver.rb:37:in `for&#39;
-/home/azra/.rvm/gems/ruby-2.2.1/gems/selenium-webdriver-2.45.0/lib/selenium/webdriver.rb:67:in `for&#39;
-/home/azra/.rvm/gems/ruby-2.2.1/gems/watir-webdriver-0.7.0/lib/watir-webdriver/browser.rb:46:in `initialize&#39;
-./lib/helpers/environment_helpers.rb:3:in `new&#39;
-./lib/helpers/environment_helpers.rb:3:in `set_browser&#39;
-./regression/log_in.rb:10:in `block (2 levels) in &lt;top (required)&gt;&#39;</pre></div>
-    <pre class="ruby"><code><span class="linenum">18</span>          @executable_path ||= (
-<span class="linenum">19</span>            path = Platform.find_binary "chromedriver"
-<span class="offending"><span class="linenum">20</span>            path or raise Error::WebDriverError, MISSING_TEXT</span>
-<span class="linenum">21</span>            Platform.assert_executable path
-<span class="linenum">22</span>
-<span class="linenum">23</span><span class="comment"># Install the coderay gem to get syntax highlighting</span></code></pre>
-      </div>
-    </dd>
+  <dt id="example_group_12" class="passed">click registration button on navbar</dt>
+    <script type="text/javascript">moveProgressBar('68.7');</script>
+    <dd class="example passed"><span class="passed_spec_name">opens signup page</span><span class='duration'>3.03235s</span></dd>
   </dl>
 </div>
 <div id="div_group_13" class="example_group passed">
   <dl style="margin-left: 15px;">
-  <dt id="example_group_13" class="passed">log in</dt>
+  <dt id="example_group_13" class="passed">check signup title</dt>
+    <script type="text/javascript">moveProgressBar('75.0');</script>
+    <dd class="example passed"><span class="passed_spec_name">title is translated</span><span class='duration'>2.08168s</span></dd>
   </dl>
 </div>
 <div id="div_group_14" class="example_group passed">
-  <dl style="margin-left: 30px;">
-  <dt id="example_group_14" class="passed">click login button on navbar</dt>
-    <script type="text/javascript">makeRed('div_group_14');</script>
-    <script type="text/javascript">makeRed('example_group_14');</script>
-    <script type="text/javascript">moveProgressBar('69.2');</script>
-    <dd class="example failed">
-      <span class="failed_spec_name">opens login page</span>
-      <span class="duration">0.00000s</span>
-      <div class="failure" id="failure_9">
-        <div class="message"><pre>Unable to find the chromedriver executable. Please download the server from http://chromedriver.storage.googleapis.com/index.html and place it somewhere on your PATH. More info at http://code.google.com/p/selenium/wiki/ChromeDriver.</pre></div>
-        <div class="backtrace"><pre>/home/azra/.rvm/gems/ruby-2.2.1/gems/selenium-webdriver-2.45.0/lib/selenium/webdriver/chrome/service.rb:20:in `executable_path&#39;
-/home/azra/.rvm/gems/ruby-2.2.1/gems/selenium-webdriver-2.45.0/lib/selenium/webdriver/chrome/service.rb:33:in `default_service&#39;
-/home/azra/.rvm/gems/ruby-2.2.1/gems/selenium-webdriver-2.45.0/lib/selenium/webdriver/chrome/bridge.rb:14:in `initialize&#39;
-/home/azra/.rvm/gems/ruby-2.2.1/gems/selenium-webdriver-2.45.0/lib/selenium/webdriver/common/driver.rb:37:in `new&#39;
-/home/azra/.rvm/gems/ruby-2.2.1/gems/selenium-webdriver-2.45.0/lib/selenium/webdriver/common/driver.rb:37:in `for&#39;
-/home/azra/.rvm/gems/ruby-2.2.1/gems/selenium-webdriver-2.45.0/lib/selenium/webdriver.rb:67:in `for&#39;
-/home/azra/.rvm/gems/ruby-2.2.1/gems/watir-webdriver-0.7.0/lib/watir-webdriver/browser.rb:46:in `initialize&#39;
-./lib/helpers/environment_helpers.rb:3:in `new&#39;
-./lib/helpers/environment_helpers.rb:3:in `set_browser&#39;
-./regression/log_in.rb:10:in `block (2 levels) in &lt;top (required)&gt;&#39;</pre></div>
-    <pre class="ruby"><code><span class="linenum">18</span>          @executable_path ||= (
-<span class="linenum">19</span>            path = Platform.find_binary "chromedriver"
-<span class="offending"><span class="linenum">20</span>            path or raise Error::WebDriverError, MISSING_TEXT</span>
-<span class="linenum">21</span>            Platform.assert_executable path
-<span class="linenum">22</span>
-<span class="linenum">23</span><span class="comment"># Install the coderay gem to get syntax highlighting</span></code></pre>
-      </div>
-    </dd>
+  <dl style="margin-left: 15px;">
+  <dt id="example_group_14" class="passed">check pass label</dt>
+    <script type="text/javascript">moveProgressBar('81.2');</script>
+    <dd class="example passed"><span class="passed_spec_name">label is translated</span><span class='duration'>2.19578s</span></dd>
   </dl>
 </div>
 <div id="div_group_15" class="example_group passed">
-  <dl style="margin-left: 30px;">
-  <dt id="example_group_15" class="passed">enter login information</dt>
-    <script type="text/javascript">makeRed('div_group_15');</script>
-    <script type="text/javascript">makeRed('example_group_15');</script>
-    <script type="text/javascript">moveProgressBar('76.9');</script>
-    <dd class="example failed">
-      <span class="failed_spec_name">enters information</span>
-      <span class="duration">0.00000s</span>
-      <div class="failure" id="failure_10">
-        <div class="message"><pre>Unable to find the chromedriver executable. Please download the server from http://chromedriver.storage.googleapis.com/index.html and place it somewhere on your PATH. More info at http://code.google.com/p/selenium/wiki/ChromeDriver.</pre></div>
-        <div class="backtrace"><pre>/home/azra/.rvm/gems/ruby-2.2.1/gems/selenium-webdriver-2.45.0/lib/selenium/webdriver/chrome/service.rb:20:in `executable_path&#39;
-/home/azra/.rvm/gems/ruby-2.2.1/gems/selenium-webdriver-2.45.0/lib/selenium/webdriver/chrome/service.rb:33:in `default_service&#39;
-/home/azra/.rvm/gems/ruby-2.2.1/gems/selenium-webdriver-2.45.0/lib/selenium/webdriver/chrome/bridge.rb:14:in `initialize&#39;
-/home/azra/.rvm/gems/ruby-2.2.1/gems/selenium-webdriver-2.45.0/lib/selenium/webdriver/common/driver.rb:37:in `new&#39;
-/home/azra/.rvm/gems/ruby-2.2.1/gems/selenium-webdriver-2.45.0/lib/selenium/webdriver/common/driver.rb:37:in `for&#39;
-/home/azra/.rvm/gems/ruby-2.2.1/gems/selenium-webdriver-2.45.0/lib/selenium/webdriver.rb:67:in `for&#39;
-/home/azra/.rvm/gems/ruby-2.2.1/gems/watir-webdriver-0.7.0/lib/watir-webdriver/browser.rb:46:in `initialize&#39;
-./lib/helpers/environment_helpers.rb:3:in `new&#39;
-./lib/helpers/environment_helpers.rb:3:in `set_browser&#39;
-./regression/log_in.rb:10:in `block (2 levels) in &lt;top (required)&gt;&#39;</pre></div>
-    <pre class="ruby"><code><span class="linenum">18</span>          @executable_path ||= (
-<span class="linenum">19</span>            path = Platform.find_binary "chromedriver"
-<span class="offending"><span class="linenum">20</span>            path or raise Error::WebDriverError, MISSING_TEXT</span>
-<span class="linenum">21</span>            Platform.assert_executable path
-<span class="linenum">22</span>
-<span class="linenum">23</span><span class="comment"># Install the coderay gem to get syntax highlighting</span></code></pre>
-      </div>
-    </dd>
+  <dl style="margin-left: 15px;">
+  <dt id="example_group_15" class="passed">check email label</dt>
+    <script type="text/javascript">moveProgressBar('87.5');</script>
+    <dd class="example passed"><span class="passed_spec_name">label is translated</span><span class='duration'>2.19064s</span></dd>
   </dl>
 </div>
 <div id="div_group_16" class="example_group passed">
-  <dl style="margin-left: 30px;">
-  <dt id="example_group_16" class="passed">click login button</dt>
-    <script type="text/javascript">makeRed('div_group_16');</script>
-    <script type="text/javascript">makeRed('example_group_16');</script>
-    <script type="text/javascript">moveProgressBar('84.6');</script>
-    <dd class="example failed">
-      <span class="failed_spec_name">logs user</span>
-      <span class="duration">0.00000s</span>
-      <div class="failure" id="failure_11">
-        <div class="message"><pre>Unable to find the chromedriver executable. Please download the server from http://chromedriver.storage.googleapis.com/index.html and place it somewhere on your PATH. More info at http://code.google.com/p/selenium/wiki/ChromeDriver.</pre></div>
-        <div class="backtrace"><pre>/home/azra/.rvm/gems/ruby-2.2.1/gems/selenium-webdriver-2.45.0/lib/selenium/webdriver/chrome/service.rb:20:in `executable_path&#39;
-/home/azra/.rvm/gems/ruby-2.2.1/gems/selenium-webdriver-2.45.0/lib/selenium/webdriver/chrome/service.rb:33:in `default_service&#39;
-/home/azra/.rvm/gems/ruby-2.2.1/gems/selenium-webdriver-2.45.0/lib/selenium/webdriver/chrome/bridge.rb:14:in `initialize&#39;
-/home/azra/.rvm/gems/ruby-2.2.1/gems/selenium-webdriver-2.45.0/lib/selenium/webdriver/common/driver.rb:37:in `new&#39;
-/home/azra/.rvm/gems/ruby-2.2.1/gems/selenium-webdriver-2.45.0/lib/selenium/webdriver/common/driver.rb:37:in `for&#39;
-/home/azra/.rvm/gems/ruby-2.2.1/gems/selenium-webdriver-2.45.0/lib/selenium/webdriver.rb:67:in `for&#39;
-/home/azra/.rvm/gems/ruby-2.2.1/gems/watir-webdriver-0.7.0/lib/watir-webdriver/browser.rb:46:in `initialize&#39;
-./lib/helpers/environment_helpers.rb:3:in `new&#39;
-./lib/helpers/environment_helpers.rb:3:in `set_browser&#39;
-./regression/log_in.rb:10:in `block (2 levels) in &lt;top (required)&gt;&#39;</pre></div>
-    <pre class="ruby"><code><span class="linenum">18</span>          @executable_path ||= (
-<span class="linenum">19</span>            path = Platform.find_binary "chromedriver"
-<span class="offending"><span class="linenum">20</span>            path or raise Error::WebDriverError, MISSING_TEXT</span>
-<span class="linenum">21</span>            Platform.assert_executable path
-<span class="linenum">22</span>
-<span class="linenum">23</span><span class="comment"># Install the coderay gem to get syntax highlighting</span></code></pre>
-      </div>
-    </dd>
+  <dl style="margin-left: 15px;">
+  <dt id="example_group_16" class="passed">check pass confirmation label</dt>
+    <script type="text/javascript">moveProgressBar('93.7');</script>
+    <dd class="example passed"><span class="passed_spec_name">label is translated</span><span class='duration'>2.11341s</span></dd>
   </dl>
 </div>
 <div id="div_group_17" class="example_group passed">
   <dl style="margin-left: 15px;">
-  <dt id="example_group_17" class="passed">click cart button</dt>
-    <script type="text/javascript">makeRed('div_group_17');</script>
-    <script type="text/javascript">makeRed('example_group_17');</script>
-    <script type="text/javascript">moveProgressBar('92.3');</script>
-    <dd class="example failed">
-      <span class="failed_spec_name">opens cart page</span>
-      <span class="duration">0.00000s</span>
-      <div class="failure" id="failure_12">
-        <div class="message"><pre>Unable to find the chromedriver executable. Please download the server from http://chromedriver.storage.googleapis.com/index.html and place it somewhere on your PATH. More info at http://code.google.com/p/selenium/wiki/ChromeDriver.</pre></div>
-        <div class="backtrace"><pre>/home/azra/.rvm/gems/ruby-2.2.1/gems/selenium-webdriver-2.45.0/lib/selenium/webdriver/chrome/service.rb:20:in `executable_path&#39;
-/home/azra/.rvm/gems/ruby-2.2.1/gems/selenium-webdriver-2.45.0/lib/selenium/webdriver/chrome/service.rb:33:in `default_service&#39;
-/home/azra/.rvm/gems/ruby-2.2.1/gems/selenium-webdriver-2.45.0/lib/selenium/webdriver/chrome/bridge.rb:14:in `initialize&#39;
-/home/azra/.rvm/gems/ruby-2.2.1/gems/selenium-webdriver-2.45.0/lib/selenium/webdriver/common/driver.rb:37:in `new&#39;
-/home/azra/.rvm/gems/ruby-2.2.1/gems/selenium-webdriver-2.45.0/lib/selenium/webdriver/common/driver.rb:37:in `for&#39;
-/home/azra/.rvm/gems/ruby-2.2.1/gems/selenium-webdriver-2.45.0/lib/selenium/webdriver.rb:67:in `for&#39;
-/home/azra/.rvm/gems/ruby-2.2.1/gems/watir-webdriver-0.7.0/lib/watir-webdriver/browser.rb:46:in `initialize&#39;
-./lib/helpers/environment_helpers.rb:3:in `new&#39;
-./lib/helpers/environment_helpers.rb:3:in `set_browser&#39;
-./regression/log_in.rb:10:in `block (2 levels) in &lt;top (required)&gt;&#39;</pre></div>
-    <pre class="ruby"><code><span class="linenum">18</span>          @executable_path ||= (
-<span class="linenum">19</span>            path = Platform.find_binary "chromedriver"
-<span class="offending"><span class="linenum">20</span>            path or raise Error::WebDriverError, MISSING_TEXT</span>
-<span class="linenum">21</span>            Platform.assert_executable path
-<span class="linenum">22</span>
-<span class="linenum">23</span><span class="comment"># Install the coderay gem to get syntax highlighting</span></code></pre>
-      </div>
-    </dd>
-  </dl>
-</div>
-<div id="div_group_18" class="example_group passed">
-  <dl style="margin-left: 15px;">
-  <dt id="example_group_18" class="passed">clean up</dt>
-    <script type="text/javascript">makeRed('div_group_18');</script>
-    <script type="text/javascript">makeRed('example_group_18');</script>
+  <dt id="example_group_17" class="passed">go to homepage</dt>
     <script type="text/javascript">moveProgressBar('100.0');</script>
-    <dd class="example failed">
-      <span class="failed_spec_name">app is cleaned</span>
-      <span class="duration">0.00000s</span>
-      <div class="failure" id="failure_13">
-        <div class="message"><pre>Unable to find the chromedriver executable. Please download the server from http://chromedriver.storage.googleapis.com/index.html and place it somewhere on your PATH. More info at http://code.google.com/p/selenium/wiki/ChromeDriver.</pre></div>
-        <div class="backtrace"><pre>/home/azra/.rvm/gems/ruby-2.2.1/gems/selenium-webdriver-2.45.0/lib/selenium/webdriver/chrome/service.rb:20:in `executable_path&#39;
-/home/azra/.rvm/gems/ruby-2.2.1/gems/selenium-webdriver-2.45.0/lib/selenium/webdriver/chrome/service.rb:33:in `default_service&#39;
-/home/azra/.rvm/gems/ruby-2.2.1/gems/selenium-webdriver-2.45.0/lib/selenium/webdriver/chrome/bridge.rb:14:in `initialize&#39;
-/home/azra/.rvm/gems/ruby-2.2.1/gems/selenium-webdriver-2.45.0/lib/selenium/webdriver/common/driver.rb:37:in `new&#39;
-/home/azra/.rvm/gems/ruby-2.2.1/gems/selenium-webdriver-2.45.0/lib/selenium/webdriver/common/driver.rb:37:in `for&#39;
-/home/azra/.rvm/gems/ruby-2.2.1/gems/selenium-webdriver-2.45.0/lib/selenium/webdriver.rb:67:in `for&#39;
-/home/azra/.rvm/gems/ruby-2.2.1/gems/watir-webdriver-0.7.0/lib/watir-webdriver/browser.rb:46:in `initialize&#39;
-./lib/helpers/environment_helpers.rb:3:in `new&#39;
-./lib/helpers/environment_helpers.rb:3:in `set_browser&#39;
-./regression/log_in.rb:10:in `block (2 levels) in &lt;top (required)&gt;&#39;</pre></div>
-    <pre class="ruby"><code><span class="linenum">18</span>          @executable_path ||= (
-<span class="linenum">19</span>            path = Platform.find_binary "chromedriver"
-<span class="offending"><span class="linenum">20</span>            path or raise Error::WebDriverError, MISSING_TEXT</span>
-<span class="linenum">21</span>            Platform.assert_executable path
-<span class="linenum">22</span>
-<span class="linenum">23</span><span class="comment"># Install the coderay gem to get syntax highlighting</span></code></pre>
-      </div>
-    </dd>
+    <dd class="example passed"><span class="passed_spec_name">homepage is loaded</span><span class='duration'>2.31808s</span></dd>
   </dl>
 </div>
-<script type="text/javascript">document.getElementById('duration').innerHTML = "Finished in <strong>0.12191 seconds</strong>";</script>
-<script type="text/javascript">document.getElementById('totals').innerHTML = "13 examples, 13 failures";</script>
+<script type="text/javascript">document.getElementById('duration').innerHTML = "Finished in <strong>68.38079 seconds</strong>";</script>
+<script type="text/javascript">document.getElementById('totals').innerHTML = "16 examples, 0 failures";</script>
 </div>
 </div>
 </body>

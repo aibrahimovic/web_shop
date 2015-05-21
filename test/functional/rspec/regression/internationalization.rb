@@ -43,6 +43,11 @@ describe "Internationalization" do
 			expect(@landing_page_object.check_registration_field).to eq true
 		end
 	end
+	context "check login field" do
+		it "registration field is translated" do
+			expect(@landing_page_object.check_login_button).to eq true
+		end
+	end
 
 	context "click login button on navbar" do
 		it "opens login page" do
@@ -54,7 +59,7 @@ describe "Internationalization" do
 	end
 
 	context "check login title" do
-		it "login is translated" do
+		it "title is translated" do
 			expect($login_page_object.check_title).to eq true
 		end
 	end
@@ -62,6 +67,53 @@ describe "Internationalization" do
 	context "check pass label" do
 		it "label is translated" do
 			expect($login_page_object.check_pass_label).to eq true
+		end
+	end
+
+	context "check email label" do
+		it "label is translated" do
+			expect($login_page_object.check_email_label).to eq true
+		end
+	end
+
+
+	context "click registration button on navbar" do
+		it "opens signup page" do
+			#expect(@landing_page_object.verify_login_button).to eq true 
+			$signup_page_object=$login_page_object.get_signup_page
+
+			expect($signup_page_object.verify).to eq true
+		end
+	end
+
+
+	context "check signup title" do
+		it "title is translated" do
+			expect($signup_page_object.check_title).to eq true
+		end
+	end
+
+	context "check pass label" do
+		it "label is translated" do
+			expect($signup_page_object.check_pass).to eq true
+		end
+	end
+
+	context "check email label" do
+		it "label is translated" do
+			expect($signup_page_object.check_email).to eq true
+		end
+	end
+
+	context "check pass confirmation label" do
+		it "label is translated" do
+			expect($signup_page_object.check_pass_confirmation).to eq true
+		end
+	end
+
+	context "go to homepage" do
+		it "homepage is loaded" do
+			$signup_page_object.get_landing_page
 		end
 	end
 

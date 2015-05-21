@@ -59,13 +59,21 @@ class SignupPage < PageContainer
 		return user_password.value
 	end
 
+	def naslov
+		select_element(@browser.h2).wait_until_present
+		return select_element(@browser.h2)
+	end
+
+	
+
 	#actions
 
 	def enter_signup_information(email,pass)
         #user_full_name.click
         #user_full_name.set "test"
-        puts email
-        puts pass
+        #puts email
+        #puts pass
+        @browser.refresh
 
         user_email.click
         user_email.set email
@@ -91,6 +99,37 @@ class SignupPage < PageContainer
 		cart_button.click
 		return CartPage.new(@browser)
 	end
+
+	def get_admin_page
+		register_button.click
+		return AdminPage.new(@browser)
+	end
+
+	def check_title
+		return naslov.text == "Registracija"
+	end
+
+	def check_email
+		select_element(@browser.label(:id => 'label_emailId')).wait_until_present
+		return select_element(@browser.label(:id => 'label_emailId')).text == "Email"
+	end
+
+	def check_pass
+		select_element(@browser.label(:id => 'label_passwordId')).wait_until_present
+		return select_element(@browser.label(:id => 'label_passwordId')).text == "Šifra"
+	end
+
+	def check_pass_confirmation
+		select_element(@browser.label(:id => 'label_passwordConfId')).wait_until_present
+		return select_element(@browser.label(:id => 'label_passwordConfId')).text == "Potvrda šifre"
+	end
+
+	def get_landing_page
+		select_element(@browser.a(:href => '/home')).wait_until_present
+		select_element(@browser.a(:href => '/home')).click
+		return LandingPage.new(@browser)
+	end
+
 
     def delete_user_from_db
 

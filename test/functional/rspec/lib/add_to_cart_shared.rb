@@ -13,7 +13,7 @@ context "click add to cart button" do
 			$cart_page_object=$product_page_object.get_cart_page
 			expect($cart_page_object.verify).to eq true
 			#expect($cart_page_object.product_name).to eq 'Elegant shoes'
-			expect($cart_page_object.verify_cart_quantity(1)).to eq true
+			expect($cart_page_object.verify_cart_quantity("1")).to eq true
 		end
 	end
 
