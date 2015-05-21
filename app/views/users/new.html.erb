@@ -12,15 +12,15 @@
       <br>
       <br>  
 
-      <%= f.label t('email') %>
+      <%= f.label t('email'), id: "label_emailId" %>
       <%= f.email_field :email, class: 'form-control', id: "emailId" %>
 
       <br>
-      <%= f.label t('password') %>
+      <%= f.label t('password'), id: "label_passwordId" %>
       <%= f.password_field :password, class: 'form-control', id: 'new_user_password' %>
       <br>
 
-      <%= f.label t('confirmation')%>
+      <%= f.label t('confirmation'), id: "label_passwordConfId"%>
       <%= f.password_field :password_confirmation, class: 'form-control', id: 'new_user_password_confirmation'%>
       <br>
 
