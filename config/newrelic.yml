@@ -46,4 +46,4 @@ staging:
   app_name: WebShop (Staging)
 
 production:
-  <<: *default_settings
+  <<: *default_settingsk
