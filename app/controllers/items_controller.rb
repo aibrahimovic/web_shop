@@ -33,7 +33,6 @@ class ItemsController < ApplicationController
           cookies[:counter] = @counter
           puts 'iz itemCreate novi:'+cookies[:counter].to_s
         end
-
         redirect_to product_path(hp.product)
       end
 
@@ -104,7 +103,7 @@ class ItemsController < ApplicationController
       @oi = OrderItem.new
       @oi.quantity = temp_item.quantity
       @oi.help_product_id = temp_item.help_product_id
-      @oi.price = item.price
+      @oi.price = temp_item.price
       @oi.order_id = @order.id
       @oi.save()
       temp_item.delete()
