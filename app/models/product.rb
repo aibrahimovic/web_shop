@@ -30,7 +30,7 @@ class Product < ActiveRecord::Base
     end
 
     #@price.to_f
-    #@price = number_with_precision(@price, :precision => 2)
+    @price = number_with_precision(@price, :precision => 2)
 
     @price
   end
@@ -46,6 +46,7 @@ class Product < ActiveRecord::Base
       end
     end
   
+    @percent = number_with_precision(@percent, :precision => 2)
     @percent
   end
 

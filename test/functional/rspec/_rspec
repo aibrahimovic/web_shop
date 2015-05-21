@@ -1,0 +1,5 @@
+--require ./lib/init_rspec
+--color
+--format html -o "spec/reports/report.html"
+--format documentation
+
