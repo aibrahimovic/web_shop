@@ -33,8 +33,8 @@ class CartPage < PageContainer
 	end
 
 	def verify_product_image
-		select_element(@browser.img(:alt=>'M6')).wait_until_present
-		return select_element(@browser.img(:alt=>'M6')).exist?
+		select_element(@browser.img(:alt=>'M1')).wait_until_present
+		return select_element(@browser.img(:alt=>'M1')).exist?
 	end
 
 	def verify_product_price(price)
@@ -74,8 +74,8 @@ class CartPage < PageContainer
 	end
 
 	def product_image
-		select_element(@browser.img(:alt=>'M6')).wait_until_present
-		return select_element(@browser.img(:alt=>'M6'))
+		select_element(@browser.img(:alt=>'M1')).wait_until_present
+		return select_element(@browser.img(:alt=>'M1'))
 	end
 
 	def signup_link
@@ -84,8 +84,8 @@ class CartPage < PageContainer
 	end
 
 	def quantity_field
-		select_element(@browser.text_field(:id=>'9')).wait_until_present
-		return select_element(@browser.text_field(:id=>'9'))
+		select_element(@browser.text_field(:id=>'675')).wait_until_present
+		return select_element(@browser.text_field(:id=>'675'))
 	end
 
 	def quantity_field_pp
@@ -126,11 +126,24 @@ class CartPage < PageContainer
 
 	def set_quantity(quantity)
 		quantity_field.click
-		puts quantity_field.value
-		quantity_field.set "0"	
-		puts quantity_field.value + "1"
+		##quantity_field.set quantity	
+		#@browser.javascript_dialog.button('OK').click
+
+		##@browser.alert.wait_until_present
+		##a=@browser.switch_to.alert
+		##a.ok
+		quantity_field.set quantity
+		@browser.alert.ok
+		#@browser.alert.when_present.dismiss
+		#a=@browser.switch_to.alert
+		
+		#a.ok
+		@browser.refresh
+
+		sleep 15
+		#@browser.alert.ok
 		#@browser.send_keys :enter
-		sleep 5
+		
 		#@browser.switch_to.alert
 		#@browser.alert.ok
 		#@browser.switch_to.alert

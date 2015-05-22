@@ -33,7 +33,7 @@ describe "Smoke test" do
     context "click proceed button" do
 		it "opens addresses page" do
 		$addresses_page_object=$cart_page_object.get_addresses_page
-		#expect($addresses_page_object.verify).to eq true
+		##expect($addresses_page_object.verify).to eq true
 		end
 	end
 
@@ -94,6 +94,7 @@ describe "Smoke test" do
 			$admin_page_object=$landing_page_object.get_admin_page_products
 			##$admin_page_object=$login_page_object.get_admin_page
 			##expect($admin_page_object.verify).to eq true
+			$admin_page_object=$admin_page_object.goto_correct_page
 			$admin_edit_page_object=$admin_page_object.get_admin_page_edit
 			#expect($admin_edit_page_object.verify).to eq true
 			$admin_variant_page_object=$admin_edit_page_object.get_variant_page

@@ -114,8 +114,30 @@ describe "Internationalization" do
 	context "go to homepage" do
 		it "homepage is loaded" do
 			$signup_page_object.get_landing_page
+			sleep 5 
 		end
 	end
+
+	context "select product" do
+		sleep 5
+		include_context "Select product"
+	end
+
+	context "check product information"do
+		it "information is correct" do
+			expect($product_page_object.check_product_name).to eq true
+			expect($product_page_object.check_product_description).to eq true
+		end
+	end
+
+	context "check button information"do
+		it "information is correct" do
+			expect($product_page_object.check_add_to_cart_button).to eq true
+			expect($product_page_object.check_buy_button).to eq true
+		end
+	end
+
+
 
 
 	

@@ -66,7 +66,7 @@ describe "Log in" do
 	 	end
 
 	 	context "clean up" do
-	 		it "app is cleaned" do
+	 		it "product is deleted" do
 	 			$cart_page_object.set_quantity(0)
 	 		end
 	 	end
@@ -80,7 +80,7 @@ describe "Log in" do
 
 
 	after(:all) do
-		#$browser.quit
+		$browser.quit
 	end
 
 

@@ -85,7 +85,24 @@ class ProductPage < PageContainer
 		quantity_field.set quantity
 		
 	end
-			
+
+	def check_product_name
+		
+		return select_element(@browser.span(:id => 'name_260')).text == "Muške cipele"
+	end
+
+	def check_product_description
+		
+		return select_element(@browser.span(:id => 'description_260')).text == "Udobne cipele za muškarce."
+	end
+
+	def check_add_to_cart_button
+		return select_element(@browser.input(:id => 'add_to_cart')).value == "DODAJ U KORPU"
+	end	
+
+	def check_buy_button
+		return select_element(@browser.input(:id => 'buy_now')).value == "KUPI ODMAH"
+	end	
 
 
 end

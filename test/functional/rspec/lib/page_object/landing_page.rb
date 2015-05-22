@@ -5,7 +5,7 @@ class LandingPage < PageContainer
 	#verify
 
 	def verify
-		puts 1
+
 				
 		Watir::Wait.until { @browser.url =='https://webshop-abhshoes.herokuapp.com//' }
 				
@@ -65,6 +65,11 @@ class LandingPage < PageContainer
 		return select_element(@browser.span(:class => 'navbar-text'))
 	end
 
+	def logout_button
+    	select_element(@browser.a(:href => '/logout')).wait_until_present
+    	return select_element(@browser.a(:href => '/logout'))
+    end
+
 	def signup_link
 		select_element(@browser.a(:href => '/users/new')).wait_until_present
 		return select_element(@browser.a(:href => '/users/new'))
@@ -109,6 +114,11 @@ class LandingPage < PageContainer
 		return select_element(@browser.a(:href => '/allProducts'))
 	end
 
+	def admin_users
+		select_element(@browser.a(:href => '/allUsers')).wait_until_present
+		return select_element(@browser.a(:href => '/allUsers'))
+	end
+
 
 
 
@@ -137,6 +147,12 @@ class LandingPage < PageContainer
 
 	def get_admin_page_products
 		admin_products.click
+		@browser.refresh
+		return AdminPage.new(@browser)
+	end
+
+	def get_admin_page_users
+		admin_users.click
 		@browser.refresh
 		return AdminPage.new(@browser)
 	end
@@ -172,6 +188,11 @@ class LandingPage < PageContainer
 	def check_product_description
 		#puts select_element(@browser.a(:href => '/products/7').div(:class=> 'image')).attribute_value('datacontent1')
 		return select_element(@browser.a(:href => '/products/7').div(:class=> 'image')).attribute_value('datacontent1') == "Elegantne cipele"
+	end
+
+	def log_out
+		logout_button.click
+		#return LandingPage.new(@browser)
 	end
 
 	

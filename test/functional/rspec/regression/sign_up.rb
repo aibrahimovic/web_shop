@@ -5,6 +5,8 @@ require 'pp'
 describe "Sign up" do 
 	$email= "#{Time.now.strftime("%s")}@test.com"
 	$pass= "testtest"
+	$email_admin= "admin@gmail.com"
+	$pass_admin="12345"
 	
 	#before(:each) do
     #$email=$signup_page_object.get_email
@@ -106,6 +108,24 @@ describe "Sign up" do
 		expect(@landing_page_object.verify_logout_information).to eq true
 		end
 	end
+
+	context "click log out button" do
+		it "logs out" do
+			@landing_page_object.log_out
+			#expect($cart_page_object.verify_login_information).to eq true
+		end
+	end
+
+	context "clean up" do
+	 		it "user is deleted" do
+	 		$login_page_object=@landing_page_object.get_login_page
+			#$login_page_object=$confirmation_page_object.get_login_page
+			$login_page_object.enter_login_information($email_admin, $pass_admin)
+			$landing_page_object=$login_page_object.click_login_button
+			$admin_page_object=$landing_page_object.get_admin_page_users
+			$admin_page_object.delete_user($email)
+	 		end
+	 	end
 	
 
 	after(:all) do
