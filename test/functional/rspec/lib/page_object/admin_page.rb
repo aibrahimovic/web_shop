@@ -49,5 +49,16 @@ class AdminPage < PageContainer
 
 	end
 
+	def check_all_users
+		select_element(@browser.thead).wait_until_present
+		return select_element(@browser.thead).exist?	
+	end
+
+	def get_all_orders
+		select_element(@browser.a(:href => '/orders')).wait_until_present
+		select_element(@browser.a(:href => '/orders')).click
+	end
+
+
 
 end

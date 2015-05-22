@@ -40,8 +40,20 @@ class AdminPageVariants < PageContainer
 		quantity.set '1'
 	end
 
+	def delete_variant
+		select_element(@browser.a(:href => '/help_products/675')).wait_until_present
+		select_element(@browser.a(:href => '/help_products/675')).click
+		@browser.alert.ok
+	end
+
 	def click_add_variation_button
 		add_variation_button.click
+	end
+
+	def get_all_users_page
+		select_element(@browser.a(:href => '/allUsers')).wait_until_present
+		select_element(@browser.a(:href => '/allUsers')).click
+		return AdminPage.new(@browser)	
 	end
 
 end
