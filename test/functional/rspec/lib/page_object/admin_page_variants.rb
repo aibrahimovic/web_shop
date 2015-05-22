@@ -41,8 +41,8 @@ class AdminPageVariants < PageContainer
 	end
 
 	def delete_variant
-		select_element(@browser.a(:href => '/help_products/675')).wait_until_present
-		select_element(@browser.a(:href => '/help_products/675')).click
+		select_element(@browser.a(:href => '/help_products/779')).wait_until_present
+		select_element(@browser.a(:href => '/help_products/779')).click
 		@browser.alert.ok
 	end
 

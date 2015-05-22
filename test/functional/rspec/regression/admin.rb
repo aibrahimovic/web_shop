@@ -65,6 +65,10 @@ describe "Admin" do
 		end
 	end
 
+	after(:all) do
+		$browser.quit
+	end
+
 
 
 end

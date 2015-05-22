@@ -288,7 +288,7 @@ a {
   <dl style="margin-left: 15px;">
   <dt id="example_group_2" class="passed">loading landing page</dt>
     <script type="text/javascript">moveProgressBar('11.1');</script>
-    <dd class="example passed"><span class="passed_spec_name">is loaded correctly</span><span class='duration'>2.47023s</span></dd>
+    <dd class="example passed"><span class="passed_spec_name">is loaded correctly</span><span class='duration'>2.47667s</span></dd>
   </dl>
 </div>
 <div id="div_group_3" class="example_group passed">
@@ -300,55 +300,48 @@ a {
   <dl style="margin-left: 30px;">
   <dt id="example_group_4" class="passed">click login button on navbar</dt>
     <script type="text/javascript">moveProgressBar('22.2');</script>
-    <dd class="example passed"><span class="passed_spec_name">opens login page</span><span class='duration'>5.78963s</span></dd>
+    <dd class="example passed"><span class="passed_spec_name">opens login page</span><span class='duration'>5.86046s</span></dd>
   </dl>
 </div>
 <div id="div_group_5" class="example_group passed">
   <dl style="margin-left: 30px;">
   <dt id="example_group_5" class="passed">enter login information</dt>
     <script type="text/javascript">moveProgressBar('33.3');</script>
-    <dd class="example passed"><span class="passed_spec_name">enters information</span><span class='duration'>10.97927s</span></dd>
+    <dd class="example passed"><span class="passed_spec_name">enters information</span><span class='duration'>10.72826s</span></dd>
   </dl>
 </div>
 <div id="div_group_6" class="example_group passed">
   <dl style="margin-left: 30px;">
   <dt id="example_group_6" class="passed">click login button</dt>
     <script type="text/javascript">moveProgressBar('44.4');</script>
-    <dd class="example passed"><span class="passed_spec_name">logs user</span><span class='duration'>5.93377s</span></dd>
+    <dd class="example passed"><span class="passed_spec_name">logs user</span><span class='duration'>3.44402s</span></dd>
   </dl>
 </div>
 <div id="div_group_7" class="example_group passed">
   <dl style="margin-left: 15px;">
   <dt id="example_group_7" class="passed">open all products</dt>
     <script type="text/javascript">moveProgressBar('55.5');</script>
-    <dd class="example passed"><span class="passed_spec_name">all products opened</span><span class='duration'>2.57824s</span></dd>
+    <dd class="example passed"><span class="passed_spec_name">all products opened</span><span class='duration'>2.66294s</span></dd>
   </dl>
 </div>
 <div id="div_group_8" class="example_group passed">
   <dl style="margin-left: 15px;">
   <dt id="example_group_8" class="passed">change one products</dt>
-    <script type="text/javascript">moveProgressBar('66.6');</script>
-    <dd class="example passed"><span class="passed_spec_name">admin is changed</span><span class='duration'>36.01410s</span></dd>
-  </dl>
-</div>
-<div id="div_group_9" class="example_group passed">
-  <dl style="margin-left: 15px;">
-  <dt id="example_group_9" class="passed">check all users</dt>
     <script type="text/javascript">makeRed('rspec-header');</script>
-    <script type="text/javascript">makeRed('div_group_9');</script>
-    <script type="text/javascript">makeRed('example_group_9');</script>
-    <script type="text/javascript">moveProgressBar('77.7');</script>
+    <script type="text/javascript">makeRed('div_group_8');</script>
+    <script type="text/javascript">makeRed('example_group_8');</script>
+    <script type="text/javascript">moveProgressBar('66.6');</script>
     <dd class="example failed">
-      <span class="failed_spec_name">all users were present</span>
-      <span class="duration">3.79506s</span>
+      <span class="failed_spec_name">admin is changed</span>
+      <span class="duration">29.80928s</span>
       <div class="failure" id="failure_1">
-        <div class="message"><pre>unable to locate element, using {:tag_name=&gt;&quot;thead&quot;}</pre></div>
+        <div class="message"><pre>unable to locate element, using {:href=&gt;&quot;/help_products/675&quot;, :tag_name=&gt;&quot;a&quot;}</pre></div>
         <div class="backtrace"><pre>/home/azra/.rvm/gems/ruby-2.2.1/gems/watir-webdriver-0.7.0/lib/watir-webdriver/elements/element.rb:507:in `assert_exists&#39;
 /home/azra/.rvm/gems/ruby-2.2.1/gems/watir-webdriver-0.7.0/lib/watir-webdriver/elements/element.rb:436:in `style&#39;
 /home/azra/.rvm/gems/ruby-2.2.1/gems/watir-webdriver-0.7.0/lib/watir-webdriver/elements/element.rb:236:in `flash&#39;
 ./lib/page_object/page_container.rb:18:in `select_element&#39;
-./lib/page_object/admin_page.rb:53:in `check_all_users&#39;
-./regression/admin.rb:52:in `block (3 levels) in &lt;top (required)&gt;&#39;</pre></div>
+./lib/page_object/admin_page_variants.rb:44:in `delete_variant&#39;
+./regression/admin.rb:45:in `block (3 levels) in &lt;top (required)&gt;&#39;</pre></div>
     <pre class="ruby"><code><span class="linenum">505</span>
 <span class="linenum">506</span>      <span class="keyword">unless</span> <span class="instance-variable">@element</span>
 <span class="offending"><span class="linenum">507</span>        raise <span class="constant">UnknownObjectException</span>, <span class="string"><span class="delimiter">&quot;</span><span class="content">unable to locate element, using </span><span class="inline"><span class="inline-delimiter">#{</span>selector_string<span class="inline-delimiter">}</span></span><span class="delimiter">&quot;</span></span></span>
@@ -358,11 +351,50 @@ a {
     </dd>
   </dl>
 </div>
+<div id="div_group_9" class="example_group passed">
+  <dl style="margin-left: 15px;">
+  <dt id="example_group_9" class="passed">check all users</dt>
+    <script type="text/javascript">makeRed('div_group_9');</script>
+    <script type="text/javascript">makeRed('example_group_9');</script>
+    <script type="text/javascript">moveProgressBar('77.7');</script>
+    <dd class="example failed">
+      <span class="failed_spec_name">all users were present</span>
+      <span class="duration">2.70863s</span>
+      <div class="failure" id="failure_2">
+        <div class="message"><pre>Element is no longer attached to the DOM</pre></div>
+        <div class="backtrace"><pre>[remote server] resource://fxdriver/modules/web-element-cache.js:8956:in `fxdriver.cache.getElementAt&#39;
+[remote server] file:///tmp/webdriver-profile20150522-13264-11yoooq/extensions/fxdriver@googlecode.com/components/driver-component.js:8546:in `Utils.getElementAt&#39;
+[remote server] file:///tmp/webdriver-profile20150522-13264-11yoooq/extensions/fxdriver@googlecode.com/components/driver-component.js:8742:in `Utils.unwrapParameters&#39;
+[remote server] file:///tmp/webdriver-profile20150522-13264-11yoooq/extensions/fxdriver@googlecode.com/components/driver-component.js:8752:in `Utils.unwrapParameters&#39;
+[remote server] file:///tmp/webdriver-profile20150522-13264-11yoooq/extensions/fxdriver@googlecode.com/components/driver-component.js:10166:in `injectAndExecuteScript&#39;
+[remote server] file:///tmp/webdriver-profile20150522-13264-11yoooq/extensions/fxdriver@googlecode.com/components/driver-component.js:10230:in `FirefoxDriver.prototype.executeScript&#39;
+[remote server] file:///tmp/webdriver-profile20150522-13264-11yoooq/extensions/fxdriver@googlecode.com/components/command-processor.js:12274:in `DelayedCommand.prototype.executeInternal_/h&#39;
+[remote server] file:///tmp/webdriver-profile20150522-13264-11yoooq/extensions/fxdriver@googlecode.com/components/command-processor.js:12279:in `DelayedCommand.prototype.executeInternal_&#39;
+[remote server] file:///tmp/webdriver-profile20150522-13264-11yoooq/extensions/fxdriver@googlecode.com/components/command-processor.js:12221:in `DelayedCommand.prototype.execute/&lt;&#39;
+/home/azra/.rvm/gems/ruby-2.2.1/gems/selenium-webdriver-2.45.0/lib/selenium/webdriver/remote/response.rb:52:in `assert_ok&#39;
+/home/azra/.rvm/gems/ruby-2.2.1/gems/selenium-webdriver-2.45.0/lib/selenium/webdriver/remote/response.rb:15:in `initialize&#39;
+/home/azra/.rvm/gems/ruby-2.2.1/gems/selenium-webdriver-2.45.0/lib/selenium/webdriver/remote/http/common.rb:59:in `new&#39;
+/home/azra/.rvm/gems/ruby-2.2.1/gems/selenium-webdriver-2.45.0/lib/selenium/webdriver/remote/http/common.rb:59:in `create_response&#39;
+/home/azra/.rvm/gems/ruby-2.2.1/gems/selenium-webdriver-2.45.0/lib/selenium/webdriver/remote/http/default.rb:66:in `request&#39;
+/home/azra/.rvm/gems/ruby-2.2.1/gems/selenium-webdriver-2.45.0/lib/selenium/webdriver/remote/http/common.rb:40:in `call&#39;
+/home/azra/.rvm/gems/ruby-2.2.1/gems/selenium-webdriver-2.45.0/lib/selenium/webdriver/remote/bridge.rb:640:in `raw_execute&#39;
+/home/azra/.rvm/gems/ruby-2.2.1/gems/selenium-webdriver-2.45.0/lib/selenium/webdriver/remote/bridge.rb:618:in `execute&#39;
+/home/azra/.rvm/gems/ruby-2.2.1/gems/selenium-webdriver-2.45.0/lib/selenium/webdriver/remote/bridge.rb:339:in `executeScript&#39;
+/home/azra/.rvm/gems/ruby-2.2.1/gems/selenium-webdriver-2.45.0/lib/selenium/webdriver/common/driver.rb:193:in `execute_script&#39;
+/home/azra/.rvm/gems/ruby-2.2.1/gems/watir-webdriver-0.7.0/lib/watir-webdriver/elements/element.rb:237:in `flash&#39;
+./lib/page_object/page_container.rb:18:in `select_element&#39;
+./lib/page_object/admin_page.rb:53:in `check_all_users&#39;
+./regression/admin.rb:52:in `block (3 levels) in &lt;top (required)&gt;&#39;</pre></div>
+    <pre class="ruby"><code><span class="linenum">8954</span><span class="comment"># Couldn't get snippet for [remote server] resource://fxdriver/modules/web-element-cache.js</span></code></pre>
+      </div>
+    </dd>
+  </dl>
+</div>
 <div id="div_group_10" class="example_group passed">
   <dl style="margin-left: 15px;">
   <dt id="example_group_10" class="passed">check all orders</dt>
     <script type="text/javascript">moveProgressBar('88.8');</script>
-    <dd class="example passed"><span class="passed_spec_name">all orders were present</span><span class='duration'>2.50580s</span></dd>
+    <dd class="example passed"><span class="passed_spec_name">all orders were present</span><span class='duration'>2.36585s</span></dd>
   </dl>
 </div>
 <div id="div_group_11" class="example_group passed">
@@ -373,9 +405,9 @@ a {
     <script type="text/javascript">moveProgressBar('100.0');</script>
     <dd class="example failed">
       <span class="failed_spec_name">all categories were present</span>
-      <span class="duration">0.00010s</span>
-      <div class="failure" id="failure_2">
-        <div class="message"><pre>undefined method `get_all_categories&#39; for #&lt;AdminPage:0x0000000156e8d8&gt;</pre></div>
+      <span class="duration">0.00009s</span>
+      <div class="failure" id="failure_3">
+        <div class="message"><pre>undefined method `get_all_categories&#39; for #&lt;AdminPage:0x000000018af358&gt;</pre></div>
         <div class="backtrace"><pre>./regression/admin.rb:64:in `block (3 levels) in &lt;top (required)&gt;&#39;</pre></div>
     <pre class="ruby"><code><span class="linenum">62</span>        context <span class="string"><span class="delimiter">&quot;</span><span class="content">check all categories</span><span class="delimiter">&quot;</span></span> <span class="keyword">do</span>
 <span class="linenum">63</span>                it <span class="string"><span class="delimiter">&quot;</span><span class="content">all categories were present</span><span class="delimiter">&quot;</span></span> <span class="keyword">do</span>
@@ -386,8 +418,8 @@ a {
     </dd>
   </dl>
 </div>
-<script type="text/javascript">document.getElementById('duration').innerHTML = "Finished in <strong>79.69840 seconds</strong>";</script>
-<script type="text/javascript">document.getElementById('totals').innerHTML = "9 examples, 2 failures";</script>
+<script type="text/javascript">document.getElementById('duration').innerHTML = "Finished in <strong>69.57447 seconds</strong>";</script>
+<script type="text/javascript">document.getElementById('totals').innerHTML = "9 examples, 3 failures";</script>
 </div>
 </div>
 </body>
